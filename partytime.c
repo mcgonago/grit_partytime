@@ -29,20 +29,23 @@ TimeLinePool_t *timeLinePool;
 #define NL_REMOVE (1)
 #define NL_KEEP   (2)
 
+#define RACE_NO  (1)
+#define RACE_YES (2)
+
 TimeTable_t timeTable = {1, 0, -1};
 
 static uint32_t firstTime = 1;
 
 #define MESSAGE_CUTOFF (70)
 
-#define MAX_MEMBERS (100)
+#define MAX_FRIENDS (100)
 
-typedef struct TeamMate_t
+typedef struct Friend_t
 {
    char name[MAX_STRING_SIZE];
-} TeamMate_s;
+} Friend_s;
 
-TeamMate_s teamMate[MAX_MEMBERS] =
+Friend_s friend[MAX_FRIENDS] =
 {
    "Lance Anderson",
    "Alan Brannan",
@@ -154,6 +157,7 @@ void PartyReset(CLI_PARSE_INFO *pInfo)
 TimeLineInfo_t *
 TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
 {
+   int i;
    TimeLineInfo_t *timeLineInfo;
    PLATFORM_POINTER_T deletedObject = 0;
     
@@ -176,7 +180,12 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
    timeLineInfo->processed = 0;
    timeLineInfo->pair = NULL;
    timeLineInfo->paired = 0;
-        
+
+   for (i = 0; i < MAX_RACES; i++)
+   {
+      timeLineInfo->race[i].place = -1;
+   }
+
    if ((PLATFORM_POINTER_T)timeLineInfo == deletedObject)
    {
       (pInfo->print_fp)("GOTCHA: broken early on\n");
@@ -195,88 +204,16 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
 static int owen_iter = 1;
 static volatile int debug_catch = 0;
 
-Link_t *
-LinkAfterLastSame(CLI_PARSE_INFO *pInfo, Link_t *ptr, TimeLineInfo_t *insert)
-{
-   TimeLineInfo_t *timeLineInfo;
-
-   if (insert->type == TYPE_USBC)
-   {
-      while (ptr->next != NULL)
-      {
-         timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-         if (timeLineInfo == NULL)
-         {
-            (pInfo->print_fp)("INTERNAL ERROR - SHOULD NEVER SEE THIS!!!!!!!!!\n");
-            return(ptr);
-         }
-        
-         // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
-
-         if ((insert->timeStamp == timeLineInfo->timeStamp) && (insert->fraction == timeLineInfo->fraction))
-         {
-            /* Keep it going */
-            ptr = ptr->next;
-         }
-         else
-         {
-            /* Time to insert AFTER!!! */
-            return ptr;
-         }
-      }
-
-      /* We got this far - must be at end, insert after */
-      return(ptr);
-   }
-   else if (insert->type == TYPE_USDP)
-   {
-      while (ptr->next != NULL)
-      {
-         timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-         if (timeLineInfo == NULL)
-         {
-            (pInfo->print_fp)("INTERNAL ERROR - SHOULD NEVER SEE THIS!!!!!!!!!\n");
-            return(ptr);
-         }
-        
-         // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
-
-         if ((insert->timeStamp == timeLineInfo->timeStamp) && (insert->fraction == timeLineInfo->fraction))
-         {
-            /* Keep it going */
-            ptr = ptr->next;
-         }
-         else
-         {
-            /* Time to insert AFTER PREVIOUS one !!! */
-            return ptr->prev;
-            // return ptr;
-         }
-      }
-
-      /* We got this far - must be at end, insert after */
-      return(ptr);
-   }
-    
-}
-
 
 TimeLineInfo_t *
-TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo)
+TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int race)
 {
    Link_t *link;      
    Link_t *ptr;
-   Link_t *ptrI;
-    
    TimeLineInfo_t *currInfo;
-    
-   if (owen_iter == 3)
-   {
-      debug_catch = 1;
-   }
-
+   int nameFound = 0;
+   int i;
+   
    link = LinkCreate((void *)timeLineInfo);
 
    if (link == NULL)
@@ -288,150 +225,76 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo)
 #if 0
    LinkTailAdd(listTimeLine, link);
 #else
-
-   ptr = (Link_t *)listTimeLine->head;
-   currInfo = (TimeLineInfo_t *)ptr->currentObject;
-   if (currInfo == NULL)
-   {
-      /* First one */
-      LinkHeadAdd(listTimeLine, link);
-
+   /* See if name already exists */
+   
+    ptr = (Link_t *)listTimeLine->head;
+    currInfo = (TimeLineInfo_t *)ptr->currentObject;
+    if (currInfo == NULL)
+    {
+        /* First one */
+        LinkHeadAdd(listTimeLine, link);
+    }
+    else
+    {
 #if 0
-      if (owen_iter == 4)
-      {
-         ShowTimeLineList(pInfo, "IN", owen_iter);
-      }
-#endif        
-
-#ifdef DEBUG_LEVEL_1
-      (pInfo->print_fp)("\nFIRST: %s \n", timeLineInfo->timeLine);
+        LinkTailAdd(listTimeLine, link);
 #endif
-   }
-   else
-   {
-#if 0
-      if (owen_iter == 4)
-      {
-         ShowTimeLineList(pInfo, "IN", owen_iter);
-      }
-#endif
+        ptr = (Link_t *)listTimeLine->head;
+        while (ptr->next != NULL)
+        {
+            currInfo = (TimeLineInfo_t *)ptr->currentObject;
 
-      ptr = (Link_t *)listTimeLine->head;
-      while (ptr->next != NULL)
-      {
-         currInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-#ifdef DEBUG
-         /* Insert before smallest so far */
-         (pInfo->print_fp)("link = %d.%02d  current = %d.%02d  link < current %s\n", 
-                           timeLineInfo->timeStamp, timeLineInfo->fraction, currInfo->timeStamp, currInfo->fraction,
-                           (timeLineInfo->timeStamp < currInfo->timeStamp) ? "YES - ADD BEFORE" : "NO - ADD AFTER");
-            
-         (pInfo->print_fp)("link = %d.%02d  current = %d.%02d  link == current %s\n", 
-                           timeLineInfo->timeStamp, timeLineInfo->fraction, currInfo->timeStamp, currInfo->fraction,
-                           (timeLineInfo->timeStamp == currInfo->timeStamp) ? "YES - ADD BEFORE" : "NO - ADD AFTER");
-            
-         (pInfo->print_fp)("link = %d.%02d  current = %d.%02d  link.fraction < current.fraction %s\n", 
-                           timeLineInfo->timeStamp, timeLineInfo->fraction, currInfo->timeStamp, currInfo->fraction,
-                           (timeLineInfo->fraction < currInfo->fraction) ? "YES - ADD BEFORE" : "NO - ADD AFTER");
-
-         (pInfo->print_fp)("\n");
-#endif
-            
-         if (timeLineInfo->timeStamp < currInfo->timeStamp)
-         {
-            LinkBefore(listTimeLine, ptr, link);
-#ifdef DEBUG_LEVEL_1
-            (pInfo->print_fp)("\nCUR: %s", currInfo->timeLine);
-            (pInfo->print_fp)("NEW: %s", timeLineInfo->timeLine);
-            (pInfo->print_fp)("\n");
-            (pInfo->print_fp)("\nAdded BEFORE 1\n");
-            ShowTimeLineList(pInfo, "IN", owen_iter);
-#endif
-            break;
-         }
-         else if (timeLineInfo->timeStamp == currInfo->timeStamp)
-         {
-#ifdef DEBUG_LEVEL_1
-            (pInfo->print_fp)("\nCUR: %s", currInfo->timeLine);
-            (pInfo->print_fp)("NEW: %s", timeLineInfo->timeLine);
-            (pInfo->print_fp)("\n");
-                
-//                (pInfo->print_fp)("new fraction = %d   current fraction = %d\n", timeLineInfo->fraction, currInfo->fraction);
-#endif                    
-            /* What about fraction */
-            if (timeLineInfo->fraction <= currInfo->fraction)
+            if (strcmp(timeLineInfo->name, currInfo->name) == 0)
             {
-               if (owen_iter == 5)
-               {
-                  debug_catch = 1;
-               }
+               nameFound = 1;
 
-               /* A quick check - make sure if USBC that we link AFTER last one! */
-               if (timeLineInfo->fraction == currInfo->fraction)
+               /* If we are adding a race result, do so now */
+               for (i = 0; i < MAX_RACES; i++)
                {
-                  ptrI = LinkAfterLastSame(pInfo, ptr, timeLineInfo);
-                  LinkAfter(listTimeLine, ptrI, link);
-#ifdef DEBUG_LEVEL_1
-                  (pInfo->print_fp)("\nAdded AFTER 1\n");
-                  ShowTimeLineList(pInfo, "IN", owen_iter);
-#endif                    
+                  if (timeLineInfo->race[i].place != -1)
+                  {
+                     currInfo->race[i].place = timeLineInfo->race[i].place;
+                     strcpy(currInfo->race[i].raceName, timeLineInfo->race[i].raceName);
+                     break;
+                  }
                }
-               else
-               {
-                  LinkBefore(listTimeLine, ptr, link);
-#ifdef DEBUG_LEVEL_1
-                  (pInfo->print_fp)("\nAdded BEFORE 2\n");
-                  ShowTimeLineList(pInfo, "IN", owen_iter);
-#endif                    
-               }
-
                break;
             }
-         }
 
-         ptr = ptr->next;
-      }
+            ptr = ptr->next;
+        }
 
-#if 0
-      if (owen_iter == 3)
-      {
-         ShowTimeLineList(pInfo, "IN", owen_iter);
-      }
-#endif
-
-      if (ptr->next == NULL)
-      {
-         /* Insert at tail - largest timeStamp so far */
-         LinkAfter(listTimeLine, ptr, link);
-
-#ifdef DEBUG_LEVEL_1
-         (pInfo->print_fp)("\nAdded AFTER 2\n");
-         ShowTimeLineList(pInfo, "IN", owen_iter);
-#endif                                        
-      }
+        if (nameFound == 0)
+        {
+           LinkTailAdd(listTimeLine, link);
+        }
 
 #if 0
-      if (owen_iter == 3)
-      {
-         ShowTimeLineList(pInfo, "OUT", owen_iter);
-      }
+        ptr = (Link_t *)listTimeLine->head;
+        while (ptr->next != NULL)
+        {
+            currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+            if (strcmp(timeLineInfo->name, currInfo->name) == 0)
+            {
+               if (race == RACE_YES)
+               {
+                  /* If we are adding a race result, do so now */
+                  for (i = 0; i < MAX_RACES; i++)
+                  {
+                     if (timeLineInfo->race[i].place == -1)
+                     {
+                        timeLineInfo->race[i].place = atoi(timeLineInfo->place);
+                        strcpy(timeLineInfo->race[i].raceName, raceName);
+                     }
+                  }
+               }
+            }
+        }
 #endif
-        
-   }
-
+    }
 #endif
 
-#ifdef DEBUG_LEVEL_1
-   (pInfo->print_fp)("\nLEAVING\n\n");
-#endif                                        
-
-#if 0
-   ShowTimeLineList(pInfo, "OUT", owen_iter);
-#endif
-
-   owen_iter += 1;
-            
    return (timeLineInfo);
 }
 
@@ -463,13 +326,6 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
       LinkTailAdd(listTimeLine, nil);
    }
 
-}
-
-static void cmd_party_show(CLI_PARSE_INFO *info)
-{
-   (info->print_fp)("time analysis is %s\n", (timeTable.on == 1) ? "ON" : "OFF");
-   (info->print_fp)("fractional tolerance set to %d\n", timeTable.toleranceFraction);
-   (info->print_fp)("seconds tolerance set to %d\n", timeTable.toleranceSeconds);
 }
 
 static void cmd_party_start(CLI_PARSE_INFO *info)
@@ -593,6 +449,7 @@ static void cmd_party_tolerance_fraction(CLI_PARSE_INFO *pInfo)
 
 void TimeLineFill(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, char *timeLine)
 {
+#if 0
    char *ptr;
    char *ptr2;
    char tmp[MAX_STRING_SIZE];
@@ -733,6 +590,7 @@ void TimeLineFill(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, char *tim
    *ptr2 = '\0';
 
    strcpy(timeLineInfo->watts, ptr2);
+#endif
 }
 
 void StrStrip(char *out, char *in)
@@ -892,6 +750,24 @@ char *StringGet(char *out, FILE *fp, int nl)
    return(ret);
 }
 
+void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
+{
+   char *ptr;
+
+   if ((ptr = strstr(name, "LEADER:")) != NULL)
+   {
+      strcpy(timeLineInfo->name, &name[8]);
+   }
+   else if ((ptr = strstr(name, "SWEEPER:")) != NULL)
+   {
+      strcpy(timeLineInfo->name, &name[9]);
+   }
+   else
+   {
+      strcpy(timeLineInfo->name, name);
+   }
+}
+
 void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 {
    int ret;
@@ -911,7 +787,7 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
    char tmp[MAX_STRING_SIZE];
    char tmp2[MAX_STRING_SIZE];
    char tmp3[MAX_STRING_SIZE];
-   char updatedLine[MAX_STRING_SIZE];
+   char raceName[MAX_STRING_SIZE];
 
    char timeLine[MAX_STRING_SIZE];
 
@@ -928,6 +804,7 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
    // fp_in = fopen("zwiftpower.txt", "r");
    sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
    sprintf(outfile, "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_partytime.txt");
+   sprintf(raceName, "%s", "hooha");
 
    if ( pInfo->argc > 1)
    {
@@ -937,6 +814,11 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
    if ( pInfo->argc > 2)
    {
       sprintf(outfile, "%s", pInfo->argv[2]);
+   }
+
+   if ( pInfo->argc > 3)
+   {
+      sprintf(raceName, "%s", pInfo->argv[3]);
    }
 
    fp_in = fopen(infile, "r");
@@ -986,6 +868,36 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
                /* Done reading file */
                break;
             }
+
+            if (strstr(tmp, "Description") != NULL)
+            {
+               /* Ooops... Found the first B or A before athletes */
+               break;
+            }
+
+            timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+            strcpy(timeLineInfo->timeLine, tmp);
+
+            // strcpy(timeLineInfo->name, tmp);
+            NameInsert(timeLineInfo, tmp);
+
+            if (strcmp(raceName, "race1") == 0)
+            {
+               timeLineInfo->race[0].place = count;
+               sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race2") == 0)
+            {
+               timeLineInfo->race[1].place = count;
+               sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race3") == 0)
+            {
+               timeLineInfo->race[2].place = count;
+               sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
+            }
+
+            TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
 
             (pInfo->print_fp)("%3d  %s", count, tmp);
             fprintf(fp_out, "%3d  %s", count, tmp);
@@ -1056,12 +968,8 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 
 #if 0
       timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
-
-      sprintf(updatedLine, "%s", timeLine);
-      strcpy(timeLineInfo->timeLine, updatedLine);
-
-      TimeLineFill(pInfo, timeLineInfo, timeLine);
-        
+      strcpy(timeLineInfo->timeLine, tmp);
+      TimeLineFill(pInfo, timeLineInfo, tmp);
       TimeLineInfoInsert(pInfo, timeLineInfo);
 #endif
    }
@@ -1103,7 +1011,7 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
    char tmp[MAX_STRING_SIZE];
    char tmp2[MAX_STRING_SIZE];
    char tmp3[MAX_STRING_SIZE];
-   char updatedLine[MAX_STRING_SIZE];
+   char raceName[MAX_STRING_SIZE];
 
    char timeLine[MAX_STRING_SIZE];
 
@@ -1120,6 +1028,7 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
    // fp_in = fopen("zwiftpower.txt", "r");
    sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
    sprintf(outfile, "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_partytime.txt");
+   sprintf(raceName, "%s", "hooha");
 
    if ( pInfo->argc > 1)
    {
@@ -1131,6 +1040,11 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
       sprintf(outfile, "%s", pInfo->argv[2]);
    }
 
+   if ( pInfo->argc > 3)
+   {
+      sprintf(raceName, "%s", pInfo->argv[3]);
+   }
+   
    fp_in = fopen(infile, "r");
 
    if (!fp_in)
@@ -1179,11 +1093,35 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
                break;
             }
 
-            if (strstr(tmp, "Description"))
+            if (strstr(tmp, "Description") != NULL)
             {
                /* Ooops... Found the first B or A before athletes */
                break;
             }
+
+            timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+            strcpy(timeLineInfo->timeLine, tmp);
+            
+            // strcpy(timeLineInfo->name, tmp);
+            NameInsert(timeLineInfo, tmp);
+
+            if (strcmp(raceName, "race1") == 0)
+            {
+               timeLineInfo->race[0].place = count;
+               sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race2") == 0)
+            {
+               timeLineInfo->race[1].place = count;
+               sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race3") == 0)
+            {
+               timeLineInfo->race[2].place = count;
+               sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
+            }
+
+            TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
 
             (pInfo->print_fp)("%3d  %s", count, tmp);
             fprintf(fp_out, "%3d  %s", count, tmp);
@@ -1262,19 +1200,9 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
             {
                break;
             }
+
          }
       }
-
-#if 0
-      timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
-
-      sprintf(updatedLine, "%s", timeLine);
-      strcpy(timeLineInfo->timeLine, updatedLine);
-
-      TimeLineFill(pInfo, timeLineInfo, timeLine);
-        
-      TimeLineInfoInsert(pInfo, timeLineInfo);
-#endif
    }
 
    fclose(fp_in);
@@ -1332,6 +1260,7 @@ void cmd_party_following(CLI_PARSE_INFO *pInfo)
    char place[MAX_STRING_SIZE];
    char first[MAX_STRING_SIZE];
    char last[MAX_STRING_SIZE];
+   char name[MAX_STRING_SIZE];
    char month[MAX_STRING_SIZE];
    char day[MAX_STRING_SIZE];
    char year[MAX_STRING_SIZE];
@@ -1421,13 +1350,14 @@ void cmd_party_following(CLI_PARSE_INFO *pInfo)
                break;
             }
 
-//            (pInfo->print_fp)("%s", tmp);
-
             if (includeVAM == 1)
             {
                /* 1    Lance Anderson  Sep 8, 2020     21.2mi/h    170   431W    1,345.5     4:42 */
                sscanf(tmp, "%s %s %s %s %s %s %s %s %s %s %s",
                       place, first, last, month, day, year, speed, bpm, watts, vid, time);
+
+               sprintf(name, "%s ", first);
+               strcat(name, last);
 
                (pInfo->print_fp)("%s   %s %s   %s %s %s   %s   %s\n",
                                  place, first, last, month, day, year, watts, time);
@@ -1442,25 +1372,44 @@ void cmd_party_following(CLI_PARSE_INFO *pInfo)
                sscanf(tmp, "%s %s %s %s %s %s %s %s %s %s",
                       place, first, last, month, day, year, speed, bpm, watts, time);
 
-               (pInfo->print_fp)("%s   %s %s   %s %s %s   %s   %s\n",
-                                 place, first, last, month, day, year, watts, time);
+               sprintf(name, "%s ", first);
+               strcat(name, last);
 
-               fprintf(fp_out, "%s   %s %s   %s %s %s   %s   %s\n",
-                       place, first, last, month, day, year, watts, time);
+               (pInfo->print_fp)("%s   %s  %s %s %s   %s   %s\n",
+                                 place, name, month, day, year, watts, time);
+
+               fprintf(fp_out, "%s   %s   %s %s %s   %s   %s\n",
+                       place, name, month, day, year, watts, time);
             }
+
+#if 0
+            timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+
+            strcpy(timeLineInfo->timeLine, tmp);
+
+            timeLineInfo->race[0].place = atoi(place);
+            sprintf(timeLineInfo->race[0].raceName, "%s", "foobar");
+
+            strcpy(timeLineInfo->place, place);
+            strcpy(timeLineInfo->name, name);
+            strcpy(timeLineInfo->month, month);
+            strcpy(timeLineInfo->day, day);
+            strcpy(timeLineInfo->year, year);
+//          strcpy(timeLineInfo->speed, speed);
+            strcpy(timeLineInfo->watts, watts);
+//          strcpy(timeLineInfo->wpkg, wpkg);
+            strcpy(timeLineInfo->bpm, bpm);
+            strcpy(timeLineInfo->vid, vid);
+            strcpy(timeLineInfo->time, time);
+//          strcpy(timeLineInfo->test, test);
+
+            TimeLineFill(pInfo, timeLineInfo, tmp);
+        
+            TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
+#endif
          }
       }
 
-#if 0
-      timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
-
-      sprintf(updatedLine, "%s", timeLine);
-      strcpy(timeLineInfo->timeLine, updatedLine);
-
-      TimeLineFill(pInfo, timeLineInfo, timeLine);
-        
-      TimeLineInfoInsert(pInfo, timeLineInfo);
-#endif
    }
 
    fclose(fp_in);
@@ -1477,7 +1426,7 @@ void cmd_party_following(CLI_PARSE_INFO *pInfo)
 
    (pInfo->print_fp)("\n\n");
 #endif
-    
+   
 }
 
 
@@ -1743,7 +1692,7 @@ void cmd_party_run(CLI_PARSE_INFO *pInfo)
 #endif        
 #endif
         
-      TimeLineInfoInsert(pInfo, timeLineInfo);
+      TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
    }
 
    fclose(fp_in);
@@ -1762,12 +1711,51 @@ void cmd_party_run(CLI_PARSE_INFO *pInfo)
     
 }
 
+void cmd_party_show(CLI_PARSE_INFO *pInfo)
+{
+    TimeLineInfo_t *timeLineInfo;
+    Link_t *link;      
+    Link_t *ptr;
+    int i;
+
+   ptr = (Link_t *)listTimeLine->head;
+   while (ptr->next != NULL)
+   {
+      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+      
+      (pInfo->print_fp)("%32s ", timeLineInfo->name);
+
+      for (i = 0; i < MAX_RACES; i++)
+      {
+         if (timeLineInfo->race[i].place != -1)
+         {
+            (pInfo->print_fp)(" %2d ", timeLineInfo->race[i].place);
+         }
+      }
+
+      (pInfo->print_fp)("\n");
+
+#if 0
+      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
+      (pInfo->print_fp)("%s   %s  %s %s %s   %s   %s\n",
+         timeLineInfo->place,
+         timeLineInfo->name,
+         timeLineInfo->month,
+         timeLineInfo->day,
+         timeLineInfo->year,
+         timeLineInfo->watts,
+         timeLineInfo->time);
+#endif
+
+      ptr = ptr->next;
+   }
+}
+
 static const CLI_PARSE_CMD cmd_party_commands[] =
 {
-   { "show",            cmd_party_show,                 "show party status"},
    { "start",           cmd_party_start,                "start party"},
    { "stop",            cmd_party_stop,                 "stop party"},
-//   { "run",             cmd_party_run,                  "run party"},
+   { "show",            cmd_party_show,                 "show party status"},
    { "following",       cmd_party_following,            "following [infile] [outfile]"},
    { "results",         cmd_party_results,              "results [infile] [outfile]"},
    { "kom",             cmd_party_kom_and_sprints,      "kom [infile] [outfile]"},
@@ -1784,7 +1772,7 @@ void cmd_party( CLI_PARSE_INFO *info)
    }
 
    /* Reset things each time through */
-   PartyReset(info);
+   // PartyReset(info);
 
    cliDefaultHandler( info, cmd_party_commands );
 }

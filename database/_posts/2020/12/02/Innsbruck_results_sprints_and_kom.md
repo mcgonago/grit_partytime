@@ -1,4 +1,4 @@
-  1  Description  B    1            Steve  Tappan
+  1  Steve Tappan  18:21    338w  5.0wkg
   2  Derek Sawyer  18:43    347w  4.6wkg
   3  Olivier PERRIN [ASVEL] (ZLIT) *SM*  19:20    297w  4.7wkg
   4  Pieter Jan de Vries  19:22    325w  4.6wkg
