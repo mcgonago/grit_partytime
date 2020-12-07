@@ -1,0 +1,76 @@
+Rank 
+1       Steve Peplinski 	Feb 28, 2019 	46.1mi/h 	169bpm 	736W 	9s
+1       Mark Poirier 	Oct 8, 2019 	46.1mi/h 	177bpm 	954W 	9s
+1       Shaun Corbin 	Dec 17, 2019 	46.1mi/h 	174bpm 	770W 	9s
+1       Maximilian Weniger 	Jan 30, 2020 	46.1mi/h 	159bpm 	933W 	9s
+1       Mike Morse 	Apr 18, 2020 	46.1mi/h 	191bpm 	885W 	9s
+1       Ted Phillips 	May 2, 2020 	46.1mi/h 	138bpm 	965W 	9s
+1       Paul Hutchins 	May 28, 2020 	46.1mi/h 	180bpm 	755W 	9s
+1       Scarlett Parker 	Sep 1, 2020 	46.1mi/h 	156bpm 	829W 	9s
+1       Rob Fullerton 	Sep 17, 2020 	46.1mi/h 	154bpm 	923W 	9s
+1       Seth G 	Sep 24, 2020 	46.1mi/h 	161bpm 	949W 	9s
+1       Alan Brannan 	Nov 12, 2020 	46.1mi/h 	163bpm 	693W 	9s
+1       Gabriel Mathisen Ⓥ 	Nov 12, 2020 	46.1mi/h 	154bpm 	785W 	9s
+1       Lance Anderson 	Nov 19, 2020 	46.1mi/h 	- 	1,051W 	9s
+1       tak ina 	Dec 3, 2020 	46.1mi/h 	149bpm 	686W 	9s
+1       Owen McGonagle 	Dec 3, 2020 	46.1mi/h 	141bpm 	696W 	9s
+16 	Matt Pierson 	Apr 4, 2017 	41.5mi/h 	187bpm 	655W 	10s
+16 	Aaron Cole 	Dec 9, 2017 	41.5mi/h 	192bpm 	606W 	10s
+16 	Ray Diaz 	Dec 29, 2017 	41.5mi/h 	162bpm 	468W 	10s
+16 	Andrew Walter 	Jan 11, 2018 	41.5mi/h 	175bpm 	606W 	10s
+16 	Jason Bradeen 	Jan 14, 2018 	41.5mi/h 	169bpm 	983W 	10s
+16 	Brandon Swamy 	Jan 24, 2018 	41.5mi/h 	169bpm 	880W 	10s
+16 	Paul Sutliff 	Feb 6, 2018 	41.5mi/h 	171bpm 	711W 	10s
+16 	Rick Hinson 	Jun 12, 2018 	41.5mi/h 	143bpm 	425W 	10s
+16 	Randy Cogill 	Dec 4, 2018 	41.5mi/h 	174bpm 	693W 	10s
+16 	Derek Sawyer 	Feb 7, 2019 	41.5mi/h 	168bpm 	652W 	10s
+16 	Cecelia Taggart 	May 17, 2019 	41.5mi/h 	175bpm 	512W 	10s
+16 	John Jeffries 	Jun 20, 2019 	41.5mi/h 	117bpm 	626W 	10s
+16 	Chris Gregory (Cicirunner) 	Aug 11, 2019 	41.5mi/h 	185bpm 	693W 	10s
+16 	Ben Sisson 	Oct 3, 2019 	41.5mi/h 	163bpm 	456W 	10s
+16 	Andrew Cohen 	Dec 5, 2019 	41.5mi/h 	174bpm 	650W 	10s
+16 	Mark Hewitt 	Dec 12, 2019 	41.5mi/h 	171bpm 	723W 	10s
+16 	JD Doyle 	Dec 20, 2019 	41.5mi/h 	149bpm 	501W 	10s
+16 	J P 	Jan 6, 2020 	41.5mi/h 	168bpm 	721W 	10s
+16 	Spencer Irvine 	Jan 19, 2020 	41.5mi/h 	151bpm 	733W 	10s
+16 	Scott Taylor 	Mar 5, 2020 	41.5mi/h 	155bpm 	737W 	10s
+16 	aaron m 	Mar 31, 2020 	41.5mi/h 	156bpm 	661W 	10s
+16 	Tom Scanlon 	May 14, 2020 	41.5mi/h 	177bpm 	495W 	10s
+16 	Sepp Kuss 	May 17, 2020 	41.5mi/h 	205bpm 	714W 	10s
+16 	Luke Elton 	Oct 15, 2020 	41.5mi/h 	172bpm 	631W 	10s
+40 	Cedric Tonello 	Oct 2, 2016 	37.7mi/h 	148bpm 	796W 	11s
+40 	David Hayes 	Feb 4, 2017 	37.7mi/h 	153bpm 	527W 	11s
+40 	Steven Fish 	Feb 11, 2017 	37.7mi/h 	162bpm 	884W 	11s
+40 	Michael Lamoureux 	Sep 25, 2017 	37.7mi/h 	129bpm 	467W 	11s
+40 	Steve Finch 	Dec 22, 2017 	37.7mi/h 	176bpm 	319W 	11s
+40 	Jeff Kanter 	Dec 29, 2017 	37.7mi/h 	158bpm 	424W 	11s
+40 	Chris Yarde 	Jan 16, 2018 	37.7mi/h 	- 	1,089W 	11s
+40 	Chase Kerzel 	Feb 5, 2018 	37.7mi/h 	177bpm 	591W 	11s
+40 	Pete MacLeod :: HoldFastCycling.com 	Mar 20, 2018 	37.7mi/h 	- 	666W 	11s
+40 	Nick Leger 	Apr 7, 2018 	37.7mi/h 	172bpm 	522W 	11s
+40 	Rob Callahan 	Apr 15, 2018 	37.7mi/h 	174bpm 	349W 	11s
+40 	Double D 🇷🇸 	Dec 12, 2018 	37.7mi/h 	- 	834W 	11s
+40 	Andy Han 	Jan 20, 2019 	37.7mi/h 	170bpm 	401W 	11s
+40 	Matt Noonan 	Jan 20, 2019 	37.7mi/h 	178bpm 	469W 	11s
+40 	John McCarthy 	Mar 21, 2019 	37.7mi/h 	- 	433W 	11s
+40 	Aaron Doucett 	Nov 7, 2019 	37.7mi/h 	154bpm 	850W 	11s
+40 	Thomas Main Ⓥ 	Nov 26, 2019 	37.7mi/h 	154bpm 	546W 	11s
+40 	Drew Casey 	Dec 17, 2019 	37.7mi/h 	175bpm 	619W 	11s
+40 	Ted King 	Feb 15, 2020 	37.7mi/h 	163bpm 	746W 	11s
+40 	James Piccoli 	Apr 16, 2020 	37.7mi/h 	161bpm 	823W 	11s
+40 	Randy Baker 	Apr 21, 2020 	37.7mi/h 	164bpm 	520W 	11s
+40 	Ringo Kuchinke 🇩🇪 	May 11, 2020 	37.7mi/h 	145bpm 	930W 	11s
+40 	Erik Vandendries 	May 14, 2020 	37.7mi/h 	168bpm 	434W 	11s
+40 	Steve Tappan 	Nov 18, 2020 	37.7mi/h 	124bpm 	557W 	11s
+40 	Paul Westergaard🇨🇦 	Nov 19, 2020 	37.7mi/h 	- 	473W 	11s
+65 	Brian Murphy 	Jan 5, 2017 	34.6mi/h 	156bpm 	507W 	12s
+65 	Jared Dickinson 	Jan 12, 2017 	34.6mi/h 	168bpm 	687W 	12s
+65 	Chris DiStefano 	Feb 11, 2017 	34.6mi/h 	157bpm 	471W 	12s
+65 	Saoirbhreathach MacTuaithuil 	Feb 19, 2018 	34.6mi/h 	154bpm 	779W 	12s
+65 	Gary Jaz 	Apr 7, 2018 	34.6mi/h 	126bpm 	708W 	12s
+65 	Dan Barber 	Dec 21, 2019 	34.6mi/h 	176bpm 	480W 	12s
+65 	Spencer Chipping 	Jan 9, 2020 	34.6mi/h 	140bpm 	510W 	12s
+65 	Bill O'Hara 	Feb 11, 2020 	34.6mi/h 	- 	506W 	12s
+65 	Bill Zucker 	Mar 7, 2020 	34.6mi/h 	162bpm 	434W 	12s
+65 	Lucy Bryant 	Jul 29, 2020 	34.6mi/h 	161bpm 	252W 	12s
+75 	J.B. Clancy 	Oct 18, 2016 	31.9mi/h 	168bpm 	227W 	13s
