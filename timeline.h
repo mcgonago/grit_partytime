@@ -9,6 +9,7 @@ typedef struct Race_s
 {
    char raceName[MAX_STRING_SIZE];
    int place;
+   int points;
 } Race_t;
 
 typedef struct TimeLineInfo_s
@@ -17,10 +18,12 @@ typedef struct TimeLineInfo_s
    char timeLine[MAX_STRING_SIZE];
    time_t timeStamp;
 
+   int points;
    char place[MAX_STRING_SIZE];
    char first[MAX_STRING_SIZE];
    char last[MAX_STRING_SIZE];
    char name[MAX_STRING_SIZE];
+   char team[MAX_STRING_SIZE];
    char month[MAX_STRING_SIZE];
    char day[MAX_STRING_SIZE];
    char year[MAX_STRING_SIZE];
@@ -41,6 +44,8 @@ typedef struct TimeLineInfo_s
    int processed;
   
    Link_t *pair;
+   struct TimeLineInfo_s *me;
+   // TimeLineInfo_t *me;
 } TimeLineInfo_t;
 
 typedef struct TimeLineEnv_s
@@ -61,7 +66,7 @@ extern LinkList_t *listTimeLine;
 TimeLineInfo_t *TimeLineCreate(CLI_PARSE_INFO *pInfo);
 void TimeLineRemove(TimeLineInfo_t *timeLineInfo);
 TimeLineInfo_t *TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type);
-TimeLineInfo_t *TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int race);
+TimeLineInfo_t *TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList_t *list, int race);
 void timeLineInit(CLI_PARSE_INFO *pInfo);
 void SideBySideSingle(CLI_PARSE_INFO *pInfo, char *buff);
 void ShowTimeLineList(CLI_PARSE_INFO *pInfo, char *msg, int iter);

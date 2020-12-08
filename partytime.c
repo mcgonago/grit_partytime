@@ -16,7 +16,10 @@
 #include "tracebuffer.h"
 #include "timeline.h"
 
+static int maxRaces = 3;
+
 LinkList_t *listTimeLine = NULL;
+LinkList_t *listTimeOrder = NULL;
 
 TimeLinePool_t *timeLinePool;
 
@@ -38,31 +41,8 @@ static uint32_t firstTime = 1;
 
 #define MESSAGE_CUTOFF (70)
 
-#define MAX_FRIENDS (100)
-
-typedef struct Friend_t
-{
-   char name[MAX_STRING_SIZE];
-} Friend_s;
-
-Friend_s friend[MAX_FRIENDS] =
-{
-   "Lance Anderson",
-   "Alan Brannan",
-   "Shaun Corbin",
-   "Luke Elton",
-   "Rob Fullerton",
-   "Seth G",
-   "tak ina",
-   "John Jeffries",
-   "Gabriel Mathisen",
-   "Owen McGonagle",
-   "Steve Peplinski",
-   "Carson Shedd",
-   "Steve Tappan",
-   "Maximilian Weniger",
-   "Derek Sawyer",
-};
+extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
+extern int TeamGrit(char *name);
 
 int FormattedProper(char *buff)
 {
@@ -126,13 +106,13 @@ TimeLineRemove(TimeLineInfo_t *timeLineInfo)
    timeLineInfo->paired = 0;
 }
 
-void PartyReset(CLI_PARSE_INFO *pInfo)
+void PartyReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
 {
    Link_t *ptr;
    Link_t *tmp;
     
    /* See if there is a match */
-   ptr = (Link_t *)listTimeLine->head ;
+   ptr = (Link_t *)list->head ;
 
    if (ptr->next != NULL)
    {
@@ -143,7 +123,7 @@ void PartyReset(CLI_PARSE_INFO *pInfo)
 
          tmp = ptr->next;
             
-         if (LinkRemove(listTimeLine, ptr) != TRUE)
+         if (LinkRemove(list, ptr) != TRUE)
          {
             (pInfo->print_fp)("Could not remove item from list\n");
             break;
@@ -181,6 +161,13 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
    timeLineInfo->pair = NULL;
    timeLineInfo->paired = 0;
 
+   timeLineInfo->team[0] = '\0';
+   timeLineInfo->name[0] = '\0';
+   timeLineInfo->first[0] = '\0';
+   timeLineInfo->last[0] = '\0';
+
+   timeLineInfo->points = 0;
+   
    for (i = 0; i < MAX_RACES; i++)
    {
       timeLineInfo->race[i].place = -1;
@@ -206,7 +193,7 @@ static volatile int debug_catch = 0;
 
 
 TimeLineInfo_t *
-TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int race)
+TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList_t *list, int race)
 {
    Link_t *link;      
    Link_t *ptr;
@@ -223,23 +210,23 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int race
    }
 
 #if 0
-   LinkTailAdd(listTimeLine, link);
+   LinkTailAdd(list, link);
 #else
    /* See if name already exists */
    
-    ptr = (Link_t *)listTimeLine->head;
+    ptr = (Link_t *)list->head;
     currInfo = (TimeLineInfo_t *)ptr->currentObject;
     if (currInfo == NULL)
     {
         /* First one */
-        LinkHeadAdd(listTimeLine, link);
+        LinkHeadAdd(list, link);
     }
     else
     {
 #if 0
-        LinkTailAdd(listTimeLine, link);
+        LinkTailAdd(list, link);
 #endif
-        ptr = (Link_t *)listTimeLine->head;
+        ptr = (Link_t *)list->head;
         while (ptr->next != NULL)
         {
             currInfo = (TimeLineInfo_t *)ptr->currentObject;
@@ -266,11 +253,11 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int race
 
         if (nameFound == 0)
         {
-           LinkTailAdd(listTimeLine, link);
+           LinkTailAdd(list, link);
         }
 
 #if 0
-        ptr = (Link_t *)listTimeLine->head;
+        ptr = (Link_t *)list->head;
         while (ptr->next != NULL)
         {
             currInfo = (TimeLineInfo_t *)ptr->currentObject;
@@ -298,7 +285,57 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int race
    return (timeLineInfo);
 }
 
-void PartyInit(CLI_PARSE_INFO *pInfo)
+TimeLineInfo_t *
+TimeOrderInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList_t *list, int race)
+{
+   Link_t *link;      
+   Link_t *ptr;
+   TimeLineInfo_t *currInfo;
+   int nameFound = 0;
+   int i;
+   
+   link = LinkCreate((void *)timeLineInfo);
+
+   if (link == NULL)
+   {
+      printf("ERROR: Could not allocate link for session block\n");
+      return NULL;
+   }
+
+    ptr = (Link_t *)list->head;
+    currInfo = (TimeLineInfo_t *)ptr->currentObject;
+    if (currInfo == NULL)
+    {
+        /* First one */
+        LinkHeadAdd(list, link);
+    }
+    else
+    {
+        ptr = (Link_t *)list->head;
+        while (ptr->next != NULL)
+        {
+            currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+            if (currInfo->points <= timeLineInfo->points) 
+            {
+               LinkBefore(list, ptr, link);
+               nameFound = 1;
+               break;
+            }
+
+            ptr = ptr->next;
+        }
+
+        if (nameFound == 0)
+        {
+           LinkTailAdd(list, link);
+        }
+    }
+
+   return (timeLineInfo);
+}
+
+void TimeLineInit(CLI_PARSE_INFO *pInfo)
 {
    uint32_t size;
    Link_t *nil;
@@ -326,6 +363,13 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
       LinkTailAdd(listTimeLine, nil);
    }
 
+   /* Create link list of PidProcess entries */
+   if (listTimeOrder == NULL)
+   {
+      listTimeOrder = LinkListCreate();
+      nil = LinkCreate(NULL);
+      LinkTailAdd(listTimeOrder, nil);
+   }
 }
 
 static void cmd_party_start(CLI_PARSE_INFO *info)
@@ -753,19 +797,80 @@ char *StringGet(char *out, FILE *fp, int nl)
 void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
 {
    char *ptr;
+   char tmp[MAX_STRING_SIZE];
+   char team[MAX_STRING_SIZE];
+   int teamFound = 0;
+   int ret = 0;
 
    if ((ptr = strstr(name, "LEADER:")) != NULL)
    {
-      strcpy(timeLineInfo->name, &name[8]);
+      strcpy(tmp, &name[8]);
    }
    else if ((ptr = strstr(name, "SWEEPER:")) != NULL)
    {
-      strcpy(timeLineInfo->name, &name[9]);
+      strcpy(tmp, &name[9]);
    }
    else
    {
-      strcpy(timeLineInfo->name, name);
+      strcpy(tmp, name);
    }
+
+   strcpy(timeLineInfo->name, tmp);
+
+   ptr = timeLineInfo->name;
+   while (*ptr != '\0')
+   {
+      if (!isprint(*ptr))
+      {
+         *ptr = ' ';
+      }
+      ptr++;
+   }
+
+#if 1
+   /* Split team from name */
+   ptr = tmp;
+
+   if (timeLineInfo->team[0] == '\0')
+   {
+      while (*ptr != '\0')
+      {
+         if ((*ptr == '[') || (*ptr == '(') || (*ptr == '_'))
+         {
+            teamFound = 1;
+            strcpy(timeLineInfo->team, ptr);
+
+            ptr--;
+            while (*ptr == ' ')
+            {
+               ptr--;
+            }
+
+            ptr++;
+            *ptr = '\0';
+            strcpy(timeLineInfo->name, tmp);
+            break;
+         }
+
+         ptr++;
+      }
+   }
+
+   if (teamFound == 0)
+   {
+       /* See if name shows up in our team list */
+       if ((ret = TeamGrit(timeLineInfo->name)) == 1)
+       {
+          strcpy(timeLineInfo->team, "[GRIT]");
+       }
+       else
+       {
+          /* Just put in a dash for now */
+          strcpy(timeLineInfo->team, "-");
+       }
+   }
+#endif
+
 }
 
 void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
@@ -778,6 +883,7 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
    char *c;
    int len;
    int count = 1;
+   int raceId = 0;
 
    FILE *fp_in;
    FILE *fp_out;
@@ -883,21 +989,24 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 
             if (strcmp(raceName, "race1") == 0)
             {
+               raceId = 0;
                timeLineInfo->race[0].place = count;
                sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
             }
             else if (strcmp(raceName, "race2") == 0)
             {
+               raceId = 1;
                timeLineInfo->race[1].place = count;
                sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
             }
             else if (strcmp(raceName, "race3") == 0)
             {
+               raceId = 2;
                timeLineInfo->race[2].place = count;
                sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
             }
 
-            TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
+            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
             (pInfo->print_fp)("%3d  %s", count, tmp);
             fprintf(fp_out, "%3d  %s", count, tmp);
@@ -965,29 +1074,28 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
             }
          }
       }
-
-#if 0
-      timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
-      strcpy(timeLineInfo->timeLine, tmp);
-      TimeLineFill(pInfo, timeLineInfo, tmp);
-      TimeLineInfoInsert(pInfo, timeLineInfo);
-#endif
    }
 
    fclose(fp_in);
 
-#if 0
+   /* Now, go through each one - if the race is set, add in points based on total in race */
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
    {
       timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-        
-      (pInfo->print_fp)("%s", timeLineInfo->timeLine);
+
+      if (timeLineInfo->race[raceId].place != -1)
+      {
+         timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         timeLineInfo->points += timeLineInfo->race[raceId].points;
+      }
+
+      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
       ptr = ptr->next;
    }
 
    (pInfo->print_fp)("\n\n");
-#endif
+
 }
 
 
@@ -1002,6 +1110,7 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
    int len;
    int count = 1;
    int firstAthlete = 1;
+   int raceId = 0;
    
    FILE *fp_in;
    FILE *fp_out;
@@ -1107,21 +1216,24 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
 
             if (strcmp(raceName, "race1") == 0)
             {
+               raceId = 0;
                timeLineInfo->race[0].place = count;
                sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
             }
             else if (strcmp(raceName, "race2") == 0)
             {
+               raceId = 1;
                timeLineInfo->race[1].place = count;
                sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
             }
             else if (strcmp(raceName, "race3") == 0)
             {
+               raceId = 2;
                timeLineInfo->race[2].place = count;
                sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
             }
 
-            TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
+            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
             (pInfo->print_fp)("%3d  %s", count, tmp);
             fprintf(fp_out, "%3d  %s", count, tmp);
@@ -1207,18 +1319,23 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
 
    fclose(fp_in);
 
-#if 0
+   /* Now, go through each one - if the race is set, add in points based on total in race */
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
    {
       timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-        
-      (pInfo->print_fp)("%s", timeLineInfo->timeLine);
+
+      if (timeLineInfo->race[raceId].place != -1)
+      {
+         timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         timeLineInfo->points += timeLineInfo->race[raceId].points;
+      }
+
+      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
       ptr = ptr->next;
    }
 
    (pInfo->print_fp)("\n\n");
-#endif
     
 }
 
@@ -1405,7 +1522,7 @@ void cmd_party_following(CLI_PARSE_INFO *pInfo)
 
             TimeLineFill(pInfo, timeLineInfo, tmp);
         
-            TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
+            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 #endif
          }
       }
@@ -1692,7 +1809,7 @@ void cmd_party_run(CLI_PARSE_INFO *pInfo)
 #endif        
 #endif
         
-      TimeLineInfoInsert(pInfo, timeLineInfo, RACE_NO);
+      TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
    }
 
    fclose(fp_in);
@@ -1711,44 +1828,143 @@ void cmd_party_run(CLI_PARSE_INFO *pInfo)
     
 }
 
+int TopTwo(TimeLineInfo_t *timeLineInfo)
+{
+   int id1, id2, id3;
+   int order[3];
+
+   id1 = timeLineInfo->race[0].points;
+   id2 = timeLineInfo->race[1].points;
+   id3 = timeLineInfo->race[2].points;
+
+   order[0] = id1;
+   if (id2 > id1)
+   {
+      order[1] = id1;
+      order[0] = id2;
+   }
+   else
+   {
+      order[1] = id2;
+   }
+
+   if (id3 > order[0])
+   {
+      order[2] = order[1];
+      order[1] = order[0];
+      order[0] = id3;
+   }
+   else if (id3 > order[1])
+   {
+      order[2] = order[1];
+      order[1] = id3;
+   }
+
+   return (order[0] + order[1]);
+}
+
+
 void cmd_party_show(CLI_PARSE_INFO *pInfo)
 {
     TimeLineInfo_t *timeLineInfo;
+    TimeLineInfo_t *currInfo;
     Link_t *link;      
     Link_t *ptr;
     int i;
+    char placePoints[MAX_STRING_SIZE];
 
+#if 0
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
    {
       timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
       
-      (pInfo->print_fp)("%32s ", timeLineInfo->name);
+      if (timeLineInfo->team[0] != '\0')
+      {
+         (pInfo->print_fp)("%-32s %-30s ", timeLineInfo->name, timeLineInfo->team);
+      }
+      else
+      {
+         (pInfo->print_fp)("%-32s %-30s ", timeLineInfo->name, " ");
+      }
 
-      for (i = 0; i < MAX_RACES; i++)
+      // for (i = 0; i < MAX_RACES; i++)
+      for (i = 0; i < maxRaces; i++)
       {
          if (timeLineInfo->race[i].place != -1)
          {
-            (pInfo->print_fp)(" %2d ", timeLineInfo->race[i].place);
+            (pInfo->print_fp)(" %-10d ", timeLineInfo->race[i].place);
+         }
+         else
+         {
+            (pInfo->print_fp)(" %-10d ", 0);
          }
       }
 
-      (pInfo->print_fp)("\n");
+      (pInfo->print_fp)(" %-10d ", timeLineInfo->points);
 
-#if 0
-      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
-      (pInfo->print_fp)("%s   %s  %s %s %s   %s   %s\n",
-         timeLineInfo->place,
-         timeLineInfo->name,
-         timeLineInfo->month,
-         timeLineInfo->day,
-         timeLineInfo->year,
-         timeLineInfo->watts,
-         timeLineInfo->time);
-#endif
+      (pInfo->print_fp)("\n");
 
       ptr = ptr->next;
    }
+#endif
+
+#if 1
+   ptr = (Link_t *)listTimeLine->head;
+   while (ptr->next != NULL)
+   {
+      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+      currInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+      // currInfo->points = timeLineInfo->points;
+      currInfo->points = TopTwo(timeLineInfo);
+      currInfo->me = timeLineInfo;
+
+      TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO);
+      ptr = ptr->next;
+   }
+
+   ptr = (Link_t *)listTimeOrder->head;
+   while (ptr->next != NULL)
+   {
+      currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+      timeLineInfo = (TimeLineInfo_t *)currInfo->me;
+      
+      if (timeLineInfo->team[0] != '\0')
+      {
+         (pInfo->print_fp)("%-32s %-30s ", timeLineInfo->name, timeLineInfo->team);
+      }
+      else
+      {
+         (pInfo->print_fp)("%-32s %-30s ", timeLineInfo->name, " ");
+      }
+
+      for (i = 0; i < maxRaces; i++)
+      {
+         if (timeLineInfo->race[i].place != -1)
+         {
+            sprintf(placePoints, "%2d/%-2d", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
+            // (pInfo->print_fp)(" %-10d/%d ", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
+            (pInfo->print_fp)(" %-10s ", placePoints);
+         }
+         else
+         {
+            sprintf(placePoints, "%2d/%-2d", 0, 0);
+            // (pInfo->print_fp)(" %-10d/0 ", 0);
+            (pInfo->print_fp)(" %-10s ", placePoints);
+         }
+      }
+
+      // (pInfo->print_fp)(" %-10d ", timeLineInfo->points);
+      (pInfo->print_fp)(" %-10d ", currInfo->points);
+
+      (pInfo->print_fp)("\n");
+
+      ptr = ptr->next;
+   }
+#endif
+
 }
 
 static const CLI_PARSE_CMD cmd_party_commands[] =
@@ -1760,6 +1976,7 @@ static const CLI_PARSE_CMD cmd_party_commands[] =
    { "results",         cmd_party_results,              "results [infile] [outfile]"},
    { "kom",             cmd_party_kom_and_sprints,      "kom [infile] [outfile]"},
    { "sprints",         cmd_party_kom_and_sprints,      "sprints [infile] [outfile]"},
+   { "filter",          PartyTimeFilterCmd,             "filter commands"},
    { NULL, NULL, NULL }
 };
 
@@ -1767,12 +1984,12 @@ void cmd_party( CLI_PARSE_INFO *info)
 {
    if (firstTime == 1)
    {
-      PartyInit(info);
+      TimeLineInit(info);
       firstTime = 0;
    }
 
    /* Reset things each time through */
-   // PartyReset(info);
+   // PartyReset(info, listTimeLine);
 
    cliDefaultHandler( info, cmd_party_commands );
 }

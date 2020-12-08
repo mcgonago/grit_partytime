@@ -331,28 +331,11 @@ typedef struct PidProcess_s
 
 typedef struct PidStatConfig_s
 {
-    uint32_t numberOfRows;
-    uint32_t numberOfColumns;
-    uint32_t displayMode;
-    uint32_t filterSelect;
-    uint32_t idleMax;
-    uint32_t silent;
-    uint32_t oneHitTracking;
-    uint32_t filterMatchYesSkip;
-    uint32_t filterMatchNoSkip;
-    uint32_t order;
-    uint32_t sar;
-    uint32_t nameLenMax;
-    uint32_t maxRows;
-    double cpuThreshold;
-    uint32_t diffColor;
-    uint32_t top;
-    uint32_t split;
-    uint32_t sarQueue;
-    uint32_t pfeEngine;
-    char fname[NAME_LENGTH_MAX];
-    char pidstatCommand[NAME_LENGTH_MAX];
-    
+   uint32_t mode;
+   uint32_t filterSelect;
+   uint32_t filterMatchYesSkip;
+   uint32_t filterMatchNoSkip;
+
 } PidStatConfig_t;
 
 #define MAX_CORES               (12)
