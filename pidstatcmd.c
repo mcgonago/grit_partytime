@@ -64,7 +64,7 @@ FilterLibrary_t filterLibraryB[] = {
    {0, "Steve Peplinski", "[GRIT]"},
    {0, "shinji nishizaki", "-"},
    {0, "Steve Tappan", "(XProTri)"},
-   {0, "Derek Sawyer", "[Rippers]"},
+   {0, "Derek Sawyer", "[GRIT][Rippers]"},
    {0, "tak ina", "[JETT][GRIT]"},
    {0, "Dominic Giampaolo", "[KRT]"},
    {0, "Matt You", "-"},

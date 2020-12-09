@@ -17,11 +17,19 @@
 #include "timeline.h"
 
 static int maxRaces = 3;
+static int maxCount = 0;
 
 LinkList_t *listTimeLine = NULL;
 LinkList_t *listTimeOrder = NULL;
 
 TimeLinePool_t *timeLinePool;
+
+typedef struct PartyControl_s
+{
+   int max;
+} PartyControl_t;
+
+PartyControl_t partyControl;
 
 //#define DEBUG_LEVEL_1 (1)
 
@@ -796,9 +804,33 @@ char *StringGet(char *out, FILE *fp, int nl)
    return(ret);
 }
 
+void RemoveSpaceAtEnd(char *ptr)
+{
+   char *ptr2;
+   
+   /* Go to end, go back, make sure no spaces at end of name */
+   ptr2 = --ptr;
+   if (*ptr2 == ' ')
+   {
+      while (1)
+      {
+         if (*ptr2 == ' ')
+         {
+            ptr2--;
+         }
+         else
+         {
+            ptr2++;
+            *ptr2 = '\0';
+            break;
+         }
+      }
+   }
+}
+
 void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
 {
-   char *ptr;
+   char *ptr, *ptr2;
    char tmp[MAX_STRING_SIZE];
    char team[MAX_STRING_SIZE];
    int teamFound = 0;
@@ -829,32 +861,66 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       ptr++;
    }
 
+   RemoveSpaceAtEnd(ptr);
+
 #if 1
    /* Split team from name */
    ptr = tmp;
 
-   if (timeLineInfo->team[0] == '\0')
+   if (strstr(tmp, "MHA_ KOH") != 0)
    {
-      while (*ptr != '\0')
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "MHA KOH");
+      strcpy(timeLineInfo->team, "[JETT]");
+   }
+   else if (strstr(tmp, "Derek Sawyer") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Derek Sawyer");
+      strcpy(timeLineInfo->team, "[GRIT][Rippers]");
+   }
+   else
+   {
+      if ((timeLineInfo->team[0] == '\0') || (timeLineInfo->team[0] == '-'))
       {
-         if ((*ptr == '[') || (*ptr == '(') || (*ptr == '_'))
+         while (*ptr != '\0')
          {
-            teamFound = 1;
-            strcpy(timeLineInfo->team, ptr);
-
-            ptr--;
-            while (*ptr == ' ')
+            if (isdigit(*ptr))
             {
+               /* If we hit a number at any point before a true team name - assume it is ZwiftPower nametag */
+               strcpy(timeLineInfo->team, "-");
+               teamFound = 1;
+
                ptr--;
+               while (*ptr == ' ')
+               {
+                  ptr--;
+               }
+
+               ptr++;
+               *ptr = '\0';
+               strcpy(timeLineInfo->name, tmp);
+               break;
+            }
+            else if ((*ptr == '[') || (*ptr == '(') || (*ptr == '_'))
+            {
+               teamFound = 1;
+               strcpy(timeLineInfo->team, ptr);
+
+               ptr--;
+               while (*ptr == ' ')
+               {
+                  ptr--;
+               }
+
+               ptr++;
+               *ptr = '\0';
+               strcpy(timeLineInfo->name, tmp);
+               break;
             }
 
             ptr++;
-            *ptr = '\0';
-            strcpy(timeLineInfo->name, tmp);
-            break;
          }
-
-         ptr++;
       }
    }
 
@@ -873,6 +939,42 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
    }
 #endif
 
+}
+
+void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
+{
+   int len;
+   
+   if (strstr(timeLineInfo->name, "MHA_ KOH") != 0)
+   {
+      strcpy(timeLineInfo->name, "MHA KOH");
+      strcpy(timeLineInfo->team, "[JETT]");
+   }
+   else if (strstr(timeLineInfo->name, "Derek Sawyer") != 0)
+   {
+      strcpy(timeLineInfo->name, "Derek Sawyer");
+      strcpy(timeLineInfo->team, "[GRIT][Rippers]");
+   }
+   else
+   {
+      /* Remove newline */
+      len = strlen(team);
+      if (team[len-1] == '\n');
+      {
+         team[len-1] = ' ';
+         team[len+1] = '\0';
+      }
+
+      /* If name shows up starting with a number - assume it is ZwiftPower nametag */
+      if (isdigit(team[0]))
+      {
+         strcpy(timeLineInfo->team, "-");
+      }
+      else
+      {
+         strcpy(timeLineInfo->team, team);
+      }
+   }
 }
 
 void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
@@ -909,6 +1011,8 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
    TimeLineInfo_t *timeLineInfoI;
    TimeLineInfo_t *timeLineInfoJ;
 
+   float fudge;
+   
    // fp_in = fopen("zwiftpower.txt", "r");
    sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
    sprintf(outfile, "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_partytime.txt");
@@ -946,8 +1050,6 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
    }
         
    idx = 0;
-   firstTime = 1;
-
    while (1)
    {
       if (!StringGet(tmp, fp_in, NL_KEEP))
@@ -1010,9 +1112,15 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 
             TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
-            (pInfo->print_fp)("%3d  %s", count, tmp);
-            fprintf(fp_out, "%3d  %s", count, tmp);
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
+            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
             count++;
+
+            if (count > maxCount)
+            {
+               maxCount = count;
+            }
 
             // Team or empty
             if (!StringGet(tmp, fp_in, NL_KEEP))
@@ -1024,6 +1132,9 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
             // If team, skip
             if ((tmp[0] != '\n') && (tmp[0] != ' ') && (tmp[0] != '\r') && (tmp[0] != '\t'))
             {
+               /* TEAM can be found in the name (Zwift does that) or on next line */
+               TeamNameCleanup(timeLineInfo, tmp);
+
                /* We have team name, thus skip next <empty> line */
                if (!StringGet(tmp, fp_in, NL_KEEP))
                {
@@ -1031,6 +1142,10 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
                   break;
                }
             }
+
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            (pInfo->print_fp)("%s  ", timeLineInfo->team);
+            fprintf(fp_out, "%s  ", timeLineInfo->team);
 
             /* time */
             if (!StringGet(tmp, fp_in, NL_REMOVE))
@@ -1080,6 +1195,22 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 
    fclose(fp_in);
 
+   if (partyControl.max != -1)
+   {
+      if (count > partyControl.max)
+      {
+         (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
+         partyControl.max = count;
+      }
+      fudge = (float)partyControl.max/(float)count;
+   }
+   else
+   {
+      fudge = 1.0;
+   }
+
+   (pInfo->print_fp)("partyControl.max = %d, count = %d, fudge = %4.4f\n", partyControl.max, count, fudge);
+
    /* Now, go through each one - if the race is set, add in points based on total in race */
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
@@ -1089,6 +1220,8 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
       if (timeLineInfo->race[raceId].place != -1)
       {
          timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
+
          timeLineInfo->points += timeLineInfo->race[raceId].points;
       }
 
@@ -1135,7 +1268,8 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
 
    TimeLineInfo_t *timeLineInfoI;
    TimeLineInfo_t *timeLineInfoJ;
-
+   float fudge;
+   
    // fp_in = fopen("zwiftpower.txt", "r");
    sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
    sprintf(outfile, "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_partytime.txt");
@@ -1173,8 +1307,6 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
    }
         
    idx = 0;
-   firstTime = 1;
-
    while (1)
    {
       if (!StringGet(tmp, fp_in, NL_KEEP))
@@ -1237,9 +1369,16 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
 
             TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
-            (pInfo->print_fp)("%3d  %s", count, tmp);
-            fprintf(fp_out, "%3d  %s", count, tmp);
+//            (pInfo->print_fp)("%3d  %s", count, tmp);
+//            fprintf(fp_out, "%3d  %s", count, tmp);
+            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
+            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
             count++;
+
+            if (count > maxCount)
+            {
+               maxCount = count;
+            }
 
             // Team or empty
             if (!StringGet(tmp, fp_in, NL_KEEP))
@@ -1321,6 +1460,22 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
 
    fclose(fp_in);
 
+   if (partyControl.max != -1)
+   {
+      if (count > partyControl.max)
+      {
+         (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
+         partyControl.max = count;
+      }
+      fudge = (float)partyControl.max/(float)count;
+   }
+   else
+   {
+      fudge = 1.0;
+   }
+
+   (pInfo->print_fp)("partyControl.max = %d, count = %d, fudge = %4.4f\n", partyControl.max, count, fudge);
+
    /* Now, go through each one - if the race is set, add in points based on total in race */
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
@@ -1330,6 +1485,8 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
       if (timeLineInfo->race[raceId].place != -1)
       {
          timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
+
          timeLineInfo->points += timeLineInfo->race[raceId].points;
       }
 
@@ -1430,8 +1587,6 @@ void cmd_party_following(CLI_PARSE_INFO *pInfo)
    }
         
    idx = 0;
-   firstTime = 1;
-
    while (1)
    {
       if (!StringGet(tmp, fp_in, NL_KEEP))
@@ -1600,6 +1755,8 @@ void cmd_party_following2(CLI_PARSE_INFO *pInfo)
    char test[MAX_STRING_SIZE];
    char teamName[MAX_STRING_SIZE];
 
+   float fudge;
+
    sprintf(test, "%s", "1 owen mcgonagle");
 
    printf("TEST: IN: %s\n", test);
@@ -1647,8 +1804,6 @@ void cmd_party_following2(CLI_PARSE_INFO *pInfo)
 
         
    idx = 0;
-   firstTime = 1;
-
    while (1)
    {
       if (!StringGet(tmp, fp_in, NL_KEEP))
@@ -1796,6 +1951,22 @@ void cmd_party_following2(CLI_PARSE_INFO *pInfo)
 
    fclose(fp_in);
 
+   if (partyControl.max != -1)
+   {
+      if (count > partyControl.max)
+      {
+         (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
+         partyControl.max = count;
+      }
+      fudge = (float)partyControl.max/(float)count;
+   }
+   else
+   {
+      fudge = 1.0;
+   }
+
+   (pInfo->print_fp)("partyControl.max = %d, count = %d, fudge = %4.4f\n", partyControl.max, count, fudge);
+
    /* Now, go through each one - if the race is set, add in points based on total in race */
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
@@ -1805,6 +1976,8 @@ void cmd_party_following2(CLI_PARSE_INFO *pInfo)
       if (timeLineInfo->race[raceId].place != -1)
       {
          timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
+
          timeLineInfo->points += timeLineInfo->race[raceId].points;
       }
 
@@ -2243,11 +2416,39 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
 
 }
 
+void PartySetMax(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {max-number-of-racers}\n", pInfo->argv[0]);
+      return;
+   }
+
+   partyControl.max = cliCharToUnsignedLong(pInfo->argv[1]);
+}
+
+void PartyInit(CLI_PARSE_INFO *pInfo)
+{
+   partyControl.max = -1;
+}
+
+static const CLI_PARSE_CMD party_set_cmd[] =
+{
+    { "max",  PartySetMax,  "max number of race entries"},
+    { NULL, NULL, NULL }
+};
+
+static void cmd_party_set(CLI_PARSE_INFO *info)
+{
+    cliDefaultHandler( info, party_set_cmd );
+}
+
 static const CLI_PARSE_CMD cmd_party_commands[] =
 {
    { "start",           cmd_party_start,                "start party"},
    { "stop",            cmd_party_stop,                 "stop party"},
    { "show",            cmd_party_show,                 "show party status"},
+   { "set",             cmd_party_set,                  "party set commands"},
    { "following",       cmd_party_following,            "following [infile] [outfile]"},
    { "following2",      cmd_party_following2,           "following2 [infile] [outfile]"},
    { "results",         cmd_party_results,              "results [infile] [outfile]"},
@@ -2261,6 +2462,7 @@ void cmd_party( CLI_PARSE_INFO *info)
 {
    if (firstTime == 1)
    {
+      PartyInit(info);
       TimeLineInit(info);
       firstTime = 0;
    }
@@ -2271,3 +2473,4 @@ void cmd_party( CLI_PARSE_INFO *info)
    cliDefaultHandler( info, cmd_party_commands );
 }
 
+   

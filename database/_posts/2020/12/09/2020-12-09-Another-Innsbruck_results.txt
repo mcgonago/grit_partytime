@@ -1,0 +1,194 @@
+Search:
+	#	Rider	Forward KOM	Forward Sprint	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+B 	1	
+Christian Kaldbar
+	
+16:42
+405w 5.6wkg
+	
+23.183
+236w 3.3wkg
+	Power
+B 	2	
+Franz Huber
+Radl-Eck Cycling
+	
+18:17
+328w 4.8wkg
+	
+21.509
+409w 6.0wkg
+	Power
+B 	3	
+Seth G ☁️ 🔰
+	
+18:39
+339w 4.8wkg
+	
+23.642
+148w 2.1wkg
+	Power
+B 	4	
+K Naga
+DIRT
+	
+19:50
+271w 4.4wkg
+	
+22.623
+240w 3.9wkg
+	Power
+B 	5	
+tak ina[JETT]
+JETT
+	
+20:18
+239w 4.5wkg
+	
+23.607
+154w 2.9wkg
+	Power
+B 	8	
+Eric Hegger
+	
+20:58
+316w 4.1wkg
+	
+23.777
+269w 3.4wkg
+	Power
+B 	7	
+Greg Langman
+DIRT
+	
+20:59
+294w 4.2wkg
+	
+22.697
+246w 3.5wkg
+	Power
+B 	6	
+Adrian Walton
+	
+21:04
+288w 4.1wkg
+	
+23.192
+227w 3.2wkg
+	Power
+B 	9	
+Kent Nikel
+TeamERTCC
+	
+21:32
+309w 4.0wkg
+	
+22.834
+293w 3.8wkg
+	Power
+B 	10	
+MHA_ KOH !!!_［JETT］
+JETT
+	
+21:39
+252w 4.1wkg
+	
+23.212
+209w 3.4wkg
+	Power
+B 	11	
+J. Jan
+	
+22:20
+241w 3.7wkg
+	
+23.573
+204w 3.1wkg
+	Power
+B 	18	
+Piet Jonkers
+	
+23:32
+223w 3.8wkg
+	
+24.145
+184w 3.1wkg
+	Power
+B 	16	
+B.Johnson
+	
+23:45
+243w 3.6wkg
+	
+23.574
+224w 3.3wkg
+	Power
+B 	12	
+Cecelia Taggart [D(M)IRT]
+DIRT
+	
+24:15
+190w 3.4wkg
+	
+23.917
+174w 3.1wkg
+	Power
+B 	13	
+Owen McGonagle [GRIT]
+GRIT
+	
+24:16
+234w 3.5wkg
+	
+23.100
+198w 3.0wkg
+	Power
+B 	14	
+Rob McKechney
+	
+24:16
+248w 3.5wkg
+	
+23.276
+222w 3.1wkg
+	Power
+B 	15	
+Jonathan Lippert
+	
+26:06
+239w 3.3wkg
+	
+22.644
+241w 3.3wkg
+	Power
+B 	17	
+LeRoy Nahay 3017
+	
+28:25
+225w 2.9wkg
+	
+28.338
+217w 2.8wkg
+	Power
+B 	20	
+Dexter Hodgeman 7710
+	
+35:23
+176w 2.3wkg
+	
+28.957
+257w 3.3wkg
+	Power
+B 	19	
+Steve Tappan
+GRIT
+	
+36:54
+147w 2.2wkg
+	
+20.240
+496w 7.3wkg
+	Power
+
+    Previous
+
