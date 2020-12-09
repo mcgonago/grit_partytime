@@ -43,6 +43,8 @@ static uint32_t firstTime = 1;
 
 extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
 extern int TeamGrit(char *name);
+extern int RacedToday(char *name, char *teamName);
+extern void RidersMissed(CLI_PARSE_INFO *info);
 
 int FormattedProper(char *buff)
 {
@@ -1546,6 +1548,278 @@ void cmd_party_following(CLI_PARSE_INFO *pInfo)
    
 }
 
+void cmd_party_following2(CLI_PARSE_INFO *pInfo)
+{
+   int ret;
+   char buff[180];
+   char time_details1[80];
+   int idx;
+   int si;
+   char *c;
+   int len;
+   int count = 1;
+   int firstAthlete = 1;
+   int includeVAM = 0;
+   int raceId = 0;
+   
+   FILE *fp_in;
+   FILE *fp_out;
+   char infile[MAX_STRING_SIZE];
+   char outfile[MAX_STRING_SIZE];
+
+   char tmp[MAX_STRING_SIZE];
+   char tmp2[MAX_STRING_SIZE];
+   char tmp3[MAX_STRING_SIZE];
+   char updatedLine[MAX_STRING_SIZE];
+   char raceName[MAX_STRING_SIZE];
+
+   char timeLine[MAX_STRING_SIZE];
+
+   Link_t *ptr, *ptr2;
+   TimeLineInfo_t *timeLineInfo;
+   TimeLineInfo_t *timeLineInfo2;
+
+   Link_t *ptrI;
+   Link_t *ptrJ;
+
+   TimeLineInfo_t *timeLineInfoI;
+   TimeLineInfo_t *timeLineInfoJ;
+
+   char place[MAX_STRING_SIZE];
+   char first[MAX_STRING_SIZE];
+   char last[MAX_STRING_SIZE];
+   char name[MAX_STRING_SIZE];
+   char month[MAX_STRING_SIZE];
+   char day[MAX_STRING_SIZE];
+   char year[MAX_STRING_SIZE];
+   char speed[MAX_STRING_SIZE];
+   char watts[MAX_STRING_SIZE];
+   char bpm[MAX_STRING_SIZE];
+   char vid[MAX_STRING_SIZE];
+   char time[MAX_STRING_SIZE];
+   char test[MAX_STRING_SIZE];
+   char teamName[MAX_STRING_SIZE];
+
+   sprintf(test, "%s", "1 owen mcgonagle");
+
+   printf("TEST: IN: %s\n", test);
+
+   sscanf(test, "%s %s %s",
+          &place[0], &first[0], &last[0]);
+
+   (pInfo->print_fp)("TEST: OUT: %s %s %s\n", place, first, last);
+
+   // fp_in = fopen("zwiftpower.txt", "r");
+   sprintf(infile,  "%s", "database/_posts/2020/12/01/A-Smack-down-on-Petit-KOM_following.txt");
+   sprintf(outfile, "%s", "database/_posts/2020/12/01/A-Smack-down-on-Petit-KOM_following.md");
+   sprintf(raceName, "%s", "hooha");
+
+   if ( pInfo->argc > 1)
+   {
+      sprintf(infile, "%s", pInfo->argv[1]);
+   }
+
+   if ( pInfo->argc > 2)
+   {
+      sprintf(outfile, "%s", pInfo->argv[2]);
+   }
+
+   if ( pInfo->argc > 3)
+   {
+      sprintf(raceName, "%s", pInfo->argv[3]);
+   }
+
+   fp_in = fopen(infile, "r");
+
+   if (!fp_in)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", infile);
+      exit(-1);
+   }
+        
+   fp_out = fopen(outfile, "w");
+
+   if (!fp_out)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
+      exit(-1);
+   }
+
+        
+   idx = 0;
+   firstTime = 1;
+
+   while (1)
+   {
+      if (!StringGet(tmp, fp_in, NL_KEEP))
+      {
+         /* Done reading file */
+         break;
+      }
+
+      strcpy(timeLine, tmp);
+
+      if (!FormattedProper(timeLine))
+      {
+         /* prperly formatted line not found */
+         continue;
+      }
+
+      if (strstr(timeLine, "Rank ") != NULL)
+      {
+         if (strstr(timeLine, "VAM ") != NULL)
+         {
+            includeVAM = 1;
+         }
+
+         while (1)
+         {
+            // Athletes name
+            if (!StringGet(tmp, fp_in, NL_KEEP))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            if ((tmp[0] == '\n') || (tmp[0] == ' ') || (tmp[0] == '\r') || (tmp[0] == '\t'))
+            {
+               break;
+            }
+
+            timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+            strcpy(timeLineInfo->timeLine, timeLine);
+
+            if (strcmp(raceName, "race1") == 0)
+            {
+               raceId = 0;
+               timeLineInfo->race[0].place = count;
+               sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race2") == 0)
+            {
+               raceId = 1;
+               timeLineInfo->race[1].place = count;
+               sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race3") == 0)
+            {
+               raceId = 2;
+               timeLineInfo->race[2].place = count;
+               sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
+            }
+
+            if (includeVAM == 1)
+            {
+               /* 1    Lance Anderson  Sep 8, 2020     21.2mi/h    170   431W    1,345.5     4:42 */
+               sscanf(tmp, "%s %s %s %s %s %s %s %s %s %s %s",
+                      place, first, last, month, day, year, speed, bpm, watts, vid, time);
+
+
+               sprintf(name, "%s ", first);
+               strcat(name, last);
+
+               NameInsert(timeLineInfo, name);
+
+               if (RacedToday(name, teamName))
+               {
+                  sprintf(timeLineInfo->team, "%s", teamName);
+                  sprintf(place, "%d", count);
+                  count++;
+
+                  (pInfo->print_fp)("%s   %s  %s  %s %s %s   %s   %s\n",
+                                    place, name, teamName, month, day, year, watts, time);
+
+                  fprintf(fp_out, "%s   %s  %s  %s %s %s   %s   %s\n",
+                          place, name, teamName, month, day, year, watts, time);
+               }
+            }
+            else
+            {
+               /* 1       Steve Peplinski 	Feb 28, 2019 	46.1mi/h 	169bpm 	736W 	9s */
+               sprintf(vid, "%s", "0");
+               sscanf(tmp, "%s %s %s %s %s %s %s %s %s %s",
+                      place, first, last, month, day, year, speed, bpm, watts, time);
+
+               sprintf(name, "%s ", first);
+               strcat(name, last);
+
+               NameInsert(timeLineInfo, name);
+
+               if (RacedToday(name, teamName))
+               {
+                  sprintf(timeLineInfo->team, "%s", teamName);
+                  sprintf(place, "%d", count);
+                  count++;
+
+                  (pInfo->print_fp)("%s   %s  %s  %s %s %s   %s   %s\n",
+                                    place, name, teamName, month, day, year, watts, time);
+
+                  fprintf(fp_out, "%s   %s  %s  %s %s %s   %s   %s\n",
+                          place, name, teamName, month, day, year, watts, time);
+               }
+            }
+
+            if (RacedToday(name, teamName))
+            {
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+            }
+
+#if 0
+            timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+
+            strcpy(timeLineInfo->timeLine, tmp);
+
+            timeLineInfo->race[0].place = atoi(place);
+            sprintf(timeLineInfo->race[0].raceName, "%s", "foobar");
+
+            strcpy(timeLineInfo->place, place);
+            strcpy(timeLineInfo->name, name);
+            strcpy(timeLineInfo->month, month);
+            strcpy(timeLineInfo->day, day);
+            strcpy(timeLineInfo->year, year);
+//          strcpy(timeLineInfo->speed, speed);
+            strcpy(timeLineInfo->watts, watts);
+//          strcpy(timeLineInfo->wpkg, wpkg);
+            strcpy(timeLineInfo->bpm, bpm);
+            strcpy(timeLineInfo->vid, vid);
+            strcpy(timeLineInfo->time, time);
+//          strcpy(timeLineInfo->test, test);
+
+            TimeLineFill(pInfo, timeLineInfo, tmp);
+        
+            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+#endif
+         }
+      }
+
+   }
+
+   fclose(fp_in);
+
+   /* Now, go through each one - if the race is set, add in points based on total in race */
+   ptr = (Link_t *)listTimeLine->head;
+   while (ptr->next != NULL)
+   {
+      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+      if (timeLineInfo->race[raceId].place != -1)
+      {
+         timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         timeLineInfo->points += timeLineInfo->race[raceId].points;
+      }
+
+      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
+      ptr = ptr->next;
+   }
+
+   /* Did we find everyone? */
+   RidersMissed(pInfo);
+
+   (pInfo->print_fp)("\n\n");
+
+   
+}
+
 
 
 void cmd_party_run(CLI_PARSE_INFO *pInfo)
@@ -1872,6 +2146,7 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
     Link_t *ptr;
     int i;
     char placePoints[MAX_STRING_SIZE];
+    int count = 1;
 
 #if 0
    ptr = (Link_t *)listTimeLine->head;
@@ -1933,12 +2208,13 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
       
       if (timeLineInfo->team[0] != '\0')
       {
-         (pInfo->print_fp)("%-32s %-30s ", timeLineInfo->name, timeLineInfo->team);
+         (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, timeLineInfo->team);
       }
       else
       {
-         (pInfo->print_fp)("%-32s %-30s ", timeLineInfo->name, " ");
+         (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
       }
+      count++;
 
       for (i = 0; i < maxRaces; i++)
       {
@@ -1973,6 +2249,7 @@ static const CLI_PARSE_CMD cmd_party_commands[] =
    { "stop",            cmd_party_stop,                 "stop party"},
    { "show",            cmd_party_show,                 "show party status"},
    { "following",       cmd_party_following,            "following [infile] [outfile]"},
+   { "following2",      cmd_party_following2,           "following2 [infile] [outfile]"},
    { "results",         cmd_party_results,              "results [infile] [outfile]"},
    { "kom",             cmd_party_kom_and_sprints,      "kom [infile] [outfile]"},
    { "sprints",         cmd_party_kom_and_sprints,      "sprints [infile] [outfile]"},

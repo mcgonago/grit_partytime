@@ -30,31 +30,103 @@ typedef struct FilterLibrary_s
 {
     uint32_t enabled;
     char name[MAX_NAME];
+    char teamName[MAX_NAME];
 } FilterLibrary_t;
 
 /* Generic filter - lots of noise */
 FilterLibrary_t filterLibraryA[] = {
-    {1,"Lance Anderson"},
-    {1,"Alan Brannan"},
-    {1,"Shaun Corbin"},
-    {1,"Luke Elton"},
-    {1,"Rob Fullerton"},
-    {1,"Seth G"},
-    {1,"tak ina"},
-    {1,"John Jeffries"},
-    {1,"Gabriel Mathisen"},
-    {1,"Owen McGonagle"},
-    {1,"Steve Peplinski"},
-    {1,"Carson Shedd"},
-    {1,"Steve Tappan"},
-    {1,"Maximilian Weniger"},
-    {1,"Derek Sawyer"},
-    {0,"FILTER_END"},
+    {1,"Lance Anderson", "[GRIT]"},
+    {1,"Alan Brannan", "[GRIT]"},
+    {1,"Shaun Corbin", "[GRIT]"},
+    {1,"Luke Elton", "[GRIT]"},
+    {1,"Rob Fullerton", "[GRIT]"},
+    {1,"Seth G", "[GRIT]"},
+    {1,"tak ina", "[GRIT]"},
+    {1,"John Jeffries", "[GRIT]"},
+    {1,"Gabriel Mathisen", "[GRIT]"},
+    {1,"Owen McGonagle", "[GRIT]"},
+    {1,"Steve Peplinski", "[GRIT]"},
+    {1,"Carson Shedd", "[GRIT]"},
+    {1,"Steve Tappan", "[GRIT]"},
+    {1,"Maximilian Weniger", "[GRIT]"},
+    {1,"Derek Sawyer", "[GRIT]"},
+    {0,"FILTER_END", "-"},
 };
 
 /* Signaling only */
 FilterLibrary_t filterLibraryB[] = {
-    {0,"FILTER_END"},
+   {0, "Christian Kaldbar", "-"},
+   {0, "Lance Anderson", "-"},
+   {0, "Wish Pleiades" "-"},
+   {0, "Owen McGonagle", "[GRIT]"},
+   {0, "TREK ITA2402", "-"},
+   {0, "Oki Banana", "-"},
+   {0, "Steve Peplinski", "[GRIT]"},
+   {0, "shinji nishizaki", "-"},
+   {0, "Steve Tappan", "(XProTri)"},
+   {0, "Derek Sawyer", "[Rippers]"},
+   {0, "tak ina", "[JETT][GRIT]"},
+   {0, "Dominic Giampaolo", "[KRT]"},
+   {0, "Matt You", "-"},
+   {0, "Greg Langman", "[HPVC]"},
+   {0, "Davide Comberlato", "-"},
+   {0, "Rob Fullerton", "[GRIT]"},
+   {0, "Leonardo Diaz", "-"},
+   {0, "Yukio Bergholdt", "-"},
+   {0, "Thijs Calu", "BZR"},
+   {0, "J Moore", "-"},
+   {0, "Cycling Fanatic", "-"},
+   {0, "Kris Lovve", "-"},
+   {0, "Brian Lohnes", "-"},
+   {0, "Eric Wegweiser", "-"},
+   {0, "Daniel Shalkowski", "[DIRT]"},
+   {0, "Chris Hunt", "-"},
+   {0, "sheng hsiung Chang", "(TTR)"},
+   {0, "Alberto Gusella", "(Cicli Stefanelli Triathlon)"},
+   {0, "Angelo LACOPO", "(Fitri Piemonte)"},
+   {0, "Karol Nehring", "[TeamPL]"},
+   {0, "Brett Mazany", "(Eat DIRT Ocho)"},
+   {0, "Carlos Alfaiate", "-"},
+   {0, "shinji nishizakin", "-"},
+   {0, "F Harry", "-"},
+   {0, "Takashi KAWAMOTO", "(YOU CAN)"},
+   {0, "Mikhail Maniakhin", "-"},
+   {0, "Andrew Steel", "-"},
+   {0, "1.Buffon Fishing", "(DIRT)"},
+   {0, "Joao Ildefonso", "-"},
+   {0, "Phillip Goulding", "(Fusion CC)"},
+   {0, "hywel morgan", "-"},
+   {0, "Paul Westergaard", "[Dirt]"},
+   {0, "Alan Brannan", "[GRIT]"},
+   {0, "Jim Griffin", "(VZT)"},
+   {0, "Takaak Iwasaki", "[JETT ShiroAnn]"},
+   {0, "Des Muir", "(Cryo-Gen)"},
+   {0, "Philip Morrison", "(BRC Hornets)"},
+   {0, "Mark Kennerley", "-"},
+   {0, "Shaun Corbin", "(DIRTy GRIT)"},
+   {0, "Doug Cowperthwaite", "[TeamODZ]"},
+   {0, "Craig LeBlanc", "[ATP]"},
+   {0, "Billy Guilford", "-"},
+   {0, "David Butcher", "-"},
+   {0, "Anthony Heppell", "( 57)"},
+   {0, "travis presnell", "[DIRT]"},
+   {0, "Steve Bekker", "[DIRT]"},
+   {0, "Txomin Gorostiaga", "-"},
+   {0, "Mark Robinson", "(MCT)"},
+   {0, "Jonathan Lippert", "-"},
+   {0, "John Jeffries", "{GRIT}"},
+   {0, "Nono Mari", "(SLB)"},
+   {0, "Jose Suarez", "-"},
+   {0, "Alex Hatziyannis", "[CRUZBIKE]"},
+   {0, "Rob Watkinson", "(ZSUNR)"},
+   {0, "Iain Bailey", "-"},
+   {0, "Jonathan Hunt", "-"},
+   {0, "Danny Verlooy", "-"},
+   {0, "Ryan Saranchuk", "-"},
+   {0, "Patrick Marques", "(Secai/Gaiabike)"},
+   {0, "Nuno Torres", "(Secai/Gaiabike)"},
+   {0, "Jorge Leite", "-"},
+   {0,"FILTER_END"},
 };
 
 FilterLibrary_t filterLibraryC[] = {
@@ -74,6 +146,47 @@ FilterLibrary_t filterLibraryUser[MAX_USER_FILTERS] = {
 uint32_t PidModeGet(CLI_PARSE_INFO *info)
 {
     return(pidStatConfig.mode);
+}
+
+int RacedToday(char *name, char *teamName)
+{
+   int i;
+   for (i = 0; ;i++)
+   {
+      if (strstr(filterLibraryB[i].name, "FILTER_END") != 0)
+      {
+         break;
+      }
+
+      if (strstr(name, filterLibraryB[i].name) != 0)
+      {
+         strcpy(teamName, filterLibraryB[i].teamName);
+         filterLibraryB[i].enabled = 1;
+         return 1;
+      }
+   }
+
+   return 0;
+}
+
+void RidersMissed(CLI_PARSE_INFO *info)
+{
+   int i;
+
+   (info->print_fp)("MISSED athlete times!!!\n");
+
+   for (i = 0; ;i++)
+   {
+      if (strstr(filterLibraryB[i].name, "FILTER_END") != 0)
+      {
+         break;
+      }
+
+      if (filterLibraryB[i].enabled == 0)
+      {
+         (info->print_fp)("%2d: %s\n", i, filterLibraryB[i].name);
+      }
+   }
 }
 
 int TeamGrit(char *name)
