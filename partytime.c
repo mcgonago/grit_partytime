@@ -879,6 +879,12 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "Derek Sawyer");
       strcpy(timeLineInfo->team, "[GRIT][Rippers]");
    }
+   else if (strstr(tmp, "Steve Tappan") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Steve Tappan");
+      strcpy(timeLineInfo->team, "[GRIT]");
+   }
    else
    {
       if ((timeLineInfo->team[0] == '\0') || (timeLineInfo->team[0] == '-'))
@@ -954,6 +960,11 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    {
       strcpy(timeLineInfo->name, "Derek Sawyer");
       strcpy(timeLineInfo->team, "[GRIT][Rippers]");
+   }
+   else if (strstr(timeLineInfo->name, "Steve Tappan") != 0)
+   {
+      strcpy(timeLineInfo->name, "Steve Tappan");
+      strcpy(timeLineInfo->team, "[GRIT]");
    }
    else
    {
