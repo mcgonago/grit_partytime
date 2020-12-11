@@ -17,4 +17,4 @@
  17  Jonathan Lippert  -  26:06    239w  3.3wkg
  18  LeRoy Nahay  -  28:25    225w  2.9wkg
  19  Dexter Hodgeman  -  35:23    176w  2.3wkg
- 20  Steve Tappan  GRIT   36:54    147w  2.2wkg
+ 20  Steve Tappan  [GRIT]  36:54    147w  2.2wkg
