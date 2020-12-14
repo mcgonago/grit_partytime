@@ -114,7 +114,7 @@ FilterLibrary_t filterLibraryB[] = {
    {0, "Txomin Gorostiaga", "-"},
    {0, "Mark Robinson", "(MCT)"},
    {0, "Jonathan Lippert", "-"},
-   {0, "John Jeffries", "{GRIT}"},
+   {0, "John Jeffries", "[AA Bikes][GRIT]"},
    {0, "Nono Mari", "(SLB)"},
    {0, "Jose Suarez", "-"},
    {0, "Alex Hatziyannis", "[CRUZBIKE]"},

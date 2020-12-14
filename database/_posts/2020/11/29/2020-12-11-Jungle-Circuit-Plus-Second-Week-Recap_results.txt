@@ -1,0 +1,262 @@
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (24)
+    Unfiltered (24)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+22 Fit Files yet to be processed in a queue of 3,288
+GRIT Group ride - Partytime
+Today 05:50
+Jungle Circuit 3 Laps 29 km
+All riders visible Late joining No TT bikes
+5min and 20min CEVAZ limits apply
+No ZPower winners
+15.2km70m
+0.0km2.0km4.0km6.0km8.0km10.0km12.0km14.0km16.0km18.0km20.0km22.0km24.0km26.0km28.0km
+250m
+100 miles
+Madness
+1
+2
+3
+S
+B Distance: 29.2km Elevation Gain: 256m Starts from: Jungle Pens Strava route
+Next Update in 7 hours Request a faster update
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Time 	avg	watts	NP 	20m 	5m 	1m 	30s 	15s 		Avg	Max 		Gain 	
+B 		
+SWEEPER: Rob Fullerton
+GRIT
+	
+49:56
+	3.3w/kg	256w	
+281w
+	3.9w/kg	4.9w/kg	5.2w/kg	5.8w/kg	5.9w/kg	77.0kg	133bpm	166bpm	178cm		
+B 		
+Andy Parfitt [WTRL]
+WTRL
+	
+49:56
++0.483s
+	3.7w/kg	265w	
+297w
+	4.0w/kg	5.4w/kg	6.1w/kg	7.0w/kg	7.2w/kg	72.6kg	153bpm	193bpm	172cm		
+B 		
+tak ina[JETT]
+JETT
+	
+49:57
++1.107s
+	3.4w/kg	182w	
+200w
+	4.0w/kg	5.1w/kg	5.3w/kg	5.5w/kg	5.9w/kg	53.0kg	136bpm	171bpm	162cm		
+B 	4	
+LEADER: Steve Peplinski
+GRIT
+	
+51:02
++01:05
+	3.1w/kg	239w	
+259w
+	3.5w/kg	4.6w/kg	4.9w/kg	5.1w/kg	5.2w/kg	77.1kg	146bpm	178bpm	170cm		
+B 	5	
+Owen McGonagle [GRIT]
+GRIT
+	
+51:05
++01:08
+	3.3w/kg	221w	
+234w
+	3.7w/kg	4.8w/kg	5.0w/kg	5.1w/kg	5.2w/kg	66.2kg	128bpm	159bpm	170cm		
+B 	6	
+Denis Frolov
+UTT
+	
+51:24
++01:28
+	3.1w/kg	222w	
+236w
+	3.5w/kg	4.3w/kg	4.8w/kg	5.9w/kg	6.7w/kg	72.0kg	142bpm	171bpm	168cm		
+B 	7	
+Eliseo Vargas
+	
+51:25
++01:28
+	3.3w/kg	243w	
+255w
+	3.7w/kg	4.4w/kg	5.1w/kg	5.8w/kg	6.3w/kg	73.0kg	149bpm	179bpm	188cm		
+B 	8	
+John Jeffries AA Bikes 6118
+	
+51:25
++01:29
+	3.2w/kg	215w	
+230w
+	3.7w/kg	4.5w/kg	5.1w/kg	5.5w/kg	5.8w/kg	66.7kg	132bpm	160bpm	175cm		
+B 	9	
+Kent Ryan
+	
+51:31
++01:35
+	3.5w/kg	230w	
+238w
+	3.6w/kg	4.2w/kg	4.8w/kg	5.7w/kg	6.4w/kg	66.7kg	155bpm	178bpm	175cm		
+B 	10	
+Iain Darwood
+	
+51:35
++01:38
+	3.2w/kg	258w	
+266w
+	3.6w/kg	3.9w/kg	4.2w/kg	4.3w/kg	4.3w/kg	80.0kg	155bpm	183bpm	178cm		
+B 	11	
+Ped Fesh
+	
+52:25
++02:29
+	2.9w/kg	247w	
+257w
+	3.2w/kg	3.7w/kg	3.9w/kg	4.1w/kg	4.3w/kg	84.0kg	151bpm	179bpm	178cm		
+B 	12	
+John Tang
+	
+52:40
++02:44
+	3.9w/kg	223w	
+222w
+	3.9w/kg	4.2w/kg	4.6w/kg	5.0w/kg	5.2w/kg	57.0kg			165cm		
+B 	13	
+Justin Radford
+	
+52:42
++02:46
+	3.0w/kg	234w	
+240w
+	3.2w/kg	3.6w/kg	4.0w/kg	4.0w/kg	4.0w/kg	78.0kg	143bpm	160bpm	185cm		
+B 	14	
+Ricardo Costa
+	
+52:44
++02:47
+	3.8w/kg	251w	
+254w
+	4.0w/kg	4.2w/kg	4.7w/kg	4.7w/kg	4.7w/kg	66.0kg	161bpm	172bpm	181cm		
+B 	15	
+Christopher Agostini
+	
+53:02
++03:06
+	3.6w/kg	280w	
+295w
+	4.0w/kg	4.8w/kg	5.7w/kg	5.7w/kg	5.7w/kg	78.0kg			177cm		
+B 	16	
+VV Cucumber LOOKCYCLE CHN
+	
+53:26
++03:29
+	3.7w/kg	220w	
+224w
+	3.8w/kg	4.1w/kg	4.3w/kg	4.6w/kg	4.8w/kg	60.0kg	166bpm	180bpm	173cm		
+B 	17	
+Roy Woodland
+PACK
+	
+53:54
++03:58
+	3.3w/kg	218w	
+224w
+	3.6w/kg	4.0w/kg	4.2w/kg	4.6w/kg	4.8w/kg	66.5kg			183cm		
+B 	18	
+Alexander Genschmar
+	
+54:01
++04:04
+	3.5w/kg	255w	
+258w
+	3.7w/kg	3.8w/kg	4.2w/kg	5.0w/kg	5.5w/kg	72.0kg	155bpm	169bpm	176cm		
+B 	19	
+Kenny Desnyder
+GCT
+	
+55:53
++05:57
+	3.5w/kg	231w	
+235w
+	3.6w/kg	3.9w/kg	4.2w/kg	4.5w/kg	5.1w/kg						
+B 	20	
+david gulick
+	
+55:55
++05:58
+	2.8w/kg	238w	
+242w
+	2.9w/kg	3.1w/kg	3.3w/kg	3.6w/kg	3.7w/kg	86.2kg	158bpm	170bpm	185cm		
+B 	21	
+Francis Balboa
+	
+57:27
++07:30
+	3.5w/kg	255w	
+259w
+	3.7w/kg	3.9w/kg	4.7w/kg	5.3w/kg	5.8w/kg	74.0kg	165bpm	177bpm	185cm		
+B 	22	
+Linda Jacobsson
+	
+57:33
++07:37
+	3.4w/kg	187w	
+191w
+	3.6w/kg	3.9w/kg	4.0w/kg	4.3w/kg	4.7w/kg	55.0kg	161bpm	170bpm	175cm		
+B 	23	
+mattias ahlgren
+	
+1:04:41
++14:44
+	2.7w/kg	259w	
+261w
+	2.8w/kg	3.0w/kg	3.1w/kg	3.2w/kg	3.2w/kg	97.0kg	137bpm	150bpm	187cm		
+B 	24	
+Guido Kramer
+Leymen
+	
+1:08:20
++18:24
+	2.3w/kg	187w							80.0kg	115bpm		187cm		
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+
