@@ -29,6 +29,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <sys/stat.h>
+#include <getopt.h>
 #include "pthread.h"
 #include "string.h"
 #include "fcntl.h"
@@ -211,6 +212,9 @@ extern void cmd_party( CLI_PARSE_INFO *info);
 // +++owen
 static int intLockLocal (void);
 static int intUnlockLocal (int oldSR);
+
+static char newCommandLine[160];
+Arguments_t arguments;
 
 #define THREAD_NAME_SIZE (32)
 
@@ -3730,11 +3734,255 @@ void cmdHelp( CLI_PARSE_INFO *info)
   cliPrintHelp( info, cliRocEntry );
 }
 
-int main()
+void
+PrintUsage(int exitFlag)
+{
+    printf("Usage: rcli [OPTION...]\n");
+    printf("\n");
+    printf("  -D, --DDR          start DSP Data Record (DDR) recording...\n");
+    printf("  -P, --PDR          start PFE/DSP Data Record (PDR) recording...\n");
+    printf("  -L, --Local        run locally - do not connect to server (q20 support)\n");
+    printf("  -T, --Top          top - screen update every -T {seconds}\n");
+    printf("  -R, --Refresh      top - idle task refresh rate (default - refresh after 4 idle ticks)\n");
+    printf("  -C, --Cut          top - cut idle and non-idle tasks into two tables (default single table)\n");
+    printf("  -F, --Flow         top - disable automatic reset of screen - enable flow of results\n");
+    printf("  -s, --script       run script 1/second\n");
+    printf("  -r, --rate         change rate of execution\n");
+    printf("  -I, --ip-primary   primiary servier IP address\n");
+    printf("  -S, --ip-secondary secondary servier IP address\n");
+    printf("  -u, --usdp         connect to USDP (default USBC)\n");
+    printf("  -m, --monitor      connect to monitor (default USBC)\n");
+    printf("  -e, --media        connect to media (default USBC)\n");
+    printf("  -U, --unittest     connect to UNITTEST jig\n");
+    printf("  -d, --debug        turn debug messages on (1) or off (0)\n");
+    printf("  -?, --help         show this help information\n");
+    printf("  -h, --help         show this help information\n");
+
+    if (exitFlag == 1)
+    {
+        exit(-1);
+    }
+}
+
+int
+main(int argc, char *argv[])
 {
     char input [4096];
     char c;
     int idx = 0;
+    CLI_PARSE_INFO pInfo;
+    
+    int repeatLastEnabledLocal = 0;
+    static char *line_read = (char *)NULL;
+    int firstTime = 1;
+    int firstSession = 1;
+
+#if 0
+    input[0] = '\0';
+    while (1)
+    {
+        printf ("partytime >> ");
+
+        while((c = getchar()) != EOF)
+        {
+            input[idx++] = c;
+
+            if (c == '\n')
+            {
+                break;
+            }
+        }
+
+        if (idx == 0)
+        {
+            continue;
+        }
+        
+        /* get rid of newline */
+        input[idx-1] = '\0';
+         
+        cliEntry(input, &printf);
+        idx = 0;
+        input[0] = '\0';
+    }
+#else
+    /* Create a new session info structures */
+    pInfo.print_fp = printf;
+
+    arguments.captureScript[0] = '\0';
+    arguments.rate = 1;
+    arguments.alignment = 1;
+    arguments.debug = 0;
+    arguments.showFatal = 0;
+    arguments.ddr = 0;
+    arguments.pdr = 0;
+    arguments.local = 0;
+    arguments.top = 0;
+    arguments.idleRefresh = 4;
+    arguments.idleCut = 0;
+    arguments.topFlow = 0;
+    arguments.topRefresh = 1;
+    arguments.ip_primary[0] = '\0';
+    arguments.ip_secondary[0] = '\0';
+
+    while (1) 
+    {
+        int option_index = 0;
+
+        static struct option long_options[] = 
+            {
+                {"DDR",               no_argument,          0, 'D'},
+                {"PDR",               no_argument,          0, 'P'},
+                {"Local",             no_argument,          0, 'L'},
+                {"Top",               required_argument,    0, 'T'},
+                {"Refresh",           required_argument,    0, 'R'},
+                {"Cut",               no_argument,          0, 'C'},
+                {"Flow",              no_argument,          0, 'F'},
+                {"script",            required_argument,    0, 's'},
+                {"rate",              required_argument,    0, 'r'},
+                {"ip-primary",        required_argument,    0, 'I'},
+                {"ip-secondary",      required_argument,    0, 'S'},
+                {"usdp",              no_argument,          0, 'u'},
+                {"monitor",           no_argument,          0, 'm'},
+                {"media",             no_argument,          0, 'e'},
+                {"unittest",          no_argument,          0, 'U'},
+                {"debug",             required_argument,    0, 'd'},
+                {"help",              no_argument,          0, '?'},
+                {"help",              no_argument,          0, 'h'},
+                {0,0,0,0}
+            };
+
+        // +++owen - word to the wise - for example, since 'D' does not require a parameter, DO NOT
+        // put semi-colon after it int the following list. a semi-colon after indicates required_argument, OVERIDING
+        // the forced (supposed) setting above...
+        
+        c = getopt_long_only(argc, argv, "DPLT:R:CFs:r:I:S:umeUd:h?",
+                             long_options, &option_index);
+        
+        if (c == -1)
+            break;
+
+        switch (c) 
+        {
+        case 0:
+            printf("option %s", long_options[option_index].name);
+            
+            if (optarg)
+                printf(" with arg %s", optarg);
+            
+            printf("\n");
+            
+            break;
+
+        case 's':
+            if (strlen(optarg) > MAX_NAME_LENGTH)
+            {
+                printf("ERROR: name = %s exceeds max length of %d\n", optarg, MAX_NAME_LENGTH);
+                PrintUsage(1);
+            }
+            
+            strcpy(arguments.captureScript, optarg);
+            break;
+
+        case 'r':
+            arguments.rate = strtoul(optarg, NULL, 10);
+            break;
+
+        case 'I':
+            strcpy(arguments.ip_primary, optarg);
+            break;
+
+        case 'S':
+            strcpy(arguments.ip_secondary, optarg);
+            break;
+
+        case 'D':
+            arguments.ddr = 1;
+            break;
+
+        case 'u':
+            arguments.port = CLI_SERVER_PORT_USDP;
+            break;
+
+        case 'm':
+            arguments.port = CLI_SERVER_PORT_MONITOR;
+            break;
+
+        case 'e':
+            arguments.port = CLI_SERVER_PORT_MEDIA;
+            break;
+
+        case 'U':
+            arguments.port = CLI_SERVER_PORT_UNITTEST;
+            break;
+
+        case 'P':
+            arguments.pdr = 1;
+            break;
+
+        case 'L':
+            arguments.local = 1;
+            break;
+
+        case 'T':
+            arguments.top = 1;
+
+            arguments.topRefresh = strtoul(optarg, NULL, 10);
+
+            /* FORCE local execution */
+            //arguments.local = 1;
+            break;
+
+        case 'R':
+            arguments.idleRefresh = strtoul(optarg, NULL, 10);
+            break;
+            
+        case 'C':
+            arguments.idleCut = 1;
+            break;
+            
+        case 'F':
+            arguments.topFlow = 1;
+            break;
+            
+        case 'a':
+            arguments.alignment = strtoul(optarg, NULL, 10);
+            break;
+
+        case 'd':
+            arguments.debug = strtoul(optarg, NULL, 10);
+            break;
+
+        case 'f':
+            arguments.showFatal = strtoul(optarg, NULL, 10);
+            break;
+
+        case 'h':
+        case '?':
+            PrintUsage(1);
+            break;
+
+        default:
+            printf("?? getopt returned character code 0%o ??\n", c);
+            
+        }
+    }
+
+    if (optind < argc) 
+    {
+        printf("command line argument not recognized: ");
+        
+        while (optind < argc)
+            printf("%s ", argv[optind++]);
+        
+        printf("\n");
+    }
+
+    if (arguments.captureScript[0] != '\0')
+    {
+       sprintf(newCommandLine, "source %s", arguments.captureScript);
+       cliEntry(newCommandLine, &printf);
+    }
 
     input[0] = '\0';
     while (1)
@@ -3763,6 +4011,8 @@ int main()
         idx = 0;
         input[0] = '\0';
     }
+
+#endif
 }
 
 #endif /* UNIT_TEST */
