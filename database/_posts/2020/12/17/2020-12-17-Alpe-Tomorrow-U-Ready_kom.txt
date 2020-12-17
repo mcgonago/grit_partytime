@@ -1,0 +1,326 @@
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (38)
+    Unfiltered (38)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+38 power metrics yet to be processed in a queue of 15,702
+Tempo(ish) Thursday presented by GRIT
+Today 05:50
+London Classique 60 minutes
+All riders visible Late joining
+5min and 20min CEVAZ limits apply
+No ZPower winners
+21.3km115m
+0.0km2.5km5.0km7.5km10.0km12.5km15.0km17.5km20.0km22.5km25.0km27.5km30.0km32.5km35.0km37.5km40.0km42.5km
+200m
+100 miles
+Madness
+1
+2
+3
+4
+5
+6
+S
+B Distance: 43.2km Elevation Gain: 217m Strava route
+Next Update in 5 minutes
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Forward Sprint	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+B 	31	
+Darryl Forbes [DIRT]
+DIRT
+	
+9.543
+1032w 13.4wkg
+	Power
+B 	3	
+Shaun Corbin Nashville
+DIRT
+	
+9.600
+748w 11.3wkg
+	Power
+B 	3	
+Lance Anderson
+	
+9.777
+748w 11.3wkg
+	Power
+B 	32	
+Owen McGonagle [GRIT]
+GRIT
+	
+9.943
+748w 11.3wkg
+	Power
+B 	32	
+tak ina[JETT]
+JETT
+	
+10.022
+687w 12.7wkg
+	Power
+B 	28	
+Steve Peplinski
+GRIT
+	
+10.034
+948w 12.3wkg
+	Power
+B 	29	
+Jason Bretz (DIRT)
+DIRT
+	
+10.176
+732w 9.2wkg
+	Power
+B 	11	
+Thomas Fraser (Navy Cycling B)
+Royal Navy Cycling
+	
+10.178
+847w 11.3wkg
+	Power
+B 	1	
+ALESSIO LEO (Cicli Stefanelli )
+CICLI STEFANELLI
+	
+10.194
+929w 10.7wkg
+	Power
+B 	10	
+Gabriel Mathisen
+VEGAN
+	
+10.235
+762w 12.3wkg
+	Power
+B 	6	
+Carson Shedd
+DIRT
+	
+10.280
+771w 11.2wkg
+	Power
+B 	14	
+Rob Fullerton
+GRIT
+	
+10.285
+981w 12.7wkg
+	Power
+B 	38	
+Peter J
+	
+10.300
+625w 9.6wkg
+	Power
+B 	4	
+Leo Leo Diaz
+	
+10.308
+840w 11.4wkg
+	Power
+B 	12	
+Greg Langman
+DIRT
+	
+10.433
+943w 13.3wkg
+	Power
+B 	24	
+Steve Tappan
+GRIT
+	
+10.443
+746w 11.0wkg
+	Power
+B 	34	
+Sergei Melnikov (UTT)
+UTT
+	
+10.505
+722w 11.5wkg
+	Power
+B 	26	
+Guillaume Lafleur
+leMÉTIER.
+	
+10.506
+767w 9.8wkg
+	Power
+B 	9	
+Daisuke Saika(WCU)
+	
+10.641
+783w 13.3wkg
+	Power
+B 	27	
+Bart Keizer
+BRT
+	
+10.662
+745w 11.3wkg
+	Power
+B 	7	
+Ped Fesh
+	
+10.687
+839w 10.0wkg
+	Power
+B 	23	
+Amir Nazari SCK (IR)
+	
+10.701
+733w 9.8wkg
+	Power
+B 	36	
+Justin Brooke
+	
+10.751
+788w 11.4wkg
+	Power
+B 	20	
+Derek Sawyer
+Rippers
+	
+10.789
+770w 10.3wkg
+	Power
+B 	18	
+Pete C
+	
+10.793
+689w 10.0wkg
+	Power
+B 	33	
+Craig... .S Velo
+Sheppey Velo
+	
+10.873
+641w 7.4wkg
+	Power
+B 	5	
+Jonathan Michelsen
+nbck
+	
+10.898
+718w 11.0wkg
+	Power
+B 	21	
+N. YuYu [TRC]
+	
+11.065
+568w 8.5wkg
+	Power
+B 	35	
+Franco Battiato
+Team Z TAZ
+	
+11.211
+682w 10.0wkg
+	Power
+B 	19	
+Thomas Spence
+	
+11.225
+845w 11.7wkg
+	Power
+B 	2	
+conrad moss @ Velopower Performance Coac
+P-TJ RT
+	
+11.242
+638w 8.9wkg
+	Power
+B 	30	
+Kelly Toth CRCA / NYCC
+CRCA/NYCC
+	
+11.260
+798w 9.9wkg
+	Power
+B 	25	
+John Jeffries GRIT
+	
+11.344
+551w 8.3wkg
+	Power
+B 	16	
+Rob McKechney
+	
+11.349
+575w 8.1wkg
+	Power
+B 	15	
+Alan Brannan
+GRIT
+	
+11.421
+675w 9.5wkg
+	Power
+B 	22	
+A NakaoJPN
+	
+11.609
+460w 7.1wkg
+	Power
+B 	17	
+Calum Scott
+DIRT
+	
+11.610
+564w 7.9wkg
+	Power
+B 	37	
+Ray Diaz
+	
+12.427
+330w 4.0wkg
+	Power
+B 	8	
+Oleg Semeko | Veter.cc
+veter.cc
+	
+13.006
+247w 3.3wkg
+	Power
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+

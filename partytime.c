@@ -888,6 +888,36 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "Derek Sawyer");
       strcpy(timeLineInfo->team, "[GRIT][Rippers]");
    }
+   else if (strstr(tmp, "conrad moss") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Conrad Moss");
+      strcpy(timeLineInfo->team, "Velopower PC, P-TJ RT");
+   }
+   else if (strstr(tmp, "Oleg Semeko") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Oleg Semeko");
+      strcpy(timeLineInfo->team, "Veter.cc");
+   }
+   else if (strstr(tmp, "Gabriel Mathisen") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Gabriel Mathisen");
+      strcpy(timeLineInfo->team, "[VEGAN][GRIT]");
+   }
+   else if ((strstr(tmp, "Korea") != 0) && (strstr(timeLineInfo->name, "Marc") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Korea Marc");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if (strstr(tmp, "tak ina") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Tak Ina");
+      strcpy(timeLineInfo->team, "[JETT] [GRIT]");
+   }
    else if (strstr(tmp, "VV Cucumber") != 0)
    {
       teamFound = 1;
@@ -899,6 +929,24 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       teamFound = 1;
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(tmp, "Greg Rashford") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Greg Rashford");
+      strcpy(timeLineInfo->team, "#NOMAD");
+   }
+   else if (strstr(tmp, "Dan Newton") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Dan Newton");
+      strcpy(timeLineInfo->team, "WGT - Bynea CC");
+   }
+   else if (strstr(tmp, "Dan Nelson") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Dan Nelson");
+      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
    }
    else if (strstr(tmp, "Rafa Dzieko") != 0)
    {
@@ -1007,10 +1055,50 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(timeLineInfo->name, "Greg Rashford") != 0)
+   {
+      strcpy(timeLineInfo->name, "Greg Rashford");
+      strcpy(timeLineInfo->team, "#NOMAD");
+   }
+   else if (strstr(timeLineInfo->name, "Dan Newton") != 0)
+   {
+      strcpy(timeLineInfo->name, "Dan Newton");
+      strcpy(timeLineInfo->team, "WGT - Bynea CC");
+   }
+   else if (strstr(timeLineInfo->name, "Dan Nelson") != 0)
+   {
+      strcpy(timeLineInfo->name, "Dan Nelson");
+      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
+   }
    else if (strstr(timeLineInfo->name, "Rafa Dzieko") != 0)
    {
       strcpy(timeLineInfo->name, "Rafa Dzieko");
       strcpy(timeLineInfo->team, "ski ZTPL.CC");
+   }
+   else if (strstr(timeLineInfo->name, "conrad moss") != 0)
+   {
+      strcpy(timeLineInfo->name, "Conrad Moss");
+      strcpy(timeLineInfo->team, "Velopower PC, P-TJ RT");
+   }
+   else if (strstr(timeLineInfo->name, "Oleg Semeko") != 0)
+   {
+      strcpy(timeLineInfo->name, "Oleg Semeko");
+      strcpy(timeLineInfo->team, "Veter.cc");
+   }
+   else if (strstr(timeLineInfo->name, "Gabriel Mathisen") != 0)
+   {
+      strcpy(timeLineInfo->name, "Gabriel Mathisen");
+      strcpy(timeLineInfo->team, "[VEGAN][GRIT]");
+   }
+   else if ((strstr(timeLineInfo->name, "Korea") != 0) && (strstr(timeLineInfo->name, "Marc") != 0))
+   {
+      strcpy(timeLineInfo->name, "Korea Marc");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if (strstr(timeLineInfo->name, "tak ina") != 0)
+   {
+      strcpy(timeLineInfo->name, "Tak Ina");
+      strcpy(timeLineInfo->team, "[JETT] [GRIT]");
    }
    else if (strstr(timeLineInfo->name, "VV Cucumber") != 0)
    {
@@ -1145,7 +1233,7 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
          continue;
       }
 
-      if ((timeLine[0] == 'B') && 
+      if (((timeLine[0] == 'B') || (timeLine[0] == 'A')) && 
           ((timeLine[1] == ' ') || (timeLine[1] == '\n')) &&
           (strstr(timeLine, "Distance") == NULL))
       {
@@ -1270,7 +1358,7 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
             }
 
             // Break if we see garbage
-            if (tmp[0] != 'B')
+            if ((tmp[0] != 'B') && (tmp[0] != 'A'))
             {
                break;
             }
@@ -1554,7 +1642,7 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
             }
 
             // Break if we see garbage
-            if (tmp[0] != 'B')
+            if ((tmp[0] != 'B') && (tmp[0] != 'A'))
             {
                break;
             }
