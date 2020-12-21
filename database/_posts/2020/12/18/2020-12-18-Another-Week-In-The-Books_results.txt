@@ -1,0 +1,270 @@
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (33)
+    Unfiltered (33)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+33 power metrics yet to be processed in a queue of 19,483
+GRIT - Mountain Route
+Today 05:50
+Road to Sky 1 Laps 17 km
+All riders visible Late joining No TT bikes
+5min and 20min CEVAZ limits apply
+No ZPower winners
+2.7km100m
+0.0km1.0km2.0km3.0km4.0km5.0km6.0km7.0km8.0km9.0km10.0km11.0km12.0km13.0km14.0km15.0km16.0km17.0km
+0m1000m
+100 miles
+Madness
+B Distance: 17.6km Elevation Gain: 1047m Starts from: Jungle Pens Strava route
+Next Update in 26 minutes Request a faster update
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Time 	avg	watts	NP 	20m 	5m 	1m 	30s 	15s 		Avg	Max 		Gain
+B
+Christian Kaldbar
+
+45:55
+	4.9w/kg	352w							72.0kg	172bpm		180cm
+B
+LEADER: Steve Tappan
+GRIT
+
+50:50
++04:54
+	4.4w/kg	298w							68.0kg	149bpm		183cm
+B
+Flynn Lewer
+
+51:07
++05:11
+	4.4w/kg	280w							63.0kg	164bpm		169cm
+B 	4
+tak ina[JETT]
+JETT
+
+55:33
++09:37
+	4.2w/kg	225w							54.0kg	132bpm		162cm
+B 	5
+Stratton Townley
+
+56:33
++10:37
+	3.9w/kg	295w							76.0kg	154bpm		185cm
+B 	6
+Tristan Longworth
+
+57:17
++11:21
+	3.7w/kg	327w							88.0kg	162bpm		188cm
+B 	7
+SWEEPER: Rob Fullerton
+GRIT
+
+58:04
++12:08
+	3.7w/kg	286w							77.0kg	143bpm		178cm
+B 	8
+1144 Sebastien Loir
+BIKES-FR
+
+58:13
++12:17
+	3.8w/kg	238w							62.0kg	152bpm		169cm
+B 	9
+Owen McGonagle [GRIT]
+GRIT
+
+58:13
++12:18
+	3.8w/kg	251w							66.2kg	140bpm		170cm
+B 	10
+David Cox
+VEGAN
+
+59:01
++13:06
+	3.7w/kg	278w							76.2kg	153bpm		193cm
+B 	11
+steven schietecatte
+
+59:57
++14:01
+	3.6w/kg	254w							70.0kg	168bpm		176cm
+B 	12
+Daniel Shalkowski
+DIRT
+
+1:00:10
++14:14
+	3.6w/kg	247w							68.0kg	144bpm		178cm
+B 	13
+Gabriel Mathisen
+VEGAN
+
+1:00:22
++14:26
+	3.9w/kg	242w							62.0kg	63bpm		178cm
+B 	14
+Thomas Schräder (WP-CL)
+ZRG
+
+1:01:01
++15:05
+	3.6w/kg	314w							87.0kg	165bpm		193cm
+B 	15
+Geoff Bunyan
+
+1:01:02
++15:06
+	3.6w/kg	265w							73.0kg	159bpm		180cm
+B 	16
+Reid McGregor
+MGCC
+
+1:01:36
++15:40
+	3.6w/kg	278w							77.1kg	170bpm		183cm
+B 	17
+LEADER: Steve Peplinski
+GRIT
+
+1:02:24
++16:28
+	3.5w/kg	268w							77.1kg	160bpm		170cm
+B 	18
+Matt B. ARCC
+ARCC
+
+1:02:51
++16:56
+	3.5w/kg	277w							79.0kg	152bpm		182cm
+B 	19
+P Westergaard is [Dirt]
+
+1:03:49
++17:53
+	3.3w/kg	285w							86.0kg			185cm
+B 	20
+LEADER: Alan Brannan
+GRIT
+
+1:04:11
++18:15
+	3.4w/kg	242w							70.8kg	167bpm		175cm
+B 	21
+Jonathan Slumstrup
+
+1:04:13
++18:17
+	3.4w/kg	239w							71.0kg	164bpm		178cm
+B 	22
+Lloyd Billingham
+
+1:04:25
++18:29
+	3.4w/kg	236w							70.0kg			188cm
+B 	23
+Zilvinas A
+
+1:05:16
++19:20
+	3.5w/kg	214w							62.0kg	175bpm		176cm
+B 	24
+Lara Middleton
+
+1:05:39
++19:43
+	3.4w/kg	210w							62.1kg	149bpm		172cm
+B 	25
+John Jeffries GRIT
+
+1:05:39
++19:44
+	3.3w/kg	223w							66.7kg	145bpm		175cm
+B 	26
+Marian Sabo
+
+1:07:35
++21:39
+	3.2w/kg	244w							77.0kg	142bpm		185cm
+B 	27
+Dan Ambler
+
+1:08:32
++22:36
+	3.1w/kg	225w							72.0kg	176bpm		180cm
+B 	28
+Chris Beard 6788
+
+1:09:55
++23:59
+	3.2w/kg	227w							72.0kg	150bpm		182cm
+B 	29
+Ian Manning
+ASCENT CYCLING
+
+1:13:27
++27:31
+	2.9w/kg	203w							69.0kg	157bpm		178cm
+B 	30
+Jeffrey Kansun
+
+1:13:29
++27:33
+	2.9w/kg	229w							79.0kg	168bpm		175cm
+B 	31
+Andrew Swift
+
+1:15:29
++29:33
+	2.8w/kg	239w							85.8kg	153bpm		185cm
+B 	32
+Lars Petter Karlsen
+
+1:29:27
++43:31
+	2.6w/kg	217w							84.0kg			176cm
+B 	33
+Slawomir RCTeamPL
+
+1:33:36
++47:40
+	2.2w/kg	207w							94.0kg	143bpm		185cm
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00

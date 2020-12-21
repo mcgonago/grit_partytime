@@ -30,6 +30,8 @@ typedef struct PartyControl_s
    int max;
    int bestOf;
    int bonus;
+   int doubleUp;
+   int ageBonus;
 } PartyControl_t;
 
 PartyControl_t partyControl;
@@ -912,11 +914,11 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "Korea Marc");
       strcpy(timeLineInfo->team, "-");
    }
-   else if (strstr(tmp, "tak ina") != 0)
+   else if ((strstr(tmp, "tak ina") != 0) || (strstr(tmp, "Tak Ina") != 0))
    {
       teamFound = 1;
       strcpy(timeLineInfo->name, "Tak Ina");
-      strcpy(timeLineInfo->team, "[JETT] [GRIT]");
+      strcpy(timeLineInfo->team, "[JETT][GRIT]");
    }
    else if (strstr(tmp, "VV Cucumber") != 0)
    {
@@ -924,11 +926,29 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "VV Cucumber");
       strcpy(timeLineInfo->team, "[LOOKCYCLE CHN]");
    }
+   else if (strstr(tmp, "Dan Nelson") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Dan Nelson");
+      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+   }
+   else if (strstr(tmp, "Kelly Toth") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Kelly Toth");
+      strcpy(timeLineInfo->team, "CRCA/NYCC");
+   }
    else if (strstr(tmp, "John Jeffries") != 0)
    {
       teamFound = 1;
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(tmp, "Sebastien Loir") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Sebastien Loir");
+      strcpy(timeLineInfo->team, "BIKES-FR");
    }
    else if (strstr(tmp, "Greg Rashford") != 0)
    {
@@ -1050,10 +1070,25 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "Derek Sawyer");
       strcpy(timeLineInfo->team, "[GRIT][Rippers]");
    }
+   else if (strstr(timeLineInfo->name, "Dan Nelson") != 0)
+   {
+      strcpy(timeLineInfo->name, "Dan Nelson");
+      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+   }
+   else if (strstr(timeLineInfo->name, "Kelly Toth") != 0)
+   {
+      strcpy(timeLineInfo->name, "Kelly Toth");
+      strcpy(timeLineInfo->team, "CRCA/NYCC");
+   }
    else if (strstr(timeLineInfo->name, "John Jeffries") != 0)
    {
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(timeLineInfo->name, "Sebastien Loir") != 0)
+   {
+      strcpy(timeLineInfo->name, "Sebastien Loir");
+      strcpy(timeLineInfo->team, "BIKES-FR");
    }
    else if (strstr(timeLineInfo->name, "Greg Rashford") != 0)
    {
@@ -1095,10 +1130,10 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "Korea Marc");
       strcpy(timeLineInfo->team, "-");
    }
-   else if (strstr(timeLineInfo->name, "tak ina") != 0)
+   else if ((strstr(timeLineInfo->name, "tak ina") != 0) || (strstr(timeLineInfo->name, "Tak Ina") != 0))
    {
       strcpy(timeLineInfo->name, "Tak Ina");
-      strcpy(timeLineInfo->team, "[JETT] [GRIT]");
+      strcpy(timeLineInfo->team, "[JETT][GRIT]");
    }
    else if (strstr(timeLineInfo->name, "VV Cucumber") != 0)
    {
@@ -1143,6 +1178,54 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       }
    }
 }
+
+void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
+{
+   float fudge = 1.0;
+   Link_t *ptr;
+   TimeLineInfo_t *timeLineInfo;
+
+   if (partyControl.max != -1)
+   {
+      if (count > partyControl.max)
+      {
+         (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
+         partyControl.max = count;
+      }
+      fudge = (float)partyControl.max/(float)count;
+   }
+   else
+   {
+      fudge = 1.0;
+   }
+
+   (pInfo->print_fp)("partyControl.max = %d, count = %d, fudge = %4.4f\n", partyControl.max, count, fudge);
+
+   /* Now, go through each one - if the race is set, add in points based on total in race */
+   ptr = (Link_t *)listTimeLine->head;
+   while (ptr->next != NULL)
+   {
+      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+      if (timeLineInfo->race[raceId].place != -1)
+      {
+         timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
+
+         // +++owen - fix hardcode to a must of raceId == 3
+         if ((raceId == 2) && (partyControl.doubleUp == 1))
+         {
+            timeLineInfo->race[raceId].points *= 2; 
+         }
+
+         timeLineInfo->points += timeLineInfo->race[raceId].points;
+      }
+
+      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
+      ptr = ptr->next;
+   }
+}
+
 
 void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 {
@@ -1368,39 +1451,7 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 
    fclose(fp_in);
 
-   if (partyControl.max != -1)
-   {
-      if (count > partyControl.max)
-      {
-         (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
-         partyControl.max = count;
-      }
-      fudge = (float)partyControl.max/(float)count;
-   }
-   else
-   {
-      fudge = 1.0;
-   }
-
-   (pInfo->print_fp)("partyControl.max = %d, count = %d, fudge = %4.4f\n", partyControl.max, count, fudge);
-
-   /* Now, go through each one - if the race is set, add in points based on total in race */
-   ptr = (Link_t *)listTimeLine->head;
-   while (ptr->next != NULL)
-   {
-      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-      if (timeLineInfo->race[raceId].place != -1)
-      {
-         timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
-         timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
-
-         timeLineInfo->points += timeLineInfo->race[raceId].points;
-      }
-
-      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
-      ptr = ptr->next;
-   }
+   AddUpPoints(pInfo, count, raceId);
 
    (pInfo->print_fp)("\n\n");
 
@@ -1653,42 +1704,259 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
 
    fclose(fp_in);
 
-   if (partyControl.max != -1)
-   {
-      if (count > partyControl.max)
-      {
-         (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
-         partyControl.max = count;
-      }
-      fudge = (float)partyControl.max/(float)count;
-   }
-   else
-   {
-      fudge = 1.0;
-   }
-
-   (pInfo->print_fp)("partyControl.max = %d, count = %d, fudge = %4.4f\n", partyControl.max, count, fudge);
-
-   /* Now, go through each one - if the race is set, add in points based on total in race */
-   ptr = (Link_t *)listTimeLine->head;
-   while (ptr->next != NULL)
-   {
-      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-      if (timeLineInfo->race[raceId].place != -1)
-      {
-         timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
-         timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
-
-         timeLineInfo->points += timeLineInfo->race[raceId].points;
-      }
-
-      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
-      ptr = ptr->next;
-   }
-
-   (pInfo->print_fp)("\n\n");
+   AddUpPoints(pInfo, count, raceId);
     
+}
+
+void cmd_party_results2(CLI_PARSE_INFO *pInfo)
+{
+   int ret;
+   char buff[180];
+   char time_details1[80];
+   int idx;
+   int si;
+   char *c;
+   int len;
+   int count = 1;
+   int firstAthlete = 1;
+   int raceId = 0;
+   
+   FILE *fp_in;
+   FILE *fp_out;
+   char infile[MAX_STRING_SIZE];
+   char outfile[MAX_STRING_SIZE];
+
+   char tmp[MAX_STRING_SIZE];
+   char tmp2[MAX_STRING_SIZE];
+   char tmp3[MAX_STRING_SIZE];
+   char raceName[MAX_STRING_SIZE];
+
+   char timeLine[MAX_STRING_SIZE];
+
+   Link_t *ptr, *ptr2;
+   TimeLineInfo_t *timeLineInfo;
+   TimeLineInfo_t *timeLineInfo2;
+
+   Link_t *ptrI;
+   Link_t *ptrJ;
+
+   TimeLineInfo_t *timeLineInfoI;
+   TimeLineInfo_t *timeLineInfoJ;
+   float fudge;
+   
+   // fp_in = fopen("zwiftpower.txt", "r");
+   sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
+   sprintf(outfile, "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_partytime.txt");
+   sprintf(raceName, "%s", "hooha");
+
+   if ( pInfo->argc > 1)
+   {
+      sprintf(infile, "%s", pInfo->argv[1]);
+   }
+
+   if ( pInfo->argc > 2)
+   {
+      sprintf(outfile, "%s", pInfo->argv[2]);
+   }
+
+   if ( pInfo->argc > 3)
+   {
+      sprintf(raceName, "%s", pInfo->argv[3]);
+   }
+   
+   fp_in = fopen(infile, "r");
+
+   if (!fp_in)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", infile);
+      exit(-1);
+   }
+        
+   fp_out = fopen(outfile, "w");
+
+   if (!fp_out)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
+      exit(-1);
+   }
+        
+   idx = 0;
+   while (1)
+   {
+      if (!StringGet(tmp, fp_in, NL_KEEP))
+      {
+         /* Done reading file */
+         break;
+      }
+
+      strcpy(timeLine, tmp);
+
+      if (!FormattedProper(timeLine))
+      {
+         /* prperly formatted line not found */
+         continue;
+      }
+
+      if (((timeLine[0] == 'B') || (timeLine[0] == 'A')) &&
+          ((timeLine[1] == ' ') || (timeLine[1] == '\n')) &&
+          (strstr(timeLine, "Distance") == NULL))
+      {
+         while (1)
+         {
+            // Athletes name
+            if (!StringGet(tmp, fp_in, NL_REMOVE))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            if (strstr(tmp, "Description") != NULL)
+            {
+               /* Ooops... Found the first B or A before athletes */
+               break;
+            }
+
+            timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+            strcpy(timeLineInfo->timeLine, tmp);
+            
+            // strcpy(timeLineInfo->name, tmp);
+            NameInsert(timeLineInfo, tmp);
+
+            if (strcmp(raceName, "race1") == 0)
+            {
+               raceId = 0;
+               timeLineInfo->race[0].place = count;
+               sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race2") == 0)
+            {
+               raceId = 1;
+               timeLineInfo->race[1].place = count;
+               sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race3") == 0)
+            {
+               raceId = 2;
+               timeLineInfo->race[2].place = count;
+               sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
+            }
+            else if (strcmp(raceName, "race4") == 0)
+            {
+               raceId = 3;
+               timeLineInfo->race[3].place = count;
+               sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
+            }
+            else
+            {
+               raceId = 2;
+               timeLineInfo->race[2].place = count;
+               sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
+
+               (pInfo->print_fp)("WARNING!!!! raceId forced to (%d) using name %s\n", raceId, raceName);
+            }
+
+            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
+            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
+            count++;
+
+            if (count > maxCount)
+            {
+               maxCount = count;
+            }
+
+            // Team or empty
+            if (!StringGet(tmp, fp_in, NL_KEEP))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            // If team, skip
+            if ((tmp[0] != '\n') && (tmp[0] != ' ') && (tmp[0] != '\r') && (tmp[0] != '\t'))
+            {
+               /* TEAM can be found in the name (Zwift does that) or on next line */
+               TeamNameCleanup(timeLineInfo, tmp);
+
+               /* We have team name, thus skip next <empty> line */
+               if (!StringGet(tmp, fp_in, NL_KEEP))
+               {
+                  /* Done reading file */
+                  break;
+               }
+            }
+
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            (pInfo->print_fp)("%s  ", timeLineInfo->team);
+            fprintf(fp_out, "%s  ", timeLineInfo->team);
+
+            /* time */
+            if (!StringGet(tmp, fp_in, NL_REMOVE))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            AddSpace(tmp2, tmp);
+
+            (pInfo->print_fp)("%s", tmp2);
+            fprintf(fp_out, "%s", tmp2);
+
+            /* If first athlete we DO NOT have a '+' difference */
+            if (firstAthlete != 1)
+            {
+               /* + */
+               if (!StringGet(tmp, fp_in, NL_KEEP))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+            }
+            firstAthlete = 0;
+
+            /* watts */
+            if (!StringGet(tmp, fp_in, NL_KEEP))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            AddSpace(tmp2, tmp);
+            (pInfo->print_fp)("%s", tmp2);
+            fprintf(fp_out, "%s", tmp2);
+
+#if 0
+            /* TOTAL watts? */
+            if (!StringGet(tmp, fp_in, NL_KEEP))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            /* extended stats */
+            if (!StringGet(tmp, fp_in, NL_KEEP))
+            {
+               /* Done reading file */
+               break;
+            }
+#endif
+            // Break if we see garbage
+            if ((tmp[0] != 'B') && (tmp[0] != 'A'))
+            {
+               break;
+            }
+
+         }
+      }
+   }
+
+   fclose(fp_in);
+
+   AddUpPoints(pInfo, count, raceId);
+
 }
 
 void cmd_party_following(CLI_PARSE_INFO *pInfo)
@@ -2158,39 +2426,7 @@ void cmd_party_following2(CLI_PARSE_INFO *pInfo)
 
    fclose(fp_in);
 
-   if (partyControl.max != -1)
-   {
-      if (count > partyControl.max)
-      {
-         (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
-         partyControl.max = count;
-      }
-      fudge = (float)partyControl.max/(float)count;
-   }
-   else
-   {
-      fudge = 1.0;
-   }
-
-   (pInfo->print_fp)("partyControl.max = %d, count = %d, fudge = %4.4f\n", partyControl.max, count, fudge);
-
-   /* Now, go through each one - if the race is set, add in points based on total in race */
-   ptr = (Link_t *)listTimeLine->head;
-   while (ptr->next != NULL)
-   {
-      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-      if (timeLineInfo->race[raceId].place != -1)
-      {
-         timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
-         timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
-
-         timeLineInfo->points += timeLineInfo->race[raceId].points;
-      }
-
-      // (pInfo->print_fp)("%s", timeLineInfo->timeLine);
-      ptr = ptr->next;
-   }
+   AddUpPoints(pInfo, count, raceId);
 
    /* Did we find everyone? */
    RidersMissed(pInfo);
@@ -2655,6 +2891,14 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
          currInfo->points = BestOf(timeLineInfo, 2, &total);
       }
 
+      if (partyControl.ageBonus == 1)
+      {
+       if (strstr(timeLineInfo->name, "McGonagle") != 0)
+       {
+          currInfo->points += 5;
+       }
+      }
+
       if (partyControl.bonus == 1)
       {
          if (total == 4)
@@ -2762,18 +3006,68 @@ void PartySetBonus(CLI_PARSE_INFO *pInfo)
     }
 }
 
+void PartySetDouble(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.doubleUp = 1;
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.doubleUp = 0;
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
+}
+
+void PartySetAgeBonus(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.ageBonus = 1;
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.ageBonus = 0;
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
+}
+
 void PartyInit(CLI_PARSE_INFO *pInfo)
 {
    partyControl.max = -1;
    partyControl.bestOf = BEST_OF_TWO;
    partyControl.bonus = 0;
+   partyControl.doubleUp = 0;
+   partyControl.ageBonus = 0;
 }
 
 static const CLI_PARSE_CMD party_set_cmd[] =
 {
-    { "max",     PartySetMax,     "max number of race entries"},
-    { "bestof",  PartySetBestOf,  "N in best-of-N races"},
-    { "bonus",   PartySetBonus,   "on|off - 5 pts for 3 races, 10 pts for 4 races"},
+    { "max",       PartySetMax,       "max number of race entries"},
+    { "bestof",    PartySetBestOf,    "N in best-of-N races"},
+    { "bonus",     PartySetBonus,     "on|off - 5 pts for 3 races, 10 pts for 4 races"},
+    { "double",    PartySetDouble,    "on|off - DOUBLE points for Alpe race (warranted)"},
+    { "ageBonus",  PartySetAgeBonus,  "on|off - extra 5 points for being 55+"},
     { NULL, NULL, NULL }
 };
 
@@ -2791,6 +3085,7 @@ static const CLI_PARSE_CMD cmd_party_commands[] =
    { "following",       cmd_party_following,            "following [infile] [outfile]"},
    { "following2",      cmd_party_following2,           "following2 [infile] [outfile]"},
    { "results",         cmd_party_results,              "results [infile] [outfile]"},
+   { "results2",        cmd_party_results2,             "results2 [infile] [outfile]"},
    { "kom",             cmd_party_kom_and_sprints,      "kom [infile] [outfile]"},
    { "sprints",         cmd_party_kom_and_sprints,      "sprints [infile] [outfile]"},
    { "filter",          PartyTimeFilterCmd,             "filter commands"},

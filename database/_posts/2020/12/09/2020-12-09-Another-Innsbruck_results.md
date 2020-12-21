@@ -2,7 +2,7 @@
   2  Franz Huber  Radl-Eck Cycling   18:17    328w  4.8wkg
   3  Seth G  [GRIT]  18:39    339w  4.8wkg
   4  K Naga  DIRT   19:50    271w  4.4wkg
-  5  tak ina  JETT   20:18    239w  4.5wkg
+  5  Tak Ina  [JETT][GRIT]  20:18    239w  4.5wkg
   6  Eric Hegger  -  20:58    316w  4.1wkg
   7  Greg Langman  DIRT   20:59    294w  4.2wkg
   8  Adrian Walton  -  21:04    288w  4.1wkg

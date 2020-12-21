@@ -1,5 +1,5 @@
   1  Lance Anderson  [GRIT]  06:32    342w  5.5wkg
-  2  Gabriel Mathisen  VEGAN   06:37    342w  5.5wkg
+  2  Gabriel Mathisen  [VEGAN][GRIT]  06:37    342w  5.5wkg
   3  Bernie Lacourciere  GET-SET   06:37    312w  5.1wkg
   4  Derek Sawyer  [GRIT][Rippers]  06:39    380w  5.1wkg
   5  Yuma Jibiki  -  06:40    303w  5.4wkg
@@ -8,9 +8,9 @@
   8  Yusuke Saeki  (SBC Vertex Racing Team)    06:41    335w  5.2wkg
   9  Owen McGonagle  GRIT   06:42    338w  5.1wkg
  10  Gareth Greeves  Giant Helston   06:42    386w  5.1wkg
- 11  Korea    Marc  -  06:42    324w  5.0wkg
+ 11  Korea Marc  -  06:42    324w  5.0wkg
  12  Steve Peplinski  GRIT   06:46    359w  4.7wkg
- 13  Tak Ina  JETT   06:48    268w  5.1wkg
+ 13  Tak Ina  [JETT][GRIT]  06:48    268w  5.1wkg
  14  Rob Fullerton  GRIT   06:49    364w  4.7wkg
  15  Miles Askew  TR   06:57    351w  4.8wkg
  16  Andrew Steel  -  06:58    343w  5.0wkg
