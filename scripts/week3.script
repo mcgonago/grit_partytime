@@ -1,0 +1,10 @@
+party set max 61
+party set bestof 2
+party set bonus on
+party set double on
+#party set age on
+party kom database/_posts/2020/12/15/2020-12-15-Smack-Down-On-The-Volcano_kom.txt database/_posts/2020/12/15/2020-12-15-Smack-Down-On-The-Volcano_kom.md race1
+party kom database/_posts/2020/12/17/2020-12-17-Alpe-Tomorrow-U-Ready_kom.txt database/_posts/2020/12/17/2020-12-17-Alpe-Tomorrow-U-Ready_kom.md race2
+party results2 database/_posts/2020/12/18/2020-12-18-Another-Week-In-The-Books_results.txt database/_posts/2020/12/18/2020-12-18-Another-Week-In-The-Books_results.md race3
+party show
+quit
