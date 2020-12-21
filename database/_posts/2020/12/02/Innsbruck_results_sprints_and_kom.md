@@ -3,7 +3,7 @@
   3  Olivier PERRIN  Asvel Tri   19:20    297w  4.7wkg
   4  Pieter Jan de Vries  -  19:22    325w  4.6wkg
   5  Joseph Moulton  teamWKG   19:24    304w  4.5wkg
-  6  tak ina  JETT   19:37    250w  4.7wkg
+  6  Tak Ina  [JETT][GRIT]  19:37    250w  4.7wkg
   7  Luke Elton  GRIT   19:48    288w  4.5wkg
   8  Rob Fullerton  GRIT   19:55    343w  4.5wkg
   9  tomoyuki goto  -  20:30    249w  4.4wkg

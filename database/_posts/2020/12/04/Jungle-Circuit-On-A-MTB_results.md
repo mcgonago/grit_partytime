@@ -4,7 +4,7 @@
   4  Scarlett Parker  ART   1:07:00      3.0w/kg        191w        
   5  Yukio Bergholdt  -  1:07:01      3.2w/kg        235w        
   6  Bruch Wu  -  1:07:01      3.2w/kg        189w        
-  7  tak ina  JETT   1:07:02      3.4w/kg        180w        
+  7  Tak Ina  [JETT][GRIT]  1:07:02      3.4w/kg        180w        
   8  Carson Shedd  DIRT   1:07:02      3.2w/kg        219w        
   9  Maximilian Weniger  Rippers   1:07:03      3.4w/kg        270w        
  10  Steve Tappan  [GRIT]  1:07:05      3.2w/kg        216w        

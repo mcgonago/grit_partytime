@@ -1,6 +1,6 @@
   1  Shaun Corbin Nashville  DIRT   9.809    815w  12.7wkg
   2  Darryl Forbes  DIRT   9.843    1018w  13.2wkg
-  3  tak ina  JETT   9.868    683w  12.9wkg
+  3  Tak Ina  [JETT][GRIT]  9.868    683w  12.9wkg
   4  Dries Decoster  GFTbe   10.048    1054w  14.6wkg
   5  Ross Irwin  DIRT   10.113    975w  11.0wkg
   6  Owen McGonagle  GRIT   10.132    710w  10.7wkg

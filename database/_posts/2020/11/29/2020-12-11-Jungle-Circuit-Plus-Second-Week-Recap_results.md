@@ -1,6 +1,6 @@
   1  Rob Fullerton  GRIT   49:56      3.3w/kg        256w        
   2  Andy Parfitt  WTRL   49:56      3.7w/kg        265w        
-  3  tak ina  JETT   49:57      3.4w/kg        182w        
+  3  Tak Ina  [JETT][GRIT]  49:57      3.4w/kg        182w        
   4  Steve Peplinski  GRIT   51:02      3.1w/kg        239w        
   5  Owen McGonagle  GRIT   51:05      3.3w/kg        221w        
   6  Denis Frolov  UTT   51:24      3.1w/kg        222w        

@@ -1,7 +1,7 @@
   1  Darryl Forbes  DIRT   9.509    1029w  13.3wkg
   2  Yosuke Sakuma  JETT   9.808    828w  14.0wkg
   3  Steve Peplinski  GRIT   10.126    907w  11.8wkg
-  4  tak ina  JETT   10.136    700w  13.2wkg
+  4  Tak Ina  [JETT][GRIT]  10.136    700w  13.2wkg
   5  Thomas Fraser  Royal Navy Cycling   10.278    803w  10.7wkg
   6  Owen McGonagle  GRIT   10.291    631w  9.5wkg
   7  Rob Fullerton  GRIT   10.292    918w  11.9wkg
@@ -28,6 +28,6 @@
  28  david gulick  -  11.610    567w  6.6wkg
  29  Nicolas Daget  -  11.616    388w  5.5wkg
  30  Ray Diaz  -  11.742    245w  3.0wkg
- 31  Kelly Toth CRCA / NYCC  -  11.845    677w  8.4wkg
+ 31  Kelly Toth  CRCA/NYCC  11.845    677w  8.4wkg
  32  Ped Fesh  -  12.083    339w  4.0wkg
  33  Lars Rathje  DBR   13.755    502w  6.9wkg

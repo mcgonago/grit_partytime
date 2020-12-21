@@ -3,7 +3,7 @@
   3  Olivier PERRIN  Asvel Tri   19:20    297w  4.7wkg
   4  Pieter Jan de Vries  -  19:22    325w  4.6wkg
   5  Joseph Moulton  teamWKG   19:24    304w  4.5wkg
-  6  tak ina  JETT   19:37    250w  4.7wkg
+  6  Tak Ina  [JETT][GRIT]  19:37    250w  4.7wkg
   7  Luke Elton  GRIT   19:48    288w  4.5wkg
   8  Rob Fullerton  GRIT   19:55    343w  4.5wkg
   9  tomoyuki goto  -  20:30    249w  4.4wkg
@@ -24,7 +24,7 @@ partyControl.max = -1, count = 22, fudge = 1.0000
 
   1  Shaun Corbin Nashville  DIRT   9.809    815w  12.7wkg
   2  Darryl Forbes  DIRT   9.843    1018w  13.2wkg
-  3  tak ina  JETT   9.868    683w  12.9wkg
+  3  Tak Ina  [JETT][GRIT]  9.868    683w  12.9wkg
   4  Dries Decoster  GFTbe   10.048    1054w  14.6wkg
   5  Ross Irwin  DIRT   10.113    975w  11.0wkg
   6  Owen McGonagle  GRIT   10.132    710w  10.7wkg
@@ -66,7 +66,7 @@ partyControl.max = -1, count = 36, fudge = 1.0000
   4  Scarlett Parker  ART   1:07:00      3.0w/kg        191w        
   5  Yukio Bergholdt  -  1:07:01      3.2w/kg        235w        
   6  Bruch Wu  -  1:07:01      3.2w/kg        189w        
-  7  tak ina  JETT   1:07:02      3.4w/kg        180w        
+  7  Tak Ina  [JETT][GRIT]  1:07:02      3.4w/kg        180w        
   8  Carson Shedd  DIRT   1:07:02      3.2w/kg        219w        
   9  Maximilian Weniger  Rippers   1:07:03      3.4w/kg        270w        
  10  Steve Tappan  [GRIT]  1:07:05      3.2w/kg        216w        
@@ -100,9 +100,7 @@ partyControl.max = -1, count = 36, fudge = 1.0000
  38  zwift Doyoung  -  1:16:19      3.2w/kg        196w        
  39  M  ns Bergenzaun  Team BTC   1:18:41      2.8w/kg        216w        
 partyControl.max = -1, count = 40, fudge = 1.0000
-
-
-  1   tak ina                          JETT                             3/33        6/16        7/33        0/0        66         
+  1   Tak Ina                          [JETT][GRIT]                     3/33        6/16        7/33        0/0        66         
   2   Owen McGonagle                   GRIT                             6/30       10/12       11/29        0/0        59         
   3   Steve Tappan                     [GRIT]                           0/0         1/21       10/30        0/0        51         
   4   Alan Brannan                     GRIT                            11/25        0/0        17/23        0/0        48         
