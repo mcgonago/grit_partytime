@@ -1,19 +1,19 @@
   1  Steve Tappan  [GRIT]  18:21    338w  5.0wkg
   2  Derek Sawyer  [GRIT][Rippers]  18:43    347w  4.6wkg
-  3  Olivier PERRIN  Asvel Tri   19:20    297w  4.7wkg
+  3  Olivier PERRIN  Asvel Tri  19:20    297w  4.7wkg
   4  Pieter Jan de Vries  -  19:22    325w  4.6wkg
-  5  Joseph Moulton  teamWKG   19:24    304w  4.5wkg
+  5  Joseph Moulton  teamWKG  19:24    304w  4.5wkg
   6  Tak Ina  [JETT][GRIT]  19:37    250w  4.7wkg
-  7  Luke Elton  GRIT   19:48    288w  4.5wkg
-  8  Rob Fullerton  GRIT   19:55    343w  4.5wkg
+  7  Luke Elton  GRIT  19:48    288w  4.5wkg
+  8  Rob Fullerton  GRIT  19:55    343w  4.5wkg
   9  tomoyuki goto  -  20:30    249w  4.4wkg
- 10  Owen McGonagle  GRIT   20:40    284w  4.3wkg
+ 10  Owen McGonagle  GRIT  20:40    284w  4.3wkg
  11  Josh Manton  (HVR)    20:43    274w  4.2wkg
  12  tarou nagae  -  20:44    245w  4.3wkg
  13  MASAYUKI TSUIKI  -  21:39    226w  4.1wkg
  14  J. Jan  -  22:14    242w  3.7wkg
  15  Hiroto Sugano  -  22:15    260w  3.9wkg
- 16  Craig Mellors  England CC   22:40    271w  3.8wkg
+ 16  Craig Mellors  England CC  22:40    271w  3.8wkg
  17  Tristan Longworth  -  22:42    322w  3.7wkg
  18  Steffen Lang  -  23:15    249w  3.8wkg
  19  Ichigo Tamagoya  -  25:53    182w  3.1wkg
@@ -22,83 +22,83 @@
 partyControl.max = -1, count = 22, fudge = 1.0000
 
 
-  1  Shaun Corbin Nashville  DIRT   9.809    815w  12.7wkg
-  2  Darryl Forbes  DIRT   9.843    1018w  13.2wkg
+  1  Shaun Corbin Nashville  DIRT  9.809    815w  12.7wkg
+  2  Darryl Forbes  DIRT  9.843    1018w  13.2wkg
   3  Tak Ina  [JETT][GRIT]  9.868    683w  12.9wkg
-  4  Dries Decoster  GFTbe   10.048    1054w  14.6wkg
-  5  Ross Irwin  DIRT   10.113    975w  11.0wkg
-  6  Owen McGonagle  GRIT   10.132    710w  10.7wkg
+  4  Dries Decoster  GFTbe  10.048    1054w  14.6wkg
+  5  Ross Irwin  DIRT  10.113    975w  11.0wkg
+  6  Owen McGonagle  GRIT  10.132    710w  10.7wkg
   7  Andrew Aynsley  -  10.209    1135w  14.2wkg
   8  Todd Buckley  -  10.278    753w  9.5wkg
   9  Simon Goddard  -  10.376    782w  12.4wkg
- 10  Greg Langman  DIRT   10.432    889w  12.6wkg
- 11  Alan Brannan  GRIT   10.466    753w  10.6wkg
- 12  Bart Keizer  BRT   10.550    659w  10.0wkg
- 13  Rob Fullerton  GRIT   10.632    964w  12.5wkg
- 14  Michel Schreck  Team SUI   10.666    905w  12.2wkg
- 15  Thomas Fraser  Royal Navy Cycling   10.692    749w  10.0wkg
- 16  MHA KOH  JETT   10.880    735w  11.9wkg
+ 10  Greg Langman  DIRT  10.432    889w  12.6wkg
+ 11  Alan Brannan  GRIT  10.466    753w  10.6wkg
+ 12  Bart Keizer  BRT  10.550    659w  10.0wkg
+ 13  Rob Fullerton  GRIT  10.632    964w  12.5wkg
+ 14  Michel Schreck  Team SUI  10.666    905w  12.2wkg
+ 15  Thomas Fraser  Royal Navy Cycling  10.692    749w  10.0wkg
+ 16  MHA KOH  JETT  10.880    735w  11.9wkg
  17  Etienne Guillet  -  10.896    810w  12.1wkg
- 18  Mikkel Lindgren  DBR   10.904    837w  9.6wkg
- 19  Philip Morrison  BRC   10.906    752w  9.8wkg
+ 18  Mikkel Lindgren  DBR  10.904    837w  9.6wkg
+ 19  Philip Morrison  BRC  10.906    752w  9.8wkg
  20  Andy Donnelly  (CT Velo)    10.960    748w  10.2wkg
  21  Billy Guilford  -  10.977    548w  7.8wkg
- 22  Hiroki  -  10.981    626w  10.6wkg
- 23  Bernie Lacourciere  GET-SET   11.168    563w  9.2wkg
+ 22  Hiroki Tanaka  -  10.981    626w  10.6wkg
+ 23  Bernie Lacourciere  GET-SET  11.168    563w  9.2wkg
  24  * Cycling Fanatic *  -  11.199    614w  8.3wkg
  25  Moto kyo  -  11.284    699w  11.1wkg
- 26  Seiichi Kaneko  Team Fin's   11.307    664w  11.1wkg
+ 26  Seiichi Kaneko  Team Fin's  11.307    664w  11.1wkg
  27  Rob McKechney  -  11.641    553w  7.8wkg
  28  Jesse Rients  -  11.664    698w  8.9wkg
  29  Guillaume Lapeyre  -  11.781    536w  6.7wkg
- 30  Olivier PERRIN  Asvel Tri   11.802    566w  9.0wkg
+ 30  Olivier PERRIN  Asvel Tri  11.802    566w  9.0wkg
  31  Brant Puttkammer  [T1D]    11.857    674w  9.3wkg
  32  Marc Johnson  (Indiebike/IUH)    11.877    453w  6.2wkg
- 33  Calum Scott  DIRT   11.877    461w  6.5wkg
+ 33  Calum Scott  DIRT  11.877    461w  6.5wkg
  34  Ko Yama  -  12.633    335w  5.1wkg
  35  Anne On  -  13.811    492w  7.7wkg
 partyControl.max = -1, count = 36, fudge = 1.0000
 
 
-  1  Andy Parfitt  WTRL   1:03:34      3.8w/kg        274w        
-  2  Neil Richards  nopinz R3R   1:04:01      3.6w/kg        262w        
-  3  Maximilian Kuen  VBG - Santic   1:07:00      3.5w/kg        251w        
-  4  Scarlett Parker  ART   1:07:00      3.0w/kg        191w        
+  1  Andy Parfitt  WTRL  1:03:34      3.8w/kg        274w        
+  2  Neil Richards  nopinz R3R  1:04:01      3.6w/kg        262w        
+  3  Maximilian Kuen  VBG - Santic  1:07:00      3.5w/kg        251w        
+  4  Scarlett Parker  ART  1:07:00      3.0w/kg        191w        
   5  Yukio Bergholdt  -  1:07:01      3.2w/kg        235w        
   6  Bruch Wu  -  1:07:01      3.2w/kg        189w        
   7  Tak Ina  [JETT][GRIT]  1:07:02      3.4w/kg        180w        
-  8  Carson Shedd  DIRT   1:07:02      3.2w/kg        219w        
-  9  Maximilian Weniger  Rippers   1:07:03      3.4w/kg        270w        
+  8  Carson Shedd  DIRT  1:07:02      3.2w/kg        219w        
+  9  Maximilian Weniger  Rippers  1:07:03      3.4w/kg        270w        
  10  Steve Tappan  [GRIT]  1:07:05      3.2w/kg        216w        
- 11  Owen McGonagle  GRIT   1:07:22      3.2w/kg        211w        
+ 11  Owen McGonagle  GRIT  1:07:22      3.2w/kg        211w        
  12  Phil S-S  -  1:07:38      3.1w/kg        222w        
- 13  Steve Peplinski  GRIT   1:07:40      2.9w/kg        226w        
- 14  Mikhail Itkin  Vikings   1:07:45      3.0w/kg        306w        
+ 13  Steve Peplinski  GRIT  1:07:40      2.9w/kg        226w        
+ 14  Mikhail Itkin  Vikings  1:07:45      3.0w/kg        306w        
  15  J. Jan  -  1:07:55      3.1w/kg        207w        
- 16  Luke Elton  GRIT   1:07:55      3.2w/kg        205w        
- 17  Alan Brannan  GRIT   1:07:55      3.1w/kg        219w        
+ 16  Luke Elton  GRIT  1:07:55      3.2w/kg        205w        
+ 17  Alan Brannan  GRIT  1:07:55      3.1w/kg        219w        
  18  Masaki Kusunoki #EN  -  1:07:55      3.8w/kg        240w        
  19  Jonathan Lippert  -  1:07:55      3.2w/kg        232w        
  20  Andrew Thomas  -  1:07:56      4.1w/kg        268w        
  21  Tristan Longworth  -  1:07:56      3.1w/kg        268w        
- 22  Derek Simpson  GTC   1:08:46      3.7w/kg        237w        
- 23  Ed Jablonski  KBS/LSV   1:08:49      3.6w/kg        235w        
- 24  Paul Cartwright  WWNR   1:08:49      2.9w/kg        234w        
- 25  Alex Hatziyannis  CRUZBIKE   1:08:49      3.0w/kg        192w        
- 26  Eleisa Haag  SRR   1:08:50      3.7w/kg        192w        
+ 22  Derek Simpson  GTC  1:08:46      3.7w/kg        237w        
+ 23  Ed Jablonski  KBS/LSV  1:08:49      3.6w/kg        235w        
+ 24  Paul Cartwright  WWNR  1:08:49      2.9w/kg        234w        
+ 25  Alex Hatziyannis  CRUZBIKE  1:08:49      3.0w/kg        192w        
+ 26  Eleisa Haag  SRR  1:08:50      3.7w/kg        192w        
  27  Ped Fesh  -  1:09:32      2.8w/kg        237w        
- 28  Dave Arnold  Team CRYO-GEN   1:09:45      3.5w/kg        265w        
+ 28  Dave Arnold  Team CRYO-GEN  1:09:45      3.5w/kg        265w        
  29  Tijmen Poleij  -  1:10:04      3.4w/kg        252w        
  30  Kev Lincoln  (V C Lincoln) 3881    1:10:11      3.3w/kg        240w        
- 31  Rob Fullerton  GRIT   1:10:19      2.8w/kg        215w        
+ 31  Rob Fullerton  GRIT  1:10:19      2.8w/kg        215w        
  32  Dario Wildmann  -  1:12:32      3.4w/kg        254w        
- 33  Richard Kes  BRT   1:12:50      3.2w/kg        271w        
+ 33  Richard Kes  BRT  1:12:50      3.2w/kg        271w        
  34  Makoto Kato  -  1:13:43      3.4w/kg        199w        
  35  JC Parmen  [ASPTT Reims]    1:15:27      3.3w/kg        246w        
- 36  Maria Nyberg  SZ   1:15:27      3.3w/kg        181w        
+ 36  Maria Nyberg  SZ  1:15:27      3.3w/kg        181w        
  37  Bart Boersma  -  1:15:28      3.5w/kg        235w        
  38  zwift Doyoung  -  1:16:19      3.2w/kg        196w        
- 39  M  ns Bergenzaun  Team BTC   1:18:41      2.8w/kg        216w        
+ 39  M  ns Bergenzaun  Team BTC  1:18:41      2.8w/kg        216w        
 partyControl.max = -1, count = 40, fudge = 1.0000
   1   Tak Ina                          [JETT][GRIT]                     3/33        6/16        7/33        0/0        66         
   2   Owen McGonagle                   GRIT                             6/30       10/12       11/29        0/0        59         
@@ -148,7 +148,7 @@ partyControl.max = -1, count = 40, fudge = 1.0000
   46  Alex Hatziyannis                 CRUZBIKE                         0/0         0/0        25/15        0/0        15         
   47  Billy Guilford                   -                               21/15        0/0         0/0         0/0        15         
   48  Eleisa Haag                      SRR                              0/0         0/0        26/14        0/0        14         
-  49  Hiroki                           -                               22/14        0/0         0/0         0/0        14         
+  49  Hiroki Tanaka                    -                               22/14        0/0         0/0         0/0        14         
   50  Ped Fesh                         -                                0/0         0/0        27/13        0/0        13         
   51  Bernie Lacourciere               GET-SET                         23/13        0/0         0/0         0/0        13         
   52  tomoyuki goto                    -                                0/0         9/13        0/0         0/0        13         

@@ -1,3 +1,4 @@
+#party set debug on
 party set max 61
 party set bestof 2
 party set bonus on

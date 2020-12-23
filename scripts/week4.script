@@ -1,0 +1,4 @@
+#party set debug on
+party kom database/_posts/2020/12/22/2020-12-22-Volcano-hurts_kom.txt database/_posts/2020/12/22/2020-12-22-Volcano-hurts_kom.md race1
+party show
+quit

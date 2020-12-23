@@ -32,6 +32,7 @@ typedef struct PartyControl_s
    int bonus;
    int doubleUp;
    int ageBonus;
+   int debug;
 } PartyControl_t;
 
 PartyControl_t partyControl;
@@ -63,6 +64,9 @@ extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
 extern int TeamGrit(char *name);
 extern int RacedToday(char *name, char *teamName);
 extern void RidersMissed(CLI_PARSE_INFO *info);
+
+void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team);
+
 
 int FormattedProper(char *buff)
 {
@@ -182,6 +186,7 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
    timeLineInfo->paired = 0;
 
    timeLineInfo->team[0] = '\0';
+
    timeLineInfo->name[0] = '\0';
    timeLineInfo->first[0] = '\0';
    timeLineInfo->last[0] = '\0';
@@ -212,6 +217,63 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
 static int owen_iter = 1;
 static volatile int debug_catch = 0;
 
+void RemoveBracketsAndClip(char *out, char *in)
+{
+   char *ptrIn = in;
+   // char *ptrOut = out;
+   char name[MAX_STRING_SIZE];
+   char *ptrOut = &name[0];
+
+   while (*ptrIn != '\0')
+   {
+      if (*ptrIn == '[')
+      {
+         // *ptrOut = ' ';
+         ptrIn++;
+         continue;
+      }
+      else if (*ptrIn == ']')
+      {
+         *ptrOut = '\0';
+         break;
+      }
+      else
+      {
+         *ptrOut = *ptrIn;
+      }
+
+      ptrIn++;
+      ptrOut++;
+   }
+
+   *ptrOut = '\0';
+
+#if 0
+   /* Now clip it */
+   prtOut = &name[0];
+
+   /* Find first non space */
+   while (*ptrOut != '\0')
+   {
+      if (*ptrOut != ' ')
+      {
+         break;
+      }
+      ptrOut++;
+   }
+
+   if (*ptrOut == '\0')
+   {
+      /* No spaces in name */
+      strcpy(out, name);
+      return;
+   }
+#endif
+
+   /* Shift it */
+   strcpy(out, name);
+}
+
 
 TimeLineInfo_t *
 TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList_t *list, int race)
@@ -221,6 +283,8 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList
    TimeLineInfo_t *currInfo;
    int nameFound = 0;
    int i;
+   char team1[MAX_STRING_SIZE];
+   char team2[MAX_STRING_SIZE];
    
    link = LinkCreate((void *)timeLineInfo);
 
@@ -230,9 +294,6 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList
       return NULL;
    }
 
-#if 0
-   LinkTailAdd(list, link);
-#else
    /* See if name already exists */
    
     ptr = (Link_t *)list->head;
@@ -244,14 +305,13 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList
     }
     else
     {
-#if 0
-        LinkTailAdd(list, link);
-#endif
         ptr = (Link_t *)list->head;
         while (ptr->next != NULL)
         {
             currInfo = (TimeLineInfo_t *)ptr->currentObject;
 
+            RemoveBracketsAndClip(team1, currInfo->team);
+            RemoveBracketsAndClip(team2, timeLineInfo->team);
             if (strcmp(timeLineInfo->name, currInfo->name) == 0)
             {
                nameFound = 1;
@@ -276,32 +336,7 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList
         {
            LinkTailAdd(list, link);
         }
-
-#if 0
-        ptr = (Link_t *)list->head;
-        while (ptr->next != NULL)
-        {
-            currInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-            if (strcmp(timeLineInfo->name, currInfo->name) == 0)
-            {
-               if (race == RACE_YES)
-               {
-                  /* If we are adding a race result, do so now */
-                  for (i = 0; i < MAX_RACES; i++)
-                  {
-                     if (timeLineInfo->race[i].place == -1)
-                     {
-                        timeLineInfo->race[i].place = atoi(timeLineInfo->place);
-                        strcpy(timeLineInfo->race[i].raceName, raceName);
-                     }
-                  }
-               }
-            }
-        }
-#endif
     }
-#endif
 
    return (timeLineInfo);
 }
@@ -807,6 +842,8 @@ char *StringGet(char *out, FILE *fp, int nl)
    if (nl == NL_REMOVE)
    {
       len = strlen(out);
+
+      /* Add in xtra space at the end, just in case */
       out[len-1] = ' ';
       out[len] = ' ';
       out[len+1] = '\0';
@@ -841,7 +878,7 @@ void RemoveSpaceAtEnd(char *ptr)
 
 void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
 {
-   char *ptr, *ptr2;
+   char *ptr;
    char tmp[MAX_STRING_SIZE];
    char team[MAX_STRING_SIZE];
    int teamFound = 0;
@@ -944,6 +981,36 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(tmp, "Greg Langman") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Greg Langman");
+      strcpy(timeLineInfo->team, "DIRT");
+   }
+   else if ((strstr(tmp, "Hiroki") != 0) && (strstr(tmp, "Tanaka") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Hiroki Tanaka");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if ((strstr(tmp, "Hans") != 0) && (strstr(tmp, "rgen") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Hans-Jurgen G");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if ((strstr(tmp, "J B") != 0) && (strstr(tmp, "SWOZR") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "J B #1");
+      strcpy(timeLineInfo->team, "SWOZR");
+   }
+   else if ((strstr(tmp, "J B") != 0) && (strstr(tmp, "Bees") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "J B #2");
+      strcpy(timeLineInfo->team, "BCC - Bees");
+   }
    else if (strstr(tmp, "Sebastien Loir") != 0)
    {
       teamFound = 1;
@@ -1021,6 +1088,7 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
             {
                teamFound = 1;
                strcpy(timeLineInfo->team, ptr);
+               // ptrName = ptr;
 
                ptr--;
                while (*ptr == ' ')
@@ -1030,7 +1098,10 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
 
                ptr++;
                *ptr = '\0';
+
                strcpy(timeLineInfo->name, tmp);
+
+               // TeamNameCleanup(timeLineInfo, ptrName);
                break;
             }
 
@@ -1054,6 +1125,45 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
    }
 #endif
 
+}
+
+void NameDouble(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo)
+{
+   TimeLineInfo_t *currInfo;
+   Link_t *ptr;
+   
+   if (partyControl.debug == 1)
+   {
+      /* First, spit out error, if DEBUG is TURNED ON!!!, if we see DOUBLE names */
+      ptr = (Link_t *)listTimeLine->head;
+      while (ptr->next != NULL)
+      {
+         currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         if ((strcmp(currInfo->name, timeLineInfo->name) == 0) &&
+             (strcmp(currInfo->team, timeLineInfo->team) != 0))
+         {
+            (pInfo->print_fp)("INFO: name = **%s**, team = **%s** DIFFERENT than name = **%s**, team = **%s** \n",
+                              currInfo->name, currInfo->team, timeLineInfo->name, timeLineInfo->team);
+         }
+
+         ptr = ptr->next;
+      }
+   }
+
+   if (partyControl.debug != 1)
+   {
+      if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(timeLineInfo->team, "SWOZR") != 0))
+      {
+         strcpy(timeLineInfo->name, "J B #1");
+         strcpy(timeLineInfo->team, "SWOZR");
+      }
+      else if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(timeLineInfo->team, "Bees") != 0))
+      {
+         strcpy(timeLineInfo->name, "J B #2");
+         strcpy(timeLineInfo->team, "BCC - Bees");
+      }
+   }
 }
 
 void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
@@ -1084,6 +1194,31 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    {
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(timeLineInfo->name, "Greg Langman") != 0)
+   {
+      strcpy(timeLineInfo->name, "Greg Langman");
+      strcpy(timeLineInfo->team, "DIRT");
+   }
+   else if ((strstr(timeLineInfo->name, "Hiroki") != 0) && (strstr(timeLineInfo->name, "Tanaka") != 0))
+   {
+      strcpy(timeLineInfo->name, "Hiroki Tanaka");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if ((strstr(timeLineInfo->name, "Hans") != 0) && (strstr(timeLineInfo->name, "rgen") != 0))
+   {
+      strcpy(timeLineInfo->name, "Hans-Jurgen G");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(timeLineInfo->team, "SWOZR") != 0))
+   {
+      strcpy(timeLineInfo->name, "J B #1");
+      strcpy(timeLineInfo->team, "SWOZR");
+   }
+   else if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(timeLineInfo->team, "Bees") != 0))
+   {
+      strcpy(timeLineInfo->name, "J B #2");
+      strcpy(timeLineInfo->team, "BCC - Bees");
    }
    else if (strstr(timeLineInfo->name, "Sebastien Loir") != 0)
    {
@@ -1163,8 +1298,13 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       len = strlen(team);
       if (team[len-1] == '\n');
       {
+#if 0
+         /* Keep space after team for now? */
          team[len-1] = ' ';
          team[len+1] = '\0';
+#else
+         team[len-1] = '\0';
+#endif
       }
 
       /* If name shows up starting with a number - assume it is ZwiftPower nametag */
@@ -1248,6 +1388,7 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
    char tmp2[MAX_STRING_SIZE];
    char tmp3[MAX_STRING_SIZE];
    char raceName[MAX_STRING_SIZE];
+   char tmpName[MAX_STRING_SIZE];
 
    char timeLine[MAX_STRING_SIZE];
 
@@ -1339,7 +1480,8 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
             strcpy(timeLineInfo->timeLine, tmp);
 
             // strcpy(timeLineInfo->name, tmp);
-            NameInsert(timeLineInfo, tmp);
+            strcpy(tmpName, tmp);
+            NameInsert(timeLineInfo, tmpName);
 
             if (strcmp(raceName, "race1") == 0)
             {
@@ -1366,18 +1508,6 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
                sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
             }
 
-            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
-
-            /* TEAM can be found in the name (Zwift does that) or on next line */
-            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
-            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
-            count++;
-
-            if (count > maxCount)
-            {
-               maxCount = count;
-            }
-
             // Team or empty
             if (!StringGet(tmp, fp_in, NL_KEEP))
             {
@@ -1391,12 +1521,34 @@ void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
                /* TEAM can be found in the name (Zwift does that) or on next line */
                TeamNameCleanup(timeLineInfo, tmp);
 
+               /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+               NameDouble(pInfo, timeLineInfo);
+
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
                /* We have team name, thus skip next <empty> line */
                if (!StringGet(tmp, fp_in, NL_KEEP))
                {
                   /* Done reading file */
                   break;
                }
+            }
+            else
+            {
+               /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+               NameDouble(pInfo, timeLineInfo);
+
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+            }
+
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
+            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
+            count++;
+
+            if (count > maxCount)
+            {
+               maxCount = count;
             }
 
             /* TEAM can be found in the name (Zwift does that) or on next line */
@@ -1605,18 +1757,6 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
                (pInfo->print_fp)("WARNING!!!! raceId forced to (%d) using name %s\n", raceId, raceName);
             }
 
-            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
-
-            /* TEAM can be found in the name (Zwift does that) or on next line */
-            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
-            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
-            count++;
-
-            if (count > maxCount)
-            {
-               maxCount = count;
-            }
-
             // Team or empty
             if (!StringGet(tmp, fp_in, NL_KEEP))
             {
@@ -1630,12 +1770,34 @@ void cmd_party_results(CLI_PARSE_INFO *pInfo)
                /* TEAM can be found in the name (Zwift does that) or on next line */
                TeamNameCleanup(timeLineInfo, tmp);
 
+               /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+               NameDouble(pInfo, timeLineInfo);
+
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
                /* We have team name, thus skip next <empty> line */
                if (!StringGet(tmp, fp_in, NL_KEEP))
                {
                   /* Done reading file */
                   break;
                }
+            }
+            else
+            {
+               /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+               NameDouble(pInfo, timeLineInfo);
+
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+            }
+
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
+            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
+            count++;
+
+            if (count > maxCount)
+            {
+               maxCount = count;
             }
 
             /* TEAM can be found in the name (Zwift does that) or on next line */
@@ -1855,18 +2017,6 @@ void cmd_party_results2(CLI_PARSE_INFO *pInfo)
                (pInfo->print_fp)("WARNING!!!! raceId forced to (%d) using name %s\n", raceId, raceName);
             }
 
-            TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
-
-            /* TEAM can be found in the name (Zwift does that) or on next line */
-            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
-            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
-            count++;
-
-            if (count > maxCount)
-            {
-               maxCount = count;
-            }
-
             // Team or empty
             if (!StringGet(tmp, fp_in, NL_KEEP))
             {
@@ -1880,12 +2030,34 @@ void cmd_party_results2(CLI_PARSE_INFO *pInfo)
                /* TEAM can be found in the name (Zwift does that) or on next line */
                TeamNameCleanup(timeLineInfo, tmp);
 
+               /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+               NameDouble(pInfo, timeLineInfo);
+
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
                /* We have team name, thus skip next <empty> line */
                if (!StringGet(tmp, fp_in, NL_KEEP))
                {
                   /* Done reading file */
                   break;
                }
+            }
+            else
+            {
+               /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+               NameDouble(pInfo, timeLineInfo);
+
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+            }
+
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
+            fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
+            count++;
+
+            if (count > maxCount)
+            {
+               maxCount = count;
             }
 
             /* TEAM can be found in the name (Zwift does that) or on next line */
@@ -3052,6 +3224,29 @@ void PartySetAgeBonus(CLI_PARSE_INFO *pInfo)
     }
 }
 
+void PartySetDebug(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.debug = 1;
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.debug = 0;
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
+}
+
 void PartyInit(CLI_PARSE_INFO *pInfo)
 {
    partyControl.max = -1;
@@ -3059,6 +3254,7 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    partyControl.bonus = 0;
    partyControl.doubleUp = 0;
    partyControl.ageBonus = 0;
+   partyControl.debug = 0;
 }
 
 static const CLI_PARSE_CMD party_set_cmd[] =
@@ -3068,6 +3264,7 @@ static const CLI_PARSE_CMD party_set_cmd[] =
     { "bonus",     PartySetBonus,     "on|off - 5 pts for 3 races, 10 pts for 4 races"},
     { "double",    PartySetDouble,    "on|off - DOUBLE points for Alpe race (warranted)"},
     { "ageBonus",  PartySetAgeBonus,  "on|off - extra 5 points for being 55+"},
+    { "debug",     PartySetDebug,     "on|off"},
     { NULL, NULL, NULL }
 };
 

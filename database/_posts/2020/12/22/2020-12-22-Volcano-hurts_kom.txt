@@ -1,0 +1,432 @@
+
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (56)
+    Unfiltered (56)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+56 power metrics yet to be processed in a queue of 39,750
+All American Bikes Ride presented by GRIT
+Today 05:50
+Volcano Climb km
+All riders visible Late joining No TT bikes
+5min and 20min CEVAZ limits apply
+No ZPower winners
+12.5km76m
+0.0km2.5km5.0km7.5km10.0km12.5km15.0km17.5km20.0km22.5km25.0km27.5km30.0km32.5km35.0km37.5km40.0km
+0m500m
+100 miles
+Madness
+Volcano Climb
+3.7km, 3% avg
+Gain 120m
+Volcano Climb
+3.7km, 3% avg
+Gain 120m
+1
+A B Distance: 40km Elevation Gain: 387m Starts from: Watopia Pier Strava route
+Next Update in 8 hours Request a faster update
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Volcano Climb	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+A 	4	
+Christian Kaldbar
+GRIT
+	
+06:12
+446w 6.2wkg
+	Power
+A 	5	
+Rob Fullerton
+GRIT
+	
+06:39
+396w 5.1wkg
+	Power
+A 	3	
+Steve Tappan
+GRIT
+	
+06:39
+374w 5.5wkg
+	Power
+A 	1	
+Thomas Woods
+TeamODZ
+	
+06:41
+332w 5.2wkg
+	Power
+A 	7	
+Yusuke Saeki(SBC Vertex Racing Team)
+	
+06:42
+329w 5.1wkg
+	Power
+A 	10	
+Erik Anneback
+	
+06:42
+329w 5.0wkg
+	Power
+A 	6	
+tak ina[JETT]
+JETT
+	
+06:45
+269w 5.0wkg
+	Power
+B 	19	
+Yoshito Higa
+	
+06:45
+276w 5.2wkg
+	Power
+A 	2	
+TREK ITA2402
+	
+06:46
+315w 5.1wkg
+	Power
+A 	13	
+Hans-Jürgen G
+	
+06:46
+313w 5.2wkg
+	Power
+A 	8	
+Greg Langman
+DIRT
+	
+06:47
+352w 5.0wkg
+	Power
+A 	11	
+Chris Howarth
+	
+06:48
+341w 5.0wkg
+	Power
+A 	12	
+Takaaki Iwasaki [JETT SiroAnn]
+JETT
+	
+06:48
+309w 4.8wkg
+	Power
+B 	50	
+Owen McGonagle [GRIT]
+GRIT
+	
+06:55
+315w 4.8wkg
+	Power
+B 	22	
+Paul Roy
+RETÓ!
+	
+07:05
+331w 4.8wkg
+	Power
+B 	25	
+Kenny Hendrix 4032
+	
+07:06
+288w 5.2wkg
+	Power
+A 	9	
+Daniel Florez (TT1F)
+Team Type 1
+	
+07:08
+296w 4.6wkg
+	Power
+B 	20	
+M Shinall
+TTE
+	
+07:09
+324w 4.7wkg
+	Power
+B 	34	
+Dominik Lugmair
+TeamODZ
+	
+07:12
+356w 4.4wkg
+	Power
+B 	33	
+Simon Gillis
+	
+07:14
+322w 4.7wkg
+	Power
+B 	31	
+Robert Quinn
+	
+07:15
+284w 4.9wkg
+	Power
+B 	32	
+J B
+SWOZR
+	
+07:15
+367w 4.5wkg
+	Power
+B 	29	
+Rameez Tase (Team MoMA)
+	
+07:16
+317w 4.5wkg
+	Power
+B 	23	
+Takashi KAWAMOTO(YOU CAN)
+	
+07:16
+248w 4.9wkg
+	Power
+A 	14	
+Hiroki 2693Tanaka
+	
+07:16
+277w 4.7wkg
+	Power
+A 	15	
+Daniel Shalkowski
+DIRT
+	
+07:20
+302w 4.4wkg
+	Power
+B 	38	
+J B
+BCC - Bees
+	
+07:24
+341w 4.3wkg
+	Power
+B 	44	
+Jim Griffin
+VEGAN
+	
+07:26
+326w 4.4wkg
+	Power
+B 	37	
+Shaun Corbin Nashville (DIRTy GRIT)
+DIRT
+	
+07:27
+275w 4.3wkg
+	Power
+B 	35	
+Masahide Fukae8755
+	
+07:27
+271w 4.3wkg
+	Power
+B 	26	
+Tijmen Poleij
+	
+07:28
+321w 4.3wkg
+	Power
+A 	16	
+Aaron Quinn
+	
+07:28
+272w 4.7wkg
+	Power
+B 	21	
+DONGHYUN KIM/2old4race[YONGSAN]
+	
+07:29
+293w 4.2wkg
+	Power
+B 	42	
+Cecelia Taggart [D(M)IRT]
+DIRT
+	
+07:31
+240w 4.3wkg
+	Power
+B 	43	
+Ian Bundy (Constellation Cycling Composi
+DIRT
+	
+07:31
+369w 4.0wkg
+	Power
+B 	36	
+Jason Perkins
+	
+07:32
+317w 4.3wkg
+	Power
+B 	39	
+Dax Nelson - ¡DUX! TPA-FLA (Herd o
+HERD
+	
+07:32
+339w 4.2wkg
+	Power
+B 	41	
+John Jeffries GRIT
+	
+07:34
+280w 4.1wkg
+	Power
+B 	40	
+Doug Cowperthwaite
+TeamODZ
+	
+07:35
+271w 4.2wkg
+	Power
+B 	24	
+A NakaoJPN
+	
+07:37
+291w 4.5wkg
+	Power
+B 	48	
+Josh Clingan (Riding DIRTy)
+DIRT
+	
+07:41
+326w 3.8wkg
+	Power
+A 	17	
+Jonathan Lippert
+	
+07:43
+303w 4.2wkg
+	Power
+B 	27	
+Craig LeBlanc (ATP Xenon)
+[ ATP ]
+	
+07:43
+286w 4.1wkg
+	Power
+B 	45	
+Selwyn Elkerbout
+	
+07:47
+281w 4.0wkg
+	Power
+B 	28	
+Michal Duszczyk
+ZTPL.CC
+	
+07:56
+286w 3.9wkg
+	Power
+A 	18	
+Andrew Howes (SCC)
+	
+07:58
+294w 3.9wkg
+	Power
+B 	30	
+Harold Berkers
+	
+07:58
+313w 3.9wkg
+	Power
+B 	46	
+Steven Allington
+	
+08:05
+336w 3.8wkg
+	Power
+B 	47	
+Kent Ryan
+	
+08:12
+263w 3.9wkg
+	Power
+B 	49	
+Craig Bramley (USA 573781)
+DIRT
+	
+08:12
+270w 3.6wkg
+	Power
+B 	52	
+Nick Jordan (Race Hub Beta)
+Race Hub
+	
+08:13
+293w 3.7wkg
+	Power
+B 	51	
+Bruce Atherton
+	
+08:23
+276w 3.5wkg
+	Power
+B 	54	
+Brandon Maydew
+	
+08:49
+291w 3.6wkg
+	Power
+B 	53	
+Soren Soholt (DBR)
+DBR
+	
+08:55
+263w 3.2wkg
+	Power
+B 	55	
+Greg Rashford #NOMAD2902
+#NOMAD
+	
+10:16
+239w 2.8wkg
+	Power
+B 	56	
+Nestor hernandez
+	
+11:21
+188w 2.5wkg
+	Power
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+
