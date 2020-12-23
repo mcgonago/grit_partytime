@@ -16,6 +16,8 @@
 #include "tracebuffer.h"
 #include "timeline.h"
 
+#define CONSOLE_OUTPUT (1)
+
 #define GROUP_A    (1)
 #define GROUP_B    (2)
 #define GROUP_ALL  (3)   
@@ -71,12 +73,28 @@ static uint32_t firstTime = 1;
 
 #define MESSAGE_CUTOFF (70)
 
+#define MAX_ATHLETES (100)
+typedef struct Athlete_s
+{
+    uint32_t enabled;
+    char name[MAX_NAME];
+} Athlete_t;
+
+Athlete_t athleteA[MAX_ATHLETES] = {
+    {0, "ATHLETE_END"},
+};
+
+Athlete_t athleteB[MAX_ATHLETES] = {
+    {0, "ATHLETE_END"},
+};
+
 extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
 extern int TeamGrit(char *name);
 extern int RacedToday(char *name, char *teamName);
 extern void RidersMissed(CLI_PARSE_INFO *info);
 
 void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team);
+int PartyForceAthleteA(CLI_PARSE_INFO *info, char *name);
 
 
 int FormattedProper(char *buff)
@@ -105,6 +123,7 @@ TimeLineCreate(CLI_PARSE_INFO *pInfo)
       if (timeLinePool[i].timeLineInfo.taken == 0)
       {
          timeLinePool[i].timeLineInfo.taken = 1;
+         timeLinePool[i].timeLineInfo.objId = i;
 
          thiss = (TimeLineInfo_t *)&timeLinePool[i].timeLineInfo;
          break;
@@ -123,14 +142,30 @@ TimeLineCreate(CLI_PARSE_INFO *pInfo)
 }
 
 void
+TimeLineInfoFree(CLI_PARSE_INFO *pInfo, LinkList_t *list, TimeLineInfo_t *timeLineInfo)
+{
+   if (timeLineInfo->objId == -1)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: objId is -1\n");
+      return;
+   }
+
+   LinkRemove(list, timeLineInfo->link);    
+   timeLinePool[timeLineInfo->objId].timeLineInfo.taken = 0;
+}
+
+void
 TimeLineRemove(TimeLineInfo_t *timeLineInfo)
 {
+   int objId = timeLineInfo->objId;
+
    /* write pattern to catch reuse problems */
    memset(timeLineInfo, 0xCC, sizeof(TimeLineInfo_t));
 
    timeLineEnv.numberOfTimeLineInfoBlocks -= 1;
 
    timeLineInfo->taken = 0;
+   timeLineInfo->objId = objId;
    timeLineInfo->timeLine[0] = '\0';
    timeLineInfo->timeStamp = 0;
    timeLineInfo->fraction = 0;
@@ -372,6 +407,7 @@ TimeOrderInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkLis
     if (currInfo == NULL)
     {
         /* First one */
+        timeLineInfo->link = link;
         LinkHeadAdd(list, link);
     }
     else
@@ -393,6 +429,7 @@ TimeOrderInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkLis
 
         if (nameFound == 0)
         {
+           timeLineInfo->link = link;
            LinkTailAdd(list, link);
         }
     }
@@ -664,6 +701,12 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(tmp, "Dax Nelson") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Dax Nelson");
+      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+   }
    else if (strstr(tmp, "Greg Langman") != 0)
    {
       teamFound = 1;
@@ -878,6 +921,11 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(timeLineInfo->name, "Dax Nelson") != 0)
+   {
+      strcpy(timeLineInfo->name, "Dax Nelson");
+      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+   }
    else if (strstr(timeLineInfo->name, "Greg Langman") != 0)
    {
       strcpy(timeLineInfo->name, "Greg Langman");
@@ -1084,6 +1132,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    Link_t *ptr, *ptr2;
    TimeLineInfo_t *timeLineInfo;
    TimeLineInfo_t *timeLineInfo2;
+   int group = GROUP_ALL;
 
    Link_t *ptrI;
    Link_t *ptrJ;
@@ -1168,10 +1217,25 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
           (partyMode == PARTY_RESULTS_2))
       {
          if (((timeLine[0] == 'B') || (timeLine[0] == 'A')) && 
-             ((timeLine[1] == ' ') || (timeLine[1] == '\n')) &&
+             (((timeLine[1] == ' ') && (timeLine[2] == ' ')) || (timeLine[1] == '\n')) &&
              (strstr(timeLine, "Distance") == NULL))
          {
-            goIntoLoop = 1;
+#if 1
+            if ((timeLine[0] == 'B') && 
+                (partyControl.group == GROUP_A))
+            {
+               goIntoLoop = 0;
+            }
+            else if ((timeLine[0] == 'A') && 
+                     (partyControl.group == GROUP_B))
+            {
+               goIntoLoop = 0;
+            }
+            else
+#endif
+            {
+               goIntoLoop = 1;
+            }
          }
       }
       else if ((partyMode == PARTY_FOLLOWING) || (partyMode == PARTY_FOLLOWING_2))
@@ -1404,7 +1468,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   /* TEAM can be found in the name (Zwift does that) or on next line */
+#ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
+#else
+
+#endif
                   fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
                   count++;
 
@@ -1414,7 +1482,10 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   /* TEAM can be found in the name (Zwift does that) or on next line */
+#ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s  ", timeLineInfo->team);
+#else
+#endif                  
                   fprintf(fp_out, "%s  ", timeLineInfo->team);
 
                   /* time */
@@ -1426,8 +1497,10 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   AddSpace(tmp2, tmp);
-
+#ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s", tmp2);
+#else
+#endif                  
                   fprintf(fp_out, "%s", tmp2);
 
                   if ((partyMode == PARTY_RESULTS) || (partyMode == PARTY_RESULTS_2))
@@ -1456,7 +1529,10 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   AddSpace(tmp2, tmp);
+#ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s", tmp2);
+#else
+#endif                  
                   fprintf(fp_out, "%s", tmp2);
 
                   if (partyMode != PARTY_RESULTS_2)
@@ -1485,6 +1561,33 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      continueInLoop = 0;
                      break;
                   }
+
+                  if ((tmp[0] == 'B') && 
+                      (partyControl.group == GROUP_A))
+                  {
+#if 0
+                     /* Put count back */
+                     count -= 1;
+
+                     /* Free up entry */
+                     TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
+#endif
+                     continueInLoop = 0;
+                     break;
+                  }
+                  else if ((tmp[0] == 'A') && 
+                           (partyControl.group == GROUP_B))
+                  {
+#if 0
+                     /* Put count back */
+                     count -= 1;
+
+                     /* Free up entry */
+                     TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
+#endif
+                     continueInLoop = 0;
+                     break;
+                  }
                }
             }
          }
@@ -1501,7 +1604,10 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
       RidersMissed(pInfo);
    }
 
+#ifdef CONSOLE_OUTPUT
    (pInfo->print_fp)("\n\n");
+#else
+#endif
 }
 
 void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
@@ -1879,6 +1985,8 @@ void PartySetGroup(CLI_PARSE_INFO *pInfo)
 
 void PartyInit(CLI_PARSE_INFO *pInfo)
 {
+   int i;
+   
    partyControl.max = -1;
    partyControl.bestOf = BEST_OF_TWO;
    partyControl.bonus = 0;
@@ -1886,6 +1994,15 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    partyControl.ageBonus = 0;
    partyControl.debug = 0;
    partyControl.group = GROUP_ALL;
+
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       athleteA[i].enabled = 0;
+       athleteB[i].enabled = 0;
+    }
+
+    strcpy(athleteA[i-1].name, "ATHLETE_END");
+    strcpy(athleteB[i-1].name, "ATHLETE_END");
 }
 
 static const CLI_PARSE_CMD party_set_cmd[] =
@@ -1905,12 +2022,175 @@ static void cmd_party_set(CLI_PARSE_INFO *info)
     cliDefaultHandler( info, party_set_cmd );
 }
 
+static void cmd_party_reset(CLI_PARSE_INFO *info)
+{
+   /* Reset things each time through */
+   PartyReset(info, listTimeLine);
+   PartyReset(info, listTimeOrder);
+   PartyInit(info);
+}
+
+int PartyForceAthleteA(CLI_PARSE_INFO *info, char *name)
+{
+    int i,j;
+    int idx = 0;
+    char athlete[MAX_COMMAND_LENGTH];
+
+    /* Find first available slot */
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       if (athleteA[i].enabled == 0)
+       {
+          break;
+       }
+
+       if (strcmp(athleteA[i].name, name) != 0)
+       {
+          return 1;
+       }
+    }
+
+    return 0;
+}
+
+static void PartyForceCommon(CLI_PARSE_INFO *info, Athlete_t *athleteTable)
+{
+    int i,j;
+    int idx = 0;
+    char athlete[MAX_COMMAND_LENGTH];
+
+    /* Find first available slot */
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       if (athleteTable[i].enabled == 0)
+       {
+          break;
+       }
+#if 0
+        if (strstr(athleteTable[i].name, "ATHLETE_END") != 0)
+        {
+            break;
+        }
+#endif
+    }
+
+    if (i == MAX_ATHLETES)
+    {
+        (info->print_fp)("INFO: No more available athleteslots - maximum number = %d\n", MAX_ATHLETES);
+    }
+
+
+    /* package command line arguments into a single string */
+    memset(athlete, 0, MAX_COMMAND_LENGTH);
+
+    for (j = 0; j < (info->argc - 1); j++)
+    {
+       /* Package up argc and argv */
+       idx += sprintf(&athlete[idx], "%s", (char *)info->argv[j+1]);
+
+       athlete[idx++] = ' ';
+
+       if (idx >= MAX_COMMAND_LENGTH)
+       {
+          (info->print_fp)("Athlete name exceeds maximum length of %d characters\n", MAX_COMMAND_LENGTH);
+          return;
+       }
+    }
+
+    athlete[idx-1] = '\0';
+
+    strcpy(athleteTable[i].name, athlete);
+    athleteTable[i].enabled = 1;
+
+    /* Set new END */
+    strcpy(athleteTable[i+1].name, "FILTER_END");
+    athleteTable[i+1].enabled = 0;
+
+    /* Show what we have so far */
+    for (i = 0; i < MAX_ATHLETES ;i++)
+    {
+       if (athleteTable[i].enabled == 0)
+       {
+          break;
+       }
+
+       (info->print_fp)("%3d: [%d] %s\n", i, athleteTable[i].enabled, athleteTable[i].name);
+    }
+}
+
+static void PartyForceA(CLI_PARSE_INFO *info)
+{
+    if ( info->argc < 2)
+    {
+        (info->print_fp)("USAGE: %s {athlete} \n", info->argv[0]);
+        return;
+    }
+
+    PartyForceCommon(info, athleteA);
+}
+
+static void PartyForceB(CLI_PARSE_INFO *info)
+{
+    if ( info->argc < 2)
+    {
+        (info->print_fp)("USAGE: %s {athlete} \n", info->argv[0]);
+        return;
+    }
+
+    PartyForceCommon(info, athleteB);
+}
+
+static void PartyForceShow(CLI_PARSE_INFO *info)
+{
+   int i;
+
+   (info->print_fp)("A LIST:\n");
+
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       if (athleteA[i].enabled == 0)
+       {
+          break;
+       }
+
+       (info->print_fp)("%3d: [%d] %s\n", i, athleteA[i].enabled, athleteA[i].name);
+    }
+
+   (info->print_fp)("B LIST:\n");
+
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       if (athleteB[i].enabled == 0)
+       {
+          break;
+       }
+
+       (info->print_fp)("%3d: [%d] %s\n", i, athleteB[i].enabled, athleteB[i].name);
+    }
+
+}
+
+static const CLI_PARSE_CMD party_force_cmd[] =
+{
+   { "show",    PartyForceShow, "show force athlete lists"},
+   { "A",       PartyForceA,    "{athlete}"},
+   { "B",       PartyForceB,    "{athlete}"},
+   { NULL, NULL, NULL }
+};
+
+static void cmd_party_force(CLI_PARSE_INFO *info)
+{
+    cliDefaultHandler( info, party_force_cmd );
+}
+
 static const CLI_PARSE_CMD cmd_party_commands[] =
 {
    { "start",           cmd_party_start,                "start party"},
    { "stop",            cmd_party_stop,                 "stop party"},
+   { "reset",           cmd_party_reset,                "reset party"},
    { "show",            cmd_party_show,                 "show party status"},
    { "set",             cmd_party_set,                  "party set commands"},
+   { "force",           cmd_party_force,                "force {athlete} {A|B} force an athlete to a category"},
    { "following",       cmd_party_following,            "following [infile] [outfile]"},
    { "following2",      cmd_party_following2,           "following2 [infile] [outfile]"},
    { "results",         cmd_party_results,              "results [infile] [outfile]"},
@@ -1929,9 +2209,6 @@ void cmd_party( CLI_PARSE_INFO *info)
       TimeLineInit(info);
       firstTime = 0;
    }
-
-   /* Reset things each time through */
-   // PartyReset(info, listTimeLine);
 
    cliDefaultHandler( info, cmd_party_commands );
 }

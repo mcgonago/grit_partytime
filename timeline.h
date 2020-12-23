@@ -15,6 +15,7 @@ typedef struct Race_s
 typedef struct TimeLineInfo_s
 {
    bool taken;
+   int objId;
    char timeLine[MAX_STRING_SIZE];
    time_t timeStamp;
 
@@ -42,7 +43,9 @@ typedef struct TimeLineInfo_s
    int type;
    int paired;
    int processed;
-  
+
+   Link_t *link;
+
    Link_t *pair;
    struct TimeLineInfo_s *me;
    // TimeLineInfo_t *me;

@@ -34,7 +34,7 @@
  34  Cecelia Taggart  DIRT  07:31    240w  4.3wkg
  35  Ian Bundy  DIRT  07:31    369w  4.0wkg
  36  Jason Perkins  -  07:32    317w  4.3wkg
- 37  Dax Nelson - ¡DUX! TPA-FLA  HERD  07:32    339w  4.2wkg
+ 37  Dax Nelson  ¡DUX! TPA-FLA HERD  07:32    339w  4.2wkg
  38  John Jeffries  [AA Bikes][GRIT]  07:34    280w  4.1wkg
  39  Doug Cowperthwaite  TeamODZ  07:35    271w  4.2wkg
  40  A NakaoJPN  -  07:37    291w  4.5wkg

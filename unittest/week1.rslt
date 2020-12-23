@@ -100,6 +100,8 @@ partyControl.max = -1, count = 36, fudge = 1.0000
  38  zwift Doyoung  -  1:16:19      3.2w/kg        196w        
  39  M  ns Bergenzaun  Team BTC  1:18:41      2.8w/kg        216w        
 partyControl.max = -1, count = 40, fudge = 1.0000
+
+
   1   Tak Ina                          [JETT][GRIT]                     3/33        6/16        7/33        0/0        66         
   2   Owen McGonagle                   GRIT                             6/30       10/12       11/29        0/0        59         
   3   Steve Tappan                     [GRIT]                           0/0         1/21       10/30        0/0        51         

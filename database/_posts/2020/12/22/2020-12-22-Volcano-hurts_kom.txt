@@ -136,7 +136,7 @@ JETT
 06:48
 309w 4.8wkg
 	Power
-B 	50	
+A 	50	
 Owen McGonagle [GRIT]
 GRIT
 	

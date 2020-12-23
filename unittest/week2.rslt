@@ -1,5 +1,3 @@
-TEST: IN: 1 owen mcgonagle
-TEST: OUT: 1 owen mcgonagle
 1   Christian Kaldbar  -  Dec 8, 2020   444W   04:30
 2   Derek Sawyer  [GRIT][Rippers]  Dec 8, 2020   416W   4:53
 3   Owen McGonagle  [GRIT]  Dec 8, 2020   350W   4:55
@@ -159,6 +157,8 @@ partyControl.max = 52, count = 34, fudge = 1.5294
  23  mattias ahlgren  -  1:04:41      2.7w/kg        259w        
  24  Guido Kramer  Leymen  1:08:20      2.3w/kg        187w                                                        80.0kg        115bpm                187cm                
 partyControl.max = 52, count = 25, fudge = 2.0800
+
+
   1   Tak Ina                          [JETT][GRIT]                     6/46        5/39        4/45        3/45       146        
   2   Owen McGonagle                   [GRIT]                           3/49       15/14        6/42        5/41       142        
   3   Rob Fullerton                    [GRIT]                          10/42        0/0         7/41        1/49       137        

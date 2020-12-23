@@ -33,7 +33,7 @@
  33  Josh Clingan  DIRT  07:35    337w  3.9wkg
  34  J. Kuhnle  DIRT  07:35    309w  4.4wkg
  35  Daniel Shalkowski  DIRT  07:36    294w  4.3wkg
- 36  Dax Nelson - ¡DUX! TPA-FLA  HERD  07:36    334w  4.1wkg
+ 36  Dax Nelson  ¡DUX! TPA-FLA HERD  07:36    334w  4.1wkg
  37  Matt Donovan  -  07:36    261w  4.1wkg
  38  Doug Cowperthwaite  TeamODZ  07:36    272w  4.2wkg
  39  John Jeffries  [AA Bikes][GRIT]  07:37    277w  4.2wkg
@@ -137,6 +137,8 @@ partyControl.max = 61, count = 40, fudge = 1.5250
  32  Lars Petter Karlsen  -  1:29:27      2.6w/kg        217w                                                        84.0kg                        176cm
  33  Slawomir RCTeamPL  -  1:33:36      2.2w/kg        207w                                                        94.0kg        143bpm                185cm
 partyControl.max = 61, count = 34, fudge = 1.7941
+
+
   1   Steve Tappan                     [GRIT]                           7/54       16/36        2/114       0/0        173        
   2   Tak Ina                          [JETT][GRIT]                    13/48        5/53        4/106       0/0        164        
   3   Rob Fullerton                    GRIT                            14/47       12/42        7/96        0/0        148        
@@ -205,7 +207,7 @@ partyControl.max = 61, count = 34, fudge = 1.7941
   66  J. Kuhnle                        DIRT                            34/27        0/0         0/0         0/0        27         
   67  Rob McKechney                    -                               44/17       34/9         0/0         0/0        26         
   68  Justin Brooke                    -                                0/0        23/25        0/0         0/0        25         
-  69  Dax Nelson - ¡DUX! TPA-FLA      HERD                            36/25        0/0         0/0         0/0        25         
+  69  Dax Nelson                       ¡DUX! TPA-FLA HERD             36/25        0/0         0/0         0/0        25         
   70  Dan Ambler                       -                                0/0         0/0        27/24        0/0        24         
   71  Matt Donovan                     -                               37/24        0/0         0/0         0/0        24         
   72  Doug Cowperthwaite               TeamODZ                         38/23        0/0         0/0         0/0        23         

@@ -33,7 +33,7 @@
  33  Josh Clingan  DIRT  07:35    337w  3.9wkg
  34  J. Kuhnle  DIRT  07:35    309w  4.4wkg
  35  Daniel Shalkowski  DIRT  07:36    294w  4.3wkg
- 36  Dax Nelson - ¡DUX! TPA-FLA  HERD  07:36    334w  4.1wkg
+ 36  Dax Nelson  ¡DUX! TPA-FLA HERD  07:36    334w  4.1wkg
  37  Matt Donovan  -  07:36    261w  4.1wkg
  38  Doug Cowperthwaite  TeamODZ  07:36    272w  4.2wkg
  39  John Jeffries  [AA Bikes][GRIT]  07:37    277w  4.2wkg
