@@ -18,15 +18,46 @@
 
 #define CONSOLE_OUTPUT (1)
 
-#define GROUP_A    (1)
-#define GROUP_B    (2)
-#define GROUP_ALL  (3)   
+static volatile int gdbStop = 1;
 
-#define PARTY_KOM_SPRINTS (1)
-#define PARTY_FOLLOWING   (2)
-#define PARTY_FOLLOWING_2 (3)
-#define PARTY_RESULTS     (4)
-#define PARTY_RESULTS_2   (5)
+#define COLUMN_SPACING (2)
+
+#define PRINT_MODE_DISPLAY (1)
+
+#define GROUP_A       (1)
+#define GROUP_B       (2)
+#define GROUP_ALL     (3)   
+#define GROUP_UNKNOWN (4)
+
+#define MAX_MY_COLUMNS (1024)
+
+#define PARTY_KOM_SPRINTS     (0x00000001)
+#define PARTY_FOLLOWING       (0x00000002)
+#define PARTY_FOLLOWING_2     (0x00000004)
+#define PARTY_RESULTS         (0x00000008)
+#define PARTY_RESULTS_2       (0x00000010)
+#define PARTY_KOM_SPRINTS_RAW (0x00000020)
+#define PARTY_FOLLOWING_RAW   (0x00000040)
+#define PARTY_FOLLOWING_2_RAW (0x00000080)
+#define PARTY_RESULTS_RAW     (0x00000100)
+#define PARTY_RESULTS_2_RAW   (0x00000200)
+
+typedef struct Columns_s
+{
+   int width;
+} Columns_t;
+
+Columns_t columns[MAX_MY_COLUMNS];
+
+#define MAX_ENTRIES  (1024)
+
+typedef struct PrintEntry_s
+{
+   int enabled;
+   char entry[MAX_STRING_SIZE];
+} PrintEntry_t;
+
+PrintEntry_t printTable[MAX_ENTRIES];
 
 /* +++owen - hardcoding to assuming ONLY (4) races taking part in points series */
 static int totalRacesIncluded = 4;
@@ -45,7 +76,10 @@ typedef struct PartyControl_s
    int doubleUp;
    int ageBonus;
    int debug;
-   int group;
+   int groupId;
+   int lockDown;
+   int clip;
+   int snap;
 } PartyControl_t;
 
 PartyControl_t partyControl;
@@ -94,7 +128,13 @@ extern int RacedToday(char *name, char *teamName);
 extern void RidersMissed(CLI_PARSE_INFO *info);
 
 void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team);
-int PartyForceAthleteA(CLI_PARSE_INFO *info, char *name);
+int PartyAddAthleteA(CLI_PARSE_INFO *info, char *name);
+int PartyAddAthleteB(CLI_PARSE_INFO *info, char *name);
+void TableReset(CLI_PARSE_INFO *pInfo);
+void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list);
+
+static void PartyForceShow(CLI_PARSE_INFO *info);
+static void PartyForceB(CLI_PARSE_INFO *info);
 
 
 int FormattedProper(char *buff)
@@ -174,33 +214,63 @@ TimeLineRemove(TimeLineInfo_t *timeLineInfo)
    timeLineInfo->processed = 0;
    timeLineInfo->pair = NULL;
    timeLineInfo->paired = 0;
+   timeLineInfo->numRaces = 0;
 }
 
-void PartyReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
+void TableReset(CLI_PARSE_INFO *pInfo)
 {
+   int i;
+
+   for (i = 0; i < MAX_ATHLETES; i++)
+   {
+      athleteA[i].enabled = 0;
+      athleteB[i].enabled = 0;
+   }
+
+   strcpy(athleteA[i-1].name, "ATHLETE_END");
+   strcpy(athleteB[i-1].name, "ATHLETE_END");
+
+   for (i = 0; i < MAX_MY_COLUMNS; i++)
+   {
+      columns[i].width = -1;
+   }
+
+   for (i = 0; i < MAX_ENTRIES; i++)
+   {
+      printTable[i].enabled = 0;
+   }
+}
+
+void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
+{
+   int i;
    Link_t *ptr;
    Link_t *tmp;
     
-   /* See if there is a match */
-   ptr = (Link_t *)list->head ;
-
-   if (ptr->next != NULL)
+   if (list != NULL)
    {
-      while(ptr->next != NULL)
-      {
-         /* Free object */
-         TimeLineRemove((TimeLineInfo_t *)ptr->currentObject);
+      /* See if there is a match */
+      ptr = (Link_t *)list->head ;
 
-         tmp = ptr->next;
-            
-         if (LinkRemove(list, ptr) != TRUE)
+      if (ptr->next != NULL)
+      {
+         while(ptr->next != NULL)
          {
-            (pInfo->print_fp)("Could not remove item from list\n");
-            break;
+            /* Free object */
+            TimeLineRemove((TimeLineInfo_t *)ptr->currentObject);
+
+            tmp = ptr->next;
+            
+            if (LinkRemove(list, ptr) != TRUE)
+            {
+               (pInfo->print_fp)("Could not remove item from list\n");
+               break;
+            }
+            ptr = tmp;
          }
-         ptr = tmp;
       }
    }
+
 }
 
 
@@ -238,6 +308,7 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
    timeLineInfo->last[0] = '\0';
 
    timeLineInfo->points = 0;
+   timeLineInfo->groupId = GROUP_UNKNOWN;
    
    for (i = 0; i < MAX_RACES; i++)
    {
@@ -367,6 +438,8 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList
                   {
                      currInfo->race[i].place = timeLineInfo->race[i].place;
                      strcpy(currInfo->race[i].raceName, timeLineInfo->race[i].raceName);
+
+                     currInfo->numRaces = (i+1);
                      break;
                   }
                }
@@ -624,7 +697,8 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
    {
       if (!isprint(*ptr))
       {
-         *ptr = ' ';
+         // *ptr = ' ';
+         *ptr = '_';
       }
       ptr++;
    }
@@ -701,6 +775,36 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(tmp, "C hris M") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Chris M");
+      strcpy(timeLineInfo->team, "B4H");
+   }
+   else if (strstr(tmp, "Seth G ") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Seth G");
+      strcpy(timeLineInfo->team, "[GRIT]");
+   }
+   else if (strstr(tmp, "Renfrew Bunch") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Renfrew Bunch");
+      strcpy(timeLineInfo->team, "[Scotland]");
+   }
+   else if (!isprint(tmp[0]) && !isprint(tmp[1]) && !isprint(tmp[2]))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "__STAR__");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if ((strstr(tmp, "Bergenzaun") != 0) && (strstr(tmp, "M") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Mans Bergenzaun");
+      strcpy(timeLineInfo->team, "Team BTC");
+   }
    else if (strstr(tmp, "Dax Nelson") != 0)
    {
       teamFound = 1;
@@ -761,10 +865,10 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "Dan Nelson");
       strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
    }
-   else if (strstr(tmp, "Rafa Dzieko") != 0)
+   else if ((strstr(tmp, "Rafa") != 0) && (strstr(tmp, "Dzieko") != 0))
    {
       teamFound = 1;
-      strcpy(timeLineInfo->name, "Rafa Dzieko");
+      strcpy(timeLineInfo->name, "Rafa Dzieko ski");
       strcpy(timeLineInfo->team, "ski ZTPL.CC");
    }
 #if 0
@@ -921,6 +1025,31 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(timeLineInfo->name, "C hris M") != 0)
+   {
+      strcpy(timeLineInfo->name, "Chris M");
+      strcpy(timeLineInfo->team, "B4H");
+   }
+   else if (strstr(timeLineInfo->name, "Seth G ") != 0)
+   {
+      strcpy(timeLineInfo->name, "Seth G");
+      strcpy(timeLineInfo->team, "[GRIT]");
+   }
+   else if (strstr(timeLineInfo->name, "Renfrew Bunch") != 0)
+   {
+      strcpy(timeLineInfo->name, "Renfrew Bunch");
+      strcpy(timeLineInfo->team, "[Scotland]");
+   }
+   else if (!isprint(timeLineInfo->name[0]) && !isprint(timeLineInfo->name[1]) && !isprint(timeLineInfo->name[2]))
+   {
+      strcpy(timeLineInfo->name, "__STAR__");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if ((strstr(timeLineInfo->name, "Bergenzaun") != 0) && (strstr(timeLineInfo->name, "M") != 0))
+   {
+      strcpy(timeLineInfo->name, "Mans Bergenzaun");
+      strcpy(timeLineInfo->team, "Team BTC");
+   }
    else if (strstr(timeLineInfo->name, "Dax Nelson") != 0)
    {
       strcpy(timeLineInfo->name, "Dax Nelson");
@@ -971,9 +1100,9 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "Dan Nelson");
       strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
    }
-   else if (strstr(timeLineInfo->name, "Rafa Dzieko") != 0)
+   else if ((strstr(timeLineInfo->name, "Rafa") != 0) && (strstr(timeLineInfo->name, "Dzieko") != 0))
    {
-      strcpy(timeLineInfo->name, "Rafa Dzieko");
+      strcpy(timeLineInfo->name, "Rafa Dzieko ski");
       strcpy(timeLineInfo->team, "ski ZTPL.CC");
    }
    else if (strstr(timeLineInfo->name, "conrad moss") != 0)
@@ -1098,6 +1227,505 @@ void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
 }
 
 
+int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId)
+{
+   int i;
+   Link_t *ptr;
+   TimeLineInfo_t *timeLineInfo;
+   TimeLineInfo_t *tempInfo;
+   
+   tempInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+   NameInsert(tempInfo, name);
+
+   if (partyControl.groupId == GROUP_A)
+   {
+      /* ONLY skip an Athlete if processing GROUP_A and we DO NOT find the name in the B list (from previous SNAP) */
+      for (i = 0; i < MAX_ATHLETES; i++)
+      {
+         if (athleteB[i].enabled == 0)
+         {
+            /* DO NOT skip - Athlete not found in current B processing list */
+            return 0;
+         }
+
+         if (strcmp(athleteB[i].name, tempInfo->name) != 0)
+         {
+            /* SKIP - this is a B (previously snapped) Athlete */
+            return 1;
+         }
+      }
+   }
+   else
+   {
+      ptr = (Link_t *)list->head;
+      while (ptr->next != NULL)
+      {
+         timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         if ((strstr(timeLineInfo->name, tempInfo->name) != 0) && (timeLineInfo->groupId == groupId))
+         {
+            /* DO NOT skip - Athlete found in current B processing list */
+            return 0;
+         }
+
+         ptr = ptr->next;
+      }
+
+      if (partyControl.debug == 1)
+      {
+         (pInfo->print_fp)("INFO: RIDER NOT FOUND: %s\n", tempInfo->name);
+      }
+   }
+   
+   /* Skip - Athlete not part of current B processing list */
+   return 1;
+}
+
+void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
+{
+   int i, j;
+   int idx = 0;
+   int count = 0;
+   int endCount = 0;
+   char *ptr;
+
+   if (partyControl.debug == 1)
+   {
+      (pInfo->print_fp)("CC: %s\n", str);
+   }
+
+   for (i = 0; i < MAX_MY_COLUMNS; i++)
+   {
+      if (columns[i].width == -1)
+      {
+         break;
+      }
+
+      if (partyControl.debug == 1)
+      {
+         (pInfo->print_fp)("CF1: %2d: L = %2d    %s\n", i, columns[i].width, str);
+      }
+
+   }
+
+   if (i == MAX_MY_COLUMNS)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Too many columns!!! max = %d\n", MAX_MY_COLUMNS);
+      return;
+   }
+
+#if 0
+   if ((str[0] == ' ') || (str[0] == '\t') || (str[0] == '\n') || (str[0] == '\r'))
+   {
+      return; 
+   }
+#endif
+   
+   for (i = 0; i < MAX_ENTRIES; i++)
+   {
+      if (printTable[i].enabled == 0)
+      {
+         sprintf(printTable[i].entry, "%s", str);
+         printTable[i].enabled = 1;
+         break;
+      }
+   }
+
+   /* Find column lengths */
+   ptr = &str[0];
+   i = 0;
+   while (*ptr != '\0')
+   {
+      while ((*ptr != ' ') && (*ptr != '\0'))
+      {
+         count += 1;
+         ptr++;
+      }
+
+      if (*ptr == '\0')
+      {
+         if (count > columns[i].width)
+         {
+            columns[i].width = count;
+         }
+
+         if (partyControl.debug == 1)
+         {
+            (pInfo->print_fp)("\n\n");
+         }
+
+         for (j = 0; j < MAX_MY_COLUMNS; j++)
+         {
+            if (columns[j].width == -1)
+            {
+               break;
+            }
+
+            if (partyControl.debug == 1)
+            {
+               (pInfo->print_fp)("CF2: %2d: L = %2d    %s\n", j, columns[j].width, str);
+            }
+
+         }
+
+         return;
+      }
+
+      count += 1;
+      ptr++;
+      
+      if (*ptr == ' ')
+      {
+         /* FOUND two spaces! */
+         if (count > columns[i].width)
+         {
+
+            if (count <= 0)
+            {
+               (pInfo->print_fp)("INTERNAL ERROR!!!!!!! count = %d\n", count);
+            }
+
+            columns[i].width = count;
+
+            if (partyControl.debug == 1)
+            {
+               (pInfo->print_fp)("CD1: %2d: L = %2d    %s\n", i, columns[i].width, ptr);
+            }
+         }
+
+         /* Get past one or more spaces */
+         endCount = count;
+         while ((*ptr == ' ') && (*ptr != '\0'))
+         {
+            count += 1;
+            ptr++;
+         }
+
+         if (*ptr == '\0')
+         {
+            if (count <= 0)
+            {
+               (pInfo->print_fp)("INTERNAL ERROR!!!!!!! count = %d\n", count);
+            }
+
+            if (endCount > columns[i].width)
+            {
+               columns[i].width = endCount;
+
+               if (partyControl.debug == 1)
+               {
+                  (pInfo->print_fp)("CD2: %2d: L = %2d    %s\n", i, columns[i].width, ptr);
+               }
+            }
+
+            for (j = 0; j < MAX_MY_COLUMNS; j++)
+            {
+               if (columns[j].width == -1)
+               {
+                  break;
+               }
+
+               if (partyControl.debug == 1)
+               {
+                  (pInfo->print_fp)("CF3: %2d: L = %2d    %s\n", j, columns[j].width, str);
+               }
+
+            }
+
+            return;
+         }
+
+         /* Start over - not at a column delimiter quite yet */
+         count = 1;
+         i++;
+      }
+   }
+
+}
+
+void ColumnPrintfHeader(CLI_PARSE_INFO *pInfo, char *str)
+{
+   int i;
+   int fill = 0;
+   int idx = 0;
+   char *ptr;
+
+   int columnWidth = 0;
+   int endWidth = 0;
+   int charIdx = 0;
+   int columnId = 0;
+   int outIdx = 0;
+   int inIdx = 0;
+   char outStr[MAX_STRING_SIZE];
+
+   ptr = &str[0];
+   i = 0;
+   columnId = 0;
+   columnWidth = 0;
+   
+   while (*ptr != '\0')
+   {
+      if (columnId == 0)
+      {
+         outStr[outIdx++] = '+';
+         outStr[outIdx++] = '-';
+      }
+
+      idx = 0;
+      while ((*ptr != ' ') && (*ptr != '\0'))
+      {
+         outStr[outIdx++] = '-';
+         ptr++;
+         columnWidth += 1;
+      }
+
+      if (*ptr == '\0')
+      {
+         outStr[outIdx++] = '-';
+         endWidth = columnWidth;
+         break;
+      }
+
+      outStr[outIdx++] = '-';
+      ptr++;
+      columnWidth += 1;
+      endWidth = columnWidth;
+      
+      if (*ptr == ' ')
+      {
+         ptr++;
+
+         endWidth = columnWidth;
+         while ((*ptr == ' ') && (*ptr != '\0'))
+         {
+            endWidth += 1;
+            ptr++;
+         }
+
+         if (*ptr == '\0')
+         {
+            outStr[outIdx++] = '-';
+            endWidth = columnWidth;
+            break;
+         }
+
+         /* FOUND two spaces! */
+         if ((columns[columnId].width + COLUMN_SPACING) > columnWidth)
+         {
+            fill = ((columns[columnId].width + COLUMN_SPACING) - columnWidth);
+            for (i = 0; i < fill; i++)
+            {
+               outStr[outIdx++] = '-';
+            }
+         }
+
+         outStr[outIdx++] = '+';
+         outStr[outIdx++] = '-';
+
+         if (*ptr != '\0')
+         {
+            columnWidth = 0;
+            columnId += 1;
+         }
+      }
+   }
+
+#if 1
+   if (*ptr != '\0')
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: end of str not found!!!\n");
+   }
+
+   if (partyControl.debug == 1)
+   {
+      (pInfo->print_fp)("columnId = %d, columns[%d].width = %d, endWidth = %d\n", columnId,
+                        columnId, columns[columnId].width, endWidth);
+   }
+
+   if (1) /* columns[columnId].width > COLUMN_SPACING) */
+   {
+      if ((columns[columnId].width) > endWidth)
+      {
+         fill = (columns[columnId].width - endWidth);
+         for (i = 0; i < fill; i++)
+         {
+            outStr[outIdx++] = '-';
+         }
+      }
+   }
+#endif
+
+#if 1
+   outIdx -= 1;
+   outStr[outIdx++] = '|';
+   outStr[outIdx++] = '\0';
+#endif
+
+   (pInfo->print_fp)("%s\n", outStr);
+
+}
+
+void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
+{
+   int i;
+   int fill = 0;
+   int idx = 0;
+   char *ptr;
+
+   int columnWidth = 0;
+   int endWidth = 0;
+   int charIdx = 0;
+   int columnId = 0;
+   int outIdx = 0;
+   int inIdx = 0;
+   char outStr[MAX_STRING_SIZE];
+
+   ptr = &str[0];
+   i = 0;
+   columnId = 0;
+   columnWidth = 0;
+   
+   while (*ptr != '\0')
+   {
+      if (columnId == 0)
+      {
+         outStr[outIdx++] = '|';
+         outStr[outIdx++] = ' ';
+      }
+
+      idx = 0;
+      while ((*ptr != ' ') && (*ptr != '\0'))
+      {
+         outStr[outIdx++] = *ptr;
+         ptr++;
+         columnWidth += 1;
+      }
+
+      if (*ptr == '\0')
+      {
+         outStr[outIdx++] = ' ';
+         endWidth = columnWidth;
+         break;
+      }
+
+      outStr[outIdx++] = *ptr;
+      ptr++;
+      columnWidth += 1;
+      endWidth = columnWidth;
+      
+      if (*ptr == ' ')
+      {
+         ptr++;
+
+         endWidth = columnWidth;
+         while ((*ptr == ' ') && (*ptr != '\0'))
+         {
+            endWidth += 1;
+            ptr++;
+         }
+
+         if (*ptr == '\0')
+         {
+            outStr[outIdx++] = ' ';
+            endWidth = columnWidth;
+            break;
+         }
+
+         /* FOUND two spaces! */
+         if ((columns[columnId].width + COLUMN_SPACING) > columnWidth)
+         {
+            fill = ((columns[columnId].width + COLUMN_SPACING) - columnWidth);
+            for (i = 0; i < fill; i++)
+            {
+               outStr[outIdx++] = ' ';
+            }
+         }
+
+         outStr[outIdx++] = '|';
+         outStr[outIdx++] = ' ';
+
+         if (*ptr != '\0')
+         {
+            columnWidth = 0;
+            columnId += 1;
+         }
+      }
+   }
+
+#if 1
+   if (*ptr != '\0')
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: end of str not found!!!\n");
+   }
+
+   if (partyControl.debug == 1)
+   {
+      (pInfo->print_fp)("columnId = %d, columns[%d].width = %d, endWidth = %d\n", columnId,
+                        columnId, columns[columnId].width, endWidth);
+   }
+
+   if (1) /* columns[columnId].width > COLUMN_SPACING) */
+   {
+      if ((columns[columnId].width) > endWidth)
+      {
+         fill = (columns[columnId].width - endWidth);
+         for (i = 0; i < fill; i++)
+         {
+            outStr[outIdx++] = ' ';
+         }
+      }
+   }
+#endif
+
+#if 1
+   outIdx -= 1;
+   outStr[outIdx++] = '|';
+   outStr[outIdx++] = '\0';
+#endif
+
+   (pInfo->print_fp)("%s\n", outStr);
+
+}
+
+void PrintTable(CLI_PARSE_INFO *pInfo)
+{
+   int i;
+   int idx = 0;
+
+   if (printTable[1].enabled != 0)
+   {
+      ColumnPrintf(pInfo, printTable[idx].entry);
+      idx += 1;
+   }
+
+   if ((printTable[idx].enabled != 0) && (strstr(printTable[idx].entry, "--") != 0))
+   {
+      ColumnPrintfHeader(pInfo, printTable[1].entry);
+      idx += 1;
+   }
+
+   for (i = idx; i < MAX_ENTRIES; i++)
+   {
+      if (printTable[i].enabled == 0)
+      {
+         break;
+      }
+
+      ColumnPrintf(pInfo, printTable[i].entry);
+   }
+}
+                     
+
+void RemoveWpkg(CLI_PARSE_INFO *pInfo, char *str)
+{
+   char *p;
+   if ((p = strstr(str, "wkg")) != NULL)
+   {
+      *p = '\0';
+   }
+}
+
+
 void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 {
    int ret;
@@ -1132,7 +1760,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    Link_t *ptr, *ptr2;
    TimeLineInfo_t *timeLineInfo;
    TimeLineInfo_t *timeLineInfo2;
-   int group = GROUP_ALL;
+   int groupId = GROUP_ALL;
 
    Link_t *ptrI;
    Link_t *ptrJ;
@@ -1156,6 +1784,12 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    char time[MAX_STRING_SIZE];
    char test[MAX_STRING_SIZE];
    char teamName[MAX_STRING_SIZE];
+   char header[MAX_STRING_SIZE];
+
+   int outIdx = 0;
+   char outStr[MAX_STRING_SIZE];
+
+   TableReset(pInfo);
    
    // fp_in = fopen("zwiftpower.txt", "r");
    sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
@@ -1192,11 +1826,20 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
       (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
       exit(-1);
    }
-        
+
+
+#ifndef CONSOLE_OUTPUT
+   sprintf(header, "%s", "#  name   team   time   watts  wpkg");
+   ColumnStore(pInfo, header);
+
+   sprintf(header, "%s", "--  ----   ----   ----   -----  ----");
+   ColumnStore(pInfo, header);
+#endif
+
    idx = 0;
    while (1)
    {
-      if (!StringGet(tmp, fp_in, NL_KEEP))
+      if (!StringGet(tmp, fp_in, NL_REMOVE))
       {
          /* Done reading file */
          break;
@@ -1212,33 +1855,52 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
       goIntoLoop = 0;
       continueInLoop = 1;
-      if ((partyMode == PARTY_KOM_SPRINTS) || 
-          (partyMode == PARTY_RESULTS) ||
-          (partyMode == PARTY_RESULTS_2))
+      if ((partyMode & PARTY_KOM_SPRINTS) || 
+          (partyMode & PARTY_RESULTS) ||
+          (partyMode & PARTY_RESULTS_2))
       {
          if (((timeLine[0] == 'B') || (timeLine[0] == 'A')) && 
              (((timeLine[1] == ' ') && (timeLine[2] == ' ')) || (timeLine[1] == '\n')) &&
              (strstr(timeLine, "Distance") == NULL))
          {
-#if 1
-            if ((timeLine[0] == 'B') && 
-                (partyControl.group == GROUP_A))
+            if (timeLine[0] == 'B')
             {
-               goIntoLoop = 0;
+               groupId = GROUP_B;
             }
-            else if ((timeLine[0] == 'A') && 
-                     (partyControl.group == GROUP_B))
+            else if (timeLine[0] == 'A')
             {
-               goIntoLoop = 0;
+               groupId = GROUP_A;
             }
             else
-#endif
+            {
+               groupId = GROUP_UNKNOWN;
+               (pInfo->print_fp)("INTERNAL ERROR: DID not recognize GroupID\n");
+            }
+
+            if (partyControl.lockDown == 0)
+            {
+               if ((timeLine[0] == 'B') && 
+                   (partyControl.groupId == GROUP_A))
+               {
+                  goIntoLoop = 0;
+               }
+               else if ((timeLine[0] == 'A') && 
+                        (partyControl.groupId == GROUP_B))
+               {
+                  goIntoLoop = 0;
+               }
+               else
+               {
+                  goIntoLoop = 1;
+               }
+            }
+            else
             {
                goIntoLoop = 1;
             }
          }
       }
-      else if ((partyMode == PARTY_FOLLOWING) || (partyMode == PARTY_FOLLOWING_2))
+      else if ((partyMode & PARTY_FOLLOWING) || (partyMode & PARTY_FOLLOWING_2))
       {
          if (strstr(timeLine, "Rank ") != NULL)
          {
@@ -1258,7 +1920,8 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
       {
          while (continueInLoop == 1)
          {
-            if ((partyMode == PARTY_FOLLOWING) || (partyMode == PARTY_FOLLOWING_2))
+            outIdx = 0;
+            if ((partyMode & PARTY_FOLLOWING) || (partyMode & PARTY_FOLLOWING_2))
             {
                nlMode = NL_KEEP;
             }
@@ -1274,7 +1937,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                break;
             }
 
-            if (partyMode == PARTY_FOLLOWING)
+            if (partyMode & PARTY_FOLLOWING)
             {
                if ((tmp[0] == '\n') || (tmp[0] == ' ') || (tmp[0] == '\r') || (tmp[0] == '\t'))
                {
@@ -1290,6 +1953,15 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                   sprintf(name, "%s ", first);
                   strcat(name, last);
+
+                  if (partyControl.lockDown == 1)
+                  {
+                     if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                     {
+                        continueInLoop = 0;
+                        break;
+                     }
+                  }
 
                   (pInfo->print_fp)("%s   %s %s   %s %s %s   %s   %s\n",
                                     place, first, last, month, day, year, watts, time);
@@ -1307,6 +1979,15 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   sprintf(name, "%s ", first);
                   strcat(name, last);
 
+                  if (partyControl.lockDown == 1)
+                  {
+                     if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                     {
+                        continueInLoop = 0;
+                        break;
+                     }
+                  }
+
                   (pInfo->print_fp)("%s   %s  %s %s %s   %s   %s\n",
                                     place, name, month, day, year, watts, time);
 
@@ -1316,7 +1997,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
             }
             else
             {
-               if (partyMode == PARTY_FOLLOWING_2)
+               if (partyMode & PARTY_FOLLOWING_2)
                {
                   if ((tmp[0] == '\n') || (tmp[0] == ' ') || (tmp[0] == '\r') || (tmp[0] == '\t'))
                   {
@@ -1342,8 +2023,20 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   // strcpy(timeLineInfo->name, tmp);
                   strcpy(tmpName, tmp);
                   NameInsert(timeLineInfo, tmpName);
-               }
+                  if (timeLineInfo->groupId == GROUP_UNKNOWN)
+                  {
+                     timeLineInfo->groupId = groupId;
+                  }
 
+                  if (partyControl.lockDown == 1)
+                  {
+                     if (AthleteSkip(pInfo, listTimeLine, tmpName, groupId))
+                     {
+                        continueInLoop = 0;
+                        break;
+                     }
+                  }
+               }
 
                if (strcmp(raceName, "race1") == 0)
                {
@@ -1370,7 +2063,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
                }
 
-               if (partyMode == PARTY_FOLLOWING_2)
+               if (partyMode & PARTY_FOLLOWING_2)
                {
                   if (includeVAM == 1)
                   {
@@ -1382,12 +2075,25 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      sprintf(name, "%s ", first);
                      strcat(name, last);
 
+                     if (partyControl.lockDown == 1)
+                     {
+                        if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                        {
+                           continueInLoop = 0;
+                           break;
+                        }
+                     }
+
                      NameInsert(timeLineInfo, name);
+                     if (timeLineInfo->groupId == GROUP_UNKNOWN)
+                     {
+                        timeLineInfo->groupId = groupId;
+                     }
 
                      if (RacedToday(name, teamName))
                      {
                         sprintf(timeLineInfo->team, "%s", teamName);
-                        sprintf(place, "%d", count);
+                        sprintf(place, "%d ", count);
                         count++;
 
                         (pInfo->print_fp)("%s   %s  %s  %s %s %s   %s   %s\n",
@@ -1407,7 +2113,20 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      sprintf(name, "%s ", first);
                      strcat(name, last);
 
+                     if (partyControl.lockDown == 1)
+                     {
+                        if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                        {
+                           continueInLoop = 0;
+                           break;
+                        }
+                     }
+
                      NameInsert(timeLineInfo, name);
+                     if (timeLineInfo->groupId == GROUP_UNKNOWN)
+                     {
+                        timeLineInfo->groupId = groupId;
+                     }
 
                      if (RacedToday(name, teamName))
                      {
@@ -1446,6 +2165,20 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      /* TEAM can be found in the name (Zwift does that) or on next line */
                      TeamNameCleanup(timeLineInfo, tmp);
 
+                     if (partyControl.lockDown == 1)
+                     {
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
+                        {
+                           continueInLoop = 0;
+                           break;
+                        }
+                     }
+
+                     if (continueInLoop == 0)
+                     {
+                        break;
+                     }
+
                      /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
                      NameDouble(pInfo, timeLineInfo);
 
@@ -1461,6 +2194,20 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
                   else
                   {
+                     if (partyControl.lockDown == 1)
+                     {
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
+                        {
+                           continueInLoop = 0;
+                           break;
+                        }
+                     }
+
+                     if (continueInLoop == 0)
+                     {
+                        break;
+                     }
+
                      /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
                      NameDouble(pInfo, timeLineInfo);
 
@@ -1471,7 +2218,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
 #else
-
+                  outIdx += sprintf(&outStr[outIdx], "%d  %s  ", count, timeLineInfo->name);
 #endif
                   fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
                   count++;
@@ -1485,6 +2232,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s  ", timeLineInfo->team);
 #else
+                  outIdx += sprintf(&outStr[outIdx], "%s  ", timeLineInfo->team);
 #endif                  
                   fprintf(fp_out, "%s  ", timeLineInfo->team);
 
@@ -1500,16 +2248,22 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s", tmp2);
 #else
+                  outIdx += sprintf(&outStr[outIdx], "%s", tmp2);
 #endif                  
                   fprintf(fp_out, "%s", tmp2);
 
-                  if ((partyMode == PARTY_RESULTS) || (partyMode == PARTY_RESULTS_2))
+                  if ((partyMode & PARTY_RESULTS) || (partyMode & PARTY_RESULTS_2))
                   {
                      /* If first athlete we DO NOT have a '+' difference */
                      if (firstAthlete != 1)
                      {
                         /* + */
+#ifdef CONSOLE_OUTPUT
                         if (!StringGet(tmp, fp_in, NL_KEEP))
+#else
+                        if (!StringGet(tmp, fp_in, nlMode))
+#endif
+
                         {
                            /* Done reading file */
                            continueInLoop = 0;
@@ -1521,7 +2275,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   /* watts */
+#ifdef CONSOLE_OUTPUT
                   if (!StringGet(tmp, fp_in, NL_KEEP))
+#else
+                  if (!StringGet(tmp, fp_in, nlMode))
+#endif
                   {
                      /* Done reading file */
                      continueInLoop = 0;
@@ -1532,10 +2290,13 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s", tmp2);
 #else
+                  RemoveWpkg(pInfo, tmp2);
+                  outIdx += sprintf(&outStr[outIdx], "%s", tmp2);
+                  ColumnStore(pInfo, outStr);
 #endif                  
                   fprintf(fp_out, "%s", tmp2);
 
-                  if (partyMode != PARTY_RESULTS_2)
+                  if (!(partyMode & PARTY_RESULTS_2))
                   {
                      /* TOTAL watts? */
                      if (!StringGet(tmp, fp_in, NL_KEEP))
@@ -1562,31 +2323,34 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      break;
                   }
 
-                  if ((tmp[0] == 'B') && 
-                      (partyControl.group == GROUP_A))
+                  if (partyControl.lockDown == 0)
                   {
+                     if ((tmp[0] == 'B') && 
+                         (partyControl.groupId == GROUP_A))
+                     {
 #if 0
-                     /* Put count back */
-                     count -= 1;
+                        /* Put count back */
+                        count -= 1;
 
-                     /* Free up entry */
-                     TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
+                        /* Free up entry */
+                        TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
 #endif
-                     continueInLoop = 0;
-                     break;
-                  }
-                  else if ((tmp[0] == 'A') && 
-                           (partyControl.group == GROUP_B))
-                  {
+                        continueInLoop = 0;
+                        break;
+                     }
+                     else if ((tmp[0] == 'A') && 
+                              (partyControl.groupId == GROUP_B))
+                     {
 #if 0
-                     /* Put count back */
-                     count -= 1;
+                        /* Put count back */
+                        count -= 1;
 
-                     /* Free up entry */
-                     TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
+                        /* Free up entry */
+                        TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
 #endif
-                     continueInLoop = 0;
-                     break;
+                        continueInLoop = 0;
+                        break;
+                     }
                   }
                }
             }
@@ -1596,9 +2360,15 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
    fclose(fp_in);
 
+#ifndef CONSOLE_OUTPUT
+   (pInfo->print_fp)("\n");
+#endif
+
+   PrintTable(pInfo);
+
    AddUpPoints(pInfo, count, raceId);
 
-   if (partyMode == PARTY_FOLLOWING_2)
+   if (partyMode & PARTY_FOLLOWING_2)
    {
       /* Did we find everyone? */
       RidersMissed(pInfo);
@@ -1607,8 +2377,12 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
    (pInfo->print_fp)("\n\n");
 #else
+//   outIdx = sprintf(&outStr[outIdx], "%s", "\n\n");
+//   (pInfo->print_fp)("%s", outStr);
+   (pInfo->print_fp)("\n\n");
 #endif
 }
+
 
 void cmd_party_kom_and_sprints(CLI_PARSE_INFO *pInfo)
 {
@@ -1634,8 +2408,6 @@ void cmd_party_following2(CLI_PARSE_INFO *pInfo)
 {
    cmd_party_common(pInfo, PARTY_FOLLOWING_2);
 }
-
-
 
 int BestOf(TimeLineInfo_t *timeLineInfo, int count, int *total)
 {
@@ -1735,14 +2507,20 @@ int BestOf(TimeLineInfo_t *timeLineInfo, int count, int *total)
 
 void cmd_party_show(CLI_PARSE_INFO *pInfo)
 {
-    TimeLineInfo_t *timeLineInfo;
-    TimeLineInfo_t *currInfo;
-    Link_t *link;      
-    Link_t *ptr;
-    int i;
-    int total;
-    char placePoints[MAX_STRING_SIZE];
-    int count = 1;
+   TimeLineInfo_t *timeLineInfo;
+   TimeLineInfo_t *currInfo;
+   Link_t *link;      
+   Link_t *ptr;
+   int i;
+   int total;
+   char placePoints[MAX_STRING_SIZE];
+   char outStr[MAX_STRING_SIZE];
+   char header[MAX_STRING_SIZE];
+
+   int outIdx = 0;
+   int count = 1;
+
+   TableReset(pInfo);
 
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
@@ -1775,10 +2553,10 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
 
       if (partyControl.ageBonus == 1)
       {
-       if (strstr(timeLineInfo->name, "McGonagle") != 0)
-       {
-          currInfo->points += 5;
-       }
+         if (strstr(timeLineInfo->name, "McGonagle") != 0)
+         {
+            currInfo->points += 5;
+         }
       }
 
       if (partyControl.bonus == 1)
@@ -1799,20 +2577,46 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
       ptr = ptr->next;
    }
 
+#ifndef CONSOLE_OUTPUT
+   sprintf(header, "%s", "#  name   team   Grp  time  watts  wpkg  plc/pts");
+   ColumnStore(pInfo, header);
+
+   sprintf(header, "%s", "-  ----   ----   ---  ----  -----  ----  -------");
+   ColumnStore(pInfo, header);
+#endif
+
    ptr = (Link_t *)listTimeOrder->head;
    while (ptr->next != NULL)
    {
+      outIdx = 0;
       currInfo = (TimeLineInfo_t *)ptr->currentObject;
 
       timeLineInfo = (TimeLineInfo_t *)currInfo->me;
-      
+
+      if (partyControl.clip == 1)
+      {
+         if (timeLineInfo->numRaces < 2)
+         {
+            ptr = ptr->next;
+            continue;
+         }
+      }
+
       if (timeLineInfo->team[0] != '\0')
       {
+#ifdef CONSOLE_OUTPUT
          (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, timeLineInfo->team);
+#else
+         outIdx += sprintf(&outStr[outIdx], "%d  %s  %s ", count, timeLineInfo->name, timeLineInfo->team);
+#endif
       }
       else
       {
+#ifdef CONSOLE_OUTPUT
          (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
+#else
+         outIdx += sprintf(&outStr[outIdx], "  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
+#endif
       }
       count++;
 
@@ -1821,24 +2625,40 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
          if (timeLineInfo->race[i].place != -1)
          {
             sprintf(placePoints, "%2d/%-2d", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
-            // (pInfo->print_fp)(" %-10d/%d ", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
+#ifdef CONSOLE_OUTPUT
             (pInfo->print_fp)(" %-10s ", placePoints);
+#else
+            outIdx += sprintf(&outStr[outIdx], " %-10s ", placePoints);
+#endif
          }
          else
          {
             sprintf(placePoints, "%2d/%-2d", 0, 0);
-            // (pInfo->print_fp)(" %-10d/0 ", 0);
+#ifdef CONSOLE_OUTPUT
             (pInfo->print_fp)(" %-10s ", placePoints);
+#else
+            outIdx += sprintf(&outStr[outIdx], " %-10s ", placePoints);
+#endif            
          }
       }
 
-      // (pInfo->print_fp)(" %-10d ", timeLineInfo->points);
+
+#ifdef CONSOLE_OUTPUT
       (pInfo->print_fp)(" %-10d ", currInfo->points);
-
       (pInfo->print_fp)("\n");
-
+#else
+      outIdx += sprintf(&outStr[outIdx], " %-10d", currInfo->points);
+      ColumnStore(pInfo, outStr);
+#endif
       ptr = ptr->next;
    }
+
+#ifdef CONSOLE_OUTPUT
+   (pInfo->print_fp)("\n\n");
+#else
+   PrintTable(pInfo);
+   (pInfo->print_fp)("\n\n");
+#endif
 
 }
 
@@ -1966,15 +2786,15 @@ void PartySetGroup(CLI_PARSE_INFO *pInfo)
 
     if (strcmp(pInfo->argv[1], "A") == 0)
     {
-       partyControl.group = GROUP_A;
+       partyControl.groupId = GROUP_A;
     }
     else if (strcmp(pInfo->argv[1], "B") == 0)
     {
-       partyControl.group = GROUP_B;
+       partyControl.groupId = GROUP_B;
     }
     else if (strcmp(pInfo->argv[1], "ALL") == 0)
     {
-       partyControl.group = GROUP_ALL;
+       partyControl.groupId = GROUP_ALL;
     }
     else
     {
@@ -1993,17 +2813,109 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    partyControl.doubleUp = 0;
    partyControl.ageBonus = 0;
    partyControl.debug = 0;
-   partyControl.group = GROUP_ALL;
+   partyControl.groupId = GROUP_ALL;
+   partyControl.lockDown = 0;
+   partyControl.clip = 0;
+   partyControl.snap = 0;
 
-    for (i = 0; i < MAX_ATHLETES; i++)
-    {
-       athleteA[i].enabled = 0;
-       athleteB[i].enabled = 0;
-    }
+   ListReset(pInfo, listTimeLine);
+   ListReset(pInfo, listTimeOrder);
 
-    strcpy(athleteA[i-1].name, "ATHLETE_END");
-    strcpy(athleteB[i-1].name, "ATHLETE_END");
+   TableReset(pInfo);
 }
+
+void PartySetLockdown(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.lockDown = 1;
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.lockDown = 0;
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
+}
+
+void PartySetClip(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.clip = 1;
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.clip = 0;
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
+}
+
+void PartySetSnap(CLI_PARSE_INFO *pInfo)
+{
+   int i;
+   Link_t *ptr;
+   TimeLineInfo_t *timeLineInfo;
+   
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.snap = 1;
+
+        ptr = (Link_t *)listTimeLine->head;
+        while (ptr->next != NULL)
+        {
+           timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+           PartyAddAthleteB(pInfo, timeLineInfo->name);
+
+           ptr = ptr->next;
+        }
+
+        PartyForceShow(pInfo);
+
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.snap = 0;
+
+        for (i = 0; i < MAX_ATHLETES; i++)
+        {
+           athleteA[i].enabled = 0;
+           athleteB[i].enabled = 0;
+        }
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
+}
+
 
 static const CLI_PARSE_CMD party_set_cmd[] =
 {
@@ -2014,6 +2926,9 @@ static const CLI_PARSE_CMD party_set_cmd[] =
     { "ageBonus",  PartySetAgeBonus,  "on|off - extra 5 points for being 55+"},
     { "debug",     PartySetDebug,     "on|off"},
     { "group",     PartySetGroup,     "A|B|ALL (ALL is default)"},
+    { "lockdown",  PartySetLockdown,  "on|off"},
+    { "clip",      PartySetClip,      "on|off"},
+    { "snap",      PartySetSnap,      "on|off"},
     { NULL, NULL, NULL }
 };
 
@@ -2025,12 +2940,13 @@ static void cmd_party_set(CLI_PARSE_INFO *info)
 static void cmd_party_reset(CLI_PARSE_INFO *info)
 {
    /* Reset things each time through */
-   PartyReset(info, listTimeLine);
-   PartyReset(info, listTimeOrder);
+   ListReset(info, listTimeLine);
+   ListReset(info, listTimeOrder);
    PartyInit(info);
+   TableReset(info);
 }
 
-int PartyForceAthleteA(CLI_PARSE_INFO *info, char *name)
+int PartyAddAthleteA(CLI_PARSE_INFO *info, char *name)
 {
     int i,j;
     int idx = 0;
@@ -2052,6 +2968,30 @@ int PartyForceAthleteA(CLI_PARSE_INFO *info, char *name)
 
     return 0;
 }
+
+int PartyAddAthleteB(CLI_PARSE_INFO *info, char *name)
+{
+    int i,j;
+    int idx = 0;
+    char athlete[MAX_COMMAND_LENGTH];
+
+    /* Find first available slot */
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       if (athleteB[i].enabled == 0)
+       {
+          break;
+       }
+
+       if (strcmp(athleteB[i].name, name) != 0)
+       {
+          return 1;
+       }
+    }
+
+    return 0;
+}
+
 
 static void PartyForceCommon(CLI_PARSE_INFO *info, Athlete_t *athleteTable)
 {
@@ -2183,21 +3123,208 @@ static void cmd_party_force(CLI_PARSE_INFO *info)
     cliDefaultHandler( info, party_force_cmd );
 }
 
+void PartyRawKOM(CLI_PARSE_INFO *pInfo)
+{
+   cmd_party_common(pInfo, (PARTY_KOM_SPRINTS | PARTY_KOM_SPRINTS_RAW));
+}
+
+void PartyRawSprints(CLI_PARSE_INFO *pInfo)
+{
+   cmd_party_common(pInfo, (PARTY_KOM_SPRINTS | PARTY_KOM_SPRINTS_RAW));
+}
+
+void PartyRawFollowing(CLI_PARSE_INFO *pInfo)
+{
+   cmd_party_common(pInfo, (PARTY_FOLLOWING | PARTY_FOLLOWING_RAW));
+}
+
+void PartyRawResults(CLI_PARSE_INFO *pInfo)
+{
+   cmd_party_common(pInfo, (PARTY_RESULTS | PARTY_RESULTS_RAW));
+}
+
+
+static const CLI_PARSE_CMD party_raw_cmd[] =
+{
+   { "kom",       PartyRawKOM,       "raw KOM results"},
+   { "sprints",   PartyRawSprints,   "raw Sprint results"},
+   { "following", PartyRawFollowing, "raw Sprint results"},
+   { "results",   PartyRawResults,   "raw results"},
+   { NULL, NULL, NULL }
+};
+
+static void cmd_party_raw(CLI_PARSE_INFO *info)
+{
+    cliDefaultHandler( info, party_raw_cmd );
+}
+
+static void PartySelf(CLI_PARSE_INFO *pInfo)
+{
+   char header[MAX_STRING_SIZE];
+   char s1[MAX_STRING_SIZE];
+   char s2[MAX_STRING_SIZE];
+   char s3[MAX_STRING_SIZE];
+   char s4[MAX_STRING_SIZE];
+   char s5[MAX_STRING_SIZE];
+   char s6[MAX_STRING_SIZE];
+   char s7[MAX_STRING_SIZE];
+   char s8[MAX_STRING_SIZE];
+   char s9[MAX_STRING_SIZE];
+   char sA[MAX_STRING_SIZE];
+         
+
+#if 1
+   sprintf(s1, "%s", "  1  Steve Tappan  [GRIT]  18:21    338w  5.0wkg");
+   sprintf(s2, "%s", "  2  Derek Sawyer  [GRIT][Rippers]  18:43    347w  4.6wkg");
+   sprintf(s3, "%s", "  3  Olivier PERRIN  Asvel Tri  19:20    297w  4.7wkg");
+
+   TableReset(pInfo);
+   (pInfo->print_fp)("TESTA:\n\n");
+
+   ColumnStore(pInfo, s1);
+   ColumnStore(pInfo, s2);
+   ColumnStore(pInfo, s3);
+
+   // ColumnStore(pInfo, outStr);
+   PrintTable(pInfo);
+   (pInfo->print_fp)("\n\n");
+
+#else
+   
+   sprintf(s1, "%s", "3  Steve Tappan  [GRIT]  06:39    374w  5.5wkg");
+
+   // sprintf(s2, "%s", "4  Thomas Woods  TeamODZ  06:41    332w  5.2wkg");
+   sprintf(s2, "%s", "4  Thomas Woodsaa  TeamODZzzz  06:41    332wddddddd  5.2wkg              ");
+
+   // sprintf(s3, "%s", "5  Yusuke Saeki  (SBC Vertex Racing Team)    06:42    329w  5.1wkg");
+   sprintf(s3, "%s", "5  Yusuke Saeki  (SBC Vertex Racing Team)    06:42bbb    329wccc  5.1wkg");
+
+#if 0
+   (pInfo->print_fp)("STRINGS:\n");
+   (pInfo->print_fp)("%s\n", s1);
+   (pInfo->print_fp)("%s\n", s2);
+   (pInfo->print_fp)("%s\n", s3);
+   (pInfo->print_fp)("\n");
+#endif
+   
+   TableReset(pInfo);
+   (pInfo->print_fp)("TESTA:\n\n");
+
+   ColumnStore(pInfo, s2);
+   ColumnStore(pInfo, s3);
+
+   // ColumnStore(pInfo, outStr);
+   PrintTable(pInfo);
+   (pInfo->print_fp)("\n\n");
+
+   sprintf(s2, "%s", "4  Thomas Woodsaa  TeamODZzzz  06:41    332wddddddd  5.2wkg              ");
+   sprintf(s3, "%s", "5  Yusuke Saeki  (SBC Vertex Racing Team)    06:42bbb    329wccc  5.1wkg               ");
+
+   TableReset(pInfo);
+   (pInfo->print_fp)("TESTA:\n\n");
+
+   ColumnStore(pInfo, s2);
+   ColumnStore(pInfo, s3);
+
+   // ColumnStore(pInfo, outStr);
+   PrintTable(pInfo);
+   (pInfo->print_fp)("\n\n");
+
+#if 1
+   (pInfo->print_fp)("TEST2:\n\n");
+   TableReset(pInfo);
+   
+   sprintf(s1, "%s", "3  Steve Tappan  [GRIT]bbbbbbbb  06:39    374w  5.5wkg");
+   sprintf(s2, "%s", "4  Thomas Woodsaaa  TeamODZ  06:41    332wcccccccc  5.2wkgdddddddddddd");
+   sprintf(s3, "%s", "5  Yusuke Saeki          (SBC Vertex Racing Team)                06:42           329w       5.1wkg");
+
+   ColumnStore(pInfo, s1);
+   ColumnStore(pInfo, s2);
+   ColumnStore(pInfo, s3);
+
+   PrintTable(pInfo);
+   (pInfo->print_fp)("\n\n");
+
+   (pInfo->print_fp)("TEST3:\n\n");
+
+   TableReset(pInfo);
+
+   sprintf(header, "%s", "#  a1  a2  a3  a4  a5  a6  a7  a8  a9  a10");
+   sprintf(s1, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s2, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s3, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s4, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s5, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s6, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s7, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s8, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s9, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(sA, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+            
+   ColumnStore(pInfo, header);
+   ColumnStore(pInfo, s1);
+   ColumnStore(pInfo, s2);
+   ColumnStore(pInfo, s3);
+   ColumnStore(pInfo, s4);
+   ColumnStore(pInfo, s5);
+   ColumnStore(pInfo, s6);
+   ColumnStore(pInfo, s7);
+   ColumnStore(pInfo, s8);
+   ColumnStore(pInfo, s9);
+   ColumnStore(pInfo, sA);
+                       
+   PrintTable(pInfo);
+   (pInfo->print_fp)("\n\n");
+
+   TableReset(pInfo);
+
+   sprintf(header, "%s", "#  a1  a2aaaaa  a3  a4  a5  a6  a7  a8  a9  a10");
+   sprintf(s1, "%s", "3  1  2  3  4  5  6  7  8  9  10   ");
+   sprintf(s2, "%s", "3  1  aaa2  3  4  5  6  7  8  9  10  ");
+   sprintf(s3, "%s", "3  1  2  3  bbbb4  5  6  7  8  9  10           ");
+   sprintf(s4, "%s", "3  1  2  3  4  5  6  7  8  9  10                 ");
+   sprintf(s5, "%s", "3  1  2  3  4  5  bbbb6  7  8  9  10");
+   sprintf(s6, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s7, "%s", "3  1  2  3  4  5  6  7  bbbb8  9  10");
+   sprintf(s8, "%s", "3  1  2  3  4  5  6  7  8  9  10");
+   sprintf(s9, "%s", "3  1  2  3  4  5  6  7  8  9  bbbb10");
+   sprintf(sA, "%s", "3  1  2  3  4  5  6  7  8  9                          10                     ");
+            
+   ColumnStore(pInfo, header);
+   ColumnStore(pInfo, s1);
+   ColumnStore(pInfo, s2);
+   ColumnStore(pInfo, s3);
+   ColumnStore(pInfo, s4);
+   ColumnStore(pInfo, s5);
+   ColumnStore(pInfo, s6);
+   ColumnStore(pInfo, s7);
+   ColumnStore(pInfo, s8);
+   ColumnStore(pInfo, s9);
+   ColumnStore(pInfo, sA);
+                       
+   PrintTable(pInfo);
+   (pInfo->print_fp)("\n\n");
+#endif
+#endif
+}
+
 static const CLI_PARSE_CMD cmd_party_commands[] =
 {
    { "start",           cmd_party_start,                "start party"},
    { "stop",            cmd_party_stop,                 "stop party"},
    { "reset",           cmd_party_reset,                "reset party"},
    { "show",            cmd_party_show,                 "show party status"},
+   { "raw",             cmd_party_raw,                  "party raw"},
    { "set",             cmd_party_set,                  "party set commands"},
    { "force",           cmd_party_force,                "force {athlete} {A|B} force an athlete to a category"},
-   { "following",       cmd_party_following,            "following [infile] [outfile]"},
-   { "following2",      cmd_party_following2,           "following2 [infile] [outfile]"},
-   { "results",         cmd_party_results,              "results [infile] [outfile]"},
-   { "results2",        cmd_party_results2,             "results2 [infile] [outfile]"},
    { "kom",             cmd_party_kom_and_sprints,      "kom [infile] [outfile]"},
    { "sprints",         cmd_party_kom_and_sprints,      "sprints [infile] [outfile]"},
+   { "results",         cmd_party_results,              "results [infile] [outfile]"},
+   { "results2",        cmd_party_results2,             "results2 [infile] [outfile]"},
+   { "following",       cmd_party_following,            "following [infile] [outfile]"},
+   { "following2",      cmd_party_following2,           "following2 [infile] [outfile]"},
    { "filter",          PartyTimeFilterCmd,             "filter commands"},
+   { "self",            PartySelf,                      "self test"},
    { NULL, NULL, NULL }
 };
 

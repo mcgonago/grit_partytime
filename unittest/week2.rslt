@@ -110,7 +110,7 @@ partyControl.max = 52, count = 21, fudge = 2.4762
  12  Leo Leo Diaz  -  10.504    786w  10.7wkg
  13  Derek Sawyer  [GRIT][Rippers]  10.531    773w  10.3wkg
  14  Greg Langman  DIRT  10.565    818w  11.6wkg
- 15  Rafa   Dzieko  ski  ZTPL.CC  10.630    843w  11.2wkg
+ 15  Rafa Dzieko ski  ski ZTPL.CC  10.630    843w  11.2wkg
  16  Ian Bundy  DIRT  10.643    905w  9.7wkg
  17  matsushige hideo  -  10.752    635w  9.8wkg
  18  Craig... .S Velo  Sheppey Velo  10.765    729w  8.5wkg
@@ -202,7 +202,7 @@ partyControl.max = 52, count = 25, fudge = 2.0800
   41  Iain Darwood                     -                                0/0         0/0         0/0        10/31       31         
   42  Chris Hunt                       -                               21/31        0/0         0/0         0/0        31         
   43  Nuno Torres                      (Secai/Gaiabike)                22/30        0/0         0/0         0/0        30         
-  44  Rafa   Dzieko  ski               ZTPL.CC                          0/0         0/0        15/29        0/0        29         
+  44  Rafa Dzieko ski                  ski ZTPL.CC                      0/0         0/0        15/29        0/0        29         
   45  Kent Nikel                       TeamERTCC                        0/0         9/29        0/0         0/0        29         
   46  Cycling Fanatic                  -                               23/29        0/0         0/0         0/0        29         
   47  Daniel Shalkowski                [DIRT]                          24/28        0/0         0/0         0/0        28         
@@ -267,3 +267,5 @@ partyControl.max = 52, count = 25, fudge = 2.0800
   106 Danny Verlooy                    -                               50/2         0/0         0/0         0/0        2          
   107 Lars Rathje                      DBR                              0/0         0/0        33/1         0/0        1          
   108 Ryan Saranchuk                   -                               51/1         0/0         0/0         0/0        1          
+
+

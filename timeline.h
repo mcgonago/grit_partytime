@@ -19,6 +19,8 @@ typedef struct TimeLineInfo_s
    char timeLine[MAX_STRING_SIZE];
    time_t timeStamp;
 
+   int groupId;
+
    int points;
    char place[MAX_STRING_SIZE];
    char first[MAX_STRING_SIZE];
@@ -35,7 +37,8 @@ typedef struct TimeLineInfo_s
    char vid[MAX_STRING_SIZE];
    char time[MAX_STRING_SIZE];
    char test[MAX_STRING_SIZE];
-
+   
+   int numRaces;
    Race_t race[MAX_RACES];
    
    int fraction;
