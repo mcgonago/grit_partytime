@@ -24,10 +24,9 @@ static volatile int gdbStop = 1;
 
 #define PRINT_MODE_DISPLAY (1)
 
-#define GROUP_A       (1)
-#define GROUP_B       (2)
-#define GROUP_ALL     (3)   
-#define GROUP_UNKNOWN (4)
+#define GROUP_A    (1)
+#define GROUP_B    (2)
+#define GROUP_ALL  (3)   
 
 #define MAX_MY_COLUMNS (1024)
 
@@ -76,7 +75,7 @@ typedef struct PartyControl_s
    int doubleUp;
    int ageBonus;
    int debug;
-   int groupId;
+   int group;
    int lockDown;
    int clip;
    int snap;
@@ -130,9 +129,6 @@ extern void RidersMissed(CLI_PARSE_INFO *info);
 void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team);
 int PartyAddAthleteA(CLI_PARSE_INFO *info, char *name);
 int PartyAddAthleteB(CLI_PARSE_INFO *info, char *name);
-void TableReset(CLI_PARSE_INFO *pInfo);
-void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list);
-
 static void PartyForceShow(CLI_PARSE_INFO *info);
 static void PartyForceB(CLI_PARSE_INFO *info);
 
@@ -217,31 +213,7 @@ TimeLineRemove(TimeLineInfo_t *timeLineInfo)
    timeLineInfo->numRaces = 0;
 }
 
-void TableReset(CLI_PARSE_INFO *pInfo)
-{
-   int i;
-
-   for (i = 0; i < MAX_ATHLETES; i++)
-   {
-      athleteA[i].enabled = 0;
-      athleteB[i].enabled = 0;
-   }
-
-   strcpy(athleteA[i-1].name, "ATHLETE_END");
-   strcpy(athleteB[i-1].name, "ATHLETE_END");
-
-   for (i = 0; i < MAX_MY_COLUMNS; i++)
-   {
-      columns[i].width = -1;
-   }
-
-   for (i = 0; i < MAX_ENTRIES; i++)
-   {
-      printTable[i].enabled = 0;
-   }
-}
-
-void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
+void PartyReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
 {
    int i;
    Link_t *ptr;
@@ -271,6 +243,26 @@ void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
       }
    }
 
+#if 1
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       athleteA[i].enabled = 0;
+       athleteB[i].enabled = 0;
+    }
+
+    strcpy(athleteA[i-1].name, "ATHLETE_END");
+    strcpy(athleteB[i-1].name, "ATHLETE_END");
+
+    for (i = 0; i < MAX_MY_COLUMNS; i++)
+    {
+       columns[i].width = -1;
+    }
+
+    for (i = 0; i < MAX_ENTRIES; i++)
+    {
+       printTable[i].enabled = 0;
+    }
+#endif   
 }
 
 
@@ -308,7 +300,6 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
    timeLineInfo->last[0] = '\0';
 
    timeLineInfo->points = 0;
-   timeLineInfo->groupId = GROUP_UNKNOWN;
    
    for (i = 0; i < MAX_RACES; i++)
    {
@@ -697,8 +688,7 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
    {
       if (!isprint(*ptr))
       {
-         // *ptr = ' ';
-         *ptr = '_';
+         *ptr = ' ';
       }
       ptr++;
    }
@@ -775,35 +765,11 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
-   else if (strstr(tmp, "C hris M") != 0)
-   {
-      teamFound = 1;
-      strcpy(timeLineInfo->name, "Chris M");
-      strcpy(timeLineInfo->team, "B4H");
-   }
-   else if (strstr(tmp, "Seth G ") != 0)
-   {
-      teamFound = 1;
-      strcpy(timeLineInfo->name, "Seth G");
-      strcpy(timeLineInfo->team, "[GRIT]");
-   }
-   else if (strstr(tmp, "Renfrew Bunch") != 0)
-   {
-      teamFound = 1;
-      strcpy(timeLineInfo->name, "Renfrew Bunch");
-      strcpy(timeLineInfo->team, "[Scotland]");
-   }
-   else if (!isprint(tmp[0]) && !isprint(tmp[1]) && !isprint(tmp[2]))
-   {
-      teamFound = 1;
-      strcpy(timeLineInfo->name, "__STAR__");
-      strcpy(timeLineInfo->team, "-");
-   }
-   else if ((strstr(tmp, "Bergenzaun") != 0) && (strstr(tmp, "M") != 0))
+   else if ((strstr(tmp, "Bergenzaun") != 0) && (strstr(tmp, "ns ") != 0))
    {
       teamFound = 1;
       strcpy(timeLineInfo->name, "Mans Bergenzaun");
-      strcpy(timeLineInfo->team, "Team BTC");
+      strcpy(timeLineInfo->team, "TEAM BTC");
    }
    else if (strstr(tmp, "Dax Nelson") != 0)
    {
@@ -865,11 +831,11 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "Dan Nelson");
       strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
    }
-   else if ((strstr(tmp, "Rafa") != 0) && (strstr(tmp, "Dzieko") != 0))
+   else if ((strstr(tmp, "Rafa ") != 0) && (strstr(tmp, "Dzieko") != 0))
    {
       teamFound = 1;
       strcpy(timeLineInfo->name, "Rafa Dzieko ski");
-      strcpy(timeLineInfo->team, "ski ZTPL.CC");
+      strcpy(timeLineInfo->team, "ZTPL.CC");
    }
 #if 0
    else if (strstr(tmp, "Denis Frolov") != 0)
@@ -1025,30 +991,10 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
-   else if (strstr(timeLineInfo->name, "C hris M") != 0)
-   {
-      strcpy(timeLineInfo->name, "Chris M");
-      strcpy(timeLineInfo->team, "B4H");
-   }
-   else if (strstr(timeLineInfo->name, "Seth G ") != 0)
-   {
-      strcpy(timeLineInfo->name, "Seth G");
-      strcpy(timeLineInfo->team, "[GRIT]");
-   }
-   else if (strstr(timeLineInfo->name, "Renfrew Bunch") != 0)
-   {
-      strcpy(timeLineInfo->name, "Renfrew Bunch");
-      strcpy(timeLineInfo->team, "[Scotland]");
-   }
-   else if (!isprint(timeLineInfo->name[0]) && !isprint(timeLineInfo->name[1]) && !isprint(timeLineInfo->name[2]))
-   {
-      strcpy(timeLineInfo->name, "__STAR__");
-      strcpy(timeLineInfo->team, "-");
-   }
-   else if ((strstr(timeLineInfo->name, "Bergenzaun") != 0) && (strstr(timeLineInfo->name, "M") != 0))
+   else if ((strstr(timeLineInfo->name, "Bergenzaun") != 0) && (strstr(timeLineInfo->name, "ns ") != 0))
    {
       strcpy(timeLineInfo->name, "Mans Bergenzaun");
-      strcpy(timeLineInfo->team, "Team BTC");
+      strcpy(timeLineInfo->team, "TEAM BTC");
    }
    else if (strstr(timeLineInfo->name, "Dax Nelson") != 0)
    {
@@ -1100,10 +1046,10 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "Dan Nelson");
       strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
    }
-   else if ((strstr(timeLineInfo->name, "Rafa") != 0) && (strstr(timeLineInfo->name, "Dzieko") != 0))
+   else if ((strstr(timeLineInfo->name, "Rafa ") != 0) && (strstr(timeLineInfo->name, "Dzieko") != 0))
    {
       strcpy(timeLineInfo->name, "Rafa Dzieko ski");
-      strcpy(timeLineInfo->team, "ski ZTPL.CC");
+      strcpy(timeLineInfo->team, "ZTPL.CC");
    }
    else if (strstr(timeLineInfo->name, "conrad moss") != 0)
    {
@@ -1227,7 +1173,7 @@ void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
 }
 
 
-int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId)
+int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name)
 {
    int i;
    Link_t *ptr;
@@ -1237,7 +1183,7 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
    tempInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
    NameInsert(tempInfo, name);
 
-   if (partyControl.groupId == GROUP_A)
+   if (partyControl.group == GROUP_A)
    {
       /* ONLY skip an Athlete if processing GROUP_A and we DO NOT find the name in the B list (from previous SNAP) */
       for (i = 0; i < MAX_ATHLETES; i++)
@@ -1262,7 +1208,7 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
       {
          timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
 
-         if ((strstr(timeLineInfo->name, tempInfo->name) != 0) && (timeLineInfo->groupId == groupId))
+         if (strcmp(timeLineInfo->name, tempInfo->name) == 0)
          {
             /* DO NOT skip - Athlete found in current B processing list */
             return 0;
@@ -1283,10 +1229,9 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
 
 void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
 {
-   int i, j;
+   int i;
    int idx = 0;
    int count = 0;
-   int endCount = 0;
    char *ptr;
 
    if (partyControl.debug == 1)
@@ -1300,12 +1245,6 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
       {
          break;
       }
-
-      if (partyControl.debug == 1)
-      {
-         (pInfo->print_fp)("CF1: %2d: L = %2d    %s\n", i, columns[i].width, str);
-      }
-
    }
 
    if (i == MAX_MY_COLUMNS)
@@ -1314,13 +1253,11 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
       return;
    }
 
-#if 0
    if ((str[0] == ' ') || (str[0] == '\t') || (str[0] == '\n') || (str[0] == '\r'))
    {
       return; 
    }
-#endif
-   
+
    for (i = 0; i < MAX_ENTRIES; i++)
    {
       if (printTable[i].enabled == 0)
@@ -1353,21 +1290,6 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
          {
             (pInfo->print_fp)("\n\n");
          }
-
-         for (j = 0; j < MAX_MY_COLUMNS; j++)
-         {
-            if (columns[j].width == -1)
-            {
-               break;
-            }
-
-            if (partyControl.debug == 1)
-            {
-               (pInfo->print_fp)("CF2: %2d: L = %2d    %s\n", j, columns[j].width, str);
-            }
-
-         }
-
          return;
       }
 
@@ -1379,22 +1301,15 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
          /* FOUND two spaces! */
          if (count > columns[i].width)
          {
-
-            if (count <= 0)
-            {
-               (pInfo->print_fp)("INTERNAL ERROR!!!!!!! count = %d\n", count);
-            }
-
             columns[i].width = count;
 
             if (partyControl.debug == 1)
             {
-               (pInfo->print_fp)("CD1: %2d: L = %2d    %s\n", i, columns[i].width, ptr);
+               (pInfo->print_fp)("CD: %2d: L = %2d    %s\n", i, columns[i].width, ptr);
             }
          }
 
          /* Get past one or more spaces */
-         endCount = count;
          while ((*ptr == ' ') && (*ptr != '\0'))
          {
             count += 1;
@@ -1403,35 +1318,10 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
 
          if (*ptr == '\0')
          {
-            if (count <= 0)
+            if (count > columns[i].width)
             {
-               (pInfo->print_fp)("INTERNAL ERROR!!!!!!! count = %d\n", count);
+               columns[i].width = count;
             }
-
-            if (endCount > columns[i].width)
-            {
-               columns[i].width = endCount;
-
-               if (partyControl.debug == 1)
-               {
-                  (pInfo->print_fp)("CD2: %2d: L = %2d    %s\n", i, columns[i].width, ptr);
-               }
-            }
-
-            for (j = 0; j < MAX_MY_COLUMNS; j++)
-            {
-               if (columns[j].width == -1)
-               {
-                  break;
-               }
-
-               if (partyControl.debug == 1)
-               {
-                  (pInfo->print_fp)("CF3: %2d: L = %2d    %s\n", j, columns[j].width, str);
-               }
-
-            }
-
             return;
          }
 
@@ -1443,130 +1333,9 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
 
 }
 
-void ColumnPrintfHeader(CLI_PARSE_INFO *pInfo, char *str)
-{
-   int i;
-   int fill = 0;
-   int idx = 0;
-   char *ptr;
-
-   int columnWidth = 0;
-   int endWidth = 0;
-   int charIdx = 0;
-   int columnId = 0;
-   int outIdx = 0;
-   int inIdx = 0;
-   char outStr[MAX_STRING_SIZE];
-
-   ptr = &str[0];
-   i = 0;
-   columnId = 0;
-   columnWidth = 0;
-   
-   while (*ptr != '\0')
-   {
-      if (columnId == 0)
-      {
-         outStr[outIdx++] = '+';
-         outStr[outIdx++] = '-';
-      }
-
-      idx = 0;
-      while ((*ptr != ' ') && (*ptr != '\0'))
-      {
-         outStr[outIdx++] = '-';
-         ptr++;
-         columnWidth += 1;
-      }
-
-      if (*ptr == '\0')
-      {
-         outStr[outIdx++] = '-';
-         endWidth = columnWidth;
-         break;
-      }
-
-      outStr[outIdx++] = '-';
-      ptr++;
-      columnWidth += 1;
-      endWidth = columnWidth;
-      
-      if (*ptr == ' ')
-      {
-         ptr++;
-
-         endWidth = columnWidth;
-         while ((*ptr == ' ') && (*ptr != '\0'))
-         {
-            endWidth += 1;
-            ptr++;
-         }
-
-         if (*ptr == '\0')
-         {
-            outStr[outIdx++] = '-';
-            endWidth = columnWidth;
-            break;
-         }
-
-         /* FOUND two spaces! */
-         if ((columns[columnId].width + COLUMN_SPACING) > columnWidth)
-         {
-            fill = ((columns[columnId].width + COLUMN_SPACING) - columnWidth);
-            for (i = 0; i < fill; i++)
-            {
-               outStr[outIdx++] = '-';
-            }
-         }
-
-         outStr[outIdx++] = '+';
-         outStr[outIdx++] = '-';
-
-         if (*ptr != '\0')
-         {
-            columnWidth = 0;
-            columnId += 1;
-         }
-      }
-   }
-
-#if 1
-   if (*ptr != '\0')
-   {
-      (pInfo->print_fp)("INTERNAL ERROR: end of str not found!!!\n");
-   }
-
-   if (partyControl.debug == 1)
-   {
-      (pInfo->print_fp)("columnId = %d, columns[%d].width = %d, endWidth = %d\n", columnId,
-                        columnId, columns[columnId].width, endWidth);
-   }
-
-   if (1) /* columns[columnId].width > COLUMN_SPACING) */
-   {
-      if ((columns[columnId].width) > endWidth)
-      {
-         fill = (columns[columnId].width - endWidth);
-         for (i = 0; i < fill; i++)
-         {
-            outStr[outIdx++] = '-';
-         }
-      }
-   }
-#endif
-
-#if 1
-   outIdx -= 1;
-   outStr[outIdx++] = '|';
-   outStr[outIdx++] = '\0';
-#endif
-
-   (pInfo->print_fp)("%s\n", outStr);
-
-}
-
 void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
 {
+#if 1
    int i;
    int fill = 0;
    int idx = 0;
@@ -1601,23 +1370,20 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
          columnWidth += 1;
       }
 
-      if (*ptr == '\0')
-      {
-         outStr[outIdx++] = ' ';
-         endWidth = columnWidth;
-         break;
-      }
-
       outStr[outIdx++] = *ptr;
       ptr++;
       columnWidth += 1;
       endWidth = columnWidth;
-      
+
+      if (*ptr == '\0')
+      {
+         break;
+      }
+
       if (*ptr == ' ')
       {
          ptr++;
 
-         endWidth = columnWidth;
          while ((*ptr == ' ') && (*ptr != '\0'))
          {
             endWidth += 1;
@@ -1626,8 +1392,6 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
 
          if (*ptr == '\0')
          {
-            outStr[outIdx++] = ' ';
-            endWidth = columnWidth;
             break;
          }
 
@@ -1641,70 +1405,56 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
             }
          }
 
-         outStr[outIdx++] = '|';
-         outStr[outIdx++] = ' ';
-
          if (*ptr != '\0')
          {
+//            outStr[outIdx++] = '|';
+//            outStr[outIdx++] = ' ';
+
             columnWidth = 0;
             columnId += 1;
          }
+
+#if 0
+         /* Get past one or more spaces */
+         while ((*ptr == ' ') && (*ptr != '\0'))
+         {
+            outStr[outIdx++] = ' ';
+            ptr++;
+         }
+#endif
+
       }
    }
 
-#if 1
-   if (*ptr != '\0')
+   if (1) /* columns[columnId].width > 0) */
    {
-      (pInfo->print_fp)("INTERNAL ERROR: end of str not found!!!\n");
-   }
-
-   if (partyControl.debug == 1)
-   {
-      (pInfo->print_fp)("columnId = %d, columns[%d].width = %d, endWidth = %d\n", columnId,
-                        columnId, columns[columnId].width, endWidth);
-   }
-
-   if (1) /* columns[columnId].width > COLUMN_SPACING) */
-   {
-      if ((columns[columnId].width) > endWidth)
+      if ((columns[columnId].width + COLUMN_SPACING) > endWidth)
       {
-         fill = (columns[columnId].width - endWidth);
+         fill = ((columns[columnId].width + COLUMN_SPACING) - endWidth);
          for (i = 0; i < fill; i++)
          {
             outStr[outIdx++] = ' ';
          }
       }
    }
-#endif
 
-#if 1
    outIdx -= 1;
    outStr[outIdx++] = '|';
    outStr[outIdx++] = '\0';
-#endif
 
    (pInfo->print_fp)("%s\n", outStr);
+
+#else
+   (pInfo->print_fp)("%s", str);
+#endif
 
 }
 
 void PrintTable(CLI_PARSE_INFO *pInfo)
 {
    int i;
-   int idx = 0;
 
-   if (printTable[1].enabled != 0)
-   {
-      ColumnPrintf(pInfo, printTable[idx].entry);
-      idx += 1;
-   }
-
-   if ((printTable[idx].enabled != 0) && (strstr(printTable[idx].entry, "--") != 0))
-   {
-      ColumnPrintfHeader(pInfo, printTable[1].entry);
-      idx += 1;
-   }
-
-   for (i = idx; i < MAX_ENTRIES; i++)
+   for (i = 0; i < MAX_ENTRIES; i++)
    {
       if (printTable[i].enabled == 0)
       {
@@ -1715,16 +1465,6 @@ void PrintTable(CLI_PARSE_INFO *pInfo)
    }
 }
                      
-
-void RemoveWpkg(CLI_PARSE_INFO *pInfo, char *str)
-{
-   char *p;
-   if ((p = strstr(str, "wkg")) != NULL)
-   {
-      *p = '\0';
-   }
-}
-
 
 void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 {
@@ -1760,7 +1500,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    Link_t *ptr, *ptr2;
    TimeLineInfo_t *timeLineInfo;
    TimeLineInfo_t *timeLineInfo2;
-   int groupId = GROUP_ALL;
+   int group = GROUP_ALL;
 
    Link_t *ptrI;
    Link_t *ptrJ;
@@ -1784,12 +1524,9 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    char time[MAX_STRING_SIZE];
    char test[MAX_STRING_SIZE];
    char teamName[MAX_STRING_SIZE];
-   char header[MAX_STRING_SIZE];
 
    int outIdx = 0;
    char outStr[MAX_STRING_SIZE];
-
-   TableReset(pInfo);
    
    // fp_in = fopen("zwiftpower.txt", "r");
    sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
@@ -1826,20 +1563,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
       (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
       exit(-1);
    }
-
-
-#ifndef CONSOLE_OUTPUT
-   sprintf(header, "%s", "#  name   team   time   watts  wpkg");
-   ColumnStore(pInfo, header);
-
-   sprintf(header, "%s", "--  ----   ----   ----   -----  ----");
-   ColumnStore(pInfo, header);
-#endif
-
+        
    idx = 0;
    while (1)
    {
-      if (!StringGet(tmp, fp_in, NL_REMOVE))
+      if (!StringGet(tmp, fp_in, NL_KEEP))
       {
          /* Done reading file */
          break;
@@ -1863,29 +1591,15 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
              (((timeLine[1] == ' ') && (timeLine[2] == ' ')) || (timeLine[1] == '\n')) &&
              (strstr(timeLine, "Distance") == NULL))
          {
-            if (timeLine[0] == 'B')
-            {
-               groupId = GROUP_B;
-            }
-            else if (timeLine[0] == 'A')
-            {
-               groupId = GROUP_A;
-            }
-            else
-            {
-               groupId = GROUP_UNKNOWN;
-               (pInfo->print_fp)("INTERNAL ERROR: DID not recognize GroupID\n");
-            }
-
             if (partyControl.lockDown == 0)
             {
                if ((timeLine[0] == 'B') && 
-                   (partyControl.groupId == GROUP_A))
+                   (partyControl.group == GROUP_A))
                {
                   goIntoLoop = 0;
                }
                else if ((timeLine[0] == 'A') && 
-                        (partyControl.groupId == GROUP_B))
+                        (partyControl.group == GROUP_B))
                {
                   goIntoLoop = 0;
                }
@@ -1956,7 +1670,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                   if (partyControl.lockDown == 1)
                   {
-                     if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                     if (AthleteSkip(pInfo, listTimeLine, name))
                      {
                         continueInLoop = 0;
                         break;
@@ -1981,7 +1695,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                   if (partyControl.lockDown == 1)
                   {
-                     if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                     if (AthleteSkip(pInfo, listTimeLine, name))
                      {
                         continueInLoop = 0;
                         break;
@@ -2023,14 +1737,10 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   // strcpy(timeLineInfo->name, tmp);
                   strcpy(tmpName, tmp);
                   NameInsert(timeLineInfo, tmpName);
-                  if (timeLineInfo->groupId == GROUP_UNKNOWN)
-                  {
-                     timeLineInfo->groupId = groupId;
-                  }
 
                   if (partyControl.lockDown == 1)
                   {
-                     if (AthleteSkip(pInfo, listTimeLine, tmpName, groupId))
+                     if (AthleteSkip(pInfo, listTimeLine, tmpName))
                      {
                         continueInLoop = 0;
                         break;
@@ -2077,7 +1787,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, name))
                         {
                            continueInLoop = 0;
                            break;
@@ -2085,15 +1795,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      }
 
                      NameInsert(timeLineInfo, name);
-                     if (timeLineInfo->groupId == GROUP_UNKNOWN)
-                     {
-                        timeLineInfo->groupId = groupId;
-                     }
 
                      if (RacedToday(name, teamName))
                      {
                         sprintf(timeLineInfo->team, "%s", teamName);
-                        sprintf(place, "%d ", count);
+                        sprintf(place, "%d", count);
                         count++;
 
                         (pInfo->print_fp)("%s   %s  %s  %s %s %s   %s   %s\n",
@@ -2115,7 +1821,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, name))
                         {
                            continueInLoop = 0;
                            break;
@@ -2123,10 +1829,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      }
 
                      NameInsert(timeLineInfo, name);
-                     if (timeLineInfo->groupId == GROUP_UNKNOWN)
-                     {
-                        timeLineInfo->groupId = groupId;
-                     }
 
                      if (RacedToday(name, teamName))
                      {
@@ -2167,16 +1869,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name))
                         {
                            continueInLoop = 0;
                            break;
                         }
-                     }
-
-                     if (continueInLoop == 0)
-                     {
-                        break;
                      }
 
                      /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
@@ -2196,16 +1893,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   {
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name))
                         {
                            continueInLoop = 0;
                            break;
                         }
-                     }
-
-                     if (continueInLoop == 0)
-                     {
-                        break;
                      }
 
                      /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
@@ -2218,7 +1910,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%3d  %s  ", count, timeLineInfo->name);
 #else
-                  outIdx += sprintf(&outStr[outIdx], "%d  %s  ", count, timeLineInfo->name);
+                  outIdx += sprintf(&outStr[outIdx], "%3d  %s  ", count, timeLineInfo->name);
 #endif
                   fprintf(fp_out, "%3d  %s  ", count, timeLineInfo->name);
                   count++;
@@ -2258,12 +1950,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      if (firstAthlete != 1)
                      {
                         /* + */
-#ifdef CONSOLE_OUTPUT
                         if (!StringGet(tmp, fp_in, NL_KEEP))
-#else
-                        if (!StringGet(tmp, fp_in, nlMode))
-#endif
-
                         {
                            /* Done reading file */
                            continueInLoop = 0;
@@ -2275,11 +1962,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   /* watts */
-#ifdef CONSOLE_OUTPUT
                   if (!StringGet(tmp, fp_in, NL_KEEP))
-#else
-                  if (!StringGet(tmp, fp_in, nlMode))
-#endif
                   {
                      /* Done reading file */
                      continueInLoop = 0;
@@ -2290,7 +1973,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s", tmp2);
 #else
-                  RemoveWpkg(pInfo, tmp2);
                   outIdx += sprintf(&outStr[outIdx], "%s", tmp2);
                   ColumnStore(pInfo, outStr);
 #endif                  
@@ -2326,7 +2008,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   if (partyControl.lockDown == 0)
                   {
                      if ((tmp[0] == 'B') && 
-                         (partyControl.groupId == GROUP_A))
+                         (partyControl.group == GROUP_A))
                      {
 #if 0
                         /* Put count back */
@@ -2339,7 +2021,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                         break;
                      }
                      else if ((tmp[0] == 'A') && 
-                              (partyControl.groupId == GROUP_B))
+                              (partyControl.group == GROUP_B))
                      {
 #if 0
                         /* Put count back */
@@ -2359,10 +2041,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    }
 
    fclose(fp_in);
-
-#ifndef CONSOLE_OUTPUT
-   (pInfo->print_fp)("\n");
-#endif
 
    PrintTable(pInfo);
 
@@ -2507,20 +2185,14 @@ int BestOf(TimeLineInfo_t *timeLineInfo, int count, int *total)
 
 void cmd_party_show(CLI_PARSE_INFO *pInfo)
 {
-   TimeLineInfo_t *timeLineInfo;
-   TimeLineInfo_t *currInfo;
-   Link_t *link;      
-   Link_t *ptr;
-   int i;
-   int total;
-   char placePoints[MAX_STRING_SIZE];
-   char outStr[MAX_STRING_SIZE];
-   char header[MAX_STRING_SIZE];
-
-   int outIdx = 0;
-   int count = 1;
-
-   TableReset(pInfo);
+    TimeLineInfo_t *timeLineInfo;
+    TimeLineInfo_t *currInfo;
+    Link_t *link;      
+    Link_t *ptr;
+    int i;
+    int total;
+    char placePoints[MAX_STRING_SIZE];
+    int count = 1;
 
    ptr = (Link_t *)listTimeLine->head;
    while (ptr->next != NULL)
@@ -2553,10 +2225,10 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
 
       if (partyControl.ageBonus == 1)
       {
-         if (strstr(timeLineInfo->name, "McGonagle") != 0)
-         {
-            currInfo->points += 5;
-         }
+       if (strstr(timeLineInfo->name, "McGonagle") != 0)
+       {
+          currInfo->points += 5;
+       }
       }
 
       if (partyControl.bonus == 1)
@@ -2577,18 +2249,9 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
       ptr = ptr->next;
    }
 
-#ifndef CONSOLE_OUTPUT
-   sprintf(header, "%s", "#  name   team   Grp  time  watts  wpkg  plc/pts");
-   ColumnStore(pInfo, header);
-
-   sprintf(header, "%s", "-  ----   ----   ---  ----  -----  ----  -------");
-   ColumnStore(pInfo, header);
-#endif
-
    ptr = (Link_t *)listTimeOrder->head;
    while (ptr->next != NULL)
    {
-      outIdx = 0;
       currInfo = (TimeLineInfo_t *)ptr->currentObject;
 
       timeLineInfo = (TimeLineInfo_t *)currInfo->me;
@@ -2604,19 +2267,11 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
 
       if (timeLineInfo->team[0] != '\0')
       {
-#ifdef CONSOLE_OUTPUT
          (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, timeLineInfo->team);
-#else
-         outIdx += sprintf(&outStr[outIdx], "%d  %s  %s ", count, timeLineInfo->name, timeLineInfo->team);
-#endif
       }
       else
       {
-#ifdef CONSOLE_OUTPUT
          (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
-#else
-         outIdx += sprintf(&outStr[outIdx], "  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
-#endif
       }
       count++;
 
@@ -2625,40 +2280,26 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
          if (timeLineInfo->race[i].place != -1)
          {
             sprintf(placePoints, "%2d/%-2d", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
-#ifdef CONSOLE_OUTPUT
+            // (pInfo->print_fp)(" %-10d/%d ", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
             (pInfo->print_fp)(" %-10s ", placePoints);
-#else
-            outIdx += sprintf(&outStr[outIdx], " %-10s ", placePoints);
-#endif
          }
          else
          {
             sprintf(placePoints, "%2d/%-2d", 0, 0);
-#ifdef CONSOLE_OUTPUT
+            // (pInfo->print_fp)(" %-10d/0 ", 0);
             (pInfo->print_fp)(" %-10s ", placePoints);
-#else
-            outIdx += sprintf(&outStr[outIdx], " %-10s ", placePoints);
-#endif            
          }
       }
 
-
-#ifdef CONSOLE_OUTPUT
+      // (pInfo->print_fp)(" %-10d ", timeLineInfo->points);
       (pInfo->print_fp)(" %-10d ", currInfo->points);
+
       (pInfo->print_fp)("\n");
-#else
-      outIdx += sprintf(&outStr[outIdx], " %-10d", currInfo->points);
-      ColumnStore(pInfo, outStr);
-#endif
+
       ptr = ptr->next;
    }
 
-#ifdef CONSOLE_OUTPUT
    (pInfo->print_fp)("\n\n");
-#else
-   PrintTable(pInfo);
-   (pInfo->print_fp)("\n\n");
-#endif
 
 }
 
@@ -2786,15 +2427,15 @@ void PartySetGroup(CLI_PARSE_INFO *pInfo)
 
     if (strcmp(pInfo->argv[1], "A") == 0)
     {
-       partyControl.groupId = GROUP_A;
+       partyControl.group = GROUP_A;
     }
     else if (strcmp(pInfo->argv[1], "B") == 0)
     {
-       partyControl.groupId = GROUP_B;
+       partyControl.group = GROUP_B;
     }
     else if (strcmp(pInfo->argv[1], "ALL") == 0)
     {
-       partyControl.groupId = GROUP_ALL;
+       partyControl.group = GROUP_ALL;
     }
     else
     {
@@ -2813,15 +2454,13 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    partyControl.doubleUp = 0;
    partyControl.ageBonus = 0;
    partyControl.debug = 0;
-   partyControl.groupId = GROUP_ALL;
+   partyControl.group = GROUP_ALL;
    partyControl.lockDown = 0;
    partyControl.clip = 0;
    partyControl.snap = 0;
 
-   ListReset(pInfo, listTimeLine);
-   ListReset(pInfo, listTimeOrder);
-
-   TableReset(pInfo);
+   PartyReset(pInfo, listTimeLine);
+   PartyReset(pInfo, listTimeOrder);
 }
 
 void PartySetLockdown(CLI_PARSE_INFO *pInfo)
@@ -2940,10 +2579,9 @@ static void cmd_party_set(CLI_PARSE_INFO *info)
 static void cmd_party_reset(CLI_PARSE_INFO *info)
 {
    /* Reset things each time through */
-   ListReset(info, listTimeLine);
-   ListReset(info, listTimeOrder);
+   PartyReset(info, listTimeLine);
+   PartyReset(info, listTimeOrder);
    PartyInit(info);
-   TableReset(info);
 }
 
 int PartyAddAthleteA(CLI_PARSE_INFO *info, char *name)
@@ -3173,24 +2811,6 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
    char sA[MAX_STRING_SIZE];
          
 
-#if 1
-   sprintf(s1, "%s", "  1  Steve Tappan  [GRIT]  18:21    338w  5.0wkg");
-   sprintf(s2, "%s", "  2  Derek Sawyer  [GRIT][Rippers]  18:43    347w  4.6wkg");
-   sprintf(s3, "%s", "  3  Olivier PERRIN  Asvel Tri  19:20    297w  4.7wkg");
-
-   TableReset(pInfo);
-   (pInfo->print_fp)("TESTA:\n\n");
-
-   ColumnStore(pInfo, s1);
-   ColumnStore(pInfo, s2);
-   ColumnStore(pInfo, s3);
-
-   // ColumnStore(pInfo, outStr);
-   PrintTable(pInfo);
-   (pInfo->print_fp)("\n\n");
-
-#else
-   
    sprintf(s1, "%s", "3  Steve Tappan  [GRIT]  06:39    374w  5.5wkg");
 
    // sprintf(s2, "%s", "4  Thomas Woods  TeamODZ  06:41    332w  5.2wkg");
@@ -3207,7 +2827,7 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
    (pInfo->print_fp)("\n");
 #endif
    
-   TableReset(pInfo);
+   PartyReset(pInfo, listTimeLine);
    (pInfo->print_fp)("TESTA:\n\n");
 
    ColumnStore(pInfo, s2);
@@ -3217,22 +2837,9 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
    PrintTable(pInfo);
    (pInfo->print_fp)("\n\n");
 
-   sprintf(s2, "%s", "4  Thomas Woodsaa  TeamODZzzz  06:41    332wddddddd  5.2wkg              ");
-   sprintf(s3, "%s", "5  Yusuke Saeki  (SBC Vertex Racing Team)    06:42bbb    329wccc  5.1wkg               ");
-
-   TableReset(pInfo);
-   (pInfo->print_fp)("TESTA:\n\n");
-
-   ColumnStore(pInfo, s2);
-   ColumnStore(pInfo, s3);
-
-   // ColumnStore(pInfo, outStr);
-   PrintTable(pInfo);
-   (pInfo->print_fp)("\n\n");
-
-#if 1
+#if 0
    (pInfo->print_fp)("TEST2:\n\n");
-   TableReset(pInfo);
+   PartyReset(pInfo, listTimeLine);
    
    sprintf(s1, "%s", "3  Steve Tappan  [GRIT]bbbbbbbb  06:39    374w  5.5wkg");
    sprintf(s2, "%s", "4  Thomas Woodsaaa  TeamODZ  06:41    332wcccccccc  5.2wkgdddddddddddd");
@@ -3247,7 +2854,7 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
 
    (pInfo->print_fp)("TEST3:\n\n");
 
-   TableReset(pInfo);
+   PartyReset(pInfo, listTimeLine);
 
    sprintf(header, "%s", "#  a1  a2  a3  a4  a5  a6  a7  a8  a9  a10");
    sprintf(s1, "%s", "3  1  2  3  4  5  6  7  8  9  10");
@@ -3276,7 +2883,7 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
    PrintTable(pInfo);
    (pInfo->print_fp)("\n\n");
 
-   TableReset(pInfo);
+   PartyReset(pInfo, listTimeLine);
 
    sprintf(header, "%s", "#  a1  a2aaaaa  a3  a4  a5  a6  a7  a8  a9  a10");
    sprintf(s1, "%s", "3  1  2  3  4  5  6  7  8  9  10   ");
@@ -3304,7 +2911,6 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
                        
    PrintTable(pInfo);
    (pInfo->print_fp)("\n\n");
-#endif
 #endif
 }
 

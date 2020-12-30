@@ -3,7 +3,7 @@
   3  Maximilian Kuen  VBG - Santic  1:07:00      3.5w/kg        251w        
   4  Scarlett Parker  ART  1:07:00      3.0w/kg        191w        
   5  Yukio Bergholdt  -  1:07:01      3.2w/kg        235w        
-  6  Bruch Wu_______  -  1:07:01      3.2w/kg        189w        
+  6  Bruch Wu  -  1:07:01      3.2w/kg        189w        
   7  Tak Ina  [JETT][GRIT]  1:07:02      3.4w/kg        180w        
   8  Carson Shedd  DIRT  1:07:02      3.2w/kg        219w        
   9  Maximilian Weniger  Rippers  1:07:03      3.4w/kg        270w        
@@ -36,4 +36,4 @@
  36  Maria Nyberg  SZ  1:15:27      3.3w/kg        181w        
  37  Bart Boersma  -  1:15:28      3.5w/kg        235w        
  38  zwift Doyoung  -  1:16:19      3.2w/kg        196w        
- 39  Mans Bergenzaun  Team BTC  1:18:41      2.8w/kg        216w        
+ 39  Mans Bergenzaun  TEAM BTC  1:18:41      2.8w/kg        216w        

@@ -65,7 +65,7 @@ partyControl.max = -1, count = 36, fudge = 1.0000
   3  Maximilian Kuen  VBG - Santic  1:07:00      3.5w/kg        251w        
   4  Scarlett Parker  ART  1:07:00      3.0w/kg        191w        
   5  Yukio Bergholdt  -  1:07:01      3.2w/kg        235w        
-  6  Bruch Wu_______  -  1:07:01      3.2w/kg        189w        
+  6  Bruch Wu  -  1:07:01      3.2w/kg        189w        
   7  Tak Ina  [JETT][GRIT]  1:07:02      3.4w/kg        180w        
   8  Carson Shedd  DIRT  1:07:02      3.2w/kg        219w        
   9  Maximilian Weniger  Rippers  1:07:03      3.4w/kg        270w        
@@ -98,7 +98,7 @@ partyControl.max = -1, count = 36, fudge = 1.0000
  36  Maria Nyberg  SZ  1:15:27      3.3w/kg        181w        
  37  Bart Boersma  -  1:15:28      3.5w/kg        235w        
  38  zwift Doyoung  -  1:16:19      3.2w/kg        196w        
- 39  Mans Bergenzaun  Team BTC  1:18:41      2.8w/kg        216w        
+ 39  Mans Bergenzaun  TEAM BTC  1:18:41      2.8w/kg        216w        
 partyControl.max = -1, count = 40, fudge = 1.0000
 
 
@@ -114,7 +114,7 @@ partyControl.max = -1, count = 40, fudge = 1.0000
   10  Scarlett Parker                  ART                              0/0         0/0         4/36        0/0        36         
   11  Yukio Bergholdt                  -                                0/0         0/0         5/35        0/0        35         
   12  Shaun Corbin Nashville           DIRT                             1/35        0/0         0/0         0/0        35         
-  13  Bruch Wu_______                  -                                0/0         0/0         6/34        0/0        34         
+  13  Bruch Wu                         -                                0/0         0/0         6/34        0/0        34         
   14  Darryl Forbes                    DIRT                             2/34        0/0         0/0         0/0        34         
   15  J. Jan                           -                                0/0        14/8        15/25        0/0        33         
   16  Carson Shedd                     DIRT                             0/0         0/0         8/32        0/0        32         
@@ -182,7 +182,7 @@ partyControl.max = -1, count = 40, fudge = 1.0000
   78  zwift Doyoung                    -                                0/0         0/0        38/2         0/0        2          
   79  Ko Yama                          -                               34/2         0/0         0/0         0/0        2          
   80  Andrew Hare                      (NRCCCTTT)                       0/0        20/2         0/0         0/0        2          
-  81  Mans Bergenzaun                  Team BTC                         0/0         0/0        39/1         0/0        1          
+  81  Mans Bergenzaun                  TEAM BTC                         0/0         0/0        39/1         0/0        1          
   82  Anne On                          -                               35/1         0/0         0/0         0/0        1          
   83  Robb C                           -                                0/0        21/1         0/0         0/0        1          
 
