@@ -12,7 +12,7 @@
  12  Leo Leo Diaz  -  10.504    786w  10.7wkg
  13  Derek Sawyer  [GRIT][Rippers]  10.531    773w  10.3wkg
  14  Greg Langman  DIRT  10.565    818w  11.6wkg
- 15  Rafa Dzieko ski  ZTPL.CC  10.630    843w  11.2wkg
+ 15  Rafa Dzieko  ski ZTPL.CC  10.630    843w  11.2wkg
  16  Ian Bundy  DIRT  10.643    905w  9.7wkg
  17  matsushige hideo  -  10.752    635w  9.8wkg
  18  Craig... .S Velo  Sheppey Velo  10.765    729w  8.5wkg
