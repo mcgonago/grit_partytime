@@ -1,0 +1,305 @@
+
+| #    | name                      | team                | time     | watts    | wpkg |
++------+---------------------------+---------------------+----------+----------+------|
+| 1    | A NakaoJPN                | -                   | 06:57    | 303w     | 4.7  |
+| 2    | Dominik Lugmair           | TeamODZ             | 07:02    | 362w     | 4.5  |
+| 3    | Chris M                   | B4H                 | 07:10    | 349w     | 4.5  |
+| 4    | Renfrew Bunch             | [Scotland]          | 07:13    | 324w     | 4.6  |
+| 5    | John Donovan              | -                   | 07:13    | 331w     | 4.6  |
+| 6    | Owen McGonagle            | GRIT                | 07:18    | 308w     | 4.5  |
+| 7    | Jim Griffin               | VEGAN               | 07:25    | 314w     | 4.2  |
+| 8    | M Vesty                   | (Chevin) BMCR C     | 07:25    | 280w     | 4.4  |
+| 9    | Ron Mar                   | -                   | 07:30    | 302w     | 4.2  |
+| 10   | Shaun Corbin Nashville    | DIRT                | 07:31    | 273w     | 4.2  |
+| 11   | Philip Morrison           | BRC                 | 07:31    | 328w     | 4.3  |
+| 12   | Peder Thomsen             | -                   | 07:32    | 334w     | 4.1  |
+| 13   | Sutthikiat Bunpatt        | -                   | 07:32    | 276w     | 4.2  |
+| 14   | Brice GDY                 | -                   | 07:33    | 310w     | 4.3  |
+| 15   | Leigh Hewerdine           | -                   | 07:35    | 303w     | 4.2  |
+| 16   | J B #2                    | BCC - Bees          | 07:40    | 333w     | 4.2  |
+| 17   | To Geeme                  | MUSSARA VCT         | 07:41    | 310w     | 4.0  |
+| 18   | Eoin Waldron              | MVRL                | 07:45    | 296w     | 4.2  |
+| 19   | Nicolas Baecke            | BZR cycling team    | 07:46    | 273w     | 4.1  |
+| 20   | Mark O'Connell            | -                   | 07:48    | 282w     | 4.0  |
+| 21   | Steven Allington          | -                   | 07:48    | 343w     | 3.9  |
+| 22   | Marcus Hyl__n             | -                   | 07:52    | 315w     | 4.1  |
+| 23   | James Braybrook           | -                   | 07:57    | 295w     | 4.1  |
+| 24   | Francois penalver         | -                   | 08:06    | 243w     | 4.1  |
+| 25   | Steve Bekker              | DIRT                | 08:09    | 274w     | 3.8  |
+| 26   | Jeff Bratteson            | DIRT                | 08:12    | 332w     | 3.7  |
+| 27   | Simone Limone             | (WaspsCC)           | 08:12    | 319w     | 3.6  |
+| 28   | Mike Roth                 | -                   | 08:23    | 318w     | 3.6  |
+| 29   | Simon Lever               | -                   | 08:34    | 282w     | 3.5  |
+| 30   | Alexander E               | -                   | 08:35    | 258w     | 3.6  |
+| 31   | Calum Scott               | DIRT                | 08:35    | 248w     | 3.5  |
+| 32   | Corey Selland             | DIRT                | 08:49    | 290w     | 3.4  |
+| 33   | Michael Mcgoldrick        | Hopey               | 08:53    | 295w     | 3.4  |
+| 34   | W icksy                   | JayZee              | 08:54    | 244w     | 3.3  |
+| 35   | Steffan Taylor            | Islington CC        | 08:54    | 230w     | 3.3  |
+| 36   | Brad Tierney              | Hopey               | 08:56    | 275w     | 3.2  |
+| 37   | Greg Michilsens           | BZR cycling team    | 09:15    | 230w     | 3.3  |
+| 38   | Dave Allen                | BRC                 | 09:16    | 246w     | 3.3  |
+| 39   | Simon Hart                | Team CLS            | 09:20    | 239w     | 3.2  |
+| 40   | Martin Ruddy              | BRC                 | 09:44    | 226w     | 2.9  |
+| 41   | Guy Bramley               | BMTR                | 10:27    | 238w     | 2.9  |
+partyControl.max = -1, count = 42, fudge = 1.0000
+
+
+
+| #    | name                      | team                | time     | watts    | wpkg |
++------+---------------------------+---------------------+----------+----------+------|
+| 1    | A NakaoJPN                | -                   | 06:57    | 303w     | 4.7  |
+| 2    | Dominik Lugmair           | TeamODZ             | 07:02    | 362w     | 4.5  |
+| 3    | Chris M                   | B4H                 | 07:10    | 349w     | 4.5  |
+| 4    | Renfrew Bunch             | [Scotland]          | 07:13    | 324w     | 4.6  |
+| 5    | John Donovan              | -                   | 07:13    | 331w     | 4.6  |
+| 6    | Owen McGonagle            | GRIT                | 07:18    | 308w     | 4.5  |
+| 7    | Jim Griffin               | VEGAN               | 07:25    | 314w     | 4.2  |
+| 8    | M Vesty                   | (Chevin) BMCR C     | 07:25    | 280w     | 4.4  |
+| 9    | Ron Mar                   | -                   | 07:30    | 302w     | 4.2  |
+| 10   | Shaun Corbin Nashville    | DIRT                | 07:31    | 273w     | 4.2  |
+| 11   | Philip Morrison           | BRC                 | 07:31    | 328w     | 4.3  |
+| 12   | Peder Thomsen             | -                   | 07:32    | 334w     | 4.1  |
+| 13   | Sutthikiat Bunpatt        | -                   | 07:32    | 276w     | 4.2  |
+| 14   | Brice GDY                 | -                   | 07:33    | 310w     | 4.3  |
+| 15   | Leigh Hewerdine           | -                   | 07:35    | 303w     | 4.2  |
+| 16   | J B #2                    | BCC - Bees          | 07:40    | 333w     | 4.2  |
+| 17   | To Geeme                  | MUSSARA VCT         | 07:41    | 310w     | 4.0  |
+| 18   | Eoin Waldron              | MVRL                | 07:45    | 296w     | 4.2  |
+| 19   | Nicolas Baecke            | BZR cycling team    | 07:46    | 273w     | 4.1  |
+| 20   | Mark O'Connell            | -                   | 07:48    | 282w     | 4.0  |
+| 21   | Steven Allington          | -                   | 07:48    | 343w     | 3.9  |
+| 22   | Marcus Hyl__n             | -                   | 07:52    | 315w     | 4.1  |
+| 23   | James Braybrook           | -                   | 07:57    | 295w     | 4.1  |
+| 24   | Francois penalver         | -                   | 08:06    | 243w     | 4.1  |
+| 25   | Steve Bekker              | DIRT                | 08:09    | 274w     | 3.8  |
+| 26   | Jeff Bratteson            | DIRT                | 08:12    | 332w     | 3.7  |
+| 27   | Simone Limone             | (WaspsCC)           | 08:12    | 319w     | 3.6  |
+| 28   | Mike Roth                 | -                   | 08:23    | 318w     | 3.6  |
+| 29   | Simon Lever               | -                   | 08:34    | 282w     | 3.5  |
+| 30   | Alexander E               | -                   | 08:35    | 258w     | 3.6  |
+| 31   | Calum Scott               | DIRT                | 08:35    | 248w     | 3.5  |
+| 32   | Corey Selland             | DIRT                | 08:49    | 290w     | 3.4  |
+| 33   | Michael Mcgoldrick        | Hopey               | 08:53    | 295w     | 3.4  |
+| 34   | W icksy                   | JayZee              | 08:54    | 244w     | 3.3  |
+| 35   | Steffan Taylor            | Islington CC        | 08:54    | 230w     | 3.3  |
+| 36   | Brad Tierney              | Hopey               | 08:56    | 275w     | 3.2  |
+| 37   | Greg Michilsens           | BZR cycling team    | 09:15    | 230w     | 3.3  |
+| 38   | Dave Allen                | BRC                 | 09:16    | 246w     | 3.3  |
+| 39   | Simon Hart                | Team CLS            | 09:20    | 239w     | 3.2  |
+| 40   | Martin Ruddy              | BRC                 | 09:44    | 226w     | 2.9  |
+| 41   | Guy Bramley               | BMTR                | 10:27    | 238w     | 2.9  |
+partyControl.max = -1, count = 42, fudge = 1.0000
+
+
+
+| #    | name                      | team    | time      | watts    | wpkg |
++------+---------------------------+---------+-----------+----------+------|
+| 1    | Owen McGonagle            | GRIT    | 10.291    | 631w     | 9.5  |
+| 2    | Shaun Corbin Nashville    | DIRT    | 10.441    | 730w     | 11.3 |
+partyControl.max = -1, count = 3, fudge = 1.0000
+
+
+| #    | name                      | team                | race1    | race2    | race3    | race4    | plc/pts |
++------+---------------------------+---------------------+----------+----------+----------+----------+---------|
+| 1    | A NakaoJPN                | -                   | 1/41     | 1/41     | 0/0      | 0/0      | 82      |
+| 2    | Dominik Lugmair           | TeamODZ             | 2/40     | 2/40     | 0/0      | 0/0      | 80      |
+| 3    | Chris M                   | B4H                 | 3/39     | 3/39     | 0/0      | 0/0      | 78      |
+| 4    | Renfrew Bunch             | [Scotland]          | 4/38     | 4/38     | 0/0      | 0/0      | 76      |
+| 5    | John Donovan              | -                   | 5/37     | 5/37     | 0/0      | 0/0      | 74      |
+| 6    | Owen McGonagle            | GRIT                | 6/36     | 6/36     | 1/2      | 0/0      | 72      |
+| 7    | Jim Griffin               | VEGAN               | 7/35     | 7/35     | 0/0      | 0/0      | 70      |
+| 8    | M Vesty                   | (Chevin) BMCR C     | 8/34     | 8/34     | 0/0      | 0/0      | 68      |
+| 9    | Ron Mar                   | -                   | 9/33     | 9/33     | 0/0      | 0/0      | 66      |
+| 10   | Shaun Corbin Nashville    | DIRT                | 10/32    | 10/32    | 2/1      | 0/0      | 64      |
+| 11   | Philip Morrison           | BRC                 | 11/31    | 11/31    | 0/0      | 0/0      | 62      |
+| 12   | Peder Thomsen             | -                   | 12/30    | 12/30    | 0/0      | 0/0      | 60      |
+| 13   | Sutthikiat Bunpatt        | -                   | 13/29    | 13/29    | 0/0      | 0/0      | 58      |
+| 14   | Brice GDY                 | -                   | 14/28    | 14/28    | 0/0      | 0/0      | 56      |
+| 15   | Leigh Hewerdine           | -                   | 15/27    | 15/27    | 0/0      | 0/0      | 54      |
+| 16   | J B #2                    | BCC - Bees          | 16/26    | 16/26    | 0/0      | 0/0      | 52      |
+| 17   | To Geeme                  | MUSSARA VCT         | 17/25    | 17/25    | 0/0      | 0/0      | 50      |
+| 18   | Eoin Waldron              | MVRL                | 18/24    | 18/24    | 0/0      | 0/0      | 48      |
+| 19   | Nicolas Baecke            | BZR cycling team    | 19/23    | 19/23    | 0/0      | 0/0      | 46      |
+| 20   | Mark O'Connell            | -                   | 20/22    | 20/22    | 0/0      | 0/0      | 44      |
+| 21   | Steven Allington          | -                   | 21/21    | 21/21    | 0/0      | 0/0      | 42      |
+| 22   | Marcus Hyl__n             | -                   | 22/20    | 22/20    | 0/0      | 0/0      | 40      |
+| 23   | James Braybrook           | -                   | 23/19    | 23/19    | 0/0      | 0/0      | 38      |
+| 24   | Francois penalver         | -                   | 24/18    | 24/18    | 0/0      | 0/0      | 36      |
+| 25   | Steve Bekker              | DIRT                | 25/17    | 25/17    | 0/0      | 0/0      | 34      |
+| 26   | Jeff Bratteson            | DIRT                | 26/16    | 26/16    | 0/0      | 0/0      | 32      |
+| 27   | Simone Limone             | (WaspsCC)           | 27/15    | 27/15    | 0/0      | 0/0      | 30      |
+| 28   | Mike Roth                 | -                   | 28/14    | 28/14    | 0/0      | 0/0      | 28      |
+| 29   | Simon Lever               | -                   | 29/13    | 29/13    | 0/0      | 0/0      | 26      |
+| 30   | Alexander E               | -                   | 30/12    | 30/12    | 0/0      | 0/0      | 24      |
+| 31   | Calum Scott               | DIRT                | 31/11    | 31/11    | 0/0      | 0/0      | 22      |
+| 32   | Corey Selland             | DIRT                | 32/10    | 32/10    | 0/0      | 0/0      | 20      |
+| 33   | Michael Mcgoldrick        | Hopey               | 33/9     | 33/9     | 0/0      | 0/0      | 18      |
+| 34   | W icksy                   | JayZee              | 34/8     | 34/8     | 0/0      | 0/0      | 16      |
+| 35   | Steffan Taylor            | Islington CC        | 35/7     | 35/7     | 0/0      | 0/0      | 14      |
+| 36   | Brad Tierney              | Hopey               | 36/6     | 36/6     | 0/0      | 0/0      | 12      |
+| 37   | Greg Michilsens           | BZR cycling team    | 37/5     | 37/5     | 0/0      | 0/0      | 10      |
+| 38   | Dave Allen                | BRC                 | 38/4     | 38/4     | 0/0      | 0/0      | 8       |
+| 39   | Simon Hart                | Team CLS            | 39/3     | 39/3     | 0/0      | 0/0      | 6       |
+| 40   | Martin Ruddy              | BRC                 | 40/2     | 40/2     | 0/0      | 0/0      | 4       |
+| 41   | Guy Bramley               | BMTR                | 41/1     | 41/1     | 0/0      | 0/0      | 2       |
+
+
+
+| #    | name                 | team               | time     | watts    | wpkg |
++------+----------------------+--------------------+----------+----------+------|
+| 1    | Steve Tappan         | [GRIT]             | 06:23    | 371w     | 5.5  |
+| 2    | __STAR__             | -                  | 06:23    | 287w     | 5.4  |
+| 3    | Derek Sawyer         | [GRIT][Rippers]    | 06:23    | 384w     | 5.1  |
+| 4    | Espen Jogert         | -                  | 06:24    | 366w     | 5.4  |
+| 5    | Gerry Hernandez      | DIRT               | 06:24    | 299w     | 5.4  |
+| 6    | Rune Jogert          | -                  | 06:31    | 353w     | 5.0  |
+| 7    | Greg Langman         | DIRT               | 06:55    | 340w     | 4.8  |
+| 8    | Frank Larsen         | Vikings            | 06:56    | 328w     | 4.7  |
+| 9    | Tak Ina              | [JETT][GRIT]       | 06:57    | 254w     | 4.8  |
+| 10   | Mark Furth           | EVOLUTION          | 06:57    | 365w     | 4.6  |
+| 11   | Rob Fullerton        | GRIT               | 06:57    | 352w     | 4.6  |
+| 12   | Tiago Ribeiro        | -                  | 06:57    | 365w     | 4.6  |
+| 13   | Thomas Schr__der     | ZRG                | 06:57    | 392w     | 4.5  |
+| 14   | Bryn Griffiths       | -                  | 07:04    | 363w     | 4.4  |
+| 15   | Sarah Storey         | Vision             | 07:08    | 316w     | 4.6  |
+| 16   | Jonathan Girvan      | CTC                | 07:11    | 308w     | 4.5  |
+| 17   | Robbie de Klerk      | ZSUNR              | 07:13    | 376w     | 4.3  |
+| 18   | Alice Lethbridge     | HEINO RT           | 07:13    | 281w     | 4.5  |
+| 19   | Hans-Jurgen G        | -                  | 07:22    | 265w     | 4.4  |
+| 20   | Amanda Wendorff      | IRACELIKEAGIRL     | 07:29    | 270w     | 4.3  |
+| 21   | paul francis         | -                  | 07:53    | 270w     | 3.9  |
+| 22   | Leon Elmans          | -                  | 07:53    | 285w     | 4.0  |
+| 23   | Jacques Castel       | -                  | 08:00    | 274w     | 3.9  |
+| 24   | Mathieu Benhalima    | [PCO]              | 09:05    | 223w     | 3.4  |
+| 25   | Conor Verbruggen     | Team CRYO-GEN      | 09:10    | 216w     | 3.5  |
+| 26   | Linda Klein          | CRYO RDT           | 09:10    | 193w     | 3.4  |
+partyControl.max = -1, count = 27, fudge = 1.0000
+
+
+
+| #    | name                 | team               | time     | watts    | wpkg |
++------+----------------------+--------------------+----------+----------+------|
+| 1    | Steve Tappan         | [GRIT]             | 06:23    | 371w     | 5.5  |
+| 2    | __STAR__             | -                  | 06:23    | 287w     | 5.4  |
+| 3    | Derek Sawyer         | [GRIT][Rippers]    | 06:23    | 384w     | 5.1  |
+| 4    | Espen Jogert         | -                  | 06:24    | 366w     | 5.4  |
+| 5    | Gerry Hernandez      | DIRT               | 06:24    | 299w     | 5.4  |
+| 6    | Rune Jogert          | -                  | 06:31    | 353w     | 5.0  |
+| 7    | Greg Langman         | DIRT               | 06:55    | 340w     | 4.8  |
+| 8    | Frank Larsen         | Vikings            | 06:56    | 328w     | 4.7  |
+| 9    | Tak Ina              | [JETT][GRIT]       | 06:57    | 254w     | 4.8  |
+| 10   | Mark Furth           | EVOLUTION          | 06:57    | 365w     | 4.6  |
+| 11   | Rob Fullerton        | GRIT               | 06:57    | 352w     | 4.6  |
+| 12   | Tiago Ribeiro        | -                  | 06:57    | 365w     | 4.6  |
+| 13   | Thomas Schr__der     | ZRG                | 06:57    | 392w     | 4.5  |
+| 14   | Bryn Griffiths       | -                  | 07:04    | 363w     | 4.4  |
+| 15   | Sarah Storey         | Vision             | 07:08    | 316w     | 4.6  |
+| 16   | Jonathan Girvan      | CTC                | 07:11    | 308w     | 4.5  |
+| 17   | Robbie de Klerk      | ZSUNR              | 07:13    | 376w     | 4.3  |
+| 18   | Alice Lethbridge     | HEINO RT           | 07:13    | 281w     | 4.5  |
+| 19   | Hans-Jurgen G        | -                  | 07:22    | 265w     | 4.4  |
+| 20   | Amanda Wendorff      | IRACELIKEAGIRL     | 07:29    | 270w     | 4.3  |
+| 21   | paul francis         | -                  | 07:53    | 270w     | 3.9  |
+| 22   | Leon Elmans          | -                  | 07:53    | 285w     | 4.0  |
+| 23   | Jacques Castel       | -                  | 08:00    | 274w     | 3.9  |
+| 24   | Mathieu Benhalima    | [PCO]              | 09:05    | 223w     | 3.4  |
+| 25   | Conor Verbruggen     | Team CRYO-GEN      | 09:10    | 216w     | 3.5  |
+| 26   | Linda Klein          | CRYO RDT           | 09:10    | 193w     | 3.4  |
+partyControl.max = -1, count = 27, fudge = 1.0000
+
+
+
+| #    | name                 | team                  | time      | watts    | wpkg |
++------+----------------------+-----------------------+-----------+----------+------|
+| 1    | Darryl Forbes        | DIRT                  | 9.509     | 1029w    | 13.3 |
+| 2    | Yosuke Sakuma        | JETT                  | 9.808     | 828w     | 14.0 |
+| 3    | Steve Peplinski      | GRIT                  | 10.126    | 907w     | 11.8 |
+| 4    | Tak Ina              | [JETT][GRIT]          | 10.136    | 700w     | 13.2 |
+| 5    | Thomas Fraser        | Royal Navy Cycling    | 10.278    | 803w     | 10.7 |
+| 6    | Rob Fullerton        | GRIT                  | 10.292    | 918w     | 11.9 |
+| 7    | ALESSIO LEO          | CICLI STEFANELLI      | 10.319    | 888w     | 10.2 |
+| 8    | Bart Keizer          | BRT                   | 10.466    | 729w     | 11.0 |
+| 9    | Billy Guilford       | -                     | 10.487    | 598w     | 8.5  |
+| 10   | Leo Leo Diaz         | -                     | 10.504    | 786w     | 10.7 |
+| 11   | Derek Sawyer         | [GRIT][Rippers]       | 10.531    | 773w     | 10.3 |
+| 12   | Greg Langman         | DIRT                  | 10.565    | 818w     | 11.6 |
+| 13   | Rafa Dzieko          | ski ZTPL.CC           | 10.630    | 843w     | 11.2 |
+| 14   | Ian Bundy            | DIRT                  | 10.643    | 905w     | 9.7  |
+| 15   | matsushige hideo     | -                     | 10.752    | 635w     | 9.8  |
+| 16   | Craig... .S Velo     | Sheppey Velo          | 10.765    | 729w     | 8.5  |
+| 17   | Phillip Goulding     | FUSION CC             | 10.810    | 1046w    | 12.7 |
+| 18   | Dan Messina          | NaturalGrocers        | 10.824    | 895w     | 11.4 |
+| 19   | Seiichi Kaneko       | Team Fin's            | 10.993    | 636w     | 10.6 |
+| 20   | Guillaume Lafleur    | leMÉTIER .           | 11.001    | 840w     | 10.8 |
+| 21   | Franco Battiato      | Team Z TAZ            | 11.116    | 588w     | 8.6  |
+| 22   | an qishi             | -                     | 11.132    | 606w     | 9.8  |
+| 23   | Rasmus Rogvi         | DBR                   | 11.360    | 533w     | 7.6  |
+| 24   | kanyo plant          | Team CRYO-GEN         | 11.416    | 435w     | 6.8  |
+| 25   | Colin Rowlands       | -                     | 11.511    | 562w     | 7.5  |
+| 26   | david gulick         | -                     | 11.610    | 567w     | 6.6  |
+| 27   | Nicolas Daget        | -                     | 11.616    | 388w     | 5.5  |
+| 28   | Ray Diaz             | -                     | 11.742    | 245w     | 3.0  |
+| 29   | Kelly Toth           | CRCA/NYCC             | 11.845    | 677w     | 8.4  |
+| 30   | Ped Fesh             | -                     | 12.083    | 339w     | 4.0  |
+| 31   | Lars Rathje          | DBR                   | 13.755    | 502w     | 6.9  |
+partyControl.max = -1, count = 32, fudge = 1.0000
+
+
+| #    | name                 | team                  | race1    | race2    | race3    | race4    | plc/pts |
++------+----------------------+-----------------------+----------+----------+----------+----------+---------|
+| 1    | Steve Tappan         | [GRIT]                | 1/26     | 1/26     | 0/0      | 0/0      | 52      |
+| 2    | __STAR__             | -                     | 2/25     | 2/25     | 0/0      | 0/0      | 50      |
+| 3    | Derek Sawyer         | [GRIT][Rippers]       | 3/24     | 3/24     | 11/21    | 0/0      | 48      |
+| 4    | Tak Ina              | [JETT][GRIT]          | 9/18     | 9/18     | 4/28     | 0/0      | 46      |
+| 5    | Espen Jogert         | -                     | 4/23     | 4/23     | 0/0      | 0/0      | 46      |
+| 6    | Gerry Hernandez      | DIRT                  | 5/22     | 5/22     | 0/0      | 0/0      | 44      |
+| 7    | Rob Fullerton        | GRIT                  | 11/16    | 11/16    | 6/26     | 0/0      | 42      |
+| 8    | Rune Jogert          | -                     | 6/21     | 6/21     | 0/0      | 0/0      | 42      |
+| 9    | Greg Langman         | DIRT                  | 7/20     | 7/20     | 12/20    | 0/0      | 40      |
+| 10   | Frank Larsen         | Vikings               | 8/19     | 8/19     | 0/0      | 0/0      | 38      |
+| 11   | Mark Furth           | EVOLUTION             | 10/17    | 10/17    | 0/0      | 0/0      | 34      |
+| 12   | Darryl Forbes        | DIRT                  | 0/0      | 0/0      | 1/31     | 0/0      | 31      |
+| 13   | Yosuke Sakuma        | JETT                  | 0/0      | 0/0      | 2/30     | 0/0      | 30      |
+| 14   | Tiago Ribeiro        | -                     | 12/15    | 12/15    | 0/0      | 0/0      | 30      |
+| 15   | Steve Peplinski      | GRIT                  | 0/0      | 0/0      | 3/29     | 0/0      | 29      |
+| 16   | Thomas Schr__der     | ZRG                   | 13/14    | 13/14    | 0/0      | 0/0      | 28      |
+| 17   | Thomas Fraser        | Royal Navy Cycling    | 0/0      | 0/0      | 5/27     | 0/0      | 27      |
+| 18   | Bryn Griffiths       | -                     | 14/13    | 14/13    | 0/0      | 0/0      | 26      |
+| 19   | ALESSIO LEO          | CICLI STEFANELLI      | 0/0      | 0/0      | 7/25     | 0/0      | 25      |
+| 20   | Bart Keizer          | BRT                   | 0/0      | 0/0      | 8/24     | 0/0      | 24      |
+| 21   | Sarah Storey         | Vision                | 15/12    | 15/12    | 0/0      | 0/0      | 24      |
+| 22   | Billy Guilford       | -                     | 0/0      | 0/0      | 9/23     | 0/0      | 23      |
+| 23   | Leo Leo Diaz         | -                     | 0/0      | 0/0      | 10/22    | 0/0      | 22      |
+| 24   | Jonathan Girvan      | CTC                   | 16/11    | 16/11    | 0/0      | 0/0      | 22      |
+| 25   | Robbie de Klerk      | ZSUNR                 | 17/10    | 17/10    | 0/0      | 0/0      | 20      |
+| 26   | Rafa Dzieko          | ski ZTPL.CC           | 0/0      | 0/0      | 13/19    | 0/0      | 19      |
+| 27   | Ian Bundy            | DIRT                  | 0/0      | 0/0      | 14/18    | 0/0      | 18      |
+| 28   | Alice Lethbridge     | HEINO RT              | 18/9     | 18/9     | 0/0      | 0/0      | 18      |
+| 29   | matsushige hideo     | -                     | 0/0      | 0/0      | 15/17    | 0/0      | 17      |
+| 30   | Craig... .S Velo     | Sheppey Velo          | 0/0      | 0/0      | 16/16    | 0/0      | 16      |
+| 31   | Hans-Jurgen G        | -                     | 19/8     | 19/8     | 0/0      | 0/0      | 16      |
+| 32   | Phillip Goulding     | FUSION CC             | 0/0      | 0/0      | 17/15    | 0/0      | 15      |
+| 33   | Dan Messina          | NaturalGrocers        | 0/0      | 0/0      | 18/14    | 0/0      | 14      |
+| 34   | Amanda Wendorff      | IRACELIKEAGIRL        | 20/7     | 20/7     | 0/0      | 0/0      | 14      |
+| 35   | Seiichi Kaneko       | Team Fin's            | 0/0      | 0/0      | 19/13    | 0/0      | 13      |
+| 36   | Guillaume Lafleur    | leMÉTIER .           | 0/0      | 0/0      | 20/12    | 0/0      | 12      |
+| 37   | paul francis         | -                     | 21/6     | 21/6     | 0/0      | 0/0      | 12      |
+| 38   | Franco Battiato      | Team Z TAZ            | 0/0      | 0/0      | 21/11    | 0/0      | 11      |
+| 39   | an qishi             | -                     | 0/0      | 0/0      | 22/10    | 0/0      | 10      |
+| 40   | Leon Elmans          | -                     | 22/5     | 22/5     | 0/0      | 0/0      | 10      |
+| 41   | Rasmus Rogvi         | DBR                   | 0/0      | 0/0      | 23/9     | 0/0      | 9       |
+| 42   | kanyo plant          | Team CRYO-GEN         | 0/0      | 0/0      | 24/8     | 0/0      | 8       |
+| 43   | Jacques Castel       | -                     | 23/4     | 23/4     | 0/0      | 0/0      | 8       |
+| 44   | Colin Rowlands       | -                     | 0/0      | 0/0      | 25/7     | 0/0      | 7       |
+| 45   | david gulick         | -                     | 0/0      | 0/0      | 26/6     | 0/0      | 6       |
+| 46   | Mathieu Benhalima    | [PCO]                 | 24/3     | 24/3     | 0/0      | 0/0      | 6       |
+| 47   | Nicolas Daget        | -                     | 0/0      | 0/0      | 27/5     | 0/0      | 5       |
+| 48   | Ray Diaz             | -                     | 0/0      | 0/0      | 28/4     | 0/0      | 4       |
+| 49   | Conor Verbruggen     | Team CRYO-GEN         | 25/2     | 25/2     | 0/0      | 0/0      | 4       |
+| 50   | Kelly Toth           | CRCA/NYCC             | 0/0      | 0/0      | 29/3     | 0/0      | 3       |
+| 51   | Ped Fesh             | -                     | 0/0      | 0/0      | 30/2     | 0/0      | 2       |
+| 52   | Linda Klein          | CRYO RDT              | 26/1     | 26/1     | 0/0      | 0/0      | 2       |
+| 53   | Lars Rathje          | DBR                   | 0/0      | 0/0      | 31/1     | 0/0      | 1       |
+
+

@@ -1,0 +1,17 @@
+party set group B
+party kom unittest/test1.txt unittest/test1B.md race1
+party set snap B
+party set lockdown on
+party kom unittest/test1.txt unittest/test1C.md race2
+party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt unittest/test3B.md race3
+party show
+party reset list
+party set group A
+party set lockdown off
+party kom unittest/test1.txt unittest/test1D.md race1
+party set snap A
+party set lockdown on
+party kom unittest/test1.txt unittest/test1E.md race2
+party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt unittest/test3B.md race3
+party show
+quit

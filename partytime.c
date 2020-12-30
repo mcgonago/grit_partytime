@@ -16,7 +16,7 @@
 #include "tracebuffer.h"
 #include "timeline.h"
 
-#define CONSOLE_OUTPUT (1)
+//#define CONSOLE_OUTPUT (1)
 
 static volatile int gdbStop = 1;
 
@@ -797,6 +797,14 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "J B #2");
       strcpy(timeLineInfo->team, "BCC - Bees");
    }
+#if 0
+   else if (strstr(tmp, "J B") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "J B");
+      strcpy(timeLineInfo->team, "-");
+   }
+#endif
    else if (strstr(tmp, "Sebastien Loir") != 0)
    {
       teamFound = 1;
@@ -1036,16 +1044,23 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "Hans-Jurgen G");
       strcpy(timeLineInfo->team, "-");
    }
-   else if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(timeLineInfo->team, "SWOZR") != 0))
+   else if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(team, "SWOZR") != 0))
    {
       strcpy(timeLineInfo->name, "J B #1");
       strcpy(timeLineInfo->team, "SWOZR");
    }
-   else if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(timeLineInfo->team, "Bees") != 0))
+   else if ((strstr(timeLineInfo->name, "J B") != 0) && (strstr(team, "Bees") != 0))
    {
       strcpy(timeLineInfo->name, "J B #2");
       strcpy(timeLineInfo->team, "BCC - Bees");
    }
+#if 0
+   else if (strstr(timeLineInfo->name, "J B") != 0)
+   {
+      strcpy(timeLineInfo->name, "J B");
+      strcpy(timeLineInfo->team, "-");
+   }
+#endif
    else if (strstr(timeLineInfo->name, "Sebastien Loir") != 0)
    {
       strcpy(timeLineInfo->name, "Sebastien Loir");
@@ -1195,13 +1210,14 @@ void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
 
 int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId)
 {
-   int i;
+   int i, j;
    Link_t *ptr;
    TimeLineInfo_t *timeLineInfo;
    TimeLineInfo_t *tempInfo;
    
    tempInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
-   NameInsert(tempInfo, name);
+   // NameInsert(tempInfo, name);
+   strcpy(tempInfo->name, name);
 
    if (partyControl.groupId == GROUP_A)
    {
@@ -1210,6 +1226,29 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
          if (athleteA[i].enabled == 0)
          {
             /* SKIP - did not find A Athlete */
+
+            /* NO - for A check - if we ALSO do NOT see in B - we throw in A pool !!! */
+            for (j = 0; j < MAX_ATHLETES; j++)
+            {
+               if (athleteB[j].enabled == 0)
+               {
+                  /* KEEP - not in A, not in B */
+                  return 0;
+               }
+
+               if (strcmp(athleteB[j].name, tempInfo->name) == 0)
+               {
+                  /* NOT an A, but is a B - therefor, SKIP!!! */
+                  return 1;
+               }
+            }
+
+
+            if (j == MAX_ATHLETES)
+            {
+               (pInfo->print_fp)("INTERNAL ERROR: Could not ignore - too many athletes!!!\n");
+            }
+
             return 1;
          }
 
@@ -1222,12 +1261,18 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
    }
    else
    {
-#if 1
       for (i = 0; i < MAX_ATHLETES; i++)
       {
          if (athleteB[i].enabled == 0)
          {
             /* SKIP - did not find B Athlete */
+//            (pInfo->print_fp)("INFO: RIDER NOT FOUND: Info=%s\n", tempInfo->name);
+
+            if (strstr(tempInfo->name, "J B") != 0)
+            {
+               gdbStop = 1;
+            }
+
             return 1;
          }
 
@@ -1237,28 +1282,6 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
             return 0;
          }
       }
-#endif
-
-#if 0
-      ptr = (Link_t *)list->head;
-      while (ptr->next != NULL)
-      {
-         timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-         if ((strstr(timeLineInfo->name, tempInfo->name) != 0) && (timeLineInfo->groupId == groupId))
-         {
-            /* DO NOT skip - Athlete found in current B processing list */
-            return 0;
-         }
-
-         ptr = ptr->next;
-      }
-
-      if (partyControl.debug == 1)
-      {
-         (pInfo->print_fp)("INFO: RIDER NOT FOUND: %s\n", tempInfo->name);
-      }
-#endif   
    }
 
    if (i == MAX_ATHLETES)
@@ -1269,59 +1292,6 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
    return 1;
 }
 
-int AthleteSkipOrig(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId)
-{
-   int i;
-   Link_t *ptr;
-   TimeLineInfo_t *timeLineInfo;
-   TimeLineInfo_t *tempInfo;
-   
-   tempInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
-   NameInsert(tempInfo, name);
-
-   if (partyControl.groupId == GROUP_A)
-   {
-      /* ONLY skip an Athlete if processing GROUP_A and we DO NOT find the name in the B list (from previous SNAP) */
-      for (i = 0; i < MAX_ATHLETES; i++)
-      {
-         if (athleteB[i].enabled == 0)
-         {
-            /* DO NOT skip - Athlete not found in current B processing list */
-            return 0;
-         }
-
-         if (strcmp(athleteB[i].name, tempInfo->name) == 0)
-         {
-            /* SKIP - this is a B (previously snapped) Athlete */
-            return 1;
-         }
-      }
-   }
-   else
-   {
-      ptr = (Link_t *)list->head;
-      while (ptr->next != NULL)
-      {
-         timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-         if ((strstr(timeLineInfo->name, tempInfo->name) != 0) && (timeLineInfo->groupId == groupId))
-         {
-            /* DO NOT skip - Athlete found in current B processing list */
-            return 0;
-         }
-
-         ptr = ptr->next;
-      }
-
-      if (partyControl.debug == 1)
-      {
-         (pInfo->print_fp)("INFO: RIDER NOT FOUND: %s\n", tempInfo->name);
-      }
-   }
-   
-   /* Skip - Athlete not part of current B processing list */
-   return 1;
-}
 
 void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
 {
@@ -2070,14 +2040,16 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      timeLineInfo->groupId = groupId;
                   }
 
+#if 0
                   if (partyControl.lockDown == 1)
                   {
-                     if (AthleteSkip(pInfo, listTimeLine, tmpName, groupId))
+                     if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
                      {
                         continueInLoop = 0;
                         break;
                      }
                   }
+#endif
                }
 
                if (strcmp(raceName, "race1") == 0)
@@ -2236,6 +2208,9 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
                   else
                   {
+                     /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+                     NameDouble(pInfo, timeLineInfo);
+
                      if (partyControl.lockDown == 1)
                      {
                         if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
@@ -2250,8 +2225,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                         break;
                      }
 
-                     /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
-                     NameDouble(pInfo, timeLineInfo);
 
                      TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
                   }
@@ -2620,7 +2593,7 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
    }
 
 #ifndef CONSOLE_OUTPUT
-   sprintf(header, "%s", "#  name   team   Grp  time  watts  wpkg  plc/pts");
+   sprintf(header, "%s", "#  name   team   race1  race2  race3  race4  plc/pts");
    ColumnStore(pInfo, header);
 
    sprintf(header, "%s", "-  ----   ----   ---  ----  -----  ----  -------");
@@ -3025,8 +2998,6 @@ void AthleteReset(CLI_PARSE_INFO *pInfo)
 void ColumnReset(CLI_PARSE_INFO *pInfo)
 {
    int i;
-
-   AthleteReset(pInfo);
 
    for (i = 0; i < MAX_MY_COLUMNS; i++)
    {

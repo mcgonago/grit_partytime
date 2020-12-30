@@ -1,0 +1,10 @@
+#party set debug on
+party set max 52
+party set best 3
+party set bonus on
+party following2 database/_posts/2020/12/08/2020-12-08-Smack-down-continues-on-Petit_following.txt database/_posts/2020/12/08/2020-12-08-Smack-down-continues-on-Petit_following_columns.md race1
+party kom database/_posts/2020/12/09/2020-12-09-Another-Innsbruck_results.txt database/_posts/2020/12/09/2020-12-09-Another-Innsbruck_results_columns.md race2
+party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints_columns.md race3
+party results database/_posts/2020/11/29/2020-12-11-Jungle-Circuit-Plus-Second-Week-Recap_results.txt database/_posts/2020/11/29/2020-12-11-Jungle-Circuit-Plus-Second-Week-Recap_results_columns.md race4
+party show
+quit
