@@ -1,0 +1,305 @@
+
+
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (36)
+    Unfiltered (36)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+36 power metrics yet to be processed in a queue of 71,467
+Tempo(ish) Thursday presented by GRIT
+Today 05:50
+London Classique 60 minutes
+All riders visible Late joining
+5min and 20min CEVAZ limits apply
+No ZPower winners
+13.7km106m
+0.0km2.5km5.0km7.5km10.0km12.5km15.0km17.5km20.0km22.5km25.0km27.5km30.0km32.5km35.0km37.5km40.0km42.5km
+200m
+100 miles
+Madness
+1
+2
+3
+4
+5
+6
+S
+B Distance: 43.2km Elevation Gain: 217m Strava route
+Next Update in 4 minutes
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Forward Sprint	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+B 	17	
+Jonny Bullen
+	
+9.897
+1117w 15.5wkg
+	Power
+B 	7	
+Gabriel Mathisen
+GRIT
+	
+10.223
+799w 12.9wkg
+	Power
+B 	26	
+Nikolay Shevtsov
+	
+10.304
+870w 10.5wkg
+	Power
+B 	24	
+Paul Ecobichon (BRT Session Beers)
+BRT
+	
+10.341
+810w 11.9wkg
+	Power
+B 	35	
+Paul Graham
+	
+10.356
+692w 9.5wkg
+	Power
+B 	32	
+Alex Harris (CRYO-GEN Gulls)
+Team CRYO-GEN
+	
+10.409
+662w 9.7wkg
+	Power
+B 	2	
+Steve Tappan
+GRIT
+	
+10.410
+675w 9.9wkg
+	Power
+B 	30	
+Owen McGonagle [GRIT]
+GRIT
+	
+10.483
+681w 10.0wkg
+	Power
+B 	16	
+Paul O Connell (Pioneers)
+WTRL
+	
+10.522
+768w 11.3wkg
+	Power
+B 	8	
+ALESSIO LEO (Cicli Stefanelli )
+CICLI STEFANELLI
+	
+10.606
+841w 9.7wkg
+	Power
+B 	29	
+Greg Langman
+DIRT
+	
+10.632
+852w 12.0wkg
+	Power
+B 	23	
+Michael DeFelice // NYCC-R 5744
+CRCA/NYCC
+	
+10.722
+707w 10.7wkg
+	Power
+B 	10	
+Shaun Corbin Nashville (DIRTy GRIT)
+DIRT
+	
+10.775
+818w 12.7wkg
+	Power
+B 	34	
+Mark Fenton Pro Vision RT
+Pro-Vision
+	
+10.831
+790w 10.7wkg
+	Power
+B 	12	
+Ste Huddleston8167
+TBR Racing
+	
+10.834
+661w 9.6wkg
+	Power
+B 	1	
+Rob Fullerton
+GRIT
+	
+10.866
+894w 11.6wkg
+	Power
+B 	14	
+Cav Caven(CCI)
+	
+10.866
+762w 12.7wkg
+	Power
+B 	31	
+sergio navarro de cadiz
+	
+10.936
+735w 10.1wkg
+	Power
+B 	21	
+Jaroslav Kovacic #2 (WEz_)
+PPRteam
+	
+11.002
+563w 8.2wkg
+	Power
+B 	19	
+Franco Battiato
+Team Z TAZ
+	
+11.068
+675w 9.9wkg
+	Power
+B 	18	
+Andy Batkin
+	
+11.081
+570w 8.6wkg
+	Power
+B 	27	
+Tristan Longworth
+	
+11.120
+768w 8.7wkg
+	Power
+B 	5	
+Egon Ivanjšek (PPR Team)
+PPRteam
+	
+11.166
+683w 9.6wkg
+	Power
+B 	11	
+David Macivor
+WLClarion
+	
+11.199
+622w 8.9wkg
+	Power
+B 	22	
+Paul Barfoot
+	
+11.279
+557w 7.0wkg
+	Power
+B 	6	
+Chris Dominey
+	
+11.479
+595w 8.6wkg
+	Power
+B 	33	
+Noel Osullivan - Athlon CC
+ACC
+	
+11.525
+495w 7.6wkg
+	Power
+B 	9	
+Tom Davey
+	
+11.623
+570w 7.8wkg
+	Power
+B 	36	
+Chris Howarth
+	
+11.659
+389w 5.7wkg
+	Power
+B 	4	
+Sean Kennedy
+	
+11.703
+671w 8.9wkg
+	Power
+B 	20	
+Jason Perkins
+	
+11.935
+387w 5.3wkg
+	Power
+B 	3	
+Calum Scott
+DIRT
+	
+12.478
+374w 5.3wkg
+	Power
+B 	28	
+Kim Nami
+	
+12.604
+309w 5.6wkg
+	Power
+B 	13	
+Alejandro Barca Varela
+	
+12.787
+778w 10.4wkg
+	Power
+B 	25	
+Elinor Barker
+	
+12.817
+229w 4.1wkg
+	Power
+B 	15	
+Matthew Currie (Athlon Racing)
+ACC
+	
+13.042
+252w 3.9wkg
+	Power
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+

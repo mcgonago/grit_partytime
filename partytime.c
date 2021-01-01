@@ -1871,11 +1871,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
           (partyMode & PARTY_RESULTS) ||
           (partyMode & PARTY_RESULTS_2))
       {
-         if (((timeLine[0] == 'B') || (timeLine[0] == 'A')) && 
+         if (((timeLine[0] == 'A') || (timeLine[0] == 'B') || (timeLine[0] == 'C') || (timeLine[0] == 'D')) && 
              (((timeLine[1] == ' ') && (timeLine[2] == ' ')) || (timeLine[1] == '\n')) &&
              (strstr(timeLine, "Distance") == NULL))
          {
-            if (timeLine[0] == 'B')
+            if ((timeLine[0] == 'B') || (timeLine[0] == 'C') || (timeLine[0] == 'D'))
             {
                groupId = GROUP_B;
             }
@@ -1891,7 +1891,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
             if (partyControl.lockDown == 0)
             {
-               if ((timeLine[0] == 'B') && 
+               if (((timeLine[0] == 'B') || (timeLine[0] == 'C') || (timeLine[0] == 'D')) &&
                    (partyControl.groupId == GROUP_A))
                {
                   goIntoLoop = 0;
@@ -2039,17 +2039,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   {
                      timeLineInfo->groupId = groupId;
                   }
-
-#if 0
-                  if (partyControl.lockDown == 1)
-                  {
-                     if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
-                     {
-                        continueInLoop = 0;
-                        break;
-                     }
-                  }
-#endif
                }
 
                if (strcmp(raceName, "race1") == 0)
@@ -2332,7 +2321,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   // Break if we see garbage
-                  if ((tmp[0] != 'B') && (tmp[0] != 'A'))
+                  if ((tmp[0] != 'A') && (tmp[0] != 'B') && (tmp[0] != 'C') && (tmp[0] != 'D'))
                   {
                      continueInLoop = 0;
                      break;
@@ -2340,33 +2329,20 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                   if (partyControl.lockDown == 0)
                   {
-                     if ((tmp[0] == 'B') && 
+                     if (((tmp[0] == 'B') || (tmp[0] == 'C') || (tmp[0] == 'D')) && 
                          (partyControl.groupId == GROUP_A))
                      {
-#if 0
-                        /* Put count back */
-                        count -= 1;
-
-                        /* Free up entry */
-                        TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
-#endif
                         continueInLoop = 0;
                         break;
                      }
                      else if ((tmp[0] == 'A') && 
                               (partyControl.groupId == GROUP_B))
                      {
-#if 0
-                        /* Put count back */
-                        count -= 1;
-
-                        /* Free up entry */
-                        TimeLineInfoFree(pInfo, listTimeLine, timeLineInfo);
-#endif
                         continueInLoop = 0;
                         break;
                      }
                   }
+
                }
             }
          }
@@ -2608,13 +2584,10 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
 
       timeLineInfo = (TimeLineInfo_t *)currInfo->me;
 
-      if (partyControl.clip == 1)
+      if ((partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
       {
-         if (timeLineInfo->numRaces < 2)
-         {
-            ptr = ptr->next;
-            continue;
-         }
+         ptr = ptr->next;
+         continue;
       }
 
 #if 0

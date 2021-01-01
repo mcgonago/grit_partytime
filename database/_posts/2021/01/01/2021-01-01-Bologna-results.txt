@@ -1,0 +1,293 @@
+
+
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (35)
+    Unfiltered (35)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+35 power metrics yet to be processed in a queue of 68,954
+GRIT - Mountain Route
+Today 05:50
+Bologna Time Trial km
+All riders visible Late joining No TT bikes
+5min and 20min CEVAZ limits apply
+No ZPower winners
+0.0km2.0km4.0km6.0km8.0km10.0km12.0km14.0km16.0km18.0km20.0km22.0km24.0km
+500m
+100 miles
+Madness
+Bologna Climb
+2.1km, 10% avg
+Bologna Climb
+2.1km, 10% avg
+1
+2
+B Distance: 24.6km Elevation Gain: 512m Strava route
+Next Update in 4 minutes
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Time 	avg	watts	NP 	20m 	5m 	1m 	30s 	15s 		Avg	Max 		Gain 	
+B 		
+yk ibk
+	
+45:59
+	3.8w/kg	248w							65.0kg	157bpm		177cm		
+B 		
+keisuke abo [JETT]
+JETT
+	
+46:05
++5.312s
+	4.0w/kg	217w							54.0kg	143bpm		167cm		
+B 		
+Gabriel Mathisen
+GRIT
+	
+46:19
++19.416s
+	3.7w/kg	232w							62.0kg	139bpm		178cm		
+B 	4	
+joe mullins
+	
+46:39
++39.813s
+	3.7w/kg	279w							74.8kg	154bpm		185cm		
+B 	5	
+Peerapong Ladngern
+	
+46:45
++45.801s
+	3.5w/kg	243w							70.0kg	122bpm		174cm		
+B 	6	
+Gray Walker
+teamWKG
+	
+46:55
++55.824s
+	3.6w/kg	227w							63.5kg	126bpm		182cm		
+B 	7	
+SammyG (EVO EXPRESSO)
+EVOLUTION
+	
+47:24
++01:24
+	3.5w/kg	230w							66.0kg	189bpm		181cm		
+B 	8	
+tak ina[JETT]
+JETT
+	
+47:26
++01:26
+	3.4w/kg	182w							53.0kg	130bpm		162cm		
+B 	9	
+Jacob Darlison
+	
+47:33
++01:33
+	3.5w/kg	251w							72.0kg			181cm		
+B 	10	
+Lloyd Billingham
+	
+47:47
++01:47
+	3.7w/kg	258w							70.0kg			188cm		
+B 	11	
+sid vicious
+	
+47:50
++01:50
+	3.3w/kg	243w							73.0kg	158bpm		180cm		
+B 	12	
+LEADER: Rob Fullerton
+GRIT
+	
+47:51
++01:51
+	3.3w/kg	253w							77.0kg	132bpm		178cm		
+B 	13	
+Sergio Romoli
+	
+47:53
++01:53
+	3.4w/kg	257w							75.0kg			174cm		
+B 	14	
+Kei Kinugawa(balba- H)
+	
+47:53
++01:53
+	3.5w/kg	200w							58.0kg			169cm		
+B 	15	
+Joeri Franssen
+	
+47:58
++01:58
+	3.3w/kg	247w							74.0kg			183cm		
+B 	16	
+LEADER: Owen McGonagle [GRIT]
+GRIT
+	
+48:04
++02:04
+	3.4w/kg	228w							68.0kg	126bpm		170cm		
+B 	17	
+Steve Lloyd (Team Absolute Tri)
+A.Tri
+	
+48:10
++02:10
+	3.4w/kg	246w							72.0kg			182cm		
+B 	18	
+masaru miura
+	
+48:49
++02:50
+	3.6w/kg	232w												
+B 	19	
+Steve Cramp (EVO Vortex 2)
+EVOLUTION
+	
+48:54
++02:54
+	3.4w/kg	241w							71.2kg	153bpm		180cm		
+B 	20	
+Geir Erling Nilsberg
+Innovation
+	
+48:57
++02:57
+	3.6w/kg	270w							76.0kg	139bpm		182cm		
+B 	21	
+vito pelo(ITA)
+Team Italy
+	
+49:20
++03:20
+	3.4w/kg	211w							62.0kg	142bpm		177cm		
+B 	22	
+Ramon Stefanelli
+	
+49:25
++03:25
+	3.2w/kg	251w							79.0kg	157bpm		186cm		
+B 	23	
+John Crawshaw [Cryo-gen]
+Team CRYO-GEN
+	
+49:34
++03:35
+	3.3w/kg	205w												
+B 	24	
+Adam Flowers (Team CLS Aces 1)
+Team CLS
+	
+49:36
++03:36
+	3.1w/kg	220w							70.0kg	159bpm		167cm		
+B 	25	
+Jesper Bak
+	
+50:07
++04:07
+	3.3w/kg	227w							69.0kg	151bpm		176cm		
+B 	26	
+Richard Gandy
+	
+50:08
++04:08
+	3.2w/kg	262w							82.0kg	151bpm		188cm		
+B 	27	
+Matt Aston
+	
+50:20
++04:20
+	3.2w/kg	230w							72.0kg	129bpm		183cm		
+B 	28	
+Paweł Kochel
+	
+50:23
++04:23
+	3.4w/kg	224w							66.0kg	173bpm		178cm		
+B 	29	
+Alastair Knockton
+	
+50:51
++04:51
+	3.2w/kg	206w							63.5kg	152bpm		167cm		
+B 	30	
+Rich Washington (CICC B)
+CICC
+	
+51:07
++05:08
+	3.3w/kg	210w							64.0kg	158bpm		182cm		
+B 	31	
+Paul Cartwright
+WWNR
+	
+51:21
++05:21
+	3.1w/kg	246w							80.0kg	131bpm		178cm		
+B 	32	
+Luis Carvalhinho
+Ultras Sao Mamede
+	
+51:49
++05:49
+	3.4w/kg	240w							70.0kg	77bpm		172cm		
+B 	33	
+Grandullon GRANDULLÓN
+	
+53:05
++07:05
+	3.1w/kg	247w							80.0kg	142bpm				
+B 	34	
+.Matze
+	
+54:58
++08:58
+	3.0w/kg	212w												
+B 	35	
+paul canham
+	
+1:03:08
++17:08
+	2.4w/kg	180w							76.2kg	145bpm				
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+
+
