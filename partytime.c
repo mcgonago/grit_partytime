@@ -2293,7 +2293,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   AddSpace(tmp2, tmp);
                   RemoveWpkg(pInfo, tmp2);
 #ifdef CONSOLE_OUTPUT
-                  (pInfo->print_fp)("%s", tmp2);
+                  (pInfo->print_fp)("%s\n", tmp2);
                   fprintf(fp_out, "%s\n", tmp2);
 #else
                   outIdx += sprintf(&outStr[outIdx], "%s", tmp2);

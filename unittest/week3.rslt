@@ -1,141 +1,174 @@
-  1  Lance Anderson  [GRIT]  06:32    342w  5.5wkg
-  2  Gabriel Mathisen  [VEGAN][GRIT]  06:37    342w  5.5wkg
-  3  Bernie Lacourciere  GET-SET  06:37    312w  5.1wkg
-  4  Derek Sawyer  [GRIT][Rippers]  06:39    380w  5.1wkg
-  5  Yuma Jibiki  -  06:40    303w  5.4wkg
-  6  Jure Majdic  -  06:40    414w  5.0wkg
-  7  Steve Tappan  [GRIT]  06:41    373w  5.5wkg
-  8  Yusuke Saeki  (SBC Vertex Racing Team)    06:41    335w  5.2wkg
-  9  Owen McGonagle  GRIT  06:42    338w  5.1wkg
- 10  Gareth Greeves  Giant Helston  06:42    386w  5.1wkg
- 11  Korea Marc  -  06:42    324w  5.0wkg
- 12  Steve Peplinski  GRIT  06:46    359w  4.7wkg
- 13  Tak Ina  [JETT][GRIT]  06:48    268w  5.1wkg
- 14  Rob Fullerton  GRIT  06:49    364w  4.7wkg
- 15  Miles Askew  TR  06:57    351w  4.8wkg
- 16  Andrew Steel  -  06:58    343w  5.0wkg
- 17  A Melon  -  06:58    302w  5.0wkg
- 18  Greg Langman  DIRT  07:00    339w  4.8wkg
- 19  Eric GONDERINGER  -  07:01    312w  4.7wkg
- 20  Takashi KAWAMOTO  (YOU CAN)    07:02    248w  4.9wkg
- 21  M Shinall  TTE  07:19    321w  4.6wkg
- 22  Marco Morais Tic Toc  -  07:20    304w  4.6wkg
- 23  Alan Brannan  GRIT  07:20    314w  4.4wkg
- 24  MHA KOH  JETT  07:23    276w  4.5wkg
- 25  James Braybrook  -  07:28    304w  4.2wkg
- 26  Barry Cooper  VCRT  07:31    311w  4.3wkg
- 27  Shaun Corbin Nashville  DIRT  07:31    270w  4.2wkg
- 28  J B #2  BCC - Bees  07:31    333w  4.2wkg
- 29  Des Muir  Team CRYO-GEN  07:33    334w  4.1wkg
- 30  Cecelia Taggart  DIRT  07:33    237w  4.2wkg
- 31  Kristian Fjeldbonde  -  07:35    310w  4.2wkg
- 32  Craig LeBlanc  [ ATP ]  07:35    279w  4.0wkg
- 33  Josh Clingan  DIRT  07:35    337w  3.9wkg
- 34  J. Kuhnle  DIRT  07:35    309w  4.4wkg
- 35  Daniel Shalkowski  DIRT  07:36    294w  4.3wkg
- 36  Dax Nelson  ¡DUX! TPA-FLA HERD  07:36    334w  4.1wkg
- 37  Matt Donovan  -  07:36    261w  4.1wkg
- 38  Doug Cowperthwaite  TeamODZ  07:36    272w  4.2wkg
- 39  John Jeffries  [AA Bikes][GRIT]  07:37    277w  4.2wkg
- 40  Jeff Bratteson  DIRT  07:46    358w  4.0wkg
- 41  Ped Fesh  -  07:50    329w  3.9wkg
- 42  Ron Mar  -  07:51    299w  4.1wkg
- 43  Jim Griffin  VEGAN  07:54    312w  4.2wkg
- 44  Rob McKechney  -  07:59    284w  4.0wkg
- 45  Steve Bekker  DIRT  08:01    274w  3.8wkg
- 46  Antonin L  -  08:02    271w  3.9wkg
- 47  T Sato  -  08:03    246w  3.8wkg
- 48  Kent Ryan  -  08:08    254w  3.7wkg
- 49  Mark Carroll  -  08:09    328w  3.7wkg
- 50  Lichia Yang  TTR  08:14    225w  3.8wkg
- 51  Michael Telpner  MGCC  08:16    258w  3.7wkg
- 52  Nick Shi  -  08:17    255w  3.6wkg
- 53  Daniel Connelly  DIRT  08:23    255w  3.5wkg
- 54  Dan Newton  WGT - Bynea CC  08:40    272w  3.4wkg
- 55  Calum Scott  DIRT  08:42    249w  3.5wkg
- 56  Saulius Serapinas  -  08:54    263w  3.3wkg
- 57  C S S B  VXM  09:05    165w  3.4wkg
- 58  david gulick  -  09:44    260w  3.0wkg
- 59  Jason OoI  -  09:50    198w  3.0wkg
- 60  Greg Rashford  #NOMAD  10:13    243w  2.8wkg
+  1  Lance Anderson  [GRIT]  06:32    342w  5.5
+  2  Gabriel Mathisen  [VEGAN][GRIT]  06:37    342w  5.5
+  3  Bernie Lacourciere  GET-SET  06:37    312w  5.1
+  4  Derek Sawyer  [GRIT][Rippers]  06:39    380w  5.1
+  5  Yuma Jibiki  -  06:40    303w  5.4
+  6  Jure Majdic  -  06:40    414w  5.0
+  7  Steve Tappan  [GRIT]  06:41    373w  5.5
+  8  Yusuke Saeki  (SBC Vertex Racing Team)    06:41    335w  5.2
+  9  Owen McGonagle  GRIT  06:42    338w  5.1
+ 10  Gareth Greeves  Giant Helston  06:42    386w  5.1
+ 11  Korea Marc  -  06:42    324w  5.0
+ 12  Steve Peplinski  GRIT  06:46    359w  4.7
+ 13  Tak Ina  [JETT][GRIT]  06:48    268w  5.1
+ 14  Rob Fullerton  GRIT  06:49    364w  4.7
+ 15  Miles Askew  TR  06:57    351w  4.8
+ 16  Andrew Steel  -  06:58    343w  5.0
+ 17  A Melon  -  06:58    302w  5.0
+ 18  Greg Langman  DIRT  07:00    339w  4.8
+ 19  Eric GONDERINGER  -  07:01    312w  4.7
+ 20  Takashi KAWAMOTO  (YOU CAN)    07:02    248w  4.9
+ 21  M Shinall  TTE  07:19    321w  4.6
+ 22  Marco Morais Tic Toc  -  07:20    304w  4.6
+ 23  Alan Brannan  GRIT  07:20    314w  4.4
+ 24  MHA KOH  JETT  07:23    276w  4.5
+ 25  James Braybrook  -  07:28    304w  4.2
+ 26  Barry Cooper  VCRT  07:31    311w  4.3
+ 27  Shaun Corbin Nashville  DIRT  07:31    270w  4.2
+ 28  J B #2  BCC - Bees  07:31    333w  4.2
+ 29  Des Muir  Team CRYO-GEN  07:33    334w  4.1
+ 30  Cecelia Taggart  DIRT  07:33    237w  4.2
+ 31  Kristian Fjeldbonde  -  07:35    310w  4.2
+ 32  Craig LeBlanc  [ ATP ]  07:35    279w  4.0
+ 33  Josh Clingan  DIRT  07:35    337w  3.9
+ 34  J. Kuhnle  DIRT  07:35    309w  4.4
+ 35  Daniel Shalkowski  DIRT  07:36    294w  4.3
+ 36  Dax Nelson  ¡DUX! TPA-FLA HERD  07:36    334w  4.1
+ 37  Matt Donovan  -  07:36    261w  4.1
+ 38  Doug Cowperthwaite  TeamODZ  07:36    272w  4.2
+ 39  John Jeffries  [AA Bikes][GRIT]  07:37    277w  4.2
+ 40  Jeff Bratteson  DIRT  07:46    358w  4.0
+ 41  Ped Fesh  -  07:50    329w  3.9
+ 42  Ron Mar  -  07:51    299w  4.1
+ 43  Jim Griffin  VEGAN  07:54    312w  4.2
+ 44  Rob McKechney  -  07:59    284w  4.0
+ 45  Steve Bekker  DIRT  08:01    274w  3.8
+ 46  Antonin L  -  08:02    271w  3.9
+ 47  T Sato  -  08:03    246w  3.8
+ 48  Kent Ryan  -  08:08    254w  3.7
+ 49  Mark Carroll  -  08:09    328w  3.7
+ 50  Lichia Yang  TTR  08:14    225w  3.8
+ 51  Michael Telpner  MGCC  08:16    258w  3.7
+ 52  Nick Shi  -  08:17    255w  3.6
+ 53  Daniel Connelly  DIRT  08:23    255w  3.5
+ 54  Dan Newton  WGT - Bynea CC  08:40    272w  3.4
+ 55  Calum Scott  DIRT  08:42    249w  3.5
+ 56  Saulius Serapinas  -  08:54    263w  3.3
+ 57  C S S B  VXM  09:05    165w  3.4
+ 58  david gulick  -  09:44    260w  3.0
+ 59  Jason OoI  -  09:50    198w  3.0
+ 60  Greg Rashford  #NOMAD  10:13    243w  2.8
 partyControl.max = 61, count = 61, fudge = 1.0000
 
 
-  1  Darryl Forbes  DIRT  9.543    1032w  13.4wkg
-  2  Shaun Corbin Nashville  DIRT  9.600    748w  11.3wkg
-  3  Lance Anderson  [GRIT]  9.777    748w  11.3wkg
-  4  Owen McGonagle  GRIT  9.943    748w  11.3wkg
-  5  Tak Ina  [JETT][GRIT]  10.022    687w  12.7wkg
-  6  Steve Peplinski  GRIT  10.034    948w  12.3wkg
-  7  Jason Bretz  DIRT  10.176    732w  9.2wkg
-  8  Thomas Fraser  Royal Navy Cycling  10.178    847w  11.3wkg
-  9  ALESSIO LEO  CICLI STEFANELLI  10.194    929w  10.7wkg
- 10  Gabriel Mathisen  [VEGAN][GRIT]  10.235    762w  12.3wkg
- 11  Carson Shedd  DIRT  10.280    771w  11.2wkg
- 12  Rob Fullerton  GRIT  10.285    981w  12.7wkg
- 13  Peter J  -  10.300    625w  9.6wkg
- 14  Leo Leo Diaz  -  10.308    840w  11.4wkg
- 15  Greg Langman  DIRT  10.433    943w  13.3wkg
- 16  Steve Tappan  [GRIT]  10.443    746w  11.0wkg
- 17  Sergei Melnikov  UTT  10.505    722w  11.5wkg
- 18  Guillaume Lafleur  leMÉTIER.  10.506    767w  9.8wkg
- 19  Daisuke Saika  (WCU)    10.641    783w  13.3wkg
- 20  Bart Keizer  BRT  10.662    745w  11.3wkg
- 21  Ped Fesh  -  10.687    839w  10.0wkg
- 22  Amir Nazari SCK  (IR)    10.701    733w  9.8wkg
- 23  Justin Brooke  -  10.751    788w  11.4wkg
- 24  Derek Sawyer  [GRIT][Rippers]  10.789    770w  10.3wkg
- 25  Pete C  -  10.793    689w  10.0wkg
- 26  Craig... .S Velo  Sheppey Velo  10.873    641w  7.4wkg
- 27  Jonathan Michelsen  nbck  10.898    718w  11.0wkg
- 28  N. YuYu  [TRC]    11.065    568w  8.5wkg
- 29  Franco Battiato  Team Z TAZ  11.211    682w  10.0wkg
- 30  Thomas Spence  -  11.225    845w  11.7wkg
- 31  Conrad Moss  P-TJ RT  11.242    638w  8.9wkg
- 32  Kelly Toth  CRCA/NYCC  11.260    798w  9.9wkg
- 33  John Jeffries  [AA Bikes][GRIT]  11.344    551w  8.3wkg
- 34  Rob McKechney  -  11.349    575w  8.1wkg
- 35  Alan Brannan  GRIT  11.421    675w  9.5wkg
- 36  A NakaoJPN  -  11.609    460w  7.1wkg
- 37  Calum Scott  DIRT  11.610    564w  7.9wkg
- 38  Ray Diaz  -  12.427    330w  4.0wkg
- 39  Oleg Semeko  Veter.cc  13.006    247w  3.3wkg
+  1  Darryl Forbes  DIRT  9.543    1032w  13.4
+  2  Shaun Corbin Nashville  DIRT  9.600    748w  11.3
+  3  Lance Anderson  [GRIT]  9.777    748w  11.3
+  4  Owen McGonagle  GRIT  9.943    748w  11.3
+  5  Tak Ina  [JETT][GRIT]  10.022    687w  12.7
+  6  Steve Peplinski  GRIT  10.034    948w  12.3
+  7  Jason Bretz  DIRT  10.176    732w  9.2
+  8  Thomas Fraser  Royal Navy Cycling  10.178    847w  11.3
+  9  ALESSIO LEO  CICLI STEFANELLI  10.194    929w  10.7
+ 10  Gabriel Mathisen  [VEGAN][GRIT]  10.235    762w  12.3
+ 11  Carson Shedd  DIRT  10.280    771w  11.2
+ 12  Rob Fullerton  GRIT  10.285    981w  12.7
+ 13  Peter J  -  10.300    625w  9.6
+ 14  Leo Leo Diaz  -  10.308    840w  11.4
+ 15  Greg Langman  DIRT  10.433    943w  13.3
+ 16  Steve Tappan  [GRIT]  10.443    746w  11.0
+ 17  Sergei Melnikov  UTT  10.505    722w  11.5
+ 18  Guillaume Lafleur  leMÉTIER.  10.506    767w  9.8
+ 19  Daisuke Saika  (WCU)    10.641    783w  13.3
+ 20  Bart Keizer  BRT  10.662    745w  11.3
+ 21  Ped Fesh  -  10.687    839w  10.0
+ 22  Amir Nazari SCK  (IR)    10.701    733w  9.8
+ 23  Justin Brooke  -  10.751    788w  11.4
+ 24  Derek Sawyer  [GRIT][Rippers]  10.789    770w  10.3
+ 25  Pete C  -  10.793    689w  10.0
+ 26  Craig... .S Velo  Sheppey Velo  10.873    641w  7.4
+ 27  Jonathan Michelsen  nbck  10.898    718w  11.0
+ 28  N. YuYu  [TRC]    11.065    568w  8.5
+ 29  Franco Battiato  Team Z TAZ  11.211    682w  10.0
+ 30  Thomas Spence  -  11.225    845w  11.7
+ 31  Conrad Moss  P-TJ RT  11.242    638w  8.9
+ 32  Kelly Toth  CRCA/NYCC  11.260    798w  9.9
+ 33  John Jeffries  [AA Bikes][GRIT]  11.344    551w  8.3
+ 34  Rob McKechney  -  11.349    575w  8.1
+ 35  Alan Brannan  GRIT  11.421    675w  9.5
+ 36  A NakaoJPN  -  11.609    460w  7.1
+ 37  Calum Scott  DIRT  11.610    564w  7.9
+ 38  Ray Diaz  -  12.427    330w  4.0
+ 39  Oleg Semeko  Veter.cc  13.006    247w  3.3
 partyControl.max = 61, count = 40, fudge = 1.5250
 
 
   1  Christian Kaldbar  -  45:55      4.9w/kg        352w                                                        72.0kg        172bpm                180cm
+
   2  Steve Tappan  [GRIT]  50:50      4.4w/kg        298w                                                        68.0kg        149bpm                183cm
+
   3  Flynn Lewer  -  51:07      4.4w/kg        280w                                                        63.0kg        164bpm                169cm
+
   4  Tak Ina  [JETT][GRIT]  55:33      4.2w/kg        225w                                                        54.0kg        132bpm                162cm
+
   5  Stratton Townley  -  56:33      3.9w/kg        295w                                                        76.0kg        154bpm                185cm
+
   6  Tristan Longworth  -  57:17      3.7w/kg        327w                                                        88.0kg        162bpm                188cm
+
   7  Rob Fullerton  GRIT  58:04      3.7w/kg        286w                                                        77.0kg        143bpm                178cm
+
   8  Sebastien Loir  BIKES-FR  58:13      3.8w/kg        238w                                                        62.0kg        152bpm                169cm
+
   9  Owen McGonagle  GRIT  58:13      3.8w/kg        251w                                                        66.2kg        140bpm                170cm
+
  10  David Cox  VEGAN  59:01      3.7w/kg        278w                                                        76.2kg        153bpm                193cm
+
  11  steven schietecatte  -  59:57      3.6w/kg        254w                                                        70.0kg        168bpm                176cm
+
  12  Daniel Shalkowski  DIRT  1:00:10      3.6w/kg        247w                                                        68.0kg        144bpm                178cm
+
  13  Gabriel Mathisen  [VEGAN][GRIT]  1:00:22      3.9w/kg        242w                                                        62.0kg        63bpm                178cm
+
  14  Thomas Schräder  ZRG  1:01:01      3.6w/kg        314w                                                        87.0kg        165bpm                193cm
+
  15  Geoff Bunyan  -  1:01:02      3.6w/kg        265w                                                        73.0kg        159bpm                180cm
+
  16  Reid McGregor  MGCC  1:01:36      3.6w/kg        278w                                                        77.1kg        170bpm                183cm
+
  17  Steve Peplinski  GRIT  1:02:24      3.5w/kg        268w                                                        77.1kg        160bpm                170cm
+
  18  Matt B. ARCC  ARCC  1:02:51      3.5w/kg        277w                                                        79.0kg        152bpm                182cm
+
  19  P Westergaard is  [Dirt]    1:03:49      3.3w/kg        285w                                                        86.0kg                        185cm
+
  20  Alan Brannan  GRIT  1:04:11      3.4w/kg        242w                                                        70.8kg        167bpm                175cm
+
  21  Jonathan Slumstrup  -  1:04:13      3.4w/kg        239w                                                        71.0kg        164bpm                178cm
+
  22  Lloyd Billingham  -  1:04:25      3.4w/kg        236w                                                        70.0kg                        188cm
+
  23  Zilvinas A  -  1:05:16      3.5w/kg        214w                                                        62.0kg        175bpm                176cm
+
  24  Lara Middleton  -  1:05:39      3.4w/kg        210w                                                        62.1kg        149bpm                172cm
+
  25  John Jeffries  [AA Bikes][GRIT]  1:05:39      3.3w/kg        223w                                                        66.7kg        145bpm                175cm
+
  26  Marian Sabo  -  1:07:35      3.2w/kg        244w                                                        77.0kg        142bpm                185cm
+
  27  Dan Ambler  -  1:08:32      3.1w/kg        225w                                                        72.0kg        176bpm                180cm
+
  28  Chris Beard  -  1:09:55      3.2w/kg        227w                                                        72.0kg        150bpm                182cm
+
  29  Ian Manning  ASCENT CYCLING  1:13:27      2.9w/kg        203w                                                        69.0kg        157bpm                178cm
+
  30  Jeffrey Kansun  -  1:13:29      2.9w/kg        229w                                                        79.0kg        168bpm                175cm
+
  31  Andrew Swift  -  1:15:29      2.8w/kg        239w                                                        85.8kg        153bpm                185cm
+
  32  Lars Petter Karlsen  -  1:29:27      2.6w/kg        217w                                                        84.0kg                        176cm
+
  33  Slawomir RCTeamPL  -  1:33:36      2.2w/kg        207w                                                        94.0kg        143bpm                185cm
+
 partyControl.max = 61, count = 34, fudge = 1.7941
 
 
