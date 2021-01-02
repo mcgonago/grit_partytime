@@ -2262,12 +2262,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      if (firstAthlete != 1)
                      {
                         /* + */
-#ifdef CONSOLE_OUTPUT
-                        if (!StringGet(tmp, fp_in, NL_KEEP))
-#else
-                        if (!StringGet(tmp, fp_in, nlMode))
-#endif
-
+                        if (!StringGet(tmp, fp_in, NL_REMOVE))
                         {
                            /* Done reading file */
                            continueInLoop = 0;
