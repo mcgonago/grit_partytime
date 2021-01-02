@@ -16,7 +16,7 @@
 #include "tracebuffer.h"
 #include "timeline.h"
 
-#define CONSOLE_OUTPUT (1)
+//#define CONSOLE_OUTPUT (1)
 
 static volatile int gdbStop = 1;
 
@@ -2291,14 +2291,15 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
 
                   AddSpace(tmp2, tmp);
+                  RemoveWpkg(pInfo, tmp2);
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s", tmp2);
+                  fprintf(fp_out, "%s", tmp2);
 #else
-                  RemoveWpkg(pInfo, tmp2);
                   outIdx += sprintf(&outStr[outIdx], "%s", tmp2);
                   ColumnStore(pInfo, outStr);
+                  fprintf(fp_out, "%s\n", tmp2);
 #endif                  
-                  fprintf(fp_out, "%s", tmp2);
 
                   if (!(partyMode & PARTY_RESULTS_2))
                   {
