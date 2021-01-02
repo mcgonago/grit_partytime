@@ -2289,7 +2289,14 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   RemoveWpkg(pInfo, tmp2);
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s\n", tmp2);
-                  fprintf(fp_out, "%s\n", tmp2);
+                  if (partyMode & PARTY_RESULTS_2)
+                  {
+                     fprintf(fp_out, "%s", tmp2);
+                  }
+                  else
+                  {
+                     fprintf(fp_out, "%s\n", tmp2);
+                  }
 #else
                   outIdx += sprintf(&outStr[outIdx], "%s", tmp2);
                   ColumnStore(pInfo, outStr);
