@@ -16,7 +16,7 @@
 #include "tracebuffer.h"
 #include "timeline.h"
 
-#define CONSOLE_OUTPUT (1)
+//#define CONSOLE_OUTPUT (1)
 
 static volatile int gdbStop = 1;
 
@@ -121,6 +121,10 @@ Athlete_t athleteB[MAX_ATHLETES] = {
     {0, "ATHLETE_END"},
 };
 
+Athlete_t athleteAll[MAX_ATHLETES] = {
+    {0, "ATHLETE_END"},
+};
+
 extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
 extern int TeamGrit(char *name);
 extern int RacedToday(char *name, char *teamName);
@@ -132,6 +136,7 @@ void PartyAddAthleteB(CLI_PARSE_INFO *info, char *name);
 void ColumnReset(CLI_PARSE_INFO *pInfo);
 void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list);
 void AthleteReset(CLI_PARSE_INFO *pInfo);
+void PartyAddAthleteAll(CLI_PARSE_INFO *info, char *name);
 
 static void PartyForceShow(CLI_PARSE_INFO *info);
 static void PartyForceB(CLI_PARSE_INFO *info);
@@ -1208,7 +1213,106 @@ void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
 }
 
 
-int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId)
+int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, TimeLineInfo_t *timeLineInfo, int groupId)
+{
+   int i, j;
+   Link_t *ptr;
+   
+   if (partyControl.groupId == GROUP_A)
+   {
+      for (i = 0; i < MAX_ATHLETES; i++)
+      {
+         if (athleteA[i].enabled == 0)
+         {
+            /* SKIP - did not find A Athlete */
+
+            /* NO - for A check - if we ALSO do NOT see in B - we throw in A pool !!! */
+            for (j = 0; j < MAX_ATHLETES; j++)
+            {
+               if (athleteB[j].enabled == 0)
+               {
+                  /* KEEP - not in A, not in B */
+                  return 0;
+               }
+
+               if (strcmp(athleteB[j].name, timeLineInfo->name) == 0)
+               {
+                  /* NOT an A, but is a B - therefor, SKIP!!! */
+                  return 1;
+               }
+            }
+
+
+            if (j == MAX_ATHLETES)
+            {
+               (pInfo->print_fp)("INTERNAL ERROR: Could not ignore - too many athletes!!!\n");
+            }
+
+            return 1;
+         }
+
+         if (strcmp(athleteA[i].name, timeLineInfo->name) == 0)
+         {
+            /* Found A athlete - DO NOT SKIP */
+            return 0;
+         }
+      }
+   }
+   else if (partyControl.groupId == GROUP_B)
+   {
+      for (i = 0; i < MAX_ATHLETES; i++)
+      {
+         if (athleteB[i].enabled == 0)
+         {
+            return 1;
+         }
+
+         if (strcmp(athleteB[i].name, timeLineInfo->name) == 0)
+         {
+            /* Found B athlete - DO NOT SKIP */
+            return 0;
+         }
+      }
+   }
+   else if (partyControl.groupId == GROUP_ALL)
+   {
+      for (i = 0; i < MAX_ATHLETES; i++)
+      {
+         if (athleteAll[i].enabled == 0)
+         {
+            return 1;
+         }
+
+         if (strstr(athleteAll[i].name, timeLineInfo->last) != 0)
+         {
+            if (strcmp(athleteAll[i].name, timeLineInfo->name) != 0)
+            {
+               (pInfo->print_fp)("FYI: last name matches = (%s, %s), not first (%s, %s)\n",
+                                 athleteAll[i].name, timeLineInfo->last,
+                                 athleteAll[i].name, timeLineInfo->first);
+               /* Found athlete - DO NOT SKIP */
+               return 0;
+            }
+         }
+
+         if (strcmp(athleteAll[i].name, timeLineInfo->name) == 0)
+         {
+            /* Found athlete - DO NOT SKIP */
+            return 0;
+         }
+      }
+   }
+
+   if (i == MAX_ATHLETES)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not ignore - too many athletes!!!\n");
+   }
+
+   return 1;
+}
+
+
+int AthleteSkipOrig(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId)
 {
    int i, j;
    Link_t *ptr;
@@ -1259,26 +1363,46 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, char *name, int groupId
          }
       }
    }
-   else
+   else if (partyControl.groupId == GROUP_B)
    {
       for (i = 0; i < MAX_ATHLETES; i++)
       {
          if (athleteB[i].enabled == 0)
          {
-            /* SKIP - did not find B Athlete */
-//            (pInfo->print_fp)("INFO: RIDER NOT FOUND: Info=%s\n", tempInfo->name);
-
-            if (strstr(tempInfo->name, "J B") != 0)
-            {
-               gdbStop = 1;
-            }
-
             return 1;
          }
 
          if (strcmp(athleteB[i].name, tempInfo->name) == 0)
          {
             /* Found B athlete - DO NOT SKIP */
+            return 0;
+         }
+      }
+   }
+   else if (partyControl.groupId == GROUP_ALL)
+   {
+      for (i = 0; i < MAX_ATHLETES; i++)
+      {
+         if (athleteAll[i].enabled == 0)
+         {
+            return 1;
+         }
+
+         if (strstr(athleteAll[i].name, tempInfo->last) != 0)
+         {
+            if (strcmp(athleteAll[i].name, tempInfo->name) != 0)
+            {
+               (pInfo->print_fp)("FYI: last name matches = (%s, %s), not first (%s, %s)\n",
+                                 athleteAll[i].name, tempInfo->last,
+                                 athleteAll[i].name, tempInfo->first);
+               /* Found athlete - DO NOT SKIP */
+               return 0;
+            }
+         }
+
+         if (strcmp(athleteAll[i].name, tempInfo->name) == 0)
+         {
+            /* Found athlete - DO NOT SKIP */
             return 0;
          }
       }
@@ -1753,6 +1877,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    int raceId = 0;
    int nlMode = NL_REMOVE;
    int goIntoLoop = 0;
+   int partyAlreadyOneTime = 0;
    int continueInLoop = 1;
 
    FILE *fp_in;
@@ -1875,7 +2000,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
              (((timeLine[1] == ' ') && (timeLine[2] == ' ')) || (timeLine[1] == '\n')) &&
              (strstr(timeLine, "Distance") == NULL))
          {
-            if ((timeLine[0] == 'B') || (timeLine[0] == 'C') || (timeLine[0] == 'D'))
+            if (partyControl.groupId == GROUP_ALL)
+            {
+               groupId = GROUP_ALL;
+            }
+            else if ((timeLine[0] == 'B') || (timeLine[0] == 'C') || (timeLine[0] == 'D'))
             {
                groupId = GROUP_B;
             }
@@ -1914,17 +2043,32 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
       }
       else if ((partyMode & PARTY_FOLLOWING) || (partyMode & PARTY_FOLLOWING_2))
       {
+         groupId = GROUP_ALL;
          if (strstr(timeLine, "Rank ") != NULL)
          {
+            partyAlreadyOneTime = 1;
             goIntoLoop = 1;
             if (strstr(timeLine, "VAM ") != NULL)
             {
                includeVAM = 1;
             }
          }
+         else if ((strstr(timeLine, "mi/h") != NULL) && (strstr(timeLine, "W ") != NULL) &&
+                  ((strstr(timeLine, ", 2021") != NULL) || (strstr(timeLine, ", 2021") != NULL)))
+         {
+            if (partyAlreadyOneTime != 1)
+            {
+               (pInfo->print_fp)("INTERNAL ERROR: going back in, but for first time?\n");
+            }
+
+            /* We have Already been in ONE TIME, stay in there */
+            groupId = GROUP_ALL;
+            goIntoLoop = 1;
+         }
       }
       else
       {
+         groupId = GROUP_ALL;
          goIntoLoop = 1;
       }
 
@@ -1966,14 +2110,23 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   sprintf(name, "%s ", first);
                   strcat(name, last);
 
+                  timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+                  strcpy(timeLineInfo->timeLine, tmp);
+
+                  strcpy(timeLineInfo->last, last);
+                  strcpy(timeLineInfo->first, first);
+                  NameInsert(timeLineInfo, name);
+
                   if (partyControl.lockDown == 1)
                   {
-                     if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                     if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
                      {
                         continueInLoop = 0;
                         break;
                      }
                   }
+
+                  TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
                   (pInfo->print_fp)("%s   %s %s   %s %s %s   %s   %s\n",
                                     place, first, last, month, day, year, watts, time);
@@ -1991,14 +2144,29 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   sprintf(name, "%s ", first);
                   strcat(name, last);
 
+                  timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+                  strcpy(timeLineInfo->timeLine, tmp);
+
+                  strcpy(timeLineInfo->last, last);
+                  strcpy(timeLineInfo->first, first);
+                  NameInsert(timeLineInfo, name);
+
+//                if ((partyControl.lockDown == 1) && (strcmp(name, "Owen McGonagle") == 0))
+                  if ((partyControl.lockDown == 1) && (strstr(name, "McGonagle") != NULL))
+                  {
+                     gdbStop = 1;
+                  }
+
                   if (partyControl.lockDown == 1)
                   {
-                     if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                     if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
                      {
-                        continueInLoop = 0;
+                        continueInLoop = 1;
                         break;
                      }
                   }
+
+                  TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
                   (pInfo->print_fp)("%s   %s  %s %s %s   %s   %s\n",
                                     place, name, month, day, year, watts, time);
@@ -2035,7 +2203,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   // strcpy(timeLineInfo->name, tmp);
                   strcpy(tmpName, tmp);
                   NameInsert(timeLineInfo, tmpName);
-                  if (timeLineInfo->groupId == GROUP_UNKNOWN)
+                  if ((timeLineInfo->groupId == GROUP_UNKNOWN) || (timeLineInfo->groupId == GROUP_ALL))
                   {
                      timeLineInfo->groupId = groupId;
                   }
@@ -2078,9 +2246,15 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      sprintf(name, "%s ", first);
                      strcat(name, last);
 
+                     strcpy(timeLineInfo->timeLine, tmp);
+
+                     strcpy(timeLineInfo->last, last);
+                     strcpy(timeLineInfo->first, first);
+                     NameInsert(timeLineInfo, name);
+
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
                         {
                            continueInLoop = 0;
                            break;
@@ -2088,13 +2262,16 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      }
 
                      NameInsert(timeLineInfo, name);
-                     if (timeLineInfo->groupId == GROUP_UNKNOWN)
+
+                     if ((timeLineInfo->groupId == GROUP_UNKNOWN) || (timeLineInfo->groupId == GROUP_ALL))
                      {
                         timeLineInfo->groupId = groupId;
                      }
 
                      if (RacedToday(name, teamName))
                      {
+                        TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
                         sprintf(timeLineInfo->team, "%s", teamName);
                         sprintf(place, "%d ", count);
                         count++;
@@ -2116,9 +2293,15 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      sprintf(name, "%s ", first);
                      strcat(name, last);
 
+                     strcpy(timeLineInfo->timeLine, tmp);
+
+                     strcpy(timeLineInfo->last, last);
+                     strcpy(timeLineInfo->first, first);
+                     NameInsert(timeLineInfo, name);
+
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
                         {
                            continueInLoop = 0;
                            break;
@@ -2126,13 +2309,17 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      }
 
                      NameInsert(timeLineInfo, name);
-                     if (timeLineInfo->groupId == GROUP_UNKNOWN)
+                     // TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
+                     if ((timeLineInfo->groupId == GROUP_UNKNOWN) || (timeLineInfo->groupId == GROUP_ALL))
                      {
                         timeLineInfo->groupId = groupId;
                      }
 
                      if (RacedToday(name, teamName))
                      {
+                        TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
                         sprintf(timeLineInfo->team, "%s", teamName);
                         sprintf(place, "%d", count);
                         count++;
@@ -2144,12 +2331,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                                 place, name, teamName, month, day, year, watts, time);
                      }
                   }
-
-                  if (RacedToday(name, teamName))
-                  {
-                     TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
-                  }
-
                }
                else
                {
@@ -2168,9 +2349,17 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      /* TEAM can be found in the name (Zwift does that) or on next line */
                      TeamNameCleanup(timeLineInfo, tmp);
 
+#if 0
+                     timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+                     strcpy(timeLineInfo->timeLine, tmp);
+
+                     strcpy(timeLineInfo->last, last);
+                     strcpy(timeLineInfo->first, first);
+                     NameInsert(timeLineInfo, name);
+#endif
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
                         {
                            continueInLoop = 0;
                            break;
@@ -2199,10 +2388,17 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   {
                      /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
                      NameDouble(pInfo, timeLineInfo);
+#if 0
+                     timeLineInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+                     strcpy(timeLineInfo->timeLine, timeLine);
 
+                     strcpy(timeLineInfo->last, last);
+                     strcpy(timeLineInfo->first, first);
+                     NameInsert(timeLineInfo, name);
+#endif
                      if (partyControl.lockDown == 1)
                      {
-                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo->name, groupId))
+                        if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
                         {
                            continueInLoop = 0;
                            break;
@@ -2213,7 +2409,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      {
                         break;
                      }
-
 
                      TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
                   }
@@ -2779,7 +2974,7 @@ void PartySetGroup(CLI_PARSE_INFO *pInfo)
 {
    if ( pInfo->argc < 2)
    {
-      (pInfo->print_fp)("USAGE: %s {A|B|ALL}}\n", pInfo->argv[0]);
+      (pInfo->print_fp)("USAGE: %s {A|B|All}}\n", pInfo->argv[0]);
       return;
    }
 
@@ -2791,13 +2986,13 @@ void PartySetGroup(CLI_PARSE_INFO *pInfo)
     {
        partyControl.groupId = GROUP_B;
     }
-    else if (strcmp(pInfo->argv[1], "ALL") == 0)
+    else if (strcmp(pInfo->argv[1], "All") == 0)
     {
        partyControl.groupId = GROUP_ALL;
     }
     else
     {
-        (pInfo->print_fp)("USAGE: %s {A|B|ALL}\n", pInfo->argv[0]);
+        (pInfo->print_fp)("USAGE: %s {A|B|All}\n", pInfo->argv[0]);
         return;
     }
 }
@@ -2812,7 +3007,7 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    partyControl.doubleUp = 0;
    partyControl.ageBonus = 0;
    partyControl.debug = 0;
-   partyControl.groupId = GROUP_ALL;
+   partyControl.groupId = GROUP_UNKNOWN;
    partyControl.lockDown = 0;
    partyControl.clip = 0;
 
@@ -2912,6 +3107,28 @@ void PartySetSnapB(CLI_PARSE_INFO *pInfo)
 //   PartyForceShow(pInfo);
 }
 
+void PartySetSnapAll(CLI_PARSE_INFO *pInfo)
+{
+   int i;
+   Link_t *ptr;
+   TimeLineInfo_t *timeLineInfo;
+   
+   ptr = (Link_t *)listTimeLine->head;
+   while (ptr->next != NULL)
+   {
+      timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+      if ((timeLineInfo->groupId == GROUP_UNKNOWN) || (timeLineInfo->groupId == GROUP_ALL))
+      {
+         PartyAddAthleteAll(pInfo, timeLineInfo->name);
+      }
+
+      ptr = ptr->next;
+   }
+
+//   PartyForceShow(pInfo);
+}
+
 void PartySetSnapReset(CLI_PARSE_INFO *pInfo)
 {
    int i;
@@ -2920,15 +3137,17 @@ void PartySetSnapReset(CLI_PARSE_INFO *pInfo)
    {
       athleteA[i].enabled = 0;
       athleteB[i].enabled = 0;
+      athleteAll[i].enabled = 0;
    }
 }
 
 static const CLI_PARSE_CMD party_set_snap_cmd[] =
 {
-    { "A",      PartySetSnapA,  "snap A atheletes"},
-    { "B",      PartySetSnapB,  "snap B atheletes"},
-    { "show" ,  PartyForceShow, "show athlete tables"},
-    { "reset",  AthleteReset,   "reset athlete tables"},
+    { "A",      PartySetSnapA,    "snap A atheletes"},
+    { "B",      PartySetSnapB,    "snap B atheletes"},
+    { "All",    PartySetSnapAll,  "snap All atheletes"},
+    { "show",   PartyForceShow,   "show athlete tables"},
+    { "reset",  AthleteReset,     "reset athlete tables"},
     { NULL, NULL, NULL }
 };
 
@@ -2945,7 +3164,7 @@ static const CLI_PARSE_CMD party_set_cmd[] =
     { "double",    PartySetDouble,    "on|off - DOUBLE points for Alpe race (warranted)"},
     { "ageBonus",  PartySetAgeBonus,  "on|off - extra 5 points for being 55+"},
     { "debug",     PartySetDebug,     "on|off"},
-    { "group",     PartySetGroup,     "A|B|ALL (ALL is default)"},
+    { "group",     PartySetGroup,     "A|B|All (unknown is default)"},
     { "lockdown",  PartySetLockdown,  "on|off"},
     { "clip",      PartySetClip,      "on|off"},
     { "snap",      PartySetSnap,      "snap athletes"},
@@ -2965,10 +3184,12 @@ void AthleteReset(CLI_PARSE_INFO *pInfo)
    {
       athleteA[i].enabled = 0;
       athleteB[i].enabled = 0;
+      athleteAll[i].enabled = 0;
    }
 
    strcpy(athleteA[i-1].name, "ATHLETE_END");
    strcpy(athleteB[i-1].name, "ATHLETE_END");
+   strcpy(athleteAll[i-1].name, "ATHLETE_END");
 }
 
 void ColumnReset(CLI_PARSE_INFO *pInfo)
@@ -3100,6 +3321,32 @@ void PartyAddAthleteB(CLI_PARSE_INFO *info, char *name)
 }
 
 
+void PartyAddAthleteAll(CLI_PARSE_INFO *info, char *name)
+{
+    int i,j;
+    int idx = 0;
+    char athlete[MAX_COMMAND_LENGTH];
+
+    /* Find first available slot */
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       if (athleteAll[i].enabled == 0)
+       {
+          break;
+       }
+    }
+
+    if (i == MAX_ATHLETES)
+    {
+       (info->print_fp)("INTERNAL ERROR: Ran out of athletes - max = %d\n", MAX_ATHLETES);
+       return;
+    }
+
+    strcpy(athleteAll[i].name, name);
+    athleteAll[i].enabled = 1;
+
+}
+
 static void PartyForceCommon(CLI_PARSE_INFO *info, Athlete_t *athleteTable)
 {
     int i,j;
@@ -3213,6 +3460,18 @@ static void PartyForceShow(CLI_PARSE_INFO *info)
        }
 
        (info->print_fp)("%3d: [%d] %s\n", i, athleteB[i].enabled, athleteB[i].name);
+    }
+
+   (info->print_fp)("All LIST:\n");
+
+    for (i = 0; i < MAX_ATHLETES; i++)
+    {
+       if (athleteAll[i].enabled == 0)
+       {
+          break;
+       }
+
+       (info->print_fp)("%3d: [%d] %s\n", i, athleteAll[i].enabled, athleteAll[i].name);
     }
 
 }
