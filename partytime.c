@@ -357,6 +357,13 @@ TimeLineInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkList
       return NULL;
    }
 
+#if 0
+   if (partyControl.lockDown == 1)
+   {
+      (pInfo->print_fp)("ADDED: %s\n", timeLineInfo->name);
+   }
+#endif
+
    /* See if name already exists */
 
     ptr = (Link_t *)list->head;
@@ -1282,35 +1289,47 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, TimeLineInfo_t *timeLin
             return 1;
          }
 
-
+#if 0
          if ((strstr(athleteAll[i].name, "McGonagle") != 0) && (partyControl.lockDown == 1))
          {
-//            if (strstr(timeLineInfo->name, "McGonagle") != 0)
+            if (strstr(timeLineInfo->name, "McGonagle") != 0)
             {
-#if 0
                (pInfo->print_fp)("FYI: last name matches = %s vs. %s\n",
                                  athleteAll[i].name, timeLineInfo->name);
-#endif
             }
          }
-
-         if (strstr(athleteAll[i].name, timeLineInfo->last) != 0)
-         {
-            if (strcmp(athleteAll[i].name, timeLineInfo->name) != 0)
-            {
-#if 0
-               (pInfo->print_fp)("FYI: last name matches = (%s, %s), not first (%s, %s)\n",
-                                 athleteAll[i].name, timeLineInfo->last,
-                                 athleteAll[i].name, timeLineInfo->first);
 #endif
-               /* Found athlete - DO NOT SKIP */
-               return 0;
+
+//         if ((strstr(athleteAll[i].name, timeLineInfo->last) != 0) && (strlen(athleteAll[i].name) == strlen(timeLineInfo->last)))
+         if ((strstr(athleteAll[i].name, timeLineInfo->last) != 0) && (strlen(timeLineInfo->last) > 2))
+         {
+            if (strstr(athleteAll[i].name, timeLineInfo->first) == 0)
+            {
+               (pInfo->print_fp)(" MISS: name = %s, last = %s, first = %s\n",
+                                 athleteAll[i].name, timeLineInfo->last, timeLineInfo->first);
             }
+            else
+            {
+               (pInfo->print_fp)("MATCH: name = %s, last = %s, first = %s\n",
+                                 athleteAll[i].name, timeLineInfo->last, timeLineInfo->first);
+            }
+
+            /* Found athlete - DO NOT SKIP */
+            return 0;
          }
 
          if (strcmp(athleteAll[i].name, timeLineInfo->name) == 0)
          {
+            (pInfo->print_fp)("  HOW: name = %s, last = %s, first = %s\n",
+                              athleteAll[i].name, timeLineInfo->last, timeLineInfo->first);
+
             /* Found athlete - DO NOT SKIP */
+#if 0
+            if (partyControl.lockDown == 1)
+            {
+               (pInfo->print_fp)("INFO: NOT SKIPPING %s\n", timeLineInfo->name);
+            }
+#endif
             return 0;
          }
       }
@@ -1873,6 +1892,8 @@ void FixLine(CLI_PARSE_INFO *pInfo, char *out, char *in, char *team)
       ptr++;
    }
 
+   *ptrOut++ = ' ';
+
    if (*ptr == '\0')
    {
       (pInfo->print_fp)("ERROR: could not find <space> after first index: %s\n", in);
@@ -1977,6 +1998,7 @@ void FixLine(CLI_PARSE_INFO *pInfo, char *out, char *in, char *team)
          /* Fix initial char copied */
          ptrOut--;
          *ptrOut++ = ' ';
+         *ptrOut++ = ' ';
 
          /* Set all in between to space - attach to a team attempt */
          idx = 0;
@@ -1994,6 +2016,7 @@ void FixLine(CLI_PARSE_INFO *pInfo, char *out, char *in, char *team)
       {
          ptrOut--;
          *ptrOut++ = ' ';
+         *ptrOut++ = ' ';
       }
    }
    else
@@ -2006,6 +2029,132 @@ void FixLine(CLI_PARSE_INFO *pInfo, char *out, char *in, char *team)
    {
       *ptrOut++ = *ptr;
       ptr++;
+   }
+
+#if 1
+   ptrOut--;
+   *ptrOut = '\0';
+#else
+   *ptrOut = '\0';
+#endif
+}
+
+void FixTeamName(CLI_PARSE_INFO *pInfo, char *out, char *in)
+{
+   char *ptr, *ptr2;
+   int idx;
+   char *ptrIn = in;
+   char *ptrOut = out;
+   char tmp[MAX_STRING_SIZE];
+   char teamName[MAX_STRING_SIZE];
+   int teamFound = 0;
+   int ret = 0;
+   int nameFound = 0;
+   
+#if 0
+   while (*ptrIn != '\0')
+   {
+      ptrIn++;
+      ptrOut++;
+   }
+#endif
+
+   /*
+    * Format is:
+    *
+    * <first> <last> <date>
+    */
+
+   /* If we find anything other, fix it
+    * 1   Andrew Toftoy   Jan 1, 2021     12.5mi/h    -   425W    1,929.8     6:09
+    * 2   Antonio Ferrari     Jan 1, 2021     11.7mi/h    178bpm  404W    1,802.7     6:35
+    * 3   Gabriel Mathisen Ⓥ  Jan 1, 2021     11.6mi/h    174bpm  370W    1,784.7     6:39
+    * 42  Rolf Smit | FWC     Jan 1, 2021     8.9mi/h     164bpm  403W    1,377.3     8:37
+    * 48  Marian von Rappard | SUPER VISION LAB   Jan 1, 2021     8.8mi/h     -   317W    1,364.1     8:42
+    * 61  まさる みうら   Jan 1, 2021     8.5mi/h     170bpm  271W    1,313.8     9:02
+    * 68  Geir Erling Nilsberg    Jan 1, 2021     8.3mi/h     152bpm  307W    1,280.7     9:16
+    * 68  Luís Carvalhinho 🇵🇹     Jan 1, 2021     8.3mi/h     -   290W    1,280.7     9:16
+    * 77  Wouter Jan Kleinlugtenbelt  Jan 1, 2021     8.1mi/h     157bpm  339W    1,255.9     9:27
+    * 83  Vito Peló Team Loda Millennium 🇮🇹   Jan 1, 2021     8.0mi/h     162bpm  252W    1,232.0     9:38
+    * 94  Stéphane Negreche(SNC⚡) 🇫🇷     Jan 1, 2021     7.9mi/h     169bpm  293W    1,211.0     9:48
+    * 102     George Cooper (Sherwood Pines Cycles Forme)     Jan 1, 2021     7.7mi/h     199bpm  157W    1,192.8     9:57
+    * 117     Åsa Fast-Berglund [SZ] Team Ljungskog   Jan 1, 2021     7.5mi/h     153bpm  242W    1,156.0     10:16
+    * 130     🇪🇸 Miguel Ángel Lora 🇪🇸     Jan 1, 2021     7.4mi/h     149bpm  285W    1,141.2     10:24
+    * 133     Mike Park(BeeTriathlonCoaching.com)     Jan 1, 2021     7.4mi/h     162bpm  275W    1,135.7     10:27
+    * 145     Bike ironmike COX   Jan 1, 2021     7.2mi/h     157bpm  288W    1,105.7     10:44
+    * 155     大野 洸     Jan 1, 2021     7.1mi/h     -   208W    1,087.1     10:55
+    * 168     Eiji T  Jan 1, 2021     6.9mi/h     128bpm  282W    1,056.5     11:14
+    * 192     Pedro Abio Ruiz 🇪🇦  Jan 1, 2021     6.4mi/h     164bpm  262W    986.3   12:02
+    * 215     David Miles (DIRT)  Jan 1, 2021     6.1mi/h     183bpm  215W    934.5   12:42
+    * 234     Lee Mardon (BIKE DOCTOR CC)     Jan 1, 2021     5.3mi/h     163bpm  244W    813.8   14:35
+    * 254     Tami Baca (she,her,hers)    Jan 1, 2021     4.2mi/h     -   141W    643.3   18:27
+    */
+ 
+   /* Clean it up a bit */
+   strcpy(tmp, in);
+   ptr = &tmp[0];
+
+   if (*ptr == '-')
+   {
+      *ptrOut++ = '-';
+      *ptrOut = '\0';
+      return;
+   }
+
+   /* Convert non-printable characters */
+   while (*ptr != '\0')
+   {
+      if (!isprint(*ptr) && (*ptr != '\0') && (*ptr != '\r') && (*ptr != '\t') && (*ptr != '\n'))
+      {
+         // *ptr = ' ';
+         *ptr = '_';
+      }
+      else if (!isprint(*ptr) && ((*ptr == '\0') || (*ptr == '\r') || (*ptr == '\t') || (*ptr != '\n')))
+      {
+         (pInfo->print_fp)("ERROR: crazy line?: %s\n", in);
+      }
+      else if  ((*ptr == '\r') || (*ptr == '\t') || (*ptr == '|') || (*ptr == '(') || (*ptr == ')') || (*ptr == '[') || (*ptr == ']') ||
+                (*ptr == '@') || (*ptr == '#'))
+      {
+         *ptr = ' ';
+      }
+      ptr++;
+   }
+
+   /* Fix duplicate spaces */
+   ptr = &tmp[0];
+   while (*ptr != '\0')
+   {
+      *ptrOut++ = *ptr;
+      if (*ptr == ' ')
+      {
+         ptr++;
+         while (*ptr != '\0')
+         {
+            if (*ptr != ' ')
+            {
+               break;
+            }
+            ptr++;
+         }
+      }
+      else if (*ptr == '_')
+      {
+         ptr++;
+         while (*ptr != '\0')
+         {
+            if (*ptr != '_')
+            {
+               break;
+            }
+            ptr++;
+         }
+      }
+
+      if (*ptr != '\0')
+      {
+         ptr++;
+      }
    }
 
 #if 1
@@ -2076,6 +2225,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    char time[MAX_STRING_SIZE];
    char test[MAX_STRING_SIZE];
    char teamName[MAX_STRING_SIZE];
+   char teamName2[MAX_STRING_SIZE];
    char header[MAX_STRING_SIZE];
    char fixed[MAX_STRING_SIZE];
    char fixed2[MAX_STRING_SIZE];
@@ -2258,12 +2408,13 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   break;
                }
 
-#if 0
                strcpy(fixed, tmp);
-               FixLine(pInfo, fixed2, fixed, teamName);
 
-               (pInfo->print_fp)("%s   [%s] \n", fixed2, teamName);
-#endif
+               FixLine(pInfo, fixed2, fixed, teamName);
+               FixTeamName(pInfo, teamName2, teamName);
+
+               strcpy(tmp, fixed2);
+
                if (includeVAM == 1)
                {
                   /* 1    Lance Anderson  Sep 8, 2020     21.2mi/h    170   431W    1,345.5     4:42 */
@@ -2286,6 +2437,8 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                strcpy(timeLineInfo->last, last);
                strcpy(timeLineInfo->first, first);
+               strcpy(timeLineInfo->team, teamName2);
+
                NameInsert(timeLineInfo, name);
 
                if (partyControl.lockDown == 1)
@@ -2309,8 +2462,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      continue;
                   }
                }
-
-               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
 #if 1
                if (strcmp(raceName, "race1") == 0)
@@ -2340,10 +2491,16 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                count++;
 #endif
 
-#if 0
+               TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+
+               outIdx += sprintf(&outStr[outIdx], "%s   %s", fixed2, teamName2);
+               ColumnStore(pInfo, outStr);
+
+#ifdef CONSOLE_OUTPUT
                (pInfo->print_fp)("%s   %s  %s %s %s   %s   %s\n",
                                  place, name, month, day, year, watts, time);
 #endif
+
                fprintf(fp_out, "%s   %s   %s %s %s   %s   %s",
                        place, name, month, day, year, watts, time);
             }
@@ -2415,7 +2572,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      /* 1    Lance Anderson  Sep 8, 2020     21.2mi/h    170   431W    1,345.5     4:42 */
                      sscanf(tmp, "%s %s %s %s %s %s %s %s %s %s %s",
                             place, first, last, month, day, year, speed, bpm, watts, vid, time);
-
 
                      sprintf(name, "%s ", first);
                      strcat(name, last);
@@ -3152,7 +3308,7 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    int i;
 
    partyControl.max = -1;
-   partyControl.bestOf = BEST_OF_TWO;
+   partyControl.bestOf = BEST_OF_ONE;
    partyControl.bonus = 0;
    partyControl.doubleUp = 0;
    partyControl.ageBonus = 0;

@@ -1,4 +1,5 @@
 #party set debug on
+party set bestof 2
 party kom database/_posts/2020/12/02/Innsbruck_results_sprints_and_kom.txt database/_posts/2020/12/02/Innsbruck_results_sprints_and_kom_columns.md race2
 party sprints database/_posts/2020/12/03/Tempoish-Thursday-Sprints_sprints.txt database/_posts/2020/12/03/Tempoish-Thursday-Sprints_sprints_columns.md race1
 party results database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results.txt database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_columns.md race3
