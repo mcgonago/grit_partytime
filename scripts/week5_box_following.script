@@ -1,0 +1,5 @@
+party set group GRIT
+party set lockdown on
+party following database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-following.txt database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-following.md race1
+party show
+quit
