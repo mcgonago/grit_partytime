@@ -1,0 +1,463 @@
+
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (59)
+    Unfiltered (60)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+60 power metrics yet to be processed in a queue of 103,806
+All American Bikes Ride presented by GRIT
+Today 05:50
+London 8 2 Laps 41 km
+All riders visible Late joining No TT bikes
+5min and 20min CEVAZ limits apply
+No ZPower winners
+14.6km222m
+0.0km2.5km5.0km7.5km10.0km12.5km15.0km17.5km20.0km22.5km25.0km27.5km30.0km32.5km35.0km37.5km40.0km
+500m
+100 miles
+Madness
+Box Hill
+2.8km, 5% avg
+Box Hill
+2.8km, 5% avg
+K
+K
+1
+2
+S
+S
+A B Distance: 41.1km Elevation Gain: 512m Strava route
+Next Update in 8 hours Request a faster update
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Box Hill	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+A 	8	
+Christian Kaldbar
+GRIT
+	
+05:38
+462w 6.4wkg
+	Power
+A 	7	
+Steve Tappan
+GRIT
+	
+06:06
+375w 5.5wkg
+	Power
+A 	6	
+Ronny Kambach (KC)
+KIRCHMAIR e-Cycling
+	
+06:07
+366w 5.6wkg
+	Power
+A 	4	
+Mark Putters (EVO XtraTurboSnails)
+EVOLUTION
+	
+06:07
+351w 5.6wkg
+	Power
+A 	1	
+Rune Jogert
+	
+06:07
+384w 5.5wkg
+	Power
+A 	2	
+Maxime Cam
+BVC
+	
+06:07
+349w 5.6wkg
+	Power
+A 	3	
+xiao long+1SZCRC
+ZCRC
+	
+06:07
+285w 5.7wkg
+	Power
+A 	5	
+Huan.Fang (VCRT)
+ZCRC
+	
+06:08
+420w 5.3wkg
+	Power
+A 	16	
+tak ina[JETT]
+JETT
+	
+06:30
+272w 5.1wkg
+	Power
+A 	11	
+Derek Sawyer
+Rippers
+	
+06:30
+387w 5.2wkg
+	Power
+A 	14	
+Rob Fullerton
+GRIT
+	
+06:30
+390w 5.1wkg
+	Power
+A 	15	
+Greg Langman
+DIRT
+	
+06:31
+351w 5.0wkg
+	Power
+A 	12	
+Tiago Ribeiro
+	
+06:43
+393w 4.9wkg
+	Power
+A 	10	
+Andy Self
+NewburyVelo
+	
+06:50
+298w 4.9wkg
+	Power
+A 	9	
+Gilbert Hannouche [EVO]
+EVOLUTION
+	
+06:50
+332w 4.9wkg
+	Power
+A 	19	
+Noritaka Matsuyama
+JETT
+	
+06:55
+265w 4.8wkg
+	Power
+A 	13	
+Jack Wilson (Ludlow Brewery Race Team)
+LBRT
+	
+06:55
+329w 4.7wkg
+	Power
+A 	18	
+Zaita Sun
+	
+06:57
+333w 4.6wkg
+	Power
+B 	40	
+Owen McGonagle [GRIT]
+GRIT
+	
+07:00
+323w 4.7wkg
+	Power
+B 	26	
+Jelle Geens
+	
+07:00
+287w 4.8wkg
+	Power
+B 	27	
+tomoyuki goto
+	
+07:03
+271w 4.8wkg
+	Power
+A 	20	
+Travis Gatesman
+	
+07:05
+393w 4.5wkg
+	Power
+B 	30	
+J LaBonte
+	
+07:15
+319w 4.5wkg
+	Power
+B 	31	
+W. Rijckaert
+	
+07:16
+377w 4.4wkg
+	Power
+A 	21	
+Mike Cauley (Wolfpack)
+Wolfpack
+	
+07:17
+306w 4.4wkg
+	Power
+B 	29	
+Osamu Higashi (TKSB/ISOYA)
+	
+07:19
+270w 3.6wkg
+	Power
+B 	25	
+Marcel Guay (MG-O Racing Team)
+MG-O
+	
+07:19
+296w 4.4wkg
+	Power
+B 	28	
+A NakaoJPN
+	
+07:22
+294w 4.5wkg
+	Power
+B 	38	
+Ricardo Abela 🇮🇹㇋
+TEAM BMTR
+	
+07:25
+299w 4.3wkg
+	Power
+A 	17	
+Tiziano Mura
+	
+07:27
+282w 4.7wkg
+	Power
+B 	35	
+Dax Nelson - ¡DUX! TPA-FLA (Herd o
+HERD
+	
+07:28
+340w 4.2wkg
+	Power
+A 	23	
+Daniel Shalkowski
+DIRT
+	
+07:28
+287w 4.2wkg
+	Power
+A 	22	
+Seraf Lombardi
+	
+07:29
+243w 4.4wkg
+	Power
+B 	33	
+M Shinall
+TTE
+	
+07:31
+301w 4.3wkg
+	Power
+B 	49	
+David Lawson
+	
+07:37
+295w 4.1wkg
+	Power
+B 	36	
+René Jeppesen
+	
+07:39
+300w 4.1wkg
+	Power
+B 	37	
+Peter Eldh [SZ]
+SZ
+	
+07:41
+329w 4.1wkg
+	Power
+B 	41	
+Rob McKechney
+	
+07:46
+288w 4.1wkg
+	Power
+B 	46	
+Hiroki Mitsui (Rapha Cycling Club Japan)
+RCC
+	
+07:47
+258w 4.1wkg
+	Power
+B 	43	
+Steve Bekker
+DIRT
+	
+07:48
+285w 3.9wkg
+	Power
+B 	34	
+Y Ikegawa
+	
+07:49
+256w 4.0wkg
+	Power
+B 	39	
+Shaun Corbin Nashville (DIRTy GRIT)
+DIRT
+	
+07:50
+263w 4.1wkg
+	Power
+B 	45	
+Craig LeBlanc (ATP Oxygen)
+[ ATP ]
+	
+07:52
+275w 3.9wkg
+	Power
+B 	42	
+Max Vesty (CUCC)
+CUCC
+	
+07:54
+292w 4.0wkg
+	Power
+B 	32	
+Jeff Bratteson [DIRT]
+DIRT
+	
+07:54
+351w 3.9wkg
+	Power
+B 	50	
+Andy Courage
+	
+08:02
+320w 3.9wkg
+	Power
+B 	47	
+Doug Cowperthwaite
+TeamODZ
+	
+08:03
+255w 3.9wkg
+	Power
+B 	52	
+John Jeffries GRIT
+GRIT
+	
+08:04
+266w 3.9wkg
+	Power
+B 	48	
+J B
+BCC-Cats
+	
+08:04
+306w 3.8wkg
+	Power
+B 	44	
+Alan Brannan
+GRIT
+	
+08:10
+268w 3.8wkg
+	Power
+A 	24	
+Giuseppe Velletri
+Team Italy
+	
+08:15
+260w 3.9wkg
+	Power
+B 	54	
+Oh LongJohnson
+	
+08:17
+233w 3.7wkg
+	Power
+B 	51	
+Chris Sherriffs (KISS Racing Team)
+KISS RT
+	
+08:17
+221w 3.8wkg
+	Power
+B 	56	
+Thomas Nakken
+HCK
+	
+08:20
+290w 3.6wkg
+	Power
+B 	55	
+Takuya Akiyama
+	
+08:21
+268w 3.7wkg
+	Power
+B 	53	
+Barry Friedeman
+DIRT
+	
+08:23
+298w 3.5wkg
+	Power
+B 	57	
+Calum Scott
+DIRT
+	
+08:41
+249w 3.5wkg
+	Power
+B 	58	
+Sigurd Pedersen
+	
+08:53
+259w 3.3wkg
+	Power
+B 	59	
+Andy Strehle 5775
+	
+09:28
+272w 3.2wkg
+	Power
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+

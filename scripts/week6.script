@@ -1,0 +1,19 @@
+#party set max 42
+#party set bestof 2
+party set group B
+party kom database/_posts/2021/01/05/database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt database/_posts/2021/01/05/database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.md race1
+party set snap B
+#party set lockdown on
+#party set clip on
+party show
+party reset list
+#party set max 35
+#party set bestof 2
+party set group A
+party set lockdown off
+party kom database/_posts/2021/01/05/database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt database/_posts/2021/01/05/database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.md race1
+party set snap A
+#party set lockdown on
+#party set clip on
+party show
+quit
