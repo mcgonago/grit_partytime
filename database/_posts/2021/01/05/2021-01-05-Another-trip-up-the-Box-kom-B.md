@@ -7,7 +7,7 @@
   7  Marcel Guay  MG-O  07:19    296w  4.4
   8  A NakaoJPN  -  07:22    294w  4.5
   9  Ricardo Abela  TEAM BMTR  07:25    299w  4.3
- 10  Dax Nelson  ¡DUX! TPA-FLA HERD  07:28    340w  4.2
+ 10  Dax Nelson  !DUX! TPA-FLA HERD  07:28    340w  4.2
  11  M Shinall  TTE  07:31    301w  4.3
  12  David Lawson  -  07:37    295w  4.1
  13  Rene Jeppesen  -  07:39    300w  4.1

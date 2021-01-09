@@ -36,7 +36,7 @@
 | 33   | Josh Clingan              | DIRT                        | 07:35    | 337w     | 3.9  |
 | 34   | J. Kuhnle                 | DIRT                        | 07:35    | 309w     | 4.4  |
 | 35   | Daniel Shalkowski         | DIRT                        | 07:36    | 294w     | 4.3  |
-| 36   | Dax Nelson                | ¡DUX! TPA-FLA HERD         | 07:36    | 334w     | 4.1  |
+| 36   | Dax Nelson                | !DUX! TPA-FLA HERD          | 07:36    | 334w     | 4.1  |
 | 37   | Matt Donovan              | -                           | 07:36    | 261w     | 4.1  |
 | 38   | Doug Cowperthwaite        | TeamODZ                     | 07:36    | 272w     | 4.2  |
 | 39   | John Jeffries             | [AA Bikes][GRIT]            | 07:37    | 277w     | 4.2  |
@@ -218,7 +218,7 @@ partyControl.max = 61, count = 34, fudge = 1.7941
 | 66    | J. Kuhnle                 | DIRT                        | 34/27    | 0/0      | 0/0      | 0/0      | 27      |
 | 67    | Rob McKechney             | -                           | 44/17    | 34/9     | 0/0      | 0/0      | 26      |
 | 68    | Justin Brooke             | -                           | 0/0      | 23/25    | 0/0      | 0/0      | 25      |
-| 69    | Dax Nelson                | ¡DUX! TPA-FLA HERD         | 36/25    | 0/0      | 0/0      | 0/0      | 25      |
+| 69    | Dax Nelson                | !DUX! TPA-FLA HERD          | 36/25    | 0/0      | 0/0      | 0/0      | 25      |
 | 70    | Dan Ambler                | -                           | 0/0      | 0/0      | 27/24    | 0/0      | 24      |
 | 71    | Matt Donovan              | -                           | 37/24    | 0/0      | 0/0      | 0/0      | 24      |
 | 72    | Doug Cowperthwaite        | TeamODZ                     | 38/23    | 0/0      | 0/0      | 0/0      | 23      |

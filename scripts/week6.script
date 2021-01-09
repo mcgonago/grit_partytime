@@ -5,6 +5,7 @@ party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt 
 party set snap B
 party set lockdown on
 party kom database/_posts/2021/01/07/2021-01-07-Fast-day-at-the-sprints.txt database/_posts/2021/01/07/2021-01-07-Fast-day-at-the-sprints-kom-B.md race2
+party kom database/_posts/2021/01/08/2021-01-08-EPIC-KOM-was-epic-kom.txt database/_posts/2021/01/08/2021-01-08-EPIC-KOM-was-epic-kom-B.md race3
 party set lockdown on
 party set clip on
 party show
@@ -15,6 +16,7 @@ party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt 
 party set snap A
 party set lockdown on
 party kom database/_posts/2021/01/07/2021-01-07-Fast-day-at-the-sprints.txt database/_posts/2021/01/07/2021-01-07-Fast-day-at-the-sprints-kom-A.md race2
+party kom database/_posts/2021/01/08/2021-01-08-EPIC-KOM-was-epic-kom.txt database/_posts/2021/01/08/2021-01-08-EPIC-KOM-was-epic-kom-A.md race3
 party set clip on
 party show
 quit

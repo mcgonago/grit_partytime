@@ -126,7 +126,48 @@ Athlete_t athleteAll[MAX_ATHLETES] = {
     {0, "ATHLETE_END"},
 };                                        
                                           
-Athlete_t athleteGRIT[MAX_ATHLETES] = {   
+Athlete_t athleteGRIT[MAX_ATHLETES] = {
+   {1, "Matthias Mueller"},
+   {1, "Joel Gibbel"},
+   {1, "Philip Baronius"},
+   {1, "Alan Brannan"},
+   {1, "Rob Fullerton"},
+   {1, "Christian Kaldbar"},
+   {1, "Gabriel Mathisen"},
+   {1, "John Jeffries"},
+   {1, "Owen McGonagle"},
+   {1, "Steve Tappan"},
+   {1, "Tak Ina"},
+   {1, "Ryuta Ito"},
+   {1, "Claire Jessop"},
+   {1, "Kelsey Smith"},
+   {1, "Alexander Schicho"},
+   {1, "Daniel Florez"},
+   {1, "Nobbi"},
+   {1, "A NakaoJPN"},
+   {1, "Brian Deason7654"},
+   {1, "Eric GONDERINGER"},
+   {1, "Geoff Gibson"},
+   {1, "Hotpot Neo"},
+   {1, "James Bolze"},
+   {1, "Kris Kenis"},
+   {1, "li xiang"},
+   {1, "Matt Wilks"},
+   {1, "Michiel Roks"},
+   {1, "Oskar Oskar"},
+   {1, "Patton Coles"},
+   {1, "peter errens"},
+   {1, "richard jal."},
+   {1, "Ricky Enø Thomassen"},
+   {1, "Ron Mar"},
+   {1, "Sandro Funchal"},
+   {1, "tarou nagae"},
+   {1, "Tom Wassink"},
+   {0, "ATHLETE_END"},
+};                                        
+
+
+Athlete_t athleteGRITorig[MAX_ATHLETES] = {   
 //   {1, "Sepp Kuss"},                  /* 18 */
 //   {1, "James Piccoli"},              /* 19 */
    {1, "Lance Anderson"},             /* 1  */
@@ -753,7 +794,7 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
    {
       teamFound = 1;
       strcpy(timeLineInfo->name, "Dan Nelson");
-      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+      strcpy(timeLineInfo->team, "!DUX! TPA-FLA HERD");
    }
    else if (strstr(tmp, "Kelly Toth") != 0)
    {
@@ -813,7 +854,7 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
    {
       teamFound = 1;
       strcpy(timeLineInfo->name, "Dax Nelson");
-      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+      strcpy(timeLineInfo->team, "!DUX! TPA-FLA HERD");
    }
    else if (strstr(tmp, "Greg Langman") != 0)
    {
@@ -875,7 +916,7 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
    {
       teamFound = 1;
       strcpy(timeLineInfo->name, "Dan Nelson");
-      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
+      strcpy(timeLineInfo->team, "!DUX! TPA-FLA - HERD");
    }
    else if ((strstr(tmp, "Rafa") != 0) && (strstr(tmp, "Dzieko") != 0))
    {
@@ -1025,7 +1066,7 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    else if (strstr(timeLineInfo->name, "Dan Nelson") != 0)
    {
       strcpy(timeLineInfo->name, "Dan Nelson");
-      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+      strcpy(timeLineInfo->team, "!DUX! TPA-FLA HERD");
    }
    else if (strstr(timeLineInfo->name, "Kelly Toth") != 0)
    {
@@ -1075,7 +1116,7 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    else if (strstr(timeLineInfo->name, "Dax Nelson") != 0)
    {
       strcpy(timeLineInfo->name, "Dax Nelson");
-      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA HERD");
+      strcpy(timeLineInfo->team, "!DUX! TPA-FLA HERD");
    }
    else if (strstr(timeLineInfo->name, "Greg Langman") != 0)
    {
@@ -1127,7 +1168,7 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    else if (strstr(timeLineInfo->name, "Dan Nelson") != 0)
    {
       strcpy(timeLineInfo->name, "Dan Nelson");
-      strcpy(timeLineInfo->team, "¡DUX! TPA-FLA - HERD");
+      strcpy(timeLineInfo->team, "!DUX! TPA-FLA - HERD");
    }
    else if ((strstr(timeLineInfo->name, "Rafa") != 0) && (strstr(timeLineInfo->name, "Dzieko") != 0))
    {
