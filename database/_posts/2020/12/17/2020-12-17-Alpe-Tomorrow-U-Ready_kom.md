@@ -15,7 +15,7 @@
  15  Greg Langman  DIRT  10.433    943w  13.3
  16  Steve Tappan  [GRIT]  10.443    746w  11.0
  17  Sergei Melnikov  UTT  10.505    722w  11.5
- 18  Guillaume Lafleur  leMÉTIER.  10.506    767w  9.8
+ 18  Guillaume Lafleur  leMETIER  10.506    767w  9.8
  19  Daisuke Saika  (WCU)    10.641    783w  13.3
  20  Bart Keizer  BRT  10.662    745w  11.3
  21  Ped Fesh  -  10.687    839w  10.0

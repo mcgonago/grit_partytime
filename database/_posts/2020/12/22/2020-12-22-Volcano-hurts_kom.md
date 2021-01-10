@@ -1,5 +1,5 @@
   1  Yoshito Higa  -  06:45    276w  5.2
-  2  Paul Roy  RETÓ!  07:05    331w  4.8
+  2  Paul Roy  RETO!  07:05    331w  4.8
   3  Kenny Hendrix  -  07:06    288w  5.2
   4  M Shinall  TTE  07:09    324w  4.7
   5  Dominik Lugmair  TeamODZ  07:12    356w  4.4

@@ -11,7 +11,7 @@
  11  steven schietecatte  -  59:57      3.6w/kg        254w                                                        70.0kg        168bpm                176cm
  12  Daniel Shalkowski  DIRT  1:00:10      3.6w/kg        247w                                                        68.0kg        144bpm                178cm
  13  Gabriel Mathisen  [VEGAN][GRIT]  1:00:22      3.9w/kg        242w                                                        62.0kg        63bpm                178cm
- 14  Thomas Schräder  ZRG  1:01:01      3.6w/kg        314w                                                        87.0kg        165bpm                193cm
+ 14  Thomas Schrader  ZRG  1:01:01      3.6w/kg        314w                                                        87.0kg        165bpm                193cm
  15  Geoff Bunyan  -  1:01:02      3.6w/kg        265w                                                        73.0kg        159bpm                180cm
  16  Reid McGregor  MGCC  1:01:36      3.6w/kg        278w                                                        77.1kg        170bpm                183cm
  17  Steve Peplinski  GRIT  1:02:24      3.5w/kg        268w                                                        77.1kg        160bpm                170cm
