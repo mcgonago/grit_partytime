@@ -19,7 +19,7 @@
  19  Phillip Goulding  FUSION CC  10.810    1046w  12.7
  20  Dan Messina  NaturalGrocers  10.824    895w  11.4
  21  Seiichi Kaneko  Team Fin's  10.993    636w  10.6
- 22  Guillaume Lafleur  leMÉTIER .  11.001    840w  10.8
+ 22  Guillaume Lafleur  leMETIER  11.001    840w  10.8
  23  Franco Battiato  Team Z TAZ  11.116    588w  8.6
  24  an qishi  -  11.132    606w  9.8
  25  Rasmus Rogvi  DBR  11.360    533w  7.6

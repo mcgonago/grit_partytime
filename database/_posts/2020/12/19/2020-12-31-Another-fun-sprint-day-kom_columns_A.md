@@ -18,7 +18,7 @@
  18  Franco Battiato  Team Z TAZ  11.068    675w  9.9
  19  Andy Batkin  -  11.081    570w  8.6
  20  Tristan Longworth  -  11.120    768w  8.7
- 21  Egon Ivanjšek  PPRteam  11.166    683w  9.6
+ 21  Egon Ivanjsek  PPRteam  11.166    683w  9.6
  22  David Macivor  WLClarion  11.199    622w  8.9
  23  Paul Barfoot  -  11.279    557w  7.0
  24  Chris Dominey  -  11.479    595w  8.6

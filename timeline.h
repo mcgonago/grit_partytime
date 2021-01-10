@@ -10,7 +10,13 @@ typedef struct Race_s
    char raceName[MAX_STRING_SIZE];
    int place;
    int points;
+   int done;
 } Race_t;
+
+typedef struct Order_s
+{
+   int pos;
+} Order_t;
 
 typedef struct TimeLineInfo_s
 {
@@ -40,6 +46,7 @@ typedef struct TimeLineInfo_s
    
    int numRaces;
    Race_t race[MAX_RACES];
+   Order_t raceOrder[MAX_RACES];
    
    int fraction;
    int msecs;

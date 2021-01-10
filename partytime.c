@@ -1,3 +1,4 @@
+
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdarg.h"
@@ -326,6 +327,7 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
 
    for (i = 0; i < MAX_RACES; i++)
    {
+      timeLineInfo->raceOrder[i].pos = -1;
       timeLineInfo->race[i].place = -1;
       timeLineInfo->race[i].points = 0;
    }
@@ -808,6 +810,24 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(tmp, "Guido Kramer Leymen") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Guido Kramer Leymen");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if (strstr(tmp, "Paul Roy") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Paul Roy");
+      strcpy(timeLineInfo->team, "RETO!");
+   }
+   else if (strstr(tmp, "Guillaume Lafleur") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Guillaume Lafleur");
+      strcpy(timeLineInfo->team, "leMETIER");
+   }
    else if (strstr(tmp, "Bruch Wu") != 0)
    {
       teamFound = 1;
@@ -819,6 +839,18 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       teamFound = 1;
       strcpy(timeLineInfo->name, "Mans Bergenzaun");
       strcpy(timeLineInfo->team, "TEAM BTC");
+   }
+   else if ((strstr(tmp, "Egon") != 0) && (strstr(tmp, "Ivan") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Egon Ivanjsek");
+      strcpy(timeLineInfo->team, "PPRteam");
+   }
+   else if ((strstr(tmp, "Thomas") != 0) && (strstr(tmp, "Schr") != 0))
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Thomas Schrader");
+      strcpy(timeLineInfo->team, "ZRG");
    }
    else if (strstr(tmp, "C hris M") != 0)
    {
@@ -1083,10 +1115,35 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(timeLineInfo->name, "Guido Kramer Leymen") != 0)
+   {
+      strcpy(timeLineInfo->name, "Guido Kramer Leymen");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if (strstr(timeLineInfo->name, "Paul Roy") != 0)
+   {
+      strcpy(timeLineInfo->name, "Paul Roy");
+      strcpy(timeLineInfo->team, "RETO!");
+   }
+   else if (strstr(timeLineInfo->name, "Guillaume Lafleur") != 0)
+   {
+      strcpy(timeLineInfo->name, "Guillaume Lafleur");
+      strcpy(timeLineInfo->team, "leMETIER");
+   }
    else if ((strstr(timeLineInfo->name, "Bergenzaun") != 0) && (strstr(timeLineInfo->name, "ns ") != 0))
    {
       strcpy(timeLineInfo->name, "Mans Bergenzaun");
       strcpy(timeLineInfo->team, "TEAM BTC");
+   }
+   else if ((strstr(timeLineInfo->name, "Egon") != 0) && (strstr(timeLineInfo->name, "Ivan") != 0))
+   {
+      strcpy(timeLineInfo->name, "Egon Ivanjsek");
+      strcpy(timeLineInfo->team, "PPRteam");
+   }
+   else if ((strstr(timeLineInfo->name, "Thomas") != 0) && (strstr(timeLineInfo->name, "Schr") != 0))
+   {
+      strcpy(timeLineInfo->name, "Thomas Schrader");
+      strcpy(timeLineInfo->team, "ZRG");
    }
    else if (strstr(timeLineInfo->name, "C hris M") != 0)
    {
@@ -1874,10 +1931,21 @@ void PrintTable(CLI_PARSE_INFO *pInfo)
 
    for (i = idx; i < MAX_ENTRIES; i++)
    {
-      if (printTable[i].enabled == 0)
+#if 0
+      if (printTable[i+1].enabled == 0)
       {
-         break;
+         /* +++owen - crazy, to keep supporting this CONSOLE_OUTPUT, fudge it */
+         /* +++owen - remove tailing spaces ? */
       }
+      else
+#else
+      {
+         if (printTable[i].enabled == 0)
+         {
+            break;
+         }
+      }
+#endif
 
       ColumnPrintf(pInfo, printTable[i].entry);
    }
@@ -2282,7 +2350,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    int count = 1;
    int firstAthlete = 1;
    int includeVAM = 0;
-   int raceId = 0;
+   int raceId = -1;
    int nlMode = NL_REMOVE;
    int goIntoLoop = 0;
    int partyAlreadyOneTime = 0;
@@ -2313,7 +2381,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
    TimeLineInfo_t *timeLineInfoI;
    TimeLineInfo_t *timeLineInfoJ;
-
    float fudge;
 
    char place[MAX_STRING_SIZE];
@@ -2359,6 +2426,12 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    if ( pInfo->argc > 3)
    {
       sprintf(raceName, "%s", pInfo->argv[3]);
+   }
+
+   if ( pInfo->argc > 4)
+   {
+      //sprintf(raceId, "%d", pInfo->argv[4]);
+      sscanf(pInfo->argv[4], "%d", &raceId);
    }
 
    fp_in = fopen(infile, "r");
@@ -2583,33 +2656,40 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
                }
 
-#if 1
-               if (strcmp(raceName, "race1") == 0)
+               if (raceId != -1)
                {
-                  raceId = 0;
-                  timeLineInfo->race[0].place = count;
-                  sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+                  timeLineInfo->race[raceId].place = count;
+                  sprintf(timeLineInfo->race[raceId].raceName, "%s", raceName);
                }
-               else if (strcmp(raceName, "race2") == 0)
+               else
                {
-                  raceId = 1;
-                  timeLineInfo->race[1].place = count;
-                  sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+                  if (strcmp(raceName, "race1") == 0)
+                  {
+                     raceId = 0;
+                     timeLineInfo->race[0].place = count;
+                     sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+                  }
+                  else if (strcmp(raceName, "race2") == 0)
+                  {
+                     raceId = 1;
+                     timeLineInfo->race[1].place = count;
+                     sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+                  }
+                  else if (strcmp(raceName, "race3") == 0)
+                  {
+                     raceId = 2;
+                     timeLineInfo->race[2].place = count;
+                     sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
+                  }
+                  else if (strcmp(raceName, "race4") == 0)
+                  {
+                     raceId = 3;
+                     timeLineInfo->race[3].place = count;
+                     sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
+                  }
                }
-               else if (strcmp(raceName, "race3") == 0)
-               {
-                  raceId = 2;
-                  timeLineInfo->race[2].place = count;
-                  sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
-               }
-               else if (strcmp(raceName, "race4") == 0)
-               {
-                  raceId = 3;
-                  timeLineInfo->race[3].place = count;
-                  sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
-               }
+
                count++;
-#endif
 
                TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
@@ -2658,32 +2738,39 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
                }
 
-#if 1
-               if (strcmp(raceName, "race1") == 0)
+
+               if (raceId != -1)
                {
-                  raceId = 0;
-                  timeLineInfo->race[0].place = count;
-                  sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+                  timeLineInfo->race[raceId].place = count;
+                  sprintf(timeLineInfo->race[raceId].raceName, "%s", raceName);
                }
-               else if (strcmp(raceName, "race2") == 0)
+               else
                {
-                  raceId = 1;
-                  timeLineInfo->race[1].place = count;
-                  sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+                  if (strcmp(raceName, "race1") == 0)
+                  {
+                     raceId = 0;
+                     timeLineInfo->race[0].place = count;
+                     sprintf(timeLineInfo->race[0].raceName, "%s", raceName);
+                  }
+                  else if (strcmp(raceName, "race2") == 0)
+                  {
+                     raceId = 1;
+                     timeLineInfo->race[1].place = count;
+                     sprintf(timeLineInfo->race[1].raceName, "%s", raceName);
+                  }
+                  else if (strcmp(raceName, "race3") == 0)
+                  {
+                     raceId = 2;
+                     timeLineInfo->race[2].place = count;
+                     sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
+                  }
+                  else if (strcmp(raceName, "race4") == 0)
+                  {
+                     raceId = 3;
+                     timeLineInfo->race[3].place = count;
+                     sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
+                  }
                }
-               else if (strcmp(raceName, "race3") == 0)
-               {
-                  raceId = 2;
-                  timeLineInfo->race[2].place = count;
-                  sprintf(timeLineInfo->race[2].raceName, "%s", raceName);
-               }
-               else if (strcmp(raceName, "race4") == 0)
-               {
-                  raceId = 3;
-                  timeLineInfo->race[3].place = count;
-                  sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
-               }
-#endif
 
                if (partyMode & PARTY_FOLLOWING_2)
                {
@@ -3025,6 +3112,137 @@ void cmd_party_following2(CLI_PARSE_INFO *pInfo)
 }
 
 int BestOf(TimeLineInfo_t *timeLineInfo, int count, int *total)
+{
+   int i, j;
+   int ret;
+   int numRaces = 0;
+   int finalHighest = 0;
+   int currPoints = 0;
+   int currHighest = 0;
+   int highestIdx = 0;
+   int orderIdx = 0;
+   
+   for (i = 0; i < totalRacesIncluded; i++)
+   {
+      timeLineInfo->race[i].done = 0;
+      if (timeLineInfo->race[i].place > 0)
+      {
+         numRaces += 1;
+      }
+   }
+
+   highestIdx = 0;
+   while (1)
+   {
+      highestIdx = 0;
+      currHighest = 0;
+      for (i = 0; i < totalRacesIncluded; i++)
+      {
+         for (j = 0; j < totalRacesIncluded; j++)
+         {
+            if ((timeLineInfo->race[j].done == 0) &&
+                (timeLineInfo->race[j].place > 0))
+            {
+               currPoints = timeLineInfo->race[j].points;
+               if (currPoints >= currHighest)
+               {
+                  currHighest = currPoints;
+                  highestIdx = j;
+               }
+            }
+         }
+      }
+
+      if (currHighest == 0)
+      {
+         break;
+      }
+
+      timeLineInfo->race[highestIdx].done = 1;
+      timeLineInfo->raceOrder[orderIdx].pos = highestIdx;
+      orderIdx += 1;
+   }
+
+   ret = 0;
+   for (i = 0; i < count; i++)
+   {
+      orderIdx = timeLineInfo->raceOrder[i].pos;
+      ret += timeLineInfo->race[orderIdx].points;
+   }
+
+   *total = numRaces;
+
+#if 0
+
+   order[0] = id0;
+   if (id1 > id0)
+   {
+      order[1] = id0;
+      order[0] = id1;
+   }
+   else
+   {
+      order[1] = id1;
+   }
+
+   if (id2 > order[0])
+   {
+      order[2] = order[1];
+      order[1] = order[0];
+      order[0] = id2;
+   }
+   else if (id2 > order[1])
+   {
+      order[2] = order[1];
+      order[1] = id2;
+   }
+   else if (id2 > order[2])
+   {
+      order[3] = order[2];
+      order[2] = id2;
+   }
+
+   if (id3 > order[0])
+   {
+      order[3] = order[2];
+      order[2] = order[1];
+      order[1] = order[0];
+      order[0] = id3;
+   }
+   else if (id3 > order[1])
+   {
+      order[3] = order[2];
+      order[2] = order[1];
+      order[1] = id3;
+   }
+   else if (id3 > order[2])
+   {
+      order[3] = order[2];
+      order[2] = id3;
+   }
+
+   if (count == 1)
+   {
+      ret = order[0];
+   }
+   else if (count == 2)
+   {
+      ret = (order[0] + order[1]);
+   }
+   else if (count == 3)
+   {
+      ret = (order[0] + order[1] + order[2]);
+   }
+   else if (count == 4)
+   {
+      ret = (order[0] + order[1] + order[2] + order[3]);
+   }
+#endif
+   
+   return (ret);
+}
+
+int BestOfOrig(TimeLineInfo_t *timeLineInfo, int count, int *total)
 {
    int i;
    int id0, id1, id2, id3;
@@ -4063,7 +4281,8 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
    PrintTable(pInfo);
    (pInfo->print_fp)("\n\n");
 
-#else
+#endif
+#if 1
 
    sprintf(s1, "%s", "3  Steve Tappan  [GRIT]  06:39    374w  5.5wkg");
 

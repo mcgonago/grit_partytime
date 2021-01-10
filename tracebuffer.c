@@ -2880,8 +2880,22 @@ static void cmd_exit(CLI_PARSE_INFO *info)
 
 static void cmd_echo(CLI_PARSE_INFO *info)
 {
+    int i;
+    
+    if ( info->argc == 1)
+    {
+        (info->print_fp)("\n");
+        return;
+    }
+    
     /* Echo message to console */
-    printf("%s\n", info->argv[0]);
+
+    for (i=1; i < info->argc; ++i)
+    {
+        (info->print_fp)("%s ", info->argv[i]);
+    }
+
+    (info->print_fp)("\n");
 }
 
 static void cmd_quit(CLI_PARSE_INFO *info)

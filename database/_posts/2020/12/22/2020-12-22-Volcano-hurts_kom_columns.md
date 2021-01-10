@@ -12,7 +12,7 @@
  12  Chris Howarth  -  06:48    341w  5.0
  13  Takaaki Iwasaki  JETT  06:48    309w  4.8
  14  Owen McGonagle  GRIT  06:55    315w  4.8
- 15  Paul Roy  RETÓ!  07:05    331w  4.8
+ 15  Paul Roy  RETO!  07:05    331w  4.8
  16  Kenny Hendrix  -  07:06    288w  5.2
  17  Daniel Florez  Team Type 1  07:08    296w  4.6
  18  M Shinall  TTE  07:09    324w  4.7

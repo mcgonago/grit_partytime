@@ -10,7 +10,7 @@
  10  Mark Furth  EVOLUTION  06:57    365w  4.6
  11  Rob Fullerton  GRIT  06:57    352w  4.6
  12  Tiago Ribeiro  -  06:57    365w  4.6
- 13  Thomas Schr__der  ZRG  06:57    392w  4.5
+ 13  Thomas Schrader  ZRG  06:57    392w  4.5
  14  Bryn Griffiths  -  07:04    363w  4.4
  15  Sarah Storey  Vision  07:08    316w  4.6
  16  Jonathan Girvan  CTC  07:11    308w  4.5
