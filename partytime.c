@@ -64,6 +64,7 @@ PrintEntry_t printTable[MAX_ENTRIES];
 /* +++owen - hardcoding to assuming ONLY (4) races taking part in points series */
 static int totalRacesIncluded = 4;
 static int maxCount = 0;
+static int numRacesG = 0;
 
 LinkList_t *listTimeLine = NULL;
 LinkList_t *listTimeOrder = NULL;
@@ -2689,6 +2690,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                   }
                }
 
+               if ((raceId + 1) > numRacesG)
+               {
+                  numRacesG = (raceId + 1); 
+               }
+
                count++;
 
                TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
@@ -2770,6 +2776,11 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      timeLineInfo->race[3].place = count;
                      sprintf(timeLineInfo->race[3].raceName, "%s", raceName);
                   }
+               }
+
+               if ((raceId + 1) > numRacesG)
+               {
+                  numRacesG = (raceId + 1); 
                }
 
                if (partyMode & PARTY_FOLLOWING_2)
@@ -3411,11 +3422,32 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
    }
 
 #ifndef CONSOLE_OUTPUT
+#if 1
+   outIdx = 0;
+   outIdx += sprintf(&header[outIdx], "%s", "#  name   team   race1  ");
+   for (i = 1; i < numRacesG; i++)
+   {
+      outIdx += sprintf(&header[outIdx], "race%d  ", (i+1));
+   }
+   outIdx += sprintf(&header[outIdx], "%s", "plc/pts");
+   ColumnStore(pInfo, header);
+
+   outIdx = 0;
+   outIdx += sprintf(&header[outIdx], "%s", "-  ----   ----   -----  ");
+   for (i = 1; i < numRacesG; i++)
+   {
+      outIdx += sprintf(&header[outIdx], "%s", "------  ");
+   }                                                       
+   outIdx += sprintf(&header[outIdx], "%s", "-------");
+   ColumnStore(pInfo, header);
+#endif
+#if 0
    sprintf(header, "%s", "#  name   team   race1  race2  race3  race4  plc/pts");
    ColumnStore(pInfo, header);
 
    sprintf(header, "%s", "-  ----   ----   ---  ----  -----  ----  -------");
    ColumnStore(pInfo, header);
+#endif
 #endif
 
    ptr = (Link_t *)listTimeOrder->head;
@@ -3458,7 +3490,7 @@ void cmd_party_show(CLI_PARSE_INFO *pInfo)
       }
       count++;
 
-      for (i = 0; i < totalRacesIncluded; i++)
+      for (i = 0; i < numRacesG; i++)
       {
          if (timeLineInfo->race[i].place != -1)
          {
@@ -3661,6 +3693,8 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
 
    ListReset(pInfo, listTimeLine);
    ListReset(pInfo, listTimeOrder);
+
+   numRacesG = 0;
 
    ColumnReset(pInfo);
 }

@@ -61,11 +61,11 @@ partyControl.max = 42, count = 4, fudge = 10.5000
 partyControl.max = 42, count = 2, fudge = 21.0000
 
 
-| #   | name                      | team    | race1    | race2    | race3    | race4    | plc/pts |
-+-----+---------------------------+---------+----------+----------+----------+----------+---------|
-| 1   | Owen McGonagle            | GRIT    | 6/36     | 1/31     | 1/21     | 0/0      | 67      |
-| 2   | Shaun Corbin Nashville    | DIRT    | 10/32    | 2/21     | 0/0      | 0/0      | 53      |
-| 3   | Calum Scott               | DIRT    | 31/11    | 3/10     | 0/0      | 0/0      | 21      |
+| #   | name                      | team    | race1    | race2     | race3     | plc/pts |
++-----+---------------------------+---------+----------+-----------+-----------+---------|
+| 1   | Owen McGonagle            | GRIT    | 6/36     | 1/31      | 1/21      | 67      |
+| 2   | Shaun Corbin Nashville    | DIRT    | 10/32    | 2/21      | 0/0       | 53      |
+| 3   | Calum Scott               | DIRT    | 31/11    | 3/10      | 0/0       | 21      |
 
 
 
@@ -179,12 +179,12 @@ partyControl.max = 35, count = 34, fudge = 1.0294
 partyControl.max = 35, count = 35, fudge = 1.0000
 
 
-| #   | name                | team             | race1    | race2    | race3    | race4    | plc/pts |
-+-----+---------------------+------------------+----------+----------+----------+----------+---------|
-| 1   | Gabriel Mathisen    | [VEGAN][GRIT]    | 0/0      | 2/32     | 3/32     | 0/0      | 64      |
-| 2   | Steve Tappan        | [GRIT]           | 1/33     | 7/27     | 0/0      | 0/0      | 60      |
-| 3   | Tak Ina             | [JETT][GRIT]     | 9/23     | 0/0      | 8/27     | 0/0      | 50      |
-| 4   | Greg Langman        | DIRT             | 7/25     | 10/24    | 0/0      | 0/0      | 49      |
-| 5   | Rob Fullerton       | GRIT             | 11/20    | 14/20    | 12/23    | 0/0      | 43      |
+| #   | name                | team             | race1    | race2     | race3     | plc/pts |
++-----+---------------------+------------------+----------+-----------+-----------+---------|
+| 1   | Gabriel Mathisen    | [VEGAN][GRIT]    | 0/0      | 2/32      | 3/32      | 64      |
+| 2   | Steve Tappan        | [GRIT]           | 1/33     | 7/27      | 0/0       | 60      |
+| 3   | Tak Ina             | [JETT][GRIT]     | 9/23     | 0/0       | 8/27      | 50      |
+| 4   | Greg Langman        | DIRT             | 7/25     | 10/24     | 0/0       | 49      |
+| 5   | Rob Fullerton       | GRIT             | 11/20    | 14/20     | 12/23     | 43      |
 
 

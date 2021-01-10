@@ -60,63 +60,63 @@
 partyControl.max = -1, count = 57, fudge = 1.0000
 
 
-| #    | name                      | team                        | race1    | race2    | race3    | race4    | plc/pts |
-+------+---------------------------+-----------------------------+----------+----------+----------+----------+---------|
-| 1    | Christian Kaldbar         | GRIT                        | 1/56     | 0/0      | 0/0      | 0/0      | 56      |
-| 2    | Rob Fullerton             | GRIT                        | 2/55     | 0/0      | 0/0      | 0/0      | 55      |
-| 3    | Steve Tappan              | [GRIT]                      | 3/54     | 0/0      | 0/0      | 0/0      | 54      |
-| 4    | Thomas Woods              | TeamODZ                     | 4/53     | 0/0      | 0/0      | 0/0      | 53      |
-| 5    | Yusuke Saeki              | (SBC Vertex Racing Team)    | 5/52     | 0/0      | 0/0      | 0/0      | 52      |
-| 6    | Erik Anneback             | -                           | 6/51     | 0/0      | 0/0      | 0/0      | 51      |
-| 7    | Tak Ina                   | [JETT][GRIT]                | 7/50     | 0/0      | 0/0      | 0/0      | 50      |
-| 8    | Yoshito Higa              | -                           | 8/49     | 0/0      | 0/0      | 0/0      | 49      |
-| 9    | TREK ITA                  | -                           | 9/48     | 0/0      | 0/0      | 0/0      | 48      |
-| 10   | Hans-Jurgen G             | -                           | 10/47    | 0/0      | 0/0      | 0/0      | 47      |
-| 11   | Greg Langman              | DIRT                        | 11/46    | 0/0      | 0/0      | 0/0      | 46      |
-| 12   | Chris Howarth             | -                           | 12/45    | 0/0      | 0/0      | 0/0      | 45      |
-| 13   | Takaaki Iwasaki           | JETT                        | 13/44    | 0/0      | 0/0      | 0/0      | 44      |
-| 14   | Owen McGonagle            | GRIT                        | 14/43    | 0/0      | 0/0      | 0/0      | 43      |
-| 15   | Paul Roy                  | RETO!                       | 15/42    | 0/0      | 0/0      | 0/0      | 42      |
-| 16   | Kenny Hendrix             | -                           | 16/41    | 0/0      | 0/0      | 0/0      | 41      |
-| 17   | Daniel Florez             | Team Type 1                 | 17/40    | 0/0      | 0/0      | 0/0      | 40      |
-| 18   | M Shinall                 | TTE                         | 18/39    | 0/0      | 0/0      | 0/0      | 39      |
-| 19   | Dominik Lugmair           | TeamODZ                     | 19/38    | 0/0      | 0/0      | 0/0      | 38      |
-| 20   | Simon Gillis              | -                           | 20/37    | 0/0      | 0/0      | 0/0      | 37      |
-| 21   | Robert Quinn              | -                           | 21/36    | 0/0      | 0/0      | 0/0      | 36      |
-| 22   | J B #1                    | SWOZR                       | 22/35    | 0/0      | 0/0      | 0/0      | 35      |
-| 23   | Rameez Tase               | (Team MoMA)                 | 23/34    | 0/0      | 0/0      | 0/0      | 34      |
-| 24   | Takashi KAWAMOTO          | (YOU CAN)                   | 24/33    | 0/0      | 0/0      | 0/0      | 33      |
-| 25   | Hiroki Tanaka             | -                           | 25/32    | 0/0      | 0/0      | 0/0      | 32      |
-| 26   | Daniel Shalkowski         | DIRT                        | 26/31    | 0/0      | 0/0      | 0/0      | 31      |
-| 27   | J B #2                    | BCC - Bees                  | 27/30    | 0/0      | 0/0      | 0/0      | 30      |
-| 28   | Jim Griffin               | VEGAN                       | 28/29    | 0/0      | 0/0      | 0/0      | 29      |
-| 29   | Shaun Corbin Nashville    | DIRT                        | 29/28    | 0/0      | 0/0      | 0/0      | 28      |
-| 30   | Masahide Fukae            | -                           | 30/27    | 0/0      | 0/0      | 0/0      | 27      |
-| 31   | Tijmen Poleij             | -                           | 31/26    | 0/0      | 0/0      | 0/0      | 26      |
-| 32   | Aaron Quinn               | -                           | 32/25    | 0/0      | 0/0      | 0/0      | 25      |
-| 33   | DONGHYUN KIM/             | -                           | 33/24    | 0/0      | 0/0      | 0/0      | 24      |
-| 34   | Cecelia Taggart           | DIRT                        | 34/23    | 0/0      | 0/0      | 0/0      | 23      |
-| 35   | Ian Bundy                 | DIRT                        | 35/22    | 0/0      | 0/0      | 0/0      | 22      |
-| 36   | Jason Perkins             | -                           | 36/21    | 0/0      | 0/0      | 0/0      | 21      |
-| 37   | Dax Nelson                | !DUX! TPA-FLA HERD          | 37/20    | 0/0      | 0/0      | 0/0      | 20      |
-| 38   | John Jeffries             | [AA Bikes][GRIT]            | 38/19    | 0/0      | 0/0      | 0/0      | 19      |
-| 39   | Doug Cowperthwaite        | TeamODZ                     | 39/18    | 0/0      | 0/0      | 0/0      | 18      |
-| 40   | A NakaoJPN                | -                           | 40/17    | 0/0      | 0/0      | 0/0      | 17      |
-| 41   | Josh Clingan              | DIRT                        | 41/16    | 0/0      | 0/0      | 0/0      | 16      |
-| 42   | Jonathan Lippert          | -                           | 42/15    | 0/0      | 0/0      | 0/0      | 15      |
-| 43   | Craig LeBlanc             | [ ATP ]                     | 43/14    | 0/0      | 0/0      | 0/0      | 14      |
-| 44   | Selwyn Elkerbout          | -                           | 44/13    | 0/0      | 0/0      | 0/0      | 13      |
-| 45   | Michal Duszczyk           | ZTPL.CC                     | 45/12    | 0/0      | 0/0      | 0/0      | 12      |
-| 46   | Andrew Howes              | (SCC)                       | 46/11    | 0/0      | 0/0      | 0/0      | 11      |
-| 47   | Harold Berkers            | -                           | 47/10    | 0/0      | 0/0      | 0/0      | 10      |
-| 48   | Steven Allington          | -                           | 48/9     | 0/0      | 0/0      | 0/0      | 9       |
-| 49   | Kent Ryan                 | -                           | 49/8     | 0/0      | 0/0      | 0/0      | 8       |
-| 50   | Craig Bramley             | DIRT                        | 50/7     | 0/0      | 0/0      | 0/0      | 7       |
-| 51   | Nick Jordan               | Race Hub                    | 51/6     | 0/0      | 0/0      | 0/0      | 6       |
-| 52   | Bruce Atherton            | -                           | 52/5     | 0/0      | 0/0      | 0/0      | 5       |
-| 53   | Brandon Maydew            | -                           | 53/4     | 0/0      | 0/0      | 0/0      | 4       |
-| 54   | Soren Soholt              | DBR                         | 54/3     | 0/0      | 0/0      | 0/0      | 3       |
-| 55   | Greg Rashford             | #NOMAD                      | 55/2     | 0/0      | 0/0      | 0/0      | 2       |
-| 56   | Nestor hernandez          | -                           | 56/1     | 0/0      | 0/0      | 0/0      | 1       |
+| #    | name                      | team                        | race1    | plc/pts |
++------+---------------------------+-----------------------------+----------+---------|
+| 1    | Christian Kaldbar         | GRIT                        | 1/56     | 56      |
+| 2    | Rob Fullerton             | GRIT                        | 2/55     | 55      |
+| 3    | Steve Tappan              | [GRIT]                      | 3/54     | 54      |
+| 4    | Thomas Woods              | TeamODZ                     | 4/53     | 53      |
+| 5    | Yusuke Saeki              | (SBC Vertex Racing Team)    | 5/52     | 52      |
+| 6    | Erik Anneback             | -                           | 6/51     | 51      |
+| 7    | Tak Ina                   | [JETT][GRIT]                | 7/50     | 50      |
+| 8    | Yoshito Higa              | -                           | 8/49     | 49      |
+| 9    | TREK ITA                  | -                           | 9/48     | 48      |
+| 10   | Hans-Jurgen G             | -                           | 10/47    | 47      |
+| 11   | Greg Langman              | DIRT                        | 11/46    | 46      |
+| 12   | Chris Howarth             | -                           | 12/45    | 45      |
+| 13   | Takaaki Iwasaki           | JETT                        | 13/44    | 44      |
+| 14   | Owen McGonagle            | GRIT                        | 14/43    | 43      |
+| 15   | Paul Roy                  | RETO!                       | 15/42    | 42      |
+| 16   | Kenny Hendrix             | -                           | 16/41    | 41      |
+| 17   | Daniel Florez             | Team Type 1                 | 17/40    | 40      |
+| 18   | M Shinall                 | TTE                         | 18/39    | 39      |
+| 19   | Dominik Lugmair           | TeamODZ                     | 19/38    | 38      |
+| 20   | Simon Gillis              | -                           | 20/37    | 37      |
+| 21   | Robert Quinn              | -                           | 21/36    | 36      |
+| 22   | J B #1                    | SWOZR                       | 22/35    | 35      |
+| 23   | Rameez Tase               | (Team MoMA)                 | 23/34    | 34      |
+| 24   | Takashi KAWAMOTO          | (YOU CAN)                   | 24/33    | 33      |
+| 25   | Hiroki Tanaka             | -                           | 25/32    | 32      |
+| 26   | Daniel Shalkowski         | DIRT                        | 26/31    | 31      |
+| 27   | J B #2                    | BCC - Bees                  | 27/30    | 30      |
+| 28   | Jim Griffin               | VEGAN                       | 28/29    | 29      |
+| 29   | Shaun Corbin Nashville    | DIRT                        | 29/28    | 28      |
+| 30   | Masahide Fukae            | -                           | 30/27    | 27      |
+| 31   | Tijmen Poleij             | -                           | 31/26    | 26      |
+| 32   | Aaron Quinn               | -                           | 32/25    | 25      |
+| 33   | DONGHYUN KIM/             | -                           | 33/24    | 24      |
+| 34   | Cecelia Taggart           | DIRT                        | 34/23    | 23      |
+| 35   | Ian Bundy                 | DIRT                        | 35/22    | 22      |
+| 36   | Jason Perkins             | -                           | 36/21    | 21      |
+| 37   | Dax Nelson                | !DUX! TPA-FLA HERD          | 37/20    | 20      |
+| 38   | John Jeffries             | [AA Bikes][GRIT]            | 38/19    | 19      |
+| 39   | Doug Cowperthwaite        | TeamODZ                     | 39/18    | 18      |
+| 40   | A NakaoJPN                | -                           | 40/17    | 17      |
+| 41   | Josh Clingan              | DIRT                        | 41/16    | 16      |
+| 42   | Jonathan Lippert          | -                           | 42/15    | 15      |
+| 43   | Craig LeBlanc             | [ ATP ]                     | 43/14    | 14      |
+| 44   | Selwyn Elkerbout          | -                           | 44/13    | 13      |
+| 45   | Michal Duszczyk           | ZTPL.CC                     | 45/12    | 12      |
+| 46   | Andrew Howes              | (SCC)                       | 46/11    | 11      |
+| 47   | Harold Berkers            | -                           | 47/10    | 10      |
+| 48   | Steven Allington          | -                           | 48/9     | 9       |
+| 49   | Kent Ryan                 | -                           | 49/8     | 8       |
+| 50   | Craig Bramley             | DIRT                        | 50/7     | 7       |
+| 51   | Nick Jordan               | Race Hub                    | 51/6     | 6       |
+| 52   | Bruce Atherton            | -                           | 52/5     | 5       |
+| 53   | Brandon Maydew            | -                           | 53/4     | 4       |
+| 54   | Soren Soholt              | DBR                         | 54/3     | 3       |
+| 55   | Greg Rashford             | #NOMAD                      | 55/2     | 2       |
+| 56   | Nestor hernandez          | -                           | 56/1     | 1       |
 
 

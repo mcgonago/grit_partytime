@@ -53,9 +53,9 @@ partyControl.max = 42, count = 4, fudge = 10.5000
 partyControl.max = 42, count = 2, fudge = 21.0000
 
 
-  1   Owen McGonagle                   GRIT                             6/36        1/31        1/21        0/0        67         
-  2   Shaun Corbin Nashville           DIRT                            10/32        2/21        0/0         0/0        53         
-  3   Calum Scott                      DIRT                            31/11        3/10        0/0         0/0        21         
+  1   Owen McGonagle                   GRIT                             6/36        1/31        1/21       67         
+  2   Shaun Corbin Nashville           DIRT                            10/32        2/21        0/0        53         
+  3   Calum Scott                      DIRT                            31/11        3/10        0/0        21         
 
 
   1  Steve Tappan  [GRIT]  06:23    371w  5.5
@@ -70,7 +70,7 @@ partyControl.max = 42, count = 2, fudge = 21.0000
  10  Mark Furth  EVOLUTION  06:57    365w  4.6
  11  Rob Fullerton  GRIT  06:57    352w  4.6
  12  Tiago Ribeiro  -  06:57    365w  4.6
- 13  Thomas Schr__der  ZRG  06:57    392w  4.5
+ 13  Thomas Schrader  ZRG  06:57    392w  4.5
  14  Bryn Griffiths  -  07:04    363w  4.4
  15  Sarah Storey  Vision  07:08    316w  4.6
  16  Jonathan Girvan  CTC  07:11    308w  4.5
@@ -107,7 +107,7 @@ partyControl.max = 35, count = 27, fudge = 1.2963
  18  Franco Battiato  Team Z TAZ  11.068    675w  9.9
  19  Andy Batkin  -  11.081    570w  8.6
  20  Tristan Longworth  -  11.120    768w  8.7
- 21  Egon Ivanjšek  PPRteam  11.166    683w  9.6
+ 21  Egon Ivanjsek  PPRteam  11.166    683w  9.6
  22  David Macivor  WLClarion  11.199    622w  8.9
  23  Paul Barfoot  -  11.279    557w  7.0
  24  Chris Dominey  -  11.479    595w  8.6
@@ -194,10 +194,10 @@ partyControl.max = 35, count = 34, fudge = 1.0294
 partyControl.max = 35, count = 35, fudge = 1.0000
 
 
-  1   Gabriel Mathisen                 [VEGAN][GRIT]                    0/0         2/32        3/32        0/0        64         
-  2   Steve Tappan                     [GRIT]                           1/33        7/27        0/0         0/0        60         
-  3   Tak Ina                          [JETT][GRIT]                     9/23        0/0         8/27        0/0        50         
-  4   Greg Langman                     DIRT                             7/25       10/24        0/0         0/0        49         
-  5   Rob Fullerton                    GRIT                            11/20       14/20       12/23        0/0        43         
+  1   Gabriel Mathisen                 [VEGAN][GRIT]                    0/0         2/32        3/32       64         
+  2   Steve Tappan                     [GRIT]                           1/33        7/27        0/0        60         
+  3   Tak Ina                          [JETT][GRIT]                     9/23        0/0         8/27       50         
+  4   Greg Langman                     DIRT                             7/25       10/24        0/0        49         
+  5   Rob Fullerton                    GRIT                            11/20       14/20       12/23       43         
 
 

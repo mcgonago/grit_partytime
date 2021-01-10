@@ -111,90 +111,90 @@ partyControl.max = -1, count = 36, fudge = 1.0000
 partyControl.max = -1, count = 40, fudge = 1.0000
 
 
-| #    | name                      | team                  | race1    | race2    | race3    | race4    | plc/pts |
-+------+---------------------------+-----------------------+----------+----------+----------+----------+---------|
-| 1    | Tak Ina                   | [JETT][GRIT]          | 3/33     | 6/16     | 7/33     | 0/0      | 66      |
-| 2    | Owen McGonagle            | GRIT                  | 6/30     | 10/12    | 11/29    | 0/0      | 59      |
-| 3    | Steve Tappan              | [GRIT]                | 0/0      | 1/21     | 10/30    | 0/0      | 51      |
-| 4    | Alan Brannan              | GRIT                  | 11/25    | 0/0      | 17/23    | 0/0      | 48      |
-| 5    | Andy Parfitt              | WTRL                  | 0/0      | 0/0      | 1/39     | 0/0      | 39      |
-| 6    | Luke Elton                | GRIT                  | 0/0      | 7/15     | 16/24    | 0/0      | 39      |
-| 7    | Neil Richards             | nopinz R3R            | 0/0      | 0/0      | 2/38     | 0/0      | 38      |
-| 8    | Maximilian Kuen           | VBG - Santic          | 0/0      | 0/0      | 3/37     | 0/0      | 37      |
-| 9    | Rob Fullerton             | GRIT                  | 13/23    | 8/14     | 31/9     | 0/0      | 37      |
-| 10   | Scarlett Parker           | ART                   | 0/0      | 0/0      | 4/36     | 0/0      | 36      |
-| 11   | Yukio Bergholdt           | -                     | 0/0      | 0/0      | 5/35     | 0/0      | 35      |
-| 12   | Shaun Corbin Nashville    | DIRT                  | 1/35     | 0/0      | 0/0      | 0/0      | 35      |
-| 13   | Bruch Wu                  | -                     | 0/0      | 0/0      | 6/34     | 0/0      | 34      |
-| 14   | Darryl Forbes             | DIRT                  | 2/34     | 0/0      | 0/0      | 0/0      | 34      |
-| 15   | J. Jan                    | -                     | 0/0      | 14/8     | 15/25    | 0/0      | 33      |
-| 16   | Carson Shedd              | DIRT                  | 0/0      | 0/0      | 8/32     | 0/0      | 32      |
-| 17   | Dries Decoster            | GFTbe                 | 4/32     | 0/0      | 0/0      | 0/0      | 32      |
-| 18   | Maximilian Weniger        | Rippers               | 0/0      | 0/0      | 9/31     | 0/0      | 31      |
-| 19   | Ross Irwin                | DIRT                  | 5/31     | 0/0      | 0/0      | 0/0      | 31      |
-| 20   | Andrew Aynsley            | -                     | 7/29     | 0/0      | 0/0      | 0/0      | 29      |
-| 21   | Phil S-S                  | -                     | 0/0      | 0/0      | 12/28    | 0/0      | 28      |
-| 22   | Todd Buckley              | -                     | 8/28     | 0/0      | 0/0      | 0/0      | 28      |
-| 23   | Steve Peplinski           | GRIT                  | 0/0      | 0/0      | 13/27    | 0/0      | 27      |
-| 24   | Simon Goddard             | -                     | 9/27     | 0/0      | 0/0      | 0/0      | 27      |
-| 25   | Mikhail Itkin             | Vikings               | 0/0      | 0/0      | 14/26    | 0/0      | 26      |
-| 26   | Greg Langman              | DIRT                  | 10/26    | 0/0      | 0/0      | 0/0      | 26      |
-| 27   | Olivier PERRIN            | Asvel Tri             | 30/6     | 3/19     | 0/0      | 0/0      | 25      |
-| 28   | Bart Keizer               | BRT                   | 12/24    | 0/0      | 0/0      | 0/0      | 24      |
-| 29   | Tristan Longworth         | -                     | 0/0      | 17/5     | 21/19    | 0/0      | 24      |
-| 30   | Masaki Kusunoki #EN       | -                     | 0/0      | 0/0      | 18/22    | 0/0      | 22      |
-| 31   | Michel Schreck            | Team SUI              | 14/22    | 0/0      | 0/0      | 0/0      | 22      |
-| 32   | Jonathan Lippert          | -                     | 0/0      | 0/0      | 19/21    | 0/0      | 21      |
-| 33   | Thomas Fraser             | Royal Navy Cycling    | 15/21    | 0/0      | 0/0      | 0/0      | 21      |
-| 34   | Andrew Thomas             | -                     | 0/0      | 0/0      | 20/20    | 0/0      | 20      |
-| 35   | MHA KOH                   | JETT                  | 16/20    | 0/0      | 0/0      | 0/0      | 20      |
-| 36   | Derek Sawyer              | [GRIT][Rippers]       | 0/0      | 2/20     | 0/0      | 0/0      | 20      |
-| 37   | Etienne Guillet           | -                     | 17/19    | 0/0      | 0/0      | 0/0      | 19      |
-| 38   | Derek Simpson             | GTC                   | 0/0      | 0/0      | 22/18    | 0/0      | 18      |
-| 39   | Mikkel Lindgren           | DBR                   | 18/18    | 0/0      | 0/0      | 0/0      | 18      |
-| 40   | Pieter Jan de Vries       | -                     | 0/0      | 4/18     | 0/0      | 0/0      | 18      |
-| 41   | Ed Jablonski              | KBS/LSV               | 0/0      | 0/0      | 23/17    | 0/0      | 17      |
-| 42   | Philip Morrison           | BRC                   | 19/17    | 0/0      | 0/0      | 0/0      | 17      |
-| 43   | Joseph Moulton            | teamWKG               | 0/0      | 5/17     | 0/0      | 0/0      | 17      |
-| 44   | Paul Cartwright           | WWNR                  | 0/0      | 0/0      | 24/16    | 0/0      | 16      |
-| 45   | Andy Donnelly             | (CT Velo)             | 20/16    | 0/0      | 0/0      | 0/0      | 16      |
-| 46   | Alex Hatziyannis          | CRUZBIKE              | 0/0      | 0/0      | 25/15    | 0/0      | 15      |
-| 47   | Billy Guilford            | -                     | 21/15    | 0/0      | 0/0      | 0/0      | 15      |
-| 48   | Eleisa Haag               | SRR                   | 0/0      | 0/0      | 26/14    | 0/0      | 14      |
-| 49   | Hiroki Tanaka             | -                     | 22/14    | 0/0      | 0/0      | 0/0      | 14      |
-| 50   | Ped Fesh                  | -                     | 0/0      | 0/0      | 27/13    | 0/0      | 13      |
-| 51   | Bernie Lacourciere        | GET-SET               | 23/13    | 0/0      | 0/0      | 0/0      | 13      |
-| 52   | tomoyuki goto             | -                     | 0/0      | 9/13     | 0/0      | 0/0      | 13      |
-| 53   | Dave Arnold               | Team CRYO-GEN         | 0/0      | 0/0      | 28/12    | 0/0      | 12      |
-| 54   | * Cycling Fanatic *       | -                     | 24/12    | 0/0      | 0/0      | 0/0      | 12      |
-| 55   | Tijmen Poleij             | -                     | 0/0      | 0/0      | 29/11    | 0/0      | 11      |
-| 56   | Moto kyo                  | -                     | 25/11    | 0/0      | 0/0      | 0/0      | 11      |
-| 57   | Josh Manton               | (HVR)                 | 0/0      | 11/11    | 0/0      | 0/0      | 11      |
-| 58   | Kev Lincoln               | (V C Lincoln) 3881    | 0/0      | 0/0      | 30/10    | 0/0      | 10      |
-| 59   | Seiichi Kaneko            | Team Fin's            | 26/10    | 0/0      | 0/0      | 0/0      | 10      |
-| 60   | tarou nagae               | -                     | 0/0      | 12/10    | 0/0      | 0/0      | 10      |
-| 61   | Rob McKechney             | -                     | 27/9     | 0/0      | 0/0      | 0/0      | 9       |
-| 62   | MASAYUKI TSUIKI           | -                     | 0/0      | 13/9     | 0/0      | 0/0      | 9       |
-| 63   | Dario Wildmann            | -                     | 0/0      | 0/0      | 32/8     | 0/0      | 8       |
-| 64   | Jesse Rients              | -                     | 28/8     | 0/0      | 0/0      | 0/0      | 8       |
-| 65   | Richard Kes               | BRT                   | 0/0      | 0/0      | 33/7     | 0/0      | 7       |
-| 66   | Guillaume Lapeyre         | -                     | 29/7     | 0/0      | 0/0      | 0/0      | 7       |
-| 67   | Hiroto Sugano             | -                     | 0/0      | 15/7     | 0/0      | 0/0      | 7       |
-| 68   | Makoto Kato               | -                     | 0/0      | 0/0      | 34/6     | 0/0      | 6       |
-| 69   | Craig Mellors             | England CC            | 0/0      | 16/6     | 0/0      | 0/0      | 6       |
-| 70   | JC Parmen                 | [ASPTT Reims]         | 0/0      | 0/0      | 35/5     | 0/0      | 5       |
-| 71   | Brant Puttkammer          | [T1D]                 | 31/5     | 0/0      | 0/0      | 0/0      | 5       |
-| 72   | Maria Nyberg              | SZ                    | 0/0      | 0/0      | 36/4     | 0/0      | 4       |
-| 73   | Marc Johnson              | (Indiebike/IUH)       | 32/4     | 0/0      | 0/0      | 0/0      | 4       |
-| 74   | Steffen Lang              | -                     | 0/0      | 18/4     | 0/0      | 0/0      | 4       |
-| 75   | Bart Boersma              | -                     | 0/0      | 0/0      | 37/3     | 0/0      | 3       |
-| 76   | Calum Scott               | DIRT                  | 33/3     | 0/0      | 0/0      | 0/0      | 3       |
-| 77   | Ichigo Tamagoya           | -                     | 0/0      | 19/3     | 0/0      | 0/0      | 3       |
-| 78   | zwift Doyoung             | -                     | 0/0      | 0/0      | 38/2     | 0/0      | 2       |
-| 79   | Ko Yama                   | -                     | 34/2     | 0/0      | 0/0      | 0/0      | 2       |
-| 80   | Andrew Hare               | (NRCCCTTT)            | 0/0      | 20/2     | 0/0      | 0/0      | 2       |
-| 81   | Mans Bergenzaun           | TEAM BTC              | 0/0      | 0/0      | 39/1     | 0/0      | 1       |
-| 82   | Anne On                   | -                     | 35/1     | 0/0      | 0/0      | 0/0      | 1       |
-| 83   | Robb C                    | -                     | 0/0      | 21/1     | 0/0      | 0/0      | 1       |
+| #    | name                      | team                  | race1    | race2     | race3     | plc/pts |
++------+---------------------------+-----------------------+----------+-----------+-----------+---------|
+| 1    | Tak Ina                   | [JETT][GRIT]          | 3/33     | 6/16      | 7/33      | 66      |
+| 2    | Owen McGonagle            | GRIT                  | 6/30     | 10/12     | 11/29     | 59      |
+| 3    | Steve Tappan              | [GRIT]                | 0/0      | 1/21      | 10/30     | 51      |
+| 4    | Alan Brannan              | GRIT                  | 11/25    | 0/0       | 17/23     | 48      |
+| 5    | Andy Parfitt              | WTRL                  | 0/0      | 0/0       | 1/39      | 39      |
+| 6    | Luke Elton                | GRIT                  | 0/0      | 7/15      | 16/24     | 39      |
+| 7    | Neil Richards             | nopinz R3R            | 0/0      | 0/0       | 2/38      | 38      |
+| 8    | Maximilian Kuen           | VBG - Santic          | 0/0      | 0/0       | 3/37      | 37      |
+| 9    | Rob Fullerton             | GRIT                  | 13/23    | 8/14      | 31/9      | 37      |
+| 10   | Scarlett Parker           | ART                   | 0/0      | 0/0       | 4/36      | 36      |
+| 11   | Yukio Bergholdt           | -                     | 0/0      | 0/0       | 5/35      | 35      |
+| 12   | Shaun Corbin Nashville    | DIRT                  | 1/35     | 0/0       | 0/0       | 35      |
+| 13   | Bruch Wu                  | -                     | 0/0      | 0/0       | 6/34      | 34      |
+| 14   | Darryl Forbes             | DIRT                  | 2/34     | 0/0       | 0/0       | 34      |
+| 15   | J. Jan                    | -                     | 0/0      | 14/8      | 15/25     | 33      |
+| 16   | Carson Shedd              | DIRT                  | 0/0      | 0/0       | 8/32      | 32      |
+| 17   | Dries Decoster            | GFTbe                 | 4/32     | 0/0       | 0/0       | 32      |
+| 18   | Maximilian Weniger        | Rippers               | 0/0      | 0/0       | 9/31      | 31      |
+| 19   | Ross Irwin                | DIRT                  | 5/31     | 0/0       | 0/0       | 31      |
+| 20   | Andrew Aynsley            | -                     | 7/29     | 0/0       | 0/0       | 29      |
+| 21   | Phil S-S                  | -                     | 0/0      | 0/0       | 12/28     | 28      |
+| 22   | Todd Buckley              | -                     | 8/28     | 0/0       | 0/0       | 28      |
+| 23   | Steve Peplinski           | GRIT                  | 0/0      | 0/0       | 13/27     | 27      |
+| 24   | Simon Goddard             | -                     | 9/27     | 0/0       | 0/0       | 27      |
+| 25   | Mikhail Itkin             | Vikings               | 0/0      | 0/0       | 14/26     | 26      |
+| 26   | Greg Langman              | DIRT                  | 10/26    | 0/0       | 0/0       | 26      |
+| 27   | Olivier PERRIN            | Asvel Tri             | 30/6     | 3/19      | 0/0       | 25      |
+| 28   | Bart Keizer               | BRT                   | 12/24    | 0/0       | 0/0       | 24      |
+| 29   | Tristan Longworth         | -                     | 0/0      | 17/5      | 21/19     | 24      |
+| 30   | Masaki Kusunoki #EN       | -                     | 0/0      | 0/0       | 18/22     | 22      |
+| 31   | Michel Schreck            | Team SUI              | 14/22    | 0/0       | 0/0       | 22      |
+| 32   | Jonathan Lippert          | -                     | 0/0      | 0/0       | 19/21     | 21      |
+| 33   | Thomas Fraser             | Royal Navy Cycling    | 15/21    | 0/0       | 0/0       | 21      |
+| 34   | Andrew Thomas             | -                     | 0/0      | 0/0       | 20/20     | 20      |
+| 35   | MHA KOH                   | JETT                  | 16/20    | 0/0       | 0/0       | 20      |
+| 36   | Derek Sawyer              | [GRIT][Rippers]       | 0/0      | 2/20      | 0/0       | 20      |
+| 37   | Etienne Guillet           | -                     | 17/19    | 0/0       | 0/0       | 19      |
+| 38   | Derek Simpson             | GTC                   | 0/0      | 0/0       | 22/18     | 18      |
+| 39   | Mikkel Lindgren           | DBR                   | 18/18    | 0/0       | 0/0       | 18      |
+| 40   | Pieter Jan de Vries       | -                     | 0/0      | 4/18      | 0/0       | 18      |
+| 41   | Ed Jablonski              | KBS/LSV               | 0/0      | 0/0       | 23/17     | 17      |
+| 42   | Philip Morrison           | BRC                   | 19/17    | 0/0       | 0/0       | 17      |
+| 43   | Joseph Moulton            | teamWKG               | 0/0      | 5/17      | 0/0       | 17      |
+| 44   | Paul Cartwright           | WWNR                  | 0/0      | 0/0       | 24/16     | 16      |
+| 45   | Andy Donnelly             | (CT Velo)             | 20/16    | 0/0       | 0/0       | 16      |
+| 46   | Alex Hatziyannis          | CRUZBIKE              | 0/0      | 0/0       | 25/15     | 15      |
+| 47   | Billy Guilford            | -                     | 21/15    | 0/0       | 0/0       | 15      |
+| 48   | Eleisa Haag               | SRR                   | 0/0      | 0/0       | 26/14     | 14      |
+| 49   | Hiroki Tanaka             | -                     | 22/14    | 0/0       | 0/0       | 14      |
+| 50   | Ped Fesh                  | -                     | 0/0      | 0/0       | 27/13     | 13      |
+| 51   | Bernie Lacourciere        | GET-SET               | 23/13    | 0/0       | 0/0       | 13      |
+| 52   | tomoyuki goto             | -                     | 0/0      | 9/13      | 0/0       | 13      |
+| 53   | Dave Arnold               | Team CRYO-GEN         | 0/0      | 0/0       | 28/12     | 12      |
+| 54   | * Cycling Fanatic *       | -                     | 24/12    | 0/0       | 0/0       | 12      |
+| 55   | Tijmen Poleij             | -                     | 0/0      | 0/0       | 29/11     | 11      |
+| 56   | Moto kyo                  | -                     | 25/11    | 0/0       | 0/0       | 11      |
+| 57   | Josh Manton               | (HVR)                 | 0/0      | 11/11     | 0/0       | 11      |
+| 58   | Kev Lincoln               | (V C Lincoln) 3881    | 0/0      | 0/0       | 30/10     | 10      |
+| 59   | Seiichi Kaneko            | Team Fin's            | 26/10    | 0/0       | 0/0       | 10      |
+| 60   | tarou nagae               | -                     | 0/0      | 12/10     | 0/0       | 10      |
+| 61   | Rob McKechney             | -                     | 27/9     | 0/0       | 0/0       | 9       |
+| 62   | MASAYUKI TSUIKI           | -                     | 0/0      | 13/9      | 0/0       | 9       |
+| 63   | Dario Wildmann            | -                     | 0/0      | 0/0       | 32/8      | 8       |
+| 64   | Jesse Rients              | -                     | 28/8     | 0/0       | 0/0       | 8       |
+| 65   | Richard Kes               | BRT                   | 0/0      | 0/0       | 33/7      | 7       |
+| 66   | Guillaume Lapeyre         | -                     | 29/7     | 0/0       | 0/0       | 7       |
+| 67   | Hiroto Sugano             | -                     | 0/0      | 15/7      | 0/0       | 7       |
+| 68   | Makoto Kato               | -                     | 0/0      | 0/0       | 34/6      | 6       |
+| 69   | Craig Mellors             | England CC            | 0/0      | 16/6      | 0/0       | 6       |
+| 70   | JC Parmen                 | [ASPTT Reims]         | 0/0      | 0/0       | 35/5      | 5       |
+| 71   | Brant Puttkammer          | [T1D]                 | 31/5     | 0/0       | 0/0       | 5       |
+| 72   | Maria Nyberg              | SZ                    | 0/0      | 0/0       | 36/4      | 4       |
+| 73   | Marc Johnson              | (Indiebike/IUH)       | 32/4     | 0/0       | 0/0       | 4       |
+| 74   | Steffen Lang              | -                     | 0/0      | 18/4      | 0/0       | 4       |
+| 75   | Bart Boersma              | -                     | 0/0      | 0/0       | 37/3      | 3       |
+| 76   | Calum Scott               | DIRT                  | 33/3     | 0/0       | 0/0       | 3       |
+| 77   | Ichigo Tamagoya           | -                     | 0/0      | 19/3      | 0/0       | 3       |
+| 78   | zwift Doyoung             | -                     | 0/0      | 0/0       | 38/2      | 2       |
+| 79   | Ko Yama                   | -                     | 34/2     | 0/0       | 0/0       | 2       |
+| 80   | Andrew Hare               | (NRCCCTTT)            | 0/0      | 20/2      | 0/0       | 2       |
+| 81   | Mans Bergenzaun           | TEAM BTC              | 0/0      | 0/0       | 39/1      | 1       |
+| 82   | Anne On                   | -                     | 35/1     | 0/0       | 0/0       | 1       |
+| 83   | Robb C                    | -                     | 0/0      | 21/1      | 0/0       | 1       |
 
 
