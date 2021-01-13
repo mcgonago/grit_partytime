@@ -1,0 +1,17 @@
+#party set group All
+party set group GRIT
+#party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box.txt database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box.md race1
+party set lockdown on
+party following database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-following.txt database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-following.md race1
+#party set lockdown on
+#party set snap All
+#party set snap GRIT
+#party set clip on
+party show
+quit
+party reset list
+party set lockdown on
+party following database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-following.txt database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-following.md race2
+# party set clip on
+party show
+quit

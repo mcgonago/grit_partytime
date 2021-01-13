@@ -1,6 +1,14 @@
-party following database/_posts/2020/12/01/A-Smack-down-on-Petit-KOM_following.txt database/_posts/2020/12/01/A-Smack-down-on-Petit-KOM_following.md
-party following database/_posts/2020/12/01/Get_Ready_for_Innsbruck_KOM_following.txt database/_posts/2020/12/01/Get_Ready_for_Innsbruck_KOM_following.md
-party following database/_posts/2020/12/02/Innsbruck_results_following.txt database/_posts/2020/12/02/Innsbruck_results_following.md
-party following database/_posts/2020/12/03/Tempoish-Thursday-Sprints_following.txt database/_posts/2020/12/03/Tempoish-Thursday-Sprints_following.md
-party following database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_following.txt database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_following.md
+party set group All
+# party kom database/_posts/2020/12/19/2020-12-29-Box-Hill_kom.txt following.md race1
+party results2 database/_posts/2021/01/01/2021-01-01-Bologna-results.txt bologna_results.md race1
+# party following bologna_following.txt bologna_following.md race1
+party set snap All
+party reset list
+party set lockdown on
+party following bologna_following.txt bologna_following.md race2
+# party following database/_posts/2020/12/08/2020-12-08-Smack-down-continues-on-Petit_following.txt petit.md race1
+# party set clip on
+party show
+#quit
+
 

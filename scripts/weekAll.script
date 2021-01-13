@@ -1,0 +1,65 @@
+#party set max 52
+party set max 61
+party set best 24
+# party set bonus on
+# party set double on
+# party set group B
+# party set group A
+# party reset list
+# party set group A
+# party set lockdown on
+# party set clip on
+# party reset list
+# party set bestof 100
+# week1
+echo ***
+echo ***week1***
+echo ***
+party sprints database/_posts/2020/12/03/Tempoish-Thursday-Sprints_sprints.txt throwaway.md race1 0
+party kom database/_posts/2020/12/02/Innsbruck_results_sprints_and_kom.txt throwaway.md  race2 1
+party results database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results.txt throwaway.md   race3 2
+# week2
+echo ***
+echo ***week2***
+echo ***
+party following2 database/_posts/2020/12/08/2020-12-08-Smack-down-continues-on-Petit_following.txt throwaway.md   race4 3
+party kom database/_posts/2020/12/09/2020-12-09-Another-Innsbruck_results.txt throwaway.md   race5 4
+party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt throwaway.md   race6 5
+party results database/_posts/2020/11/29/2020-12-11-Jungle-Circuit-Plus-Second-Week-Recap_results.txt throwaway.md   race7 6
+# week3
+echo ***
+echo ***week3***
+echo ***
+party kom database/_posts/2020/12/15/2020-12-15-Smack-Down-On-The-Volcano_kom.txt throwaway.md   race8 7
+party kom database/_posts/2020/12/17/2020-12-17-Alpe-Tomorrow-U-Ready_kom.txt throwaway.md   race9 8
+party results2 database/_posts/2020/12/18/2020-12-18-Another-Week-In-The-Books_results.txt throwaway.md   race10 9
+# week4
+echo ***
+echo ***week4***
+echo ***
+party kom database/_posts/2020/12/22/2020-12-22-Volcano-hurts_kom.txt throwaway.md   race11 10
+party kom database/_posts/2020/12/22/2020-12-22-Volcano-hurts_kom.txt throwaway.md   race12 11
+# week5
+echo ***
+echo ***week5***
+echo ***
+party kom database/_posts/2020/12/19/2020-12-29-Box-Hill_kom.txt throwaway.md   race13 12
+party kom database/_posts/2020/12/19/2020-12-31-Another-fun-sprint-day-kom.txt throwaway.md   race14 13
+party results2 database/_posts/2021/01/01/2021-01-01-Bologna-results.txt throwaway.md   race15  14
+party kom database/_posts/2020/12/19/2020-12-29-Box-Hill_kom.txt throwaway.md   race16 15
+party kom database/_posts/2020/12/19/2020-12-31-Another-fun-sprint-day-kom.txt throwaway.md   race17 16
+party results2 database/_posts/2021/01/01/2021-01-01-Bologna-results.txt throwaway.md   race18 17
+# week6
+echo ***
+echo ***week6***
+echo ***
+party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt throwaway.md   race19 18
+party kom database/_posts/2021/01/07/2021-01-07-Fast-day-at-the-sprints.txt throwaway.md   race20 19
+party kom database/_posts/2021/01/08/2021-01-08-EPIC-KOM-was-epic-kom.txt throwaway.md   race21  20
+party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt throwaway.md   race22  21
+party kom database/_posts/2021/01/07/2021-01-07-Fast-day-at-the-sprints.txt throwaway.md   race23  22
+party kom database/_posts/2021/01/08/2021-01-08-EPIC-KOM-was-epic-kom.txt throwaway.md   race24  23
+#party show
+party set tally 5
+party tally
+quit

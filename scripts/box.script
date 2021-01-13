@@ -1,0 +1,35 @@
+party set max 42
+party set bestof 2
+party set group B
+party kom database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom.txt database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom-B.md race1 0
+party set snap B
+party set lockdown on
+party kom database/_posts/2020/12/19/2020-12-29-Box-Hill_kom.txt foo.md race2 1
+party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt foo.md race3 2
+party set clip on
+#party set PR on
+echo ********
+echo ******** B RESULTS
+echo ********
+party set adjust 2
+party tempoish
+#party show
+party reset list
+party set max 42
+party set bestof 2
+party set group A
+party set lockdown off
+party kom database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom.txt database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom-B.md race1 0
+party set snap A
+party set lockdown on
+party kom database/_posts/2020/12/19/2020-12-29-Box-Hill_kom.txt foo.md race2 1
+party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt foo.md race3 2
+party set clip on
+#party set PR on
+echo ********
+echo ******** A RESULTS
+echo ********
+party set adjust 2
+party tempoish
+#party show
+quit

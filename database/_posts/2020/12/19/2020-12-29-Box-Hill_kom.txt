@@ -206,7 +206,7 @@ HEINO RT
 07:13
 281w 4.5wkg
 	Power
-B 	56	
+A 	56	
 Owen McGonagle [GRIT]
 GRIT
 	

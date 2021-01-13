@@ -1,0 +1,30 @@
+#party set bestof 5
+party set bestof 2
+echo ***
+echo ***week1***
+echo ***
+party kom database/_posts/2020/12/03/Tempoish-Thursday-Sprints_sprints.txt foo.md race1 0
+echo ***
+echo ***week2***
+echo ***
+party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt foo.md race2 1
+echo ***
+echo ***week3***
+echo ***
+party kom database/_posts/2020/12/17/2020-12-17-Alpe-Tomorrow-U-Ready_kom.txt foo.md race3 2
+echo ***
+echo ***week4***
+echo ***
+party kom database/_posts/2020/12/19/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race4 3
+echo ***
+echo ***week5***
+echo ***
+party kom database/_posts/2021/01/07/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race5 4
+echo ***
+echo ***RESULTS***
+echo ***
+# party show
+party set clip on
+#party set PR on
+party tempoish
+quit

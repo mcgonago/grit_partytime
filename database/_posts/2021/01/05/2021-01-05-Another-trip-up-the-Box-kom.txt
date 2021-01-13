@@ -177,7 +177,7 @@ Zaita Sun
 06:57
 333w 4.6wkg
 	Power
-B 	40	
+A 	40	
 Owen McGonagle [GRIT]
 GRIT
 	

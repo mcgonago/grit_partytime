@@ -1,9 +1,24 @@
 #ifndef __TIMELINE_H__
 #define __TIMELINE_H__
 
-#define MAX_TIMELINES (65536)
+// #define MAX_TIMELINES (65536)
+#define MAX_TIMELINES (8192)
 
 #define MAX_RACES (100)
+
+typedef struct Value_s
+{
+   char str[MAX_STRING_SIZE];
+   int i;
+   float f;
+} Value_t;
+
+typedef struct PRIdx_s
+{
+   int idx;
+   float improvement;
+   int lastFound;
+} PRIdx_t;
 
 typedef struct Race_s
 {
@@ -11,12 +26,23 @@ typedef struct Race_s
    int place;
    int points;
    int done;
+   Value_t time;
 } Race_t;
 
 typedef struct Order_s
 {
    int pos;
 } Order_t;
+
+#if 0
+typedef struct CTime_s
+{
+   int hour;
+   int min;
+   int sec;
+   int msec;
+} CTime_t;
+#endif
 
 typedef struct TimeLineInfo_s
 {
@@ -28,6 +54,11 @@ typedef struct TimeLineInfo_s
    int groupId;
 
    int points;
+   int totalRaces;
+   float av;
+   float avOrig;
+   PRIdx_t prIdx;
+
    char place[MAX_STRING_SIZE];
    char first[MAX_STRING_SIZE];
    char last[MAX_STRING_SIZE];
@@ -41,8 +72,9 @@ typedef struct TimeLineInfo_s
    char wpkg[MAX_STRING_SIZE];
    char bpm[MAX_STRING_SIZE];
    char vid[MAX_STRING_SIZE];
-   char time[MAX_STRING_SIZE];
    char test[MAX_STRING_SIZE];
+
+   Value_t time;
    
    int numRaces;
    Race_t race[MAX_RACES];
