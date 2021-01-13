@@ -16,11 +16,12 @@
  16  Jonathan Girvan  CTC  07:11    308w  4.5
  17  Robbie de Klerk  ZSUNR  07:13    376w  4.3
  18  Alice Lethbridge  HEINO RT  07:13    281w  4.5
- 19  Hans-Jurgen G  -  07:22    265w  4.4
- 20  Amanda Wendorff  IRACELIKEAGIRL  07:29    270w  4.3
- 21  paul francis  -  07:53    270w  3.9
- 22  Leon Elmans  -  07:53    285w  4.0
- 23  Jacques Castel  -  08:00    274w  3.9
- 24  Mathieu Benhalima  [PCO]    09:05    223w  3.4
- 25  Conor Verbruggen  Team CRYO-GEN  09:10    216w  3.5
- 26  Linda Klein  CRYO RDT  09:10    193w  3.4
+ 19  Owen McGonagle  GRIT  07:18    308w  4.5
+ 20  Hans-Jurgen G  -  07:22    265w  4.4
+ 21  Amanda Wendorff  IRACELIKEAGIRL  07:29    270w  4.3
+ 22  paul francis  -  07:53    270w  3.9
+ 23  Leon Elmans  -  07:53    285w  4.0
+ 24  Jacques Castel  -  08:00    274w  3.9
+ 25  Mathieu Benhalima  [PCO]    09:05    223w  3.4
+ 26  Conor Verbruggen  Team CRYO-GEN  09:10    216w  3.5
+ 27  Linda Klein  CRYO RDT  09:10    193w  3.4

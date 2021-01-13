@@ -16,9 +16,10 @@
  16  Noritaka Matsuyama  JETT  06:55    265w  4.8
  17  Jack Wilson  LBRT  06:55    329w  4.7
  18  Zaita Sun  -  06:57    333w  4.6
- 19  Travis Gatesman  -  07:05    393w  4.5
- 20  Mike Cauley  Wolfpack  07:17    306w  4.4
- 21  Tiziano Mura  -  07:27    282w  4.7
- 22  Daniel Shalkowski  DIRT  07:28    287w  4.2
- 23  Seraf Lombardi  -  07:29    243w  4.4
- 24  Giuseppe Velletri  Team Italy  08:15    260w  3.9
+ 19  Owen McGonagle  GRIT  07:00    323w  4.7
+ 20  Travis Gatesman  -  07:05    393w  4.5
+ 21  Mike Cauley  Wolfpack  07:17    306w  4.4
+ 22  Tiziano Mura  -  07:27    282w  4.7
+ 23  Daniel Shalkowski  DIRT  07:28    287w  4.2
+ 24  Seraf Lombardi  -  07:29    243w  4.4
+ 25  Giuseppe Velletri  Team Italy  08:15    260w  3.9
