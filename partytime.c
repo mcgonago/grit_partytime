@@ -16,11 +16,12 @@
 #include "tracebuffer.h"
 #include "timeline.h"
 
-//#define CONSOLE_OUTPUT (1)
+#define CONSOLE_OUTPUT (1)
 
 static volatile int gdbStop = 1;
 
 #define COLUMN_SPACING (2)
+// #define COLUMN_SPACING (0)
 
 #define PRINT_MODE_DISPLAY (1)
 
@@ -717,11 +718,6 @@ void AddSpace(char *out, char *in)
 {
   char *ptrIn = in;
   char *ptrOut = out;
-  char *ptrUpdate = in;
-  char left;
-  char right;
-  char *tmp2;
-  int spaceFound = 0;
 
   while (*ptrIn != '\0')
   {
@@ -740,6 +736,33 @@ void AddSpace(char *out, char *in)
   }
 
   *ptrOut = '\0';
+}
+
+void RemoveTrailing(char *out, char *in)
+{
+  char *ptrIn = in;
+  char *ptrOut = out;
+  char *ptr;
+  
+  /* Go to end and removed trailing spaces */
+  ptr = in;
+  while (*ptr != '\0')
+  {
+     ptr++;
+  }
+
+  ptr--;
+  if (*ptr == ' ')
+  {
+     while (*ptr == ' ')
+     {
+        ptr--;
+     }
+     ptr++;
+     *ptr = '\0';
+  }
+
+  AddSpace(out, in);
 }
 
 char *StringGet(char *out, FILE *fp, int nl)
@@ -1903,6 +1926,7 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
    int columnId = 0;
    int outIdx = 0;
    int inIdx = 0;
+   int space = ' ';
    char outStr[MAX_STRING_SIZE];
 
    ptr = &str[0];
@@ -1910,30 +1934,55 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
    columnId = 0;
    columnWidth = 0;
 
+   /*
+    * GLOBAL assumption - if 2nd line, header separator is used - it
+    * must have at LEAST two dashes "--"
+    */
+   if (strstr(ptr, "--") != 0)
+   {
+      space = '-';
+   }
+
    while (*ptr != '\0')
    {
       if (columnId == 0)
       {
          outStr[outIdx++] = '|';
-         outStr[outIdx++] = ' ';
+         outStr[outIdx++] = space;
       }
 
       idx = 0;
       while ((*ptr != ' ') && (*ptr != '\0'))
       {
-         outStr[outIdx++] = *ptr;
+         if (space == '-')
+         {
+            outStr[outIdx++] = space;
+         }
+         else
+         {
+            outStr[outIdx++] = *ptr;
+         }
+
          ptr++;
          columnWidth += 1;
       }
 
       if (*ptr == '\0')
       {
-         outStr[outIdx++] = ' ';
+         outStr[outIdx++] = space;
          endWidth = columnWidth;
          break;
       }
 
-      outStr[outIdx++] = *ptr;
+      if (space == '-')
+      {
+         outStr[outIdx++] = space;
+      }
+      else
+      {
+         outStr[outIdx++] = *ptr;
+      }
+
       ptr++;
       columnWidth += 1;
       endWidth = columnWidth;
@@ -1951,8 +2000,6 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
 
          if (*ptr == '\0')
          {
-            outStr[outIdx++] = ' ';
-            endWidth = columnWidth;
             break;
          }
 
@@ -1962,12 +2009,20 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
             fill = ((columns[columnId].width + COLUMN_SPACING) - columnWidth);
             for (i = 0; i < fill; i++)
             {
-               outStr[outIdx++] = ' ';
+               outStr[outIdx++] = space;
             }
          }
 
-         outStr[outIdx++] = '|';
-         outStr[outIdx++] = ' ';
+         if (space == '-')
+         {
+            outStr[outIdx++] = '+';
+         }
+         else
+         {
+            outStr[outIdx++] = '|';
+         }
+
+         outStr[outIdx++] = space;
 
          if (*ptr != '\0')
          {
@@ -1977,7 +2032,6 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
       }
    }
 
-#if 1
    if (*ptr != '\0')
    {
       (pInfo->print_fp)("INTERNAL ERROR: end of str not found!!!\n");
@@ -1989,18 +2043,18 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
                         columnId, columns[columnId].width, endWidth);
    }
 
-   if (1) /* columns[columnId].width > COLUMN_SPACING) */
+   if (columns[columnId].width > COLUMN_SPACING)
    {
       if ((columns[columnId].width) > endWidth)
       {
          fill = (columns[columnId].width - endWidth);
          for (i = 0; i < fill; i++)
          {
-            outStr[outIdx++] = ' ';
+            outStr[outIdx++] = space;
          }
       }
    }
-#endif
+
 
 #if 1
    outIdx -= 1;
@@ -2015,21 +2069,8 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
 void PrintTable(CLI_PARSE_INFO *pInfo)
 {
    int i;
-   int idx = HEADER_INDEX_FIRST_LINE;
 
-   if (printTable[HEADER_INDEX_DELIMITER].enabled != 0)
-   {
-      ColumnPrintf(pInfo, printTable[idx].entry);
-      idx += 1;
-   }
-
-   if ((printTable[idx].enabled != 0) && (strstr(printTable[idx].entry, "--") != 0))
-   {
-      ColumnPrintfHeader(pInfo, printTable[HEADER_INDEX_DELIMITER].entry);
-      idx += 1;
-   }
-
-   for (i = idx; i < MAX_ENTRIES; i++)
+   for (i = 0; i < MAX_ENTRIES; i++)
    {
 #if 0
       if (printTable[i+1].enabled == 0)
@@ -2651,10 +2692,10 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
 
 #ifndef CONSOLE_OUTPUT
-   sprintf(header, "%s", "#  name   team   time   watts  wpkg");
+   sprintf(header, "%s", "#  name   team   time   watts  wpkg  ");
    ColumnStore(pInfo, header);
 
-   sprintf(header, "%s", "--  ----   ----   ----   -----  ----");
+   sprintf(header, "%s", "--  ----   ----   ----   -----  ----  ");
    ColumnStore(pInfo, header);
 #endif
 
@@ -2898,7 +2939,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 
-               outIdx += sprintf(&outStr[outIdx], "%s   %s", fixed2, teamName2);
+               outIdx += sprintf(&outStr[outIdx], "%s   %s  ", fixed2, teamName2);
                ColumnStore(pInfo, outStr);
 
 #ifdef CONSOLE_OUTPUT
@@ -3173,7 +3214,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("%s", tmp2);
 #else
-                  outIdx += sprintf(&outStr[outIdx], "%s", tmp2);
+                  outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
 #endif
                   fprintf(fp_out, "%s", tmp2);
 
@@ -3206,7 +3247,8 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      break;
                   }
 
-                  AddSpace(tmp2, tmp);
+                  // AddSpace(tmp2, tmp);
+                  RemoveTrailing(tmp2, tmp);
                   RemoveWpkg(pInfo, tmp2);
 
 #ifdef CONSOLE_OUTPUT
@@ -3220,7 +3262,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                      fprintf(fp_out, "%s\n", tmp2);
                   }
 #else
-                  outIdx += sprintf(&outStr[outIdx], "%s", tmp2);
+                  outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
                   ColumnStore(pInfo, outStr);
                   fprintf(fp_out, "%s\n", tmp2);
 #endif
@@ -3725,16 +3767,15 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
       {
          outIdx += sprintf(&header[outIdx], "race%d  ", (i+1));
       }
-      outIdx += sprintf(&header[outIdx], "%s", "plc/pts");
+      outIdx += sprintf(&header[outIdx], "%s", "plc/pts  ");
       ColumnStore(pInfo, header);
 
       outIdx = 0;
       outIdx += sprintf(&header[outIdx], "%s", "-  ----   ----   -----  ");
-      for (i = 1; i < numRacesG; i++)
+      for (i = 1; i <= numRacesG; i++)
       {
          outIdx += sprintf(&header[outIdx], "%s", "------  ");
       }
-      outIdx += sprintf(&header[outIdx], "%s", "-------");
       ColumnStore(pInfo, header);
 #endif
 
@@ -3774,30 +3815,30 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          {
             if (timeLineInfo->race[i].place != -1)
             {
-               sprintf(placePoints, "%2d/%-2d", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
+               sprintf(placePoints, "%2d/%-2d  ", timeLineInfo->race[i].place, timeLineInfo->race[i].points);
 #ifdef CONSOLE_OUTPUT
                (pInfo->print_fp)(" %-10s ", placePoints);
 #else
-               outIdx += sprintf(&outStr[outIdx], " %-10s ", placePoints);
+               outIdx += sprintf(&outStr[outIdx], " %-10s  ", placePoints);
 #endif
             }
             else
             {
-               sprintf(placePoints, "%2d/%-2d", 0, 0);
+               sprintf(placePoints, "%2d/%-2d  ", 0, 0);
 #ifdef CONSOLE_OUTPUT
                (pInfo->print_fp)(" %-10s ", placePoints);
 #else
-               outIdx += sprintf(&outStr[outIdx], " %-10s ", placePoints);
+               outIdx += sprintf(&outStr[outIdx], " %-10s  ", placePoints);
 #endif
             }
          }
 
 
 #ifdef CONSOLE_OUTPUT
-         (pInfo->print_fp)(" %-10d ", currInfo->points);
+         (pInfo->print_fp)(" %-10d  ", currInfo->points);
          (pInfo->print_fp)("\n");
 #else
-         outIdx += sprintf(&outStr[outIdx], " %-10d", currInfo->points);
+         outIdx += sprintf(&outStr[outIdx], " %10d  ", currInfo->points);
          ColumnStore(pInfo, outStr);
 #endif
          ptr = ptr->next;

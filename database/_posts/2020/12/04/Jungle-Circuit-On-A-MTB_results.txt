@@ -49,7 +49,7 @@ Andy Parfitt [WTRL]
 WTRL
 	
 1:03:34
-	3.8w/kg	274w	
+3.8w/kg	274w
 283w
 	4.0w/kg	4.4w/kg	4.9w/kg	5.6w/kg	6.8w/kg	72.6kg	169bpm	184bpm	172cm		
 B 		

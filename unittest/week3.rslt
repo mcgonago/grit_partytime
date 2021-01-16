@@ -172,113 +172,113 @@ partyControl.max = 61, count = 40, fudge = 1.5250
 partyControl.max = 61, count = 34, fudge = 1.7941
 
 
-  1   Steve Tappan                     [GRIT]                           7/54       16/36        2/114      173        
-  2   Tak Ina                          [JETT][GRIT]                    13/48        5/53        4/106      164        
-  3   Rob Fullerton                    GRIT                            14/47       12/42        7/96       148        
-  4   Owen McGonagle                   GRIT                             9/52        4/54        9/88       147        
-  5   Gabriel Mathisen                 [VEGAN][GRIT]                    2/59       10/45       13/74       138        
-  6   Christian Kaldbar                -                                0/0         0/0         1/118      118        
-  7   Steve Peplinski                  GRIT                            12/49        6/51       17/60       116        
-  8   Lance Anderson                   [GRIT]                           1/60        3/56        0/0        116        
-  9   Flynn Lewer                      -                                0/0         0/0         3/110      110        
-  10  Stratton Townley                 -                                0/0         0/0         5/104      104        
-  11  Daniel Shalkowski                DIRT                            35/26        0/0        12/78       104        
-  12  Tristan Longworth                -                                0/0         0/0         6/100      100        
-  13  Alan Brannan                     GRIT                            23/38       35/7        20/50       93         
-  14  Sebastien Loir                   BIKES-FR                         0/0         0/0         8/92       92         
-  15  Shaun Corbin Nashville           DIRT                            27/34        2/57        0/0        91         
-  16  David Cox                        VEGAN                            0/0         0/0        10/86       86         
-  17  steven schietecatte              -                                0/0         0/0        11/82       82         
-  18  Greg Langman                     DIRT                            18/43       15/38        0/0        81         
-  19  Derek Sawyer                     [GRIT][Rippers]                  4/57       24/24        0/0        81         
-  20  Thomas Schrader                  ZRG                              0/0         0/0        14/70       70         
-  21  Geoff Bunyan                     -                                0/0         0/0        15/68       68         
-  22  Reid McGregor                    MGCC                             0/0         0/0        16/64       64         
-  23  Darryl Forbes                    DIRT                             0/0         1/59        0/0        59         
-  24  John Jeffries                    [AA Bikes][GRIT]                39/22       33/10       25/32       59         
-  25  Bernie Lacourciere               GET-SET                          3/58        0/0         0/0        58         
-  26  Matt B. ARCC                     ARCC                             0/0         0/0        18/56       56         
-  27  Yuma Jibiki                      -                                5/56        0/0         0/0        56         
-  28  Jure Majdic                      -                                6/55        0/0         0/0        55         
-  29  Yusuke Saeki                     (SBC Vertex Racing Team)         8/53        0/0         0/0        53         
-  30  P Westergaard is                 [Dirt]                           0/0         0/0        19/52       52         
-  31  Gareth Greeves                   Giant Helston                   10/51        0/0         0/0        51         
-  32  Jason Bretz                      DIRT                             0/0         7/50        0/0        50         
-  33  Korea Marc                       -                               11/50        0/0         0/0        50         
-  34  Thomas Fraser                    Royal Navy Cycling               0/0         8/48        0/0        48         
-  35  Ped Fesh                         -                               41/20       21/28        0/0        48         
-  36  ALESSIO LEO                      CICLI STEFANELLI                 0/0         9/47        0/0        47         
-  37  Jonathan Slumstrup               -                                0/0         0/0        21/46       46         
-  38  Miles Askew                      TR                              15/46        0/0         0/0        46         
-  39  Andrew Steel                     -                               16/45        0/0         0/0        45         
-  40  Carson Shedd                     DIRT                             0/0        11/44        0/0        44         
-  41  A Melon                          -                               17/44        0/0         0/0        44         
-  42  Lloyd Billingham                 -                                0/0         0/0        22/42       42         
-  43  Eric GONDERINGER                 -                               19/42        0/0         0/0        42         
-  44  Peter J                          -                                0/0        13/41        0/0        41         
-  45  Takashi KAWAMOTO                 (YOU CAN)                       20/41        0/0         0/0        41         
-  46  M Shinall                        TTE                             21/40        0/0         0/0        40         
-  47  Leo Leo Diaz                     -                                0/0        14/39        0/0        39         
-  48  Marco Morais Tic Toc             -                               22/39        0/0         0/0        39         
-  49  Zilvinas A                       -                                0/0         0/0        23/38       38         
-  50  MHA KOH                          JETT                            24/37        0/0         0/0        37         
-  51  James Braybrook                  -                               25/36        0/0         0/0        36         
-  52  Sergei Melnikov                  UTT                              0/0        17/35        0/0        35         
-  53  Barry Cooper                     VCRT                            26/35        0/0         0/0        35         
-  54  Lara Middleton                   -                                0/0         0/0        24/34       34         
-  55  Guillaume Lafleur                leMETIER                         0/0        18/33        0/0        33         
-  56  J B #2                           BCC - Bees                      28/33        0/0         0/0        33         
-  57  Daisuke Saika                    (WCU)                            0/0        19/32        0/0        32         
-  58  Des Muir                         Team CRYO-GEN                   29/32        0/0         0/0        32         
-  59  Cecelia Taggart                  DIRT                            30/31        0/0         0/0        31         
-  60  Bart Keizer                      BRT                              0/0        20/30        0/0        30         
-  61  Kristian Fjeldbonde              -                               31/30        0/0         0/0        30         
-  62  Craig LeBlanc                    [ ATP ]                         32/29        0/0         0/0        29         
-  63  Marian Sabo                      -                                0/0         0/0        26/28       28         
-  64  Josh Clingan                     DIRT                            33/28        0/0         0/0        28         
-  65  Amir Nazari SCK                  (IR)                             0/0        22/27        0/0        27         
-  66  J. Kuhnle                        DIRT                            34/27        0/0         0/0        27         
-  67  Rob McKechney                    -                               44/17       34/9         0/0        26         
-  68  Justin Brooke                    -                                0/0        23/25        0/0        25         
-  69  Dax Nelson                       !DUX! TPA-FLA HERD              36/25        0/0         0/0        25         
-  70  Dan Ambler                       -                                0/0         0/0        27/24       24         
-  71  Matt Donovan                     -                               37/24        0/0         0/0        24         
-  72  Doug Cowperthwaite               TeamODZ                         38/23        0/0         0/0        23         
-  73  Pete C                           -                                0/0        25/22        0/0        22         
-  74  Craig... .S Velo                 Sheppey Velo                     0/0        26/21        0/0        21         
-  75  Jeff Bratteson                   DIRT                            40/21        0/0         0/0        21         
-  76  Chris Beard                      -                                0/0         0/0        28/20       20         
-  77  Jonathan Michelsen               nbck                             0/0        27/19        0/0        19         
-  78  Ron Mar                          -                               42/19        0/0         0/0        19         
-  79  N. YuYu                          [TRC]                            0/0        28/18        0/0        18         
-  80  Jim Griffin                      VEGAN                           43/18        0/0         0/0        18         
-  81  Ian Manning                      ASCENT CYCLING                   0/0         0/0        29/16       16         
-  82  Franco Battiato                  Team Z TAZ                       0/0        29/16        0/0        16         
-  83  Steve Bekker                     DIRT                            45/16        0/0         0/0        16         
-  84  Thomas Spence                    -                                0/0        30/15        0/0        15         
-  85  Antonin L                        -                               46/15        0/0         0/0        15         
-  86  Jeffrey Kansun                   -                                0/0         0/0        30/14       14         
-  87  T Sato                           -                               47/14        0/0         0/0        14         
-  88  Conrad Moss                      P-TJ RT                          0/0        31/13        0/0        13         
-  89  Kent Ryan                        -                               48/13        0/0         0/0        13         
-  90  Kelly Toth                       CRCA/NYCC                        0/0        32/12        0/0        12         
-  91  Mark Carroll                     -                               49/12        0/0         0/0        12         
-  92  Lichia Yang                      TTR                             50/11        0/0         0/0        11         
-  93  Andrew Swift                     -                                0/0         0/0        31/10       10         
-  94  Calum Scott                      DIRT                            55/6        37/4         0/0        10         
-  95  Michael Telpner                  MGCC                            51/10        0/0         0/0        10         
-  96  Nick Shi                         -                               52/9         0/0         0/0        9          
-  97  Daniel Connelly                  DIRT                            53/8         0/0         0/0        8          
-  98  Dan Newton                       WGT - Bynea CC                  54/7         0/0         0/0        7          
-  99  Lars Petter Karlsen              -                                0/0         0/0        32/6        6          
-  100 A NakaoJPN                       -                                0/0        36/6         0/0        6          
-  101 Saulius Serapinas                -                               56/5         0/0         0/0        5          
-  102 C S S B                          VXM                             57/4         0/0         0/0        4          
-  103 Ray Diaz                         -                                0/0        38/3         0/0        3          
-  104 david gulick                     -                               58/3         0/0         0/0        3          
-  105 Slawomir RCTeamPL                -                                0/0         0/0        33/2        2          
-  106 Jason OoI                        -                               59/2         0/0         0/0        2          
-  107 Oleg Semeko                      Veter.cc                         0/0        39/1         0/0        1          
-  108 Greg Rashford                    #NOMAD                          60/1         0/0         0/0        1          
+  1   Steve Tappan                     [GRIT]                           7/54       16/36        2/114      173         
+  2   Tak Ina                          [JETT][GRIT]                    13/48        5/53        4/106      164         
+  3   Rob Fullerton                    GRIT                            14/47       12/42        7/96       148         
+  4   Owen McGonagle                   GRIT                             9/52        4/54        9/88       147         
+  5   Gabriel Mathisen                 [VEGAN][GRIT]                    2/59       10/45       13/74       138         
+  6   Christian Kaldbar                -                                0/0         0/0         1/118      118         
+  7   Steve Peplinski                  GRIT                            12/49        6/51       17/60       116         
+  8   Lance Anderson                   [GRIT]                           1/60        3/56        0/0        116         
+  9   Flynn Lewer                      -                                0/0         0/0         3/110      110         
+  10  Stratton Townley                 -                                0/0         0/0         5/104      104         
+  11  Daniel Shalkowski                DIRT                            35/26        0/0        12/78       104         
+  12  Tristan Longworth                -                                0/0         0/0         6/100      100         
+  13  Alan Brannan                     GRIT                            23/38       35/7        20/50       93          
+  14  Sebastien Loir                   BIKES-FR                         0/0         0/0         8/92       92          
+  15  Shaun Corbin Nashville           DIRT                            27/34        2/57        0/0        91          
+  16  David Cox                        VEGAN                            0/0         0/0        10/86       86          
+  17  steven schietecatte              -                                0/0         0/0        11/82       82          
+  18  Greg Langman                     DIRT                            18/43       15/38        0/0        81          
+  19  Derek Sawyer                     [GRIT][Rippers]                  4/57       24/24        0/0        81          
+  20  Thomas Schrader                  ZRG                              0/0         0/0        14/70       70          
+  21  Geoff Bunyan                     -                                0/0         0/0        15/68       68          
+  22  Reid McGregor                    MGCC                             0/0         0/0        16/64       64          
+  23  Darryl Forbes                    DIRT                             0/0         1/59        0/0        59          
+  24  John Jeffries                    [AA Bikes][GRIT]                39/22       33/10       25/32       59          
+  25  Bernie Lacourciere               GET-SET                          3/58        0/0         0/0        58          
+  26  Matt B. ARCC                     ARCC                             0/0         0/0        18/56       56          
+  27  Yuma Jibiki                      -                                5/56        0/0         0/0        56          
+  28  Jure Majdic                      -                                6/55        0/0         0/0        55          
+  29  Yusuke Saeki                     (SBC Vertex Racing Team)         8/53        0/0         0/0        53          
+  30  P Westergaard is                 [Dirt]                           0/0         0/0        19/52       52          
+  31  Gareth Greeves                   Giant Helston                   10/51        0/0         0/0        51          
+  32  Jason Bretz                      DIRT                             0/0         7/50        0/0        50          
+  33  Korea Marc                       -                               11/50        0/0         0/0        50          
+  34  Thomas Fraser                    Royal Navy Cycling               0/0         8/48        0/0        48          
+  35  Ped Fesh                         -                               41/20       21/28        0/0        48          
+  36  ALESSIO LEO                      CICLI STEFANELLI                 0/0         9/47        0/0        47          
+  37  Jonathan Slumstrup               -                                0/0         0/0        21/46       46          
+  38  Miles Askew                      TR                              15/46        0/0         0/0        46          
+  39  Andrew Steel                     -                               16/45        0/0         0/0        45          
+  40  Carson Shedd                     DIRT                             0/0        11/44        0/0        44          
+  41  A Melon                          -                               17/44        0/0         0/0        44          
+  42  Lloyd Billingham                 -                                0/0         0/0        22/42       42          
+  43  Eric GONDERINGER                 -                               19/42        0/0         0/0        42          
+  44  Peter J                          -                                0/0        13/41        0/0        41          
+  45  Takashi KAWAMOTO                 (YOU CAN)                       20/41        0/0         0/0        41          
+  46  M Shinall                        TTE                             21/40        0/0         0/0        40          
+  47  Leo Leo Diaz                     -                                0/0        14/39        0/0        39          
+  48  Marco Morais Tic Toc             -                               22/39        0/0         0/0        39          
+  49  Zilvinas A                       -                                0/0         0/0        23/38       38          
+  50  MHA KOH                          JETT                            24/37        0/0         0/0        37          
+  51  James Braybrook                  -                               25/36        0/0         0/0        36          
+  52  Sergei Melnikov                  UTT                              0/0        17/35        0/0        35          
+  53  Barry Cooper                     VCRT                            26/35        0/0         0/0        35          
+  54  Lara Middleton                   -                                0/0         0/0        24/34       34          
+  55  Guillaume Lafleur                leMETIER                         0/0        18/33        0/0        33          
+  56  J B #2                           BCC - Bees                      28/33        0/0         0/0        33          
+  57  Daisuke Saika                    (WCU)                            0/0        19/32        0/0        32          
+  58  Des Muir                         Team CRYO-GEN                   29/32        0/0         0/0        32          
+  59  Cecelia Taggart                  DIRT                            30/31        0/0         0/0        31          
+  60  Bart Keizer                      BRT                              0/0        20/30        0/0        30          
+  61  Kristian Fjeldbonde              -                               31/30        0/0         0/0        30          
+  62  Craig LeBlanc                    [ ATP ]                         32/29        0/0         0/0        29          
+  63  Marian Sabo                      -                                0/0         0/0        26/28       28          
+  64  Josh Clingan                     DIRT                            33/28        0/0         0/0        28          
+  65  Amir Nazari SCK                  (IR)                             0/0        22/27        0/0        27          
+  66  J. Kuhnle                        DIRT                            34/27        0/0         0/0        27          
+  67  Rob McKechney                    -                               44/17       34/9         0/0        26          
+  68  Justin Brooke                    -                                0/0        23/25        0/0        25          
+  69  Dax Nelson                       !DUX! TPA-FLA HERD              36/25        0/0         0/0        25          
+  70  Dan Ambler                       -                                0/0         0/0        27/24       24          
+  71  Matt Donovan                     -                               37/24        0/0         0/0        24          
+  72  Doug Cowperthwaite               TeamODZ                         38/23        0/0         0/0        23          
+  73  Pete C                           -                                0/0        25/22        0/0        22          
+  74  Craig... .S Velo                 Sheppey Velo                     0/0        26/21        0/0        21          
+  75  Jeff Bratteson                   DIRT                            40/21        0/0         0/0        21          
+  76  Chris Beard                      -                                0/0         0/0        28/20       20          
+  77  Jonathan Michelsen               nbck                             0/0        27/19        0/0        19          
+  78  Ron Mar                          -                               42/19        0/0         0/0        19          
+  79  N. YuYu                          [TRC]                            0/0        28/18        0/0        18          
+  80  Jim Griffin                      VEGAN                           43/18        0/0         0/0        18          
+  81  Ian Manning                      ASCENT CYCLING                   0/0         0/0        29/16       16          
+  82  Franco Battiato                  Team Z TAZ                       0/0        29/16        0/0        16          
+  83  Steve Bekker                     DIRT                            45/16        0/0         0/0        16          
+  84  Thomas Spence                    -                                0/0        30/15        0/0        15          
+  85  Antonin L                        -                               46/15        0/0         0/0        15          
+  86  Jeffrey Kansun                   -                                0/0         0/0        30/14       14          
+  87  T Sato                           -                               47/14        0/0         0/0        14          
+  88  Conrad Moss                      P-TJ RT                          0/0        31/13        0/0        13          
+  89  Kent Ryan                        -                               48/13        0/0         0/0        13          
+  90  Kelly Toth                       CRCA/NYCC                        0/0        32/12        0/0        12          
+  91  Mark Carroll                     -                               49/12        0/0         0/0        12          
+  92  Lichia Yang                      TTR                             50/11        0/0         0/0        11          
+  93  Andrew Swift                     -                                0/0         0/0        31/10       10          
+  94  Calum Scott                      DIRT                            55/6        37/4         0/0        10          
+  95  Michael Telpner                  MGCC                            51/10        0/0         0/0        10          
+  96  Nick Shi                         -                               52/9         0/0         0/0        9           
+  97  Daniel Connelly                  DIRT                            53/8         0/0         0/0        8           
+  98  Dan Newton                       WGT - Bynea CC                  54/7         0/0         0/0        7           
+  99  Lars Petter Karlsen              -                                0/0         0/0        32/6        6           
+  100 A NakaoJPN                       -                                0/0        36/6         0/0        6           
+  101 Saulius Serapinas                -                               56/5         0/0         0/0        5           
+  102 C S S B                          VXM                             57/4         0/0         0/0        4           
+  103 Ray Diaz                         -                                0/0        38/3         0/0        3           
+  104 david gulick                     -                               58/3         0/0         0/0        3           
+  105 Slawomir RCTeamPL                -                                0/0         0/0        33/2        2           
+  106 Jason OoI                        -                               59/2         0/0         0/0        2           
+  107 Oleg Semeko                      Veter.cc                         0/0        39/1         0/0        1           
+  108 Greg Rashford                    #NOMAD                          60/1         0/0         0/0        1           
 
 

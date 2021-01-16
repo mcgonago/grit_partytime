@@ -1,4 +1,4 @@
-  1  Andy Parfitt  WTRL  1:03:34      3.8w/kg        274w        
+  1  Andy Parfitt  WTRL  1:03:34    3.8w/kg  274w
 
   2  Neil Richards  nopinz R3R  1:04:01      3.6w/kg        262w        
 

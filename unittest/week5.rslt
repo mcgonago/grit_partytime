@@ -49,8 +49,8 @@ partyControl.max = 42, count = 3, fudge = 14.0000
 partyControl.max = 42, count = 1, fudge = 42.0000
 
 
-  1   Shaun Corbin Nashville           DIRT                             9/32        1/28        0/0        60         
-  2   Calum Scott                      DIRT                            30/11        2/14        0/0        25         
+  1   Shaun Corbin Nashville           DIRT                             9/32        1/28        0/0        60          
+  2   Calum Scott                      DIRT                            30/11        2/14        0/0        25          
 
 
   1  Steve Tappan  [GRIT]  06:23    371w  5.5
@@ -194,11 +194,11 @@ WARNING!!!!! WARNING!!!! you set max = 35, found count = 36
 partyControl.max = 36, count = 36, fudge = 1.0000
 
 
-  1   Gabriel Mathisen                 [VEGAN][GRIT]                    0/0         2/33        3/33       66         
-  2   Steve Tappan                     [GRIT]                           1/33        7/28        0/0        61         
-  3   Tak Ina                          [JETT][GRIT]                     9/23        0/0         8/28       51         
-  4   Greg Langman                     DIRT                             7/26       11/24        0/0        50         
-  5   Owen McGonagle                   GRIT                            19/11        8/27       16/20       47         
-  6   Rob Fullerton                    GRIT                            11/21       15/20       12/24       45         
+  1   Gabriel Mathisen                 [VEGAN][GRIT]                    0/0         2/33        3/33       66          
+  2   Steve Tappan                     [GRIT]                           1/33        7/28        0/0        61          
+  3   Tak Ina                          [JETT][GRIT]                     9/23        0/0         8/28       51          
+  4   Greg Langman                     DIRT                             7/26       11/24        0/0        50          
+  5   Owen McGonagle                   GRIT                            19/11        8/27       16/20       47          
+  6   Rob Fullerton                    GRIT                            11/21       15/20       12/24       45          
 
 
