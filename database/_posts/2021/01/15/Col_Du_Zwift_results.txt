@@ -1,0 +1,264 @@
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (25)
+    Unfiltered (25)
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+GRIT - Mountain Route
+Today 05:50
+Big Loop Reverse km
+All riders visible Late joining No TT bikes
+5min and 20min CEVAZ limits apply
+No ZPower winners
+Description
+Search:
+	#	Rider	Time 	avg	watts	NP 	20m 	5m 	1m 	30s 	15s 		Avg	Max 		Gain 	
+B 		
+Marianovs
+	
+57:19
+	4.3w/kg	281w	
+293w
+	4.8w/kg	5.4w/kg	6.4w/kg	7.1w/kg	7.8w/kg	65.0kg	155bpm	178bpm	181cm		
+B 		
+Steve Tappan
+GRIT
+	
+57:20
++1.137s
+	4.0w/kg	269w	
+290w
+	4.7w/kg	5.4w/kg	6.2w/kg	7.3w/kg	7.7w/kg	68.0kg	141bpm	167bpm	183cm		
+B 		
+名泰 .
+TTR
+	
+58:55
++01:36
+	3.9w/kg	266w	
+276w
+	4.3w/kg	4.7w/kg	5.1w/kg	5.3w/kg	5.5w/kg	69.0kg	155bpm	183bpm	168cm		
+B 	4	
+Leon Pearson 2512
+	
+59:02
++01:43
+	4.0w/kg	276w	
+288w
+	4.4w/kg	4.8w/kg	5.9w/kg	6.6w/kg	7.0w/kg	69.9kg	139bpm	173bpm	182cm		
+B 	5	
+Stuart Glover - HCRT
+HOLO
+	
+59:58
++02:39
+	3.7w/kg	321w	
+337w
+	4.1w/kg	4.5w/kg	5.5w/kg	6.2w/kg	6.5w/kg	87.0kg	153bpm	175bpm	179cm		
+B 	6	
+Rob Fullerton
+GRIT
+	
+1:00:27
++03:08
+	3.8w/kg	286w	
+298w
+	4.1w/kg	4.4w/kg	4.8w/kg	4.9w/kg	5.0w/kg	76.0kg	141bpm	160bpm	178cm		
+B 	7	
+Nonie Amistoso
+	
+1:00:34
++03:15
+	3.7w/kg	303w	
+312w
+	4.0w/kg	4.1w/kg	4.6w/kg	4.7w/kg	5.0w/kg	82.0kg			188cm		
+B 	8	
+Gabriel Mathisen
+GRIT
+	
+1:00:38
++03:19
+	4.0w/kg	247w	
+261w
+	4.3w/kg	5.2w/kg	5.6w/kg	6.0w/kg	6.3w/kg	62.0kg	144bpm	173bpm	178cm		
+B 	9	
+Luke Elton [GRIT]
+GRIT
+	
+1:01:28
++04:09
+	3.6w/kg	236w	
+246w
+	3.9w/kg	4.3w/kg	4.7w/kg	5.3w/kg	5.8w/kg	64.9kg	177bpm	188bpm	182cm		
+B 	10	
+Robin Zünd (DIRT Diggler)
+KISS RT
+	
+1:02:17
++04:58
+	3.3w/kg	245w	
+264w
+	3.7w/kg	4.3w/kg	4.9w/kg	5.0w/kg	5.4w/kg	74.4kg	144bpm	170bpm	175cm		
+B 	11	
+Tristan Longworth
+	
+1:02:22
++05:03
+	3.4w/kg	296w	
+308w
+	3.7w/kg	3.9w/kg	4.4w/kg	4.5w/kg	4.7w/kg	88.0kg	155bpm	174bpm	188cm		
+B 	12	
+Daniel Preece [Army Cycling]
+Army Cycling
+	
+1:03:04
++05:45
+	3.7w/kg	275w	
+282w
+	3.9w/kg	4.2w/kg	4.9w/kg	6.0w/kg	6.2w/kg	75.3kg	158bpm	178bpm	175cm		
+B 	13	
+Lee Taylor [EVO] (NCCC)
+EVOLUTION
+	
+1:03:40
++06:21
+	3.7w/kg	231w	
+233w
+	3.9w/kg	4.2w/kg	4.5w/kg	4.7w/kg	5.2w/kg	63.0kg			174cm		
+B 	14	
+Alan Brannan
+GRIT
+	
+1:03:40
++06:21
+	3.4w/kg	241w	
+248w
+	3.6w/kg	3.9w/kg	4.3w/kg	4.5w/kg	5.4w/kg	70.8kg	162bpm	175bpm	175cm		
+B 	15	
+Stu Woodward
+	
+1:04:34
++07:15
+	3.4w/kg	279w	
+284w
+	3.6w/kg	3.9w/kg	4.1w/kg	4.3w/kg	4.4w/kg	82.6kg	167bpm	180bpm	177cm		
+B 	16	
+Rob McKechney
+	
+1:05:00
++07:41
+	3.3w/kg	235w	
+244w
+	3.6w/kg	4.0w/kg	4.7w/kg	5.1w/kg	5.5w/kg	71.0kg	154bpm	169bpm	185cm		
+B 	17	
+Keith O Donnell
+Cycling Ireland
+	
+1:05:01
++07:42
+	3.3w/kg	271w
+271w
+	3.6w/kg	4.0w/kg	4.7w/kg	5.1w/kg	5.5w/kg	71.0kg	154bpm	169bpm	185cm		
+B 	18	
+Owen McGonagle [GRIT]
+GRIT
+	
+1:05:06
++07:47
+	3.3w/kg	221w	
+237w
+	3.8w/kg	4.4w/kg	4.7w/kg	4.8w/kg	4.9w/kg	68.0kg	133bpm	158bpm	170cm		
+B 	19	
+Philip Hurst (EVO NCCC)
+EVOLUTION
+	
+1:05:32
++08:13
+	3.5w/kg	241w	
+243w
+	3.7w/kg	3.9w/kg	4.4w/kg	4.7w/kg	4.7w/kg	69.0kg	147bpm	155bpm	180cm		
+B 	20	
+Lara Middleton
+	
+1:05:32
++08:13
+	3.5w/kg	219w	
+224w
+	3.8w/kg	4.1w/kg	4.4w/kg	4.8w/kg	5.1w/kg	62.1kg			172cm		
+B 	21	
+Craig... .S Velo
+Sheppey Velo
+	
+1:06:52
++09:33
+	3.2w/kg	276w	
+283w
+	3.5w/kg	3.8w/kg	4.3w/kg	4.5w/kg	4.8w/kg	87.1kg	150bpm	167bpm	182cm		
+B 	22	
+Sébastien Djurdjevic
+	
+1:07:23
++10:04
+	3.2w/kg	248w	
+258w
+	3.4w/kg	3.8w/kg	4.5w/kg	5.6w/kg	5.9w/kg	78.0kg	176bpm	189bpm	180cm		
+B 	23	
+Eduardo Arroyo
+	
+1:08:25
++11:06
+	3.1w/kg	228w	
+235w
+	3.3w/kg	3.7w/kg	4.1w/kg	4.2w/kg	4.2w/kg	73.0kg			179cm		
+B 	24	
+devid schoonjans
+BZR cycling team
+	
+1:14:19
++17:00
+	3.0w/kg	199w	
+207w
+	3.2w/kg	3.9w/kg	4.4w/kg	4.9w/kg	5.4w/kg	67.0kg	160bpm	181bpm	174cm		
+B 	25	
+Rob Dapice
+	
+1:15:31
++18:12
+	3.0w/kg	198w	
+215w
+	3.6w/kg	3.9w/kg	4.3w/kg	4.6w/kg	5.0w/kg	65.8kg			167cm		
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    Board index
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+

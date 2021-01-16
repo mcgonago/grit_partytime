@@ -16,7 +16,7 @@
 #include "tracebuffer.h"
 #include "timeline.h"
 
-#define CONSOLE_OUTPUT (1)
+//#define CONSOLE_OUTPUT (1)
 
 static volatile int gdbStop = 1;
 
@@ -24,9 +24,10 @@ static volatile int gdbStop = 1;
 
 #define PRINT_MODE_DISPLAY (1)
 
-#define SHOW_ORIGINAL (1)
+#define SHOW_POINTS   (1)
 #define SHOW_TALLY    (2)
 #define SHOW_TEMPOISH (3)
+#define SHOW_TIME     (4)
 
 #define GROUP_A       (1)
 #define GROUP_B       (2)
@@ -36,8 +37,9 @@ static volatile int gdbStop = 1;
 
 #define LOWEST_TIME (10000.0)
 
-#define TIME_ORDER_POINTS (1)
-#define TIME_ORDER_TIME   (2)
+#define TIME_ORDER_POINTS     (1)
+#define TIME_ORDER_TEMPOISH   (2)
+#define TIME_ORDER_TIME       (3)
 
 #define MAX_MY_COLUMNS (1024)
 
@@ -82,6 +84,7 @@ typedef struct PartyControl_s
 {
    int max;
    int bestOf;
+   int calendar;
    int tallyMin;
    int bonus;
    int doubleUp;
@@ -92,6 +95,10 @@ typedef struct PartyControl_s
    int clip;
    int pr;
    int adjust;
+   int cat;
+   float cat1;
+   float cat2;
+   float cat3;
 } PartyControl_t;
 
 PartyControl_t partyControl;
@@ -141,6 +148,25 @@ Athlete_t athleteAll[MAX_ATHLETES] = {
 };
 
 Athlete_t athleteGRIT[MAX_ATHLETES] = {
+   {1, "Steve Tappan"},
+   {1, "Stuart Glover"},
+   {1, "Rob Fullerton"},
+   {1, "Gabriel Mathisen"},
+   {1, "Leon Pearson"},
+   {1, "Owen McGonagle"},
+   {1, "Luke Elton"},
+   {1, "Daniel Preece"},
+   {1, "Alan Brannan"},
+   {1, "Rob Dapice"},
+   {1, "Philip Hurst"},
+   {1, "Lara Middleton"},
+   {1, "Rob McKechney"},
+   {1, "stijn ver"},
+   {1, "Szuiram Tri"},
+   {0, "ATHLETE_END"},
+};
+   
+Athlete_t athleteGRIT2[MAX_ATHLETES] = {
    {1, "Matthias Mueller"},
    {1, "Joel Gibbel"},
    {1, "Philip Baronius"},
@@ -563,7 +589,7 @@ TimeOrderInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkLis
                   break;
                }
             }
-            else if (mode == TIME_ORDER_TIME)
+            else if (mode == TIME_ORDER_TEMPOISH)
             {
                orderIdx1 = currInfo->raceOrder[0].pos;
                orderIdx2 = timeLineInfo->raceOrder[0].pos;
@@ -571,6 +597,19 @@ TimeOrderInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkLis
                // if (currInfo->av <= timeLineInfo->av)
                // if (timeLineInfo->race[orderIdx2].time.f <= currInfo->race[orderIdx1].time.f)
                if (timeLineInfo->av <= currInfo->av)
+               {
+                  LinkBefore(list, ptr, link);
+                  nameFound = 1;
+                  break;
+               }
+            }
+            else if (mode == TIME_ORDER_TIME)
+            {
+               // orderIdx1 = currInfo->raceOrder[0].pos;
+               // orderIdx2 = timeLineInfo->raceOrder[0].pos;
+               orderIdx1 = (numRacesG - 1);
+
+               if (timeLineInfo->race[orderIdx1].time.f <= currInfo->race[orderIdx1].time.f)
                {
                   LinkBefore(list, ptr, link);
                   nameFound = 1;
@@ -2440,6 +2479,7 @@ float FormatTime(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, ch
    int secs;
    float pf;
    
+//   if (0)
 //   if (((ptr = strstr(timeLineInfo->race[id].time.str, ":")) != NULL)  || ((ptr = strstr(timeLineInfo->race[id].time.str, ".")) == NULL))
    if (0)
    {
@@ -2470,8 +2510,8 @@ float FormatTime2(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
    int min;
    int secs;
    
-//   if (((ptr = strstr(in, ":")) != NULL) || ((ptr = strstr(in, ".")) == NULL))
    if (0)
+//   if (((ptr = strstr(in, ":")) != NULL) || ((ptr = strstr(in, ".")) == NULL))
    {
       if (f >= 0.0)
       {
@@ -3513,6 +3553,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
    int i;
    int len;
    float av;
+   int orderIdx1;
    char placePoints[MAX_STRING_SIZE];
    char outStr[MAX_STRING_SIZE];
    char header[MAX_STRING_SIZE];
@@ -3531,7 +3572,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
    ColumnReset(pInfo);
 
 
-   if ((mode == SHOW_ORIGINAL) || (mode == SHOW_TALLY))
+   if ((mode == SHOW_POINTS) || (mode == SHOW_TALLY) || (mode == SHOW_TIME))
    {
       ptr = (Link_t *)listTimeLine->head;
       while (ptr->next != NULL)
@@ -3540,7 +3581,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          currInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
 
-         currInfo->points = BestOfPoints(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_ORIGINAL, &timeLineInfo->prIdx);
+         currInfo->points = BestOfPoints(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_POINTS, &timeLineInfo->prIdx);
+         currInfo->av = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_TEMPOISH, &timeLineInfo->prIdx);
+         currInfo->avOrig = currInfo->av;
 
          if (partyControl.ageBonus == 1)
          {
@@ -3548,6 +3591,14 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
             {
                currInfo->points += 5;
             }
+         }
+
+         /* Fill in currInfo */
+         currInfo->prIdx = timeLineInfo->prIdx;
+         for (i = 0; i < numRacesG; i++)
+         {
+            currInfo->raceOrder[i].pos = timeLineInfo->raceOrder[i].pos;
+            currInfo->race[i].time = timeLineInfo->race[i].time;
          }
 
          currInfo->me = timeLineInfo;
@@ -3565,7 +3616,15 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
             }
          }
 
-         TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_POINTS);
+         if ((mode == SHOW_POINTS) || (mode == SHOW_TALLY))
+         {
+            TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_POINTS);
+         }
+         else
+         {
+            TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_TIME);
+         }
+
          ptr = ptr->next;
       }
    }
@@ -3580,6 +3639,35 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          currInfo->av = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_TEMPOISH, &timeLineInfo->prIdx);
          currInfo->avOrig = currInfo->av;
+
+         if ((partyControl.clip == 1) && (partyControl.cat != 0))
+         {
+            if (partyControl.cat == 1)
+            {
+               if (currInfo->av >= partyControl.cat1)
+               {
+                  ptr = ptr->next;
+                  continue;
+               }
+            }
+            else if (partyControl.cat == 2)
+            {
+               if ((currInfo->av < partyControl.cat1) ||
+                   (currInfo->av >= partyControl.cat2))
+               {
+                  ptr = ptr->next;
+                  continue;
+               }
+            }
+            else if (partyControl.cat == 3)
+            {
+               if (currInfo->av < partyControl.cat2)
+               {
+                  ptr = ptr->next;
+                  continue;
+               }
+            }
+         }
 
          if (partyControl.pr == 1) 
          {
@@ -3620,13 +3708,12 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          currInfo->me = timeLineInfo;
          currInfo->totalRaces = timeLineInfo->totalRaces;
 
-         TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_TIME);
+         TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_TEMPOISH);
          ptr = ptr->next;
       }
    }
 
-
-   if (mode == SHOW_ORIGINAL)
+   if (mode == SHOW_POINTS)
    {
 #ifndef CONSOLE_OUTPUT
       outIdx = 0;
@@ -3768,6 +3855,96 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
             outIdx += sprintf(&outStr[outIdx], " %-5d  %-10d   %4.2f", currInfo->totalRaces, currInfo->points, av);
             ColumnStore(pInfo, outStr);
          }
+
+         ptr = ptr->next;
+      }
+   }
+   else if (mode == SHOW_TIME)
+   {
+
+#ifndef CONSOLE_OUTPUT
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "#  name   team   time  pts");
+      ColumnStore(pInfo, header);
+
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "-  ----   ----   ----  ---");
+      ColumnStore(pInfo, header);
+#endif
+
+      count = 1;
+      ptr = (Link_t *)listTimeOrder->head;
+      while (ptr->next != NULL)
+      {
+         outIdx = 0;
+         currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         timeLineInfo = (TimeLineInfo_t *)currInfo->me;
+
+         if ((partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
+         {
+            ptr = ptr->next;
+            continue;
+         }
+
+         if ((partyControl.clip == 1) && (partyControl.cat != 0))
+         {
+            orderIdx1 = (numRacesG - 1);
+            if (partyControl.cat == 1)
+            {
+               if (timeLineInfo->race[orderIdx1].time.f >= partyControl.cat1)
+               {
+                  ptr = ptr->next;
+                  continue;
+               }
+            }
+            else if (partyControl.cat == 2)
+            {
+               if ((timeLineInfo->race[orderIdx1].time.f < partyControl.cat1) ||
+                   (timeLineInfo->race[orderIdx1].time.f >= partyControl.cat2))
+               {
+                  ptr = ptr->next;
+                  continue;
+               }
+            }
+            else if (partyControl.cat == 3)
+            {
+               if (timeLineInfo->race[orderIdx1].time.f < partyControl.cat2)
+               {
+                  ptr = ptr->next;
+                  continue;
+               }
+            }
+         }
+
+#if 1
+         strcpy(nameString, timeLineInfo->name);
+#else
+         nameString[0] = '*';
+         nameString[1] = '*';
+         strcpy(&nameString[2], timeLineInfo->name);
+
+         len = strlen(nameString);
+
+         nameString[len] = '*';
+         nameString[len+1] = '*';
+         nameString[len+2] = '\0';
+#endif
+
+         if (timeLineInfo->team[0] != '\0')
+         {
+            outIdx += sprintf(&outStr[outIdx], "%d  %s  %s ", count, nameString, timeLineInfo->team);
+         }
+         else
+         {
+            outIdx += sprintf(&outStr[outIdx], "  %-3d %-32s %-30s ", count, nameString, " ");
+         }
+         count++;
+
+         orderIdx1 = (numRacesG - 1);
+         outIdx += sprintf(&outStr[outIdx], " %s  %d", timeLineInfo->race[orderIdx1].time.str, currInfo->points);
+
+         ColumnStore(pInfo, outStr);
 
          ptr = ptr->next;
       }
@@ -3945,7 +4122,14 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          for (i = 0; i < numRacesG; i++)
          {
-            orderIdx = timeLineInfo->raceOrder[i].pos;
+            if (partyControl.calendar == 0)
+            {
+               orderIdx = timeLineInfo->raceOrder[i].pos;
+            }
+            else
+            {
+               orderIdx = i;
+            }
 
             if ((i == 0) && (timeLineInfo->prIdx.lastFound == 0))
             {
@@ -4050,7 +4234,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
 void cmd_party_show(CLI_PARSE_INFO *pInfo)
 {
-   cmd_party_show_common(pInfo, SHOW_ORIGINAL);
+   cmd_party_show_common(pInfo, SHOW_POINTS);
 }
 
 void cmd_party_tally(CLI_PARSE_INFO *pInfo)
@@ -4061,6 +4245,11 @@ void cmd_party_tally(CLI_PARSE_INFO *pInfo)
 void cmd_party_tempoish(CLI_PARSE_INFO *pInfo)
 {
    cmd_party_show_common(pInfo, SHOW_TEMPOISH);
+}
+
+void cmd_party_time(CLI_PARSE_INFO *pInfo)
+{
+   cmd_party_show_common(pInfo, SHOW_TIME);
 }
 
 void PartySetMax(CLI_PARSE_INFO *pInfo)
@@ -4085,6 +4274,114 @@ void PartySetBestOf(CLI_PARSE_INFO *pInfo)
    partyControl.bestOf = cliCharToUnsignedLong(pInfo->argv[1]);
 }
 
+#define CUTOFF_CAT1 (1)
+#define CUTOFF_CAT2 (2)
+#define CUTOFF_CAT3 (3)
+
+void PartySetCatCommon(CLI_PARSE_INFO *pInfo, float f, int mode)
+{
+   if (mode == CUTOFF_CAT1)
+   {
+      partyControl.cat1 = f;
+   }
+   else if (mode == CUTOFF_CAT2)
+   {
+      partyControl.cat2 = f;
+   }
+   else if (mode == CUTOFF_CAT3)
+   {
+      partyControl.cat3 = f;
+   }
+   else
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: did not recognize mode = %d\n", mode);
+   }
+}
+
+void PartySetCat1(CLI_PARSE_INFO *pInfo)
+{
+   float f;
+   
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {cutoff-in-decimal}\n", pInfo->argv[0]);
+      return;
+   }
+
+   sscanf(pInfo->argv[1], "%f", &f);
+
+   (pInfo->print_fp)("f = %4.2f\n", f);
+
+   PartySetCatCommon(pInfo, f, CUTOFF_CAT1);
+}
+
+void PartySetCat2(CLI_PARSE_INFO *pInfo)
+{
+   float f;
+   
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {cutoff-in-decimal}\n", pInfo->argv[0]);
+      return;
+   }
+
+   sscanf(pInfo->argv[1], "%f", &f);
+
+   (pInfo->print_fp)("f = %4.2f\n", f);
+
+   PartySetCatCommon(pInfo, f, CUTOFF_CAT2);
+}
+
+void PartySetCat3(CLI_PARSE_INFO *pInfo)
+{
+   float f;
+   
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {cutoff-in-decimal}\n", pInfo->argv[0]);
+      return;
+   }
+
+   sscanf(pInfo->argv[1], "%f", &f);
+
+   (pInfo->print_fp)("f = %4.2f\n", f);
+
+   PartySetCatCommon(pInfo, f, CUTOFF_CAT3);
+}
+
+void PartySetCat(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {0=off} | {1,2,3}\n", pInfo->argv[0]);
+      return;
+   }
+
+   if (strcmp(pInfo->argv[1], "0") == 0)
+   {
+      /* off */
+      partyControl.cat = 0;
+   }
+   else if (strcmp(pInfo->argv[1], "1") == 0)
+   {
+      partyControl.cat = 1;
+   }
+   else if (strcmp(pInfo->argv[1], "2") == 0)
+   {
+      partyControl.cat = 2;
+   }
+   else if (strcmp(pInfo->argv[1], "3") == 0)
+   {
+      partyControl.cat = 3;
+   }
+   else
+   {
+      (pInfo->print_fp)("USAGE: %s {0=off} | {1,2,3}\n", pInfo->argv[0]);
+      return;
+   }
+}
+
+
 void PartySetTallyMin(CLI_PARSE_INFO *pInfo)
 {
    if ( pInfo->argc < 2)
@@ -4105,6 +4402,29 @@ void PartySetAdjust(CLI_PARSE_INFO *pInfo)
    }
 
    partyControl.adjust = cliCharToUnsignedLong(pInfo->argv[1]);
+}
+
+void PartySetCalendar(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.calendar = 1;
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.calendar = 0;
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
 }
 
 void PartySetBonus(CLI_PARSE_INFO *pInfo)
@@ -4259,6 +4579,7 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
 
    partyControl.max = -1;
    partyControl.bestOf = BEST_OF_ONE;
+   partyControl.calendar = 0;
    partyControl.pr = 0;
    partyControl.adjust = 1;
    partyControl.tallyMin = TALLY_MIN;
@@ -4269,6 +4590,10 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    partyControl.groupId = GROUP_UNKNOWN;
    partyControl.lockDown = 0;
    partyControl.clip = 0;
+   partyControl.cat = 0;
+   partyControl.cat1 = 0.0;
+   partyControl.cat2 = 0.0;
+   partyControl.cat3 = 0.0;
 
    ListReset(pInfo, listTimeLine);
    ListReset(pInfo, listTimeOrder);
@@ -4445,8 +4770,13 @@ static const CLI_PARSE_CMD party_set_cmd[] =
 {
     { "max",       PartySetMax,       "max number of race entries"},
     { "bestof",    PartySetBestOf,    "N in best-of-N races"},
+    { "cat",       PartySetCat,       "category splicing {0=off} | {1,2,3}"},
+    { "cat1",      PartySetCat1,      "cat1 cutoff for sprints"},
+    { "cat2",      PartySetCat2,      "cat2 cutoff for sprints"},
+    { "cat3",      PartySetCat3,      "cat3 cutoff for sprints"},
     { "pr",        PartySetPR,        "turn PR weighting on|off"},
     { "adjust",    PartySetAdjust,    "adjust (multiply) improvement by X"},
+    { "calendar",  PartySetCalendar,  "show tempoish races by calendar time"},
     { "tallymin",  PartySetTallyMin,  "minimum number of races to be included in tally (default 10)"},
     { "bonus",     PartySetBonus,     "on|off - 5 pts for 3 races, 10 pts for 4 races"},
     { "double",    PartySetDouble,    "on|off - DOUBLE points for Alpe race (warranted)"},
@@ -5022,7 +5352,8 @@ static const CLI_PARSE_CMD cmd_party_commands[] =
    { "reset",           cmd_party_reset,                "reset party"},
    { "show",            cmd_party_show,                 "show party status"},
    { "tally",           cmd_party_tally,                "tally up all results"},
-   { "tempoish",        cmd_party_tempoish,             "show tempoish sprint results"},
+   { "tempoish",        cmd_party_tempoish,             "show average time sprint results"},
+   { "time",            cmd_party_time,                 "show time sprint results"},
    { "raw",             cmd_party_raw,                  "party raw"},
    { "set",             cmd_party_set,                  "party set commands"},
    { "force",           cmd_party_force,                "force {athlete} {A|B} force an athlete to a category"},

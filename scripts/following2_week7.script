@@ -1,0 +1,17 @@
+party set group All
+#party set group GRIT
+#party set lockdown on
+party results database/_posts/2021/01/15/Col_Du_Zwift_results.txt database/_posts/2021/01/15/Col_Du_Zwift_results.md race1 0
+#party set lockdown on
+party set snap All
+#party set snap GRIT
+# party set clip on
+party show
+#quit
+party reset list
+party set lockdown on
+party following database/_posts/2021/01/15/Col_Du_Zwift_following.txt database/_posts/2021/01/15/Col_Du_Zwift_following.md race2 1
+# party set clip on
+party show
+quit
+

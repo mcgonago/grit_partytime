@@ -1,40 +1,27 @@
-  1  A NakaoJPN  -  06:57    303w  4.7
-  2  Dominik Lugmair  TeamODZ  07:02    362w  4.5
-  3  Chris M  B4H  07:10    349w  4.5
-  4  Renfrew Bunch  [Scotland]  07:13    324w  4.6
-  5  John Donovan  -  07:13    331w  4.6
-  6  Jim Griffin  VEGAN  07:25    314w  4.2
-  7  M Vesty  (Chevin) BMCR C    07:25    280w  4.4
-  8  Ron Mar  -  07:30    302w  4.2
-  9  Shaun Corbin Nashville  DIRT  07:31    273w  4.2
- 10  Philip Morrison  BRC  07:31    328w  4.3
- 11  Peder Thomsen  -  07:32    334w  4.1
- 12  Sutthikiat Bunpatt  -  07:32    276w  4.2
- 13  Brice GDY  -  07:33    310w  4.3
- 14  Leigh Hewerdine  -  07:35    303w  4.2
- 15  J B #2  BCC - Bees  07:40    333w  4.2
- 16  To Geeme  MUSSARA VCT  07:41    310w  4.0
- 17  Eoin Waldron  MVRL  07:45    296w  4.2
- 18  Nicolas Baecke  BZR cycling team  07:46    273w  4.1
- 19  Mark O'Connell  -  07:48    282w  4.0
- 20  Steven Allington  -  07:48    343w  3.9
- 21  Marcus Hyl__n  -  07:52    315w  4.1
- 22  James Braybrook  -  07:57    295w  4.1
- 23  Francois penalver  -  08:06    243w  4.1
- 24  Steve Bekker  DIRT  08:09    274w  3.8
- 25  Jeff Bratteson  DIRT  08:12    332w  3.7
- 26  Simone Limone  (WaspsCC)    08:12    319w  3.6
- 27  Mike Roth  -  08:23    318w  3.6
- 28  Simon Lever  -  08:34    282w  3.5
- 29  Alexander E  -  08:35    258w  3.6
- 30  Calum Scott  DIRT  08:35    248w  3.5
- 31  Corey Selland  DIRT  08:49    290w  3.4
- 32  Michael Mcgoldrick  Hopey  08:53    295w  3.4
- 33  W icksy  JayZee  08:54    244w  3.3
- 34  Steffan Taylor  Islington CC  08:54    230w  3.3
- 35  Brad Tierney  Hopey  08:56    275w  3.2
- 36  Greg Michilsens  BZR cycling team  09:15    230w  3.3
- 37  Dave Allen  BRC  09:16    246w  3.3
- 38  Simon Hart  Team CLS  09:20    239w  3.2
- 39  Martin Ruddy  BRC  09:44    226w  2.9
- 40  Guy Bramley  BMTR  10:27    238w  2.9
+  1  Steve Tappan  [GRIT]  06:23    371w  5.5
+  2  __STAR__  -  06:23    287w  5.4
+  3  Derek Sawyer  [GRIT][Rippers]  06:23    384w  5.1
+  4  Espen Jogert  -  06:24    366w  5.4
+  5  Gerry Hernandez  DIRT  06:24    299w  5.4
+  6  Rune Jogert  -  06:31    353w  5.0
+  7  Greg Langman  DIRT  06:55    340w  4.8
+  8  Frank Larsen  Vikings  06:56    328w  4.7
+  9  Tak Ina  [JETT][GRIT]  06:57    254w  4.8
+ 10  Mark Furth  EVOLUTION  06:57    365w  4.6
+ 11  Rob Fullerton  GRIT  06:57    352w  4.6
+ 12  Tiago Ribeiro  -  06:57    365w  4.6
+ 13  Thomas Schrader  ZRG  06:57    392w  4.5
+ 14  Bryn Griffiths  -  07:04    363w  4.4
+ 15  Sarah Storey  Vision  07:08    316w  4.6
+ 16  Jonathan Girvan  CTC  07:11    308w  4.5
+ 17  Robbie de Klerk  ZSUNR  07:13    376w  4.3
+ 18  Alice Lethbridge  HEINO RT  07:13    281w  4.5
+ 19  Owen McGonagle  GRIT  07:18    308w  4.5
+ 20  Hans-Jurgen G  -  07:22    265w  4.4
+ 21  Amanda Wendorff  IRACELIKEAGIRL  07:29    270w  4.3
+ 22  paul francis  -  07:53    270w  3.9
+ 23  Leon Elmans  -  07:53    285w  4.0
+ 24  Jacques Castel  -  08:00    274w  3.9
+ 25  Mathieu Benhalima  [PCO]    09:05    223w  3.4
+ 26  Conor Verbruggen  Team CRYO-GEN  09:10    216w  3.5
+ 27  Linda Klein  CRYO RDT  09:10    193w  3.4

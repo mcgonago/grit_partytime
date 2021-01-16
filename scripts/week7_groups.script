@@ -1,0 +1,23 @@
+party set max 28
+party set bestof 2
+party set group B
+party kom database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom.txt database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom-B.md race1 0
+party set snap B
+party set lockdown on
+party kom database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.txt database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.md race2 1
+party following2 database/_posts/2021/01/15/Col_Du_Zwift_following.txt database/_posts/2021/01/15/Col_Du_Zwift_following.md race3 2
+party set clip on
+party show
+party reset list
+party set max 28
+party set bestof 2
+party set group A
+party set lockdown off
+party kom database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom.txt database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom-B.md race1 0
+party set snap A
+party set lockdown on
+party kom database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.txt database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.md race2 1
+party following2 database/_posts/2021/01/15/Col_Du_Zwift_following.txt database/_posts/2021/01/15/Col_Du_Zwift_following.md race3 2
+party set clip on
+party show
+quit

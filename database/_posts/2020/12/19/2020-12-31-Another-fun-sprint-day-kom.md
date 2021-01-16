@@ -1,6 +1,5 @@
-  1  Shaun Corbin Nashville  DIRT  10.775    818w  12.7
-  2  Calum Scott  DIRT  12.478    374w  5.3
-9
+  1  Jonny Bullen  -  9.897    1117w  15.5
+  2  Gabriel Mathisen  [VEGAN][GRIT]  10.223    799w  12.9
   3  Nikolay Shevtsov  -  10.304    870w  10.5
   4  Paul Ecobichon  BRT  10.341    810w  11.9
   5  Paul Graham  -  10.356    692w  9.5
@@ -29,7 +28,8 @@
  28  Chris Howarth  -  11.659    389w  5.7
  29  Sean Kennedy  -  11.703    671w  8.9
  30  Jason Perkins  -  11.935    387w  5.3
- 31  Kim Nami  -  12.604    309w  5.6
- 32  Alejandro Barca Varela  -  12.787    778w  10.4
- 33  Elinor Barker  -  12.817    229w  4.1
- 34  Matthew Currie  ACC  13.042    252w  3.9
+ 31  Calum Scott  DIRT  12.478    374w  5.3
+ 32  Kim Nami  -  12.604    309w  5.6
+ 33  Alejandro Barca Varela  -  12.787    778w  10.4
+ 34  Elinor Barker  -  12.817    229w  4.1
+ 35  Matthew Currie  ACC  13.042    252w  3.9
