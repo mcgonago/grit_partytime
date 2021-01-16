@@ -738,10 +738,9 @@ void AddSpace(char *out, char *in)
   *ptrOut = '\0';
 }
 
-void RemoveTrailing(char *out, char *in)
+void RemoveTrailingAdd2Inline(char *in)
 {
   char *ptrIn = in;
-  char *ptrOut = out;
   char *ptr;
   
   /* Go to end and removed trailing spaces */
@@ -762,6 +761,14 @@ void RemoveTrailing(char *out, char *in)
      *ptr = '\0';
   }
 
+  *ptr++ = ' ';
+  *ptr++ = ' ';
+  *ptr = '\0';
+}
+
+void RemoveTrailing(char *out, char *in)
+{
+  RemoveTrailingAdd2Inline(in);
   AddSpace(out, in);
 }
 
@@ -1637,6 +1644,8 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
    int endCount = 0;
    char *ptr;
 
+   RemoveTrailingAdd2Inline(str);
+
    if (partyControl.debug == 1)
    {
       (pInfo->print_fp)("CC: %s\n", str);
@@ -1788,128 +1797,6 @@ void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
          i++;
       }
    }
-
-}
-
-void ColumnPrintfHeader(CLI_PARSE_INFO *pInfo, char *str)
-{
-   int i;
-   int fill = 0;
-   int idx = 0;
-   char *ptr;
-
-   int columnWidth = 0;
-   int endWidth = 0;
-   int charIdx = 0;
-   int columnId = 0;
-   int outIdx = 0;
-   int inIdx = 0;
-   char outStr[MAX_STRING_SIZE];
-
-   ptr = &str[0];
-   i = 0;
-   columnId = 0;
-   columnWidth = 0;
-
-   while (*ptr != '\0')
-   {
-      if (columnId == 0)
-      {
-         outStr[outIdx++] = '|';
-         outStr[outIdx++] = '-';
-      }
-
-      idx = 0;
-      while ((*ptr != ' ') && (*ptr != '\0'))
-      {
-         outStr[outIdx++] = '-';
-         ptr++;
-         columnWidth += 1;
-      }
-
-      if (*ptr == '\0')
-      {
-         outStr[outIdx++] = '-';
-         endWidth = columnWidth;
-         break;
-      }
-
-      outStr[outIdx++] = '-';
-      ptr++;
-      columnWidth += 1;
-      endWidth = columnWidth;
-
-      if (*ptr == ' ')
-      {
-         ptr++;
-
-         endWidth = columnWidth;
-         while ((*ptr == ' ') && (*ptr != '\0'))
-         {
-            endWidth += 1;
-            ptr++;
-         }
-
-         if (*ptr == '\0')
-         {
-            outStr[outIdx++] = '-';
-            endWidth = columnWidth;
-            break;
-         }
-
-         /* FOUND two spaces! */
-         if ((columns[columnId].width + COLUMN_SPACING) > columnWidth)
-         {
-            fill = ((columns[columnId].width + COLUMN_SPACING) - columnWidth);
-            for (i = 0; i < fill; i++)
-            {
-               outStr[outIdx++] = '-';
-            }
-         }
-
-         outStr[outIdx++] = '+';
-         outStr[outIdx++] = '-';
-
-         if (*ptr != '\0')
-         {
-            columnWidth = 0;
-            columnId += 1;
-         }
-      }
-   }
-
-#if 1
-   if (*ptr != '\0')
-   {
-      (pInfo->print_fp)("INTERNAL ERROR: end of str not found!!!\n");
-   }
-
-   if (partyControl.debug == 1)
-   {
-      (pInfo->print_fp)("columnId = %d, columns[%d].width = %d, endWidth = %d\n", columnId,
-                        columnId, columns[columnId].width, endWidth);
-   }
-
-   if (1) /* columns[columnId].width > COLUMN_SPACING) */
-   {
-      if ((columns[columnId].width) > endWidth)
-      {
-         fill = (columns[columnId].width - endWidth);
-         for (i = 0; i < fill; i++)
-         {
-            outStr[outIdx++] = '-';
-         }
-      }
-   }
-#endif
-
-#if 1
-   outIdx -= 1;
-   outStr[outIdx++] = '|';
-   outStr[outIdx++] = '\0';
-#endif
-
-   (pInfo->print_fp)("%s\n", outStr);
 
 }
 
@@ -4022,7 +3909,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          }
          else
          {
-            outIdx += sprintf(&header[outIdx], "Best %d av.", partyControl.bestOf);
+            outIdx += sprintf(&header[outIdx], "Best %d av.  ", partyControl.bestOf);
          }
 
          ColumnStore(pInfo, header);
@@ -4035,7 +3922,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          }
 
          /* improvement */
-         outIdx += sprintf(&header[outIdx], "%s", "-------");
+         outIdx += sprintf(&header[outIdx], "%s", "-------  ");
       }
       else
       {
