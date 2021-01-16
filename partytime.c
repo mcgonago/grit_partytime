@@ -24,6 +24,9 @@ static volatile int gdbStop = 1;
 
 #define PRINT_MODE_DISPLAY (1)
 
+#define HEADER_INDEX_FIRST_LINE (0)
+#define HEADER_INDEX_DELIMITER  (1)
+   
 #define SHOW_POINTS   (1)
 #define SHOW_TALLY    (2)
 #define SHOW_TEMPOISH (3)
@@ -1789,7 +1792,7 @@ void ColumnPrintfHeader(CLI_PARSE_INFO *pInfo, char *str)
    {
       if (columnId == 0)
       {
-         outStr[outIdx++] = '+';
+         outStr[outIdx++] = '|';
          outStr[outIdx++] = '-';
       }
 
@@ -2012,9 +2015,9 @@ void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str)
 void PrintTable(CLI_PARSE_INFO *pInfo)
 {
    int i;
-   int idx = 0;
+   int idx = HEADER_INDEX_FIRST_LINE;
 
-   if (printTable[1].enabled != 0)
+   if (printTable[HEADER_INDEX_DELIMITER].enabled != 0)
    {
       ColumnPrintf(pInfo, printTable[idx].entry);
       idx += 1;
@@ -2022,7 +2025,7 @@ void PrintTable(CLI_PARSE_INFO *pInfo)
 
    if ((printTable[idx].enabled != 0) && (strstr(printTable[idx].entry, "--") != 0))
    {
-      ColumnPrintfHeader(pInfo, printTable[1].entry);
+      ColumnPrintfHeader(pInfo, printTable[HEADER_INDEX_DELIMITER].entry);
       idx += 1;
    }
 
@@ -3960,15 +3963,15 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          {
             if (i == 1)
             {
-               outIdx += sprintf(&header[outIdx], "2nd  ", (i+1));
+               outIdx += sprintf(&header[outIdx], "2nd best  ", (i+1));
             }
             else if (i == 2)
             {
-               outIdx += sprintf(&header[outIdx], "3rd  ", (i+1));
+               outIdx += sprintf(&header[outIdx], "3rd best  ", (i+1));
             }
             else
             {
-               outIdx += sprintf(&header[outIdx], "%dth  ", (i+1));
+               outIdx += sprintf(&header[outIdx], "%dth best  ", (i+1));
             }
          }
 
