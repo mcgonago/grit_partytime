@@ -61,6 +61,7 @@ typedef struct Arguments_s {
     char ip_primary[MAX_NAME_LENGTH];
     char ip_secondary[MAX_NAME_LENGTH];
     int  port;
+    int  mode;
 } Arguments_t;
 
 extern Arguments_t arguments;

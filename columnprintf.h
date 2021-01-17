@@ -11,5 +11,8 @@ extern void ReplaceTabs(char *out, char *in);
 extern void AddSpace(char *out, char *in);
 extern void RemoveSpaceAtEnd(char *ptr);
 
+extern void FixLine(CLI_PARSE_INFO *pInfo, char *out, char *in, char *team);
+extern void FixTeamName(CLI_PARSE_INFO *pInfo, char *out, char *in);
+
 
 #endif /* __COLUMNPRINTF_H__ */
