@@ -15,37 +15,23 @@
 #include "zcolor.h"
 #include "tracebuffer.h"
 #include "timeline.h"
+#include "columnprintf.h"
+#include "partycontrol.h"
 
-#define CONSOLE_OUTPUT (1)
+//#define CONSOLE_OUTPUT (1)
 
 static volatile int gdbStop = 1;
-
-#define COLUMN_SPACING (2)
-// #define COLUMN_SPACING (0)
 
 #define PRINT_MODE_DISPLAY (1)
 
 #define HEADER_INDEX_FIRST_LINE (0)
 #define HEADER_INDEX_DELIMITER  (1)
    
-#define SHOW_POINTS   (1)
-#define SHOW_TALLY    (2)
-#define SHOW_TEMPOISH (3)
-#define SHOW_TIME     (4)
-
-#define GROUP_A       (1)
-#define GROUP_B       (2)
-#define GROUP_ALL     (3)
-#define GROUP_GRIT    (4)
-#define GROUP_UNKNOWN (5)
-
 #define LOWEST_TIME (10000.0)
 
 #define TIME_ORDER_POINTS     (1)
 #define TIME_ORDER_TEMPOISH   (2)
 #define TIME_ORDER_TIME       (3)
-
-#define MAX_MY_COLUMNS (1024)
 
 #define PARTY_KOM_SPRINTS     (0x00000001)
 #define PARTY_FOLLOWING       (0x00000002)
@@ -58,23 +44,6 @@ static volatile int gdbStop = 1;
 #define PARTY_RESULTS_RAW     (0x00000100)
 #define PARTY_RESULTS_2_RAW   (0x00000200)
 
-typedef struct Columns_s
-{
-   int width;
-} Columns_t;
-
-Columns_t columns[MAX_MY_COLUMNS];
-
-#define MAX_ENTRIES  (1024)
-
-typedef struct PrintEntry_s
-{
-   int enabled;
-   char entry[MAX_STRING_SIZE];
-} PrintEntry_t;
-
-PrintEntry_t printTable[MAX_ENTRIES];
-
 /* +++owen - hardcoding to assuming ONLY (4) races taking part in points series */
 static int maxCount = 0;
 static int numRacesG = 0;
@@ -84,44 +53,7 @@ LinkList_t *listTimeOrder = NULL;
 
 TimeLinePool_t *timeLinePool;
 
-typedef struct PartyControl_s
-{
-   int max;
-   int bestOf;
-   int calendar;
-   int tallyMin;
-   int bonus;
-   int doubleUp;
-   int ageBonus;
-   int debug;
-   int groupId;
-   int lockDown;
-   int clip;
-   int pr;
-   int adjust;
-   int cat;
-   float cat1;
-   float cat2;
-   float cat3;
-} PartyControl_t;
-
-PartyControl_t partyControl;
-
 //#define DEBUG_LEVEL_1 (1)
-
-#define BEST_OF_ONE   (1)
-#define BEST_OF_TWO   (2)
-#define BEST_OF_THREE (3)
-#define BEST_OF_FOUR  (4)
-
-#define TALLY_MIN     (1)
-
-#define TYPE_USBC    (1)
-#define TYPE_USDP    (2)
-#define TYPE_UNKNOWN (3)
-
-#define NL_REMOVE (1)
-#define NL_KEEP   (2)
 
 #define RACE_NO  (1)
 #define RACE_YES (2)
@@ -681,97 +613,6 @@ static void cmd_party_stop(CLI_PARSE_INFO *info)
    timeTable.on = 0;
 }
 
-void ReplaceTabs(char *out, char *in)
-{
-  char *ptrIn = in;
-  char *ptrOut = out;
-  int firstChar = 1;
-
-  while (*ptrIn != '\0')
-  {
-     if ((*ptrIn == '\t') && (firstChar == 1))
-     {
-        /* If <tab> found as first character, just replace with <space> */
-        firstChar = 0;
-        *ptrOut = ' ';
-     }
-     else if (*ptrIn == '\t')
-     {
-        *ptrOut++ = ' ';
-        *ptrOut++ = ' ';
-        *ptrOut++ = ' ';
-        *ptrOut = ' ';
-     }
-     else
-     {
-       *ptrOut = *ptrIn;
-     }
-
-     ptrIn++;
-     ptrOut++;
-  }
-
-  *ptrOut = '\0';
-}
-
-void AddSpace(char *out, char *in)
-{
-  char *ptrIn = in;
-  char *ptrOut = out;
-
-  while (*ptrIn != '\0')
-  {
-     if ((*ptrIn == '\t') || (*ptrIn == ' '))
-     {
-        *ptrOut++ = ' ';
-        *ptrOut = ' ';
-     }
-     else
-     {
-       *ptrOut = *ptrIn;
-     }
-
-     ptrIn++;
-     ptrOut++;
-  }
-
-  *ptrOut = '\0';
-}
-
-void RemoveTrailingAdd2Inline(char *in)
-{
-  char *ptrIn = in;
-  char *ptr;
-  
-  /* Go to end and removed trailing spaces */
-  ptr = in;
-  while (*ptr != '\0')
-  {
-     ptr++;
-  }
-
-  ptr--;
-  if (*ptr == ' ')
-  {
-     while (*ptr == ' ')
-     {
-        ptr--;
-     }
-     ptr++;
-     *ptr = '\0';
-  }
-
-  *ptr++ = ' ';
-  *ptr++ = ' ';
-  *ptr = '\0';
-}
-
-void RemoveTrailing(char *out, char *in)
-{
-  RemoveTrailingAdd2Inline(in);
-  AddSpace(out, in);
-}
-
 char *StringGet(char *out, FILE *fp, int nl)
 {
    char *ret;
@@ -796,30 +637,6 @@ char *StringGet(char *out, FILE *fp, int nl)
    }
 
    return(ret);
-}
-
-void RemoveSpaceAtEnd(char *ptr)
-{
-   char *ptr2;
-
-   /* Go to end, go back, make sure no spaces at end of name */
-   ptr2 = --ptr;
-   if (*ptr2 == ' ')
-   {
-      while (1)
-      {
-         if (*ptr2 == ' ')
-         {
-            ptr2--;
-         }
-         else
-         {
-            ptr2++;
-            *ptr2 = '\0';
-            break;
-         }
-      }
-   }
 }
 
 void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
@@ -1635,7 +1452,7 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, TimeLineInfo_t *timeLin
    return 1;
 }
 
-
+#if 0
 void ColumnStore(CLI_PARSE_INFO *pInfo, char *str)
 {
    int i, j;
@@ -1978,7 +1795,7 @@ void PrintTable(CLI_PARSE_INFO *pInfo)
       ColumnPrintf(pInfo, printTable[i].entry);
    }
 }
-
+#endif
 
 void RemoveWpkg(CLI_PARSE_INFO *pInfo, char *str)
 {
@@ -4504,36 +4321,6 @@ void PartySetPR(CLI_PARSE_INFO *pInfo)
     }
 }
 
-void PartyInit(CLI_PARSE_INFO *pInfo)
-{
-   int i;
-
-   partyControl.max = -1;
-   partyControl.bestOf = BEST_OF_ONE;
-   partyControl.calendar = 0;
-   partyControl.pr = 0;
-   partyControl.adjust = 1;
-   partyControl.tallyMin = TALLY_MIN;
-   partyControl.bonus = 0;
-   partyControl.doubleUp = 0;
-   partyControl.ageBonus = 0;
-   partyControl.debug = 0;
-   partyControl.groupId = GROUP_UNKNOWN;
-   partyControl.lockDown = 0;
-   partyControl.clip = 0;
-   partyControl.cat = 0;
-   partyControl.cat1 = 0.0;
-   partyControl.cat2 = 0.0;
-   partyControl.cat3 = 0.0;
-
-   ListReset(pInfo, listTimeLine);
-   ListReset(pInfo, listTimeOrder);
-
-   numRacesG = 0;
-
-   ColumnReset(pInfo);
-}
-
 void PartySetLockdown(CLI_PARSE_INFO *pInfo)
 {
    if ( pInfo->argc < 2)
@@ -4743,22 +4530,6 @@ void AthleteReset(CLI_PARSE_INFO *pInfo)
    strcpy(athleteGRIT[i-1].name, "ATHLETE_END");
 }
 
-void ColumnReset(CLI_PARSE_INFO *pInfo)
-{
-   int i;
-
-   for (i = 0; i < MAX_MY_COLUMNS; i++)
-   {
-      columns[i].width = -1;
-   }
-
-   for (i = 0; i < MAX_ENTRIES; i++)
-   {
-      printTable[i].enabled = 0;
-   }
-}
-
-
 void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
 {
    int i;
@@ -4794,10 +4565,12 @@ void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
 static void PartyResetAll(CLI_PARSE_INFO *info)
 {
    /* Reset things each time through */
-   ListReset(info, listTimeLine);
-   ListReset(info, listTimeOrder);
    PartyInit(info);
    ColumnReset(info);
+
+   ListReset(info, listTimeLine);
+   ListReset(info, listTimeOrder);
+   numRacesG = 0;
 }
 
 static void ListResets(CLI_PARSE_INFO *info)
@@ -5305,6 +5078,11 @@ void cmd_party( CLI_PARSE_INFO *info)
    {
       PartyInit(info);
       TimeLineInit(info);
+
+      ListReset(info, listTimeLine);
+      ListReset(info, listTimeOrder);
+      numRacesG = 0;
+
       firstTime = 0;
    }
 
