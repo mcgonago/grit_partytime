@@ -1830,6 +1830,14 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname)
       exit(-1);
    }
 
+   /* Create headers */
+   outIdx = 0;
+   outIdx += sprintf(&header[outIdx], "%s", "#  name  team  time  watts");
+   ColumnStore(pInfo, header);
+
+   sprintf(header, "%s", "--  ----   ----   ----   -----");
+   ColumnStore(pInfo, header);
+
    while (1)
    {
       if (preRead == 0)
@@ -2769,7 +2777,8 @@ PrintUsage(int exitFlag)
     printf("Usage: columnprintf [OPTION...]\n");
     printf("\n");
     printf("  -s, --script       run script 1/second\n");
-    printf("  -k, --kom          columnize {filename}\n");
+    printf("  -k, --kom          columnize {filename} kom results\n");
+    printf("  -r, --results      columnize {filename} results\n");
 #if 0
     printf("  -D, --DDR          start DSP Data Record (DDR) recording...\n");
     printf("  -P, --PDR          start PFE/DSP Data Record (PDR) recording...\n");

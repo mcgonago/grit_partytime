@@ -1,0 +1,14 @@
+party set bestof 2
+#party set group GRIT
+#party set lockdown on
+party set calendar on
+party kom database/_posts/2020/01/21/2020-01-21-Richmond_kom.txt database/_posts/2020/01/21/2020-01-21-Richmond_kom.md 20-01-21 0
+party kom database/_posts/2020/07/28/2020-07-28-Richmond_kom.txt database/_posts/2020/07/28/2020-07-28-Richmond_kom.md 20-07-28 1
+party kom database/_posts/2020/08/04/2020-08-04-Richmond_kom.txt database/_posts/2020/08/04/2020-08-04-Richmond_kom.md 20-08-04 2
+party kom database/_posts/2020/11/10/2020-11-10-Richmond_kom.txt database/_posts/2020/11/10/2020-09-10-Richmond_kom.md 20-11-10 3
+party kom database/_posts/2021/01/19/2021-01-19-Gun-Fight-At-OK-Corral-kom.txt database/_posts/2021/01/19/2021-01-19-Gun-Fight-At-OK-Corral-kom.md 21-01-19 4
+#party show
+party set clip on
+#party set pr on
+party tempoish
+quit

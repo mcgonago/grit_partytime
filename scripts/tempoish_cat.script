@@ -4,12 +4,14 @@ party set cat 1
 party set cat1 10.3
 party set cat2 11.0
 party set cat3 11.0
-party kom database/_posts/2020/12/03/Tempoish-Thursday-Sprints_sprints.txt foo.md race1 0
+party set calendar on
+#party kom database/_posts/2020/12/03/2020-12-03-Tempoish-Thursday-Sprints_following.txt foo.md race1 0
 party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt foo.md race2 1
 party kom database/_posts/2020/12/17/2020-12-17-Alpe-Tomorrow-U-Ready_kom.txt foo.md race3 2
-party kom database/_posts/2020/12/19/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race4 3
-party kom database/_posts/2021/01/07/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race5 4
+party kom database/_posts/2020/12/31/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race4 3
+party kom database/_posts/2021/01/07/2021-01-07-Another-fun-sprint-day-kom.txt foo.md race5 4
 party kom database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.txt foo.md race6 5
+party kom database/_posts/2021/01/21/2021-01-21-No-sleep-til-Brooklyn-kom.txt foo.md race7 6
 # party show
 party set clip on
 #party set PR on
@@ -20,12 +22,14 @@ party set cat 2
 party set cat1 10.3
 party set cat2 11.0
 party set cat3 11.0
-party kom database/_posts/2020/12/03/Tempoish-Thursday-Sprints_sprints.txt foo.md race1 0
+party set calendar on
+#party kom database/_posts/2020/12/03/2020-12-03-Tempoish-Thursday-Sprints_following.txt foo.md race1 0
 party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt foo.md race2 1
 party kom database/_posts/2020/12/17/2020-12-17-Alpe-Tomorrow-U-Ready_kom.txt foo.md race3 2
-party kom database/_posts/2020/12/19/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race4 3
-party kom database/_posts/2021/01/07/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race5 4
+party kom database/_posts/2020/12/31/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race4 3
+party kom database/_posts/2021/01/07/2021-01-07-Another-fun-sprint-day-kom.txt foo.md race5 4
 party kom database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.txt foo.md race6 5
+party kom database/_posts/2021/01/21/2021-01-21-No-sleep-til-Brooklyn-kom.txt foo.md race7 6
 # party show
 party set clip on
 #party set PR on
@@ -36,12 +40,14 @@ party set cat 3
 party set cat1 10.3
 party set cat2 11.0
 party set cat3 11.0
-party kom database/_posts/2020/12/03/Tempoish-Thursday-Sprints_sprints.txt foo.md race1 0
+party set calendar on
+#party kom database/_posts/2020/12/03/2020-12-03-Tempoish-Thursday-Sprints_following.txt foo.md race1 0
 party kom database/_posts/2020/12/10/2020-12-10-Another-Morning-Of-Sprints_sprints.txt foo.md race2 1
 party kom database/_posts/2020/12/17/2020-12-17-Alpe-Tomorrow-U-Ready_kom.txt foo.md race3 2
-party kom database/_posts/2020/12/19/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race4 3
-party kom database/_posts/2021/01/07/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race5 4
+party kom database/_posts/2020/12/31/2020-12-31-Another-fun-sprint-day-kom.txt foo.md race4 3
+party kom database/_posts/2021/01/07/2021-01-07-Another-fun-sprint-day-kom.txt foo.md race5 4
 party kom database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.txt foo.md race6 5
+party kom database/_posts/2021/01/21/2021-01-21-No-sleep-til-Brooklyn-kom.txt foo.md race7 6
 # party show
 party set clip on
 #party set PR on

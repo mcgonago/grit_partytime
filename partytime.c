@@ -83,7 +83,60 @@ Athlete_t athleteAll[MAX_ATHLETES] = {
     {0, "ATHLETE_END"},
 };
 
+
 Athlete_t athleteGRIT[MAX_ATHLETES] = {
+   {1, "Christian Kaldbar"},
+   {1, "Gabriel Mathisen"},
+   {1, "Enda Bagnall"},
+   {1, "Rob Fullerton"},
+   {1, "Steve Tappan"},
+   {1, "R. Elvira"},
+   {1, "Doug Johnson"},
+   {1, "Luke Elton"},
+   {1, "MMD Kase Juku"},
+   {1, "Dominik Lugmair"},
+   {1, "Iijima Daisuke"},
+   {1, "JESUS PRIETO"},
+   {1, "tarou nagae"},
+   {1, "Ana Santos"},
+   {1, "Miquel Morales"},
+   {1, "Anders Danielsen"},
+   {1, "John Jeffries"},
+   {1, "Lara Middleton"},
+   {1, "Owen McGonagle"},
+   {1, "M_arc Lebel"},
+   {1, "Lisandro Quebrada"},
+   {0, "ATHLETE_END"},
+};
+
+
+   
+Athlete_t athleteGRIT1[MAX_ATHLETES] = {
+//   {1, "Sepp Kuss"},                  /* 18 */
+//   {1, "James Piccoli"},              /* 19 */
+   {1, "Lance Anderson"},             /* 1  */
+   {1, "Gabriel Mathisen"},           /* 2  */
+   {1, "Steve Tappan"},               /* 3  */
+   {1, "Derek Sawyer"},               /* 4  */
+   {1, "Tak Ina"},                    /* 5  */
+   {1, "tak ina"},                    /* 5  */
+   {1, "Seth G"},                     /* 6  */
+   {1, "Rob Fullerton"},              /* 7  */
+   {1, "Owen McGonagle"},             /* 8  */
+   {1, "Luke Elton"},                 /* 9  */
+   {1, "Paul Hutchins"},              /* 10 */
+   {1, "Steve Peplinski"},            /* 11 */
+   {1, "Maximilian Weniger"},         /* 12 */
+   {1, "John Jeffries"},              /* 13 */
+   {1, "Alan Brannan"},               /* 14 */
+   {1, "Shaun Corbin"},               /* 15 */
+   {1, "Ben Sisson"},                 /* 16 */
+   {1, "Andrew Cohen"},               /* 17 */
+   {1, "Christian Kaldbar"},          /* 18 */
+   {0, "ATHLETE_END"}
+};
+
+Athlete_t athleteGRIT_try1[MAX_ATHLETES] = {
    {1, "Steve Tappan"},
    {1, "Stuart Glover"},
    {1, "Rob Fullerton"},
@@ -143,28 +196,6 @@ Athlete_t athleteGRIT2[MAX_ATHLETES] = {
 };
 
 
-Athlete_t athleteGRITorig[MAX_ATHLETES] = {
-//   {1, "Sepp Kuss"},                  /* 18 */
-//   {1, "James Piccoli"},              /* 19 */
-   {1, "Lance Anderson"},             /* 1  */
-   {1, "Gabriel Mathisen"},           /* 2  */
-   {1, "Steve Tappan"},               /* 3  */
-   {1, "Derek Sawyer"},               /* 4  */
-   {1, "Tak Ina"},                    /* 5  */
-   {1, "Seth G"},                     /* 6  */
-   {1, "Rob Fullerton"},              /* 7  */
-   {1, "Owen McGonagle"},             /* 8  */
-   {1, "Luke Elton"},                 /* 9  */
-   {1, "Paul Hutchins"},              /* 10 */
-   {1, "Steve Peplinski"},            /* 11 */
-   {1, "Maximilian Weniger"},         /* 12 */
-   {1, "John Jeffries"},              /* 13 */
-   {1, "Alan Brannan"},               /* 14 */
-   {1, "Shaun Corbin"},               /* 15 */
-   {1, "Ben Sisson"},                 /* 16 */
-   {1, "Andrew Cohen"},               /* 17 */
-   {0, "ATHLETE_END"}
-};
 
 extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
 extern int TeamGrit(char *name);
@@ -312,8 +343,8 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
       timeLineInfo->raceOrder[i].pos = -1;
       timeLineInfo->race[i].place = -1;
       timeLineInfo->race[i].points = 0;
-      timeLineInfo->race[i].time.f = 1000.0;
-      timeLineInfo->race[i].time.i = 1000;
+      timeLineInfo->race[i].time.f = LOWEST_TIME;
+      timeLineInfo->race[i].time.i = (int)LOWEST_TIME;
    }
 
    if ((PLATFORM_POINTER_T)timeLineInfo == deletedObject)
@@ -573,6 +604,23 @@ void TimeLineInit(CLI_PARSE_INFO *pInfo)
 
    size = MAX_TIMELINES * sizeof(TimeLineInfo_t);
 
+   if (timeLinePool != NULL)
+   {
+      free(timeLinePool);
+   }
+
+   if (listTimeLine != NULL)
+   {
+      ListReset(pInfo, listTimeLine);
+      listTimeLine = NULL;
+   }
+
+   if (listTimeOrder != NULL)
+   {
+      ListReset(pInfo, listTimeOrder);
+      listTimeOrder = NULL;
+   }
+
    timeLinePool = (TimeLinePool_t *)malloc(size);
 
    if (timeLinePool == NULL)
@@ -756,6 +804,24 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       teamFound = 1;
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(tmp, "Eric Andr") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Eric Andre");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if (strstr(tmp, "Matt A.") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Matt A. P.");
+      strcpy(timeLineInfo->team, "DIRT");
+   }
+   else if (strstr(tmp, "Shaun Corbin") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Shaun Corbin");
+      strcpy(timeLineInfo->team, "[GRIT][DIRT]");
    }
    else if (strstr(tmp, "Guido Kramer Leymen") != 0)
    {
@@ -1061,6 +1127,21 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    {
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(timeLineInfo->team, "Eric Andr") != 0)
+   {
+      strcpy(timeLineInfo->name, "Eric Andre");
+      strcpy(timeLineInfo->team, "-");
+   }
+   else if (strstr(timeLineInfo->name, "Matt A.") != 0)
+   {
+      strcpy(timeLineInfo->name, "Matt A. P.");
+      strcpy(timeLineInfo->team, "DIRT");
+   }
+   else if (strstr(timeLineInfo->name, "Shaun Corbin") != 0)
+   {
+      strcpy(timeLineInfo->name, "Shaun Corbin");
+      strcpy(timeLineInfo->team, "[GRIT][DIRT]");
    }
    else if (strstr(timeLineInfo->name, "Guido Kramer Leymen") != 0)
    {
@@ -1851,11 +1932,15 @@ float FormatTime(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, ch
    int secs;
    float pf;
    
-//   if (0)
-//   if (((ptr = strstr(timeLineInfo->race[id].time.str, ":")) != NULL)  || ((ptr = strstr(timeLineInfo->race[id].time.str, ".")) == NULL))
    if (0)
+//   if (((ptr = strstr(timeLineInfo->race[id].time.str, ":")) != NULL)  || ((ptr = strstr(timeLineInfo->race[id].time.str, ".")) == NULL))
+//   if (1)
    {
-      if (timeLineInfo->race[id].time.f >= 0.0)
+      if (timeLineInfo->race[id].time.f == LOWEST_TIME)
+      {
+         sprintf(out, "%s", "0:00");
+      }
+      else if (timeLineInfo->race[id].time.f >= 0.0)
       {
          min = (int)(timeLineInfo->race[id].time.f / 60.0);
          secs = (int)timeLineInfo->race[id].time.f - (min * 60);
@@ -1884,6 +1969,7 @@ float FormatTime2(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
    
    if (0)
 //   if (((ptr = strstr(in, ":")) != NULL) || ((ptr = strstr(in, ".")) == NULL))
+//   if (1)
    {
       if (f >= 0.0)
       {
@@ -2937,7 +3023,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
    char timeString4[MAX_STRING_SIZE];
    PRIdx_t prIdx;
    float improvement;
-   
+   int nameFound[MAX_RACES];
+   int totalFound = 0;
+
    int outIdx = 0;
    int orderIdx = 0;
    int count = 1;
@@ -3115,7 +3203,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          timeLineInfo = (TimeLineInfo_t *)currInfo->me;
 
-         if ((partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
+         if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
          {
             ptr = ptr->next;
             continue;
@@ -3196,7 +3284,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          {
             timeLineInfo = (TimeLineInfo_t *)currInfo->me;
 
-            if ((partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
+            if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
             {
                ptr = ptr->next;
                continue;
@@ -3253,13 +3341,13 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          timeLineInfo = (TimeLineInfo_t *)currInfo->me;
 
-         if ((partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
+         if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
          {
             ptr = ptr->next;
             continue;
          }
 
-         if ((partyControl.clip == 1) && (partyControl.cat != 0))
+         if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (partyControl.cat != 0))
          {
             orderIdx1 = (numRacesG - 1);
             if (partyControl.cat == 1)
@@ -3324,7 +3412,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
    else if (mode == SHOW_TEMPOISH)
    {
 #ifndef CONSOLE_OUTPUT
-      if (partyControl.pr == 0)
+      if ((partyControl.pr == 0) && (partyControl.calendar == 0))
       {
          outIdx = 0;
          outIdx += sprintf(&header[outIdx], "%s", "#  name   team   PR  ");
@@ -3332,15 +3420,15 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          {
             if (i == 1)
             {
-               outIdx += sprintf(&header[outIdx], "2nd best  ", (i+1));
+               outIdx += sprintf(&header[outIdx], "2nd  ", (i+1));
             }
             else if (i == 2)
             {
-               outIdx += sprintf(&header[outIdx], "3rd best  ", (i+1));
+               outIdx += sprintf(&header[outIdx], "3rd  ", (i+1));
             }
             else
             {
-               outIdx += sprintf(&header[outIdx], "%dth best  ", (i+1));
+               outIdx += sprintf(&header[outIdx], "%dth  ", (i+1));
             }
          }
 
@@ -3364,6 +3452,65 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          /* improvement */
          outIdx += sprintf(&header[outIdx], "%s", "-------  ");
+      }
+      else if ((partyControl.pr == 0) && (partyControl.calendar == 1))
+      {
+         for (i = 0; i < MAX_RACES; i++)
+         {
+            nameFound[i] = 0;
+         }
+
+         outIdx = 0;
+         outIdx += sprintf(&header[outIdx], "%s", "#  name   team  ");
+
+         ptr = (Link_t *)listTimeLine->head;
+         while (ptr->next != NULL)
+         {
+            currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+            totalFound = 0;
+            for (i = 0; i < numRacesG; i++)
+            {
+               if (currInfo->race[i].raceName[0] != '\0')
+               {
+                  totalFound += 1;
+               }
+            }
+
+            if (totalFound == numRacesG)
+            {
+               /* Save it up - since it will be in order that was loaded */
+               for (i = 0; i < numRacesG; i++)
+               {
+                  outIdx += sprintf(&header[outIdx], "%s  ", currInfo->race[i].raceName);
+               }
+               break;
+            }
+
+            ptr = ptr->next;
+         }
+
+         if (totalFound != numRacesG)
+         {
+//            (pInfo->print_fp)("INTERNAL ERROR: did not find a rider that did all races\n");
+            for (i = 0; i < (numRacesG - totalFound); i++)
+            {
+               outIdx += sprintf(&header[outIdx], "%s", "00-00-00  ");
+            }
+         }
+
+
+         outIdx += sprintf(&header[outIdx], "Best %d av.  ", partyControl.bestOf);
+         ColumnStore(pInfo, header);
+
+         outIdx = 0;
+         outIdx += sprintf(&header[outIdx], "%s", "--  ----   ----  ");
+         for (i = 0; i < numRacesG; i++)
+         {
+            outIdx += sprintf(&header[outIdx], "%s", "-----  ");
+         }
+
+         outIdx += sprintf(&header[outIdx], "%s", "-----  ");
       }
       else
       {
@@ -3424,7 +3571,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          timeLineInfo = (TimeLineInfo_t *)currInfo->me;
 
-         if ((partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
+         if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
          {
             ptr = ptr->next;
             continue;
@@ -3510,7 +3657,14 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
                outIdx += sprintf(&outStr[outIdx], " %4.2f ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
-               outIdx += sprintf(&outStr[outIdx], " %s ", timeString);
+               if (strstr(timeString, "1000") == NULL)
+               {
+                  outIdx += sprintf(&outStr[outIdx], "  %s  ", timeString);
+               }
+               else
+               {
+                  outIdx += sprintf(&outStr[outIdx], "  0.00  ");
+               }
 #endif
             }
             else if ((i == 0) && (timeLineInfo->prIdx.lastFound == 1))
@@ -3522,7 +3676,14 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
                   outIdx += sprintf(&outStr[outIdx], " **%4.2f** ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                   FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
-                  outIdx += sprintf(&outStr[outIdx], " **%s** ", timeString);
+                  if (strstr(timeString, "1000") == NULL)
+                  {
+                     outIdx += sprintf(&outStr[outIdx], " **%s** ", timeString);
+                  }
+                  else
+                  {
+                     outIdx += sprintf(&outStr[outIdx], "  0.00  ");
+                  }
 #endif
                }
                else
@@ -3532,7 +3693,14 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
                   outIdx += sprintf(&outStr[outIdx], " %4.2f ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                   FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
-                  outIdx += sprintf(&outStr[outIdx], " %s ", timeString);
+                  if (strstr(timeString, "1000") == NULL)
+                  {
+                     outIdx += sprintf(&outStr[outIdx], "  %s  ", timeString);
+                  }
+                  else
+                  {
+                     outIdx += sprintf(&outStr[outIdx], "  0.00  ");
+                  }
 #endif
                }
             }
@@ -3543,7 +3711,14 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
                   outIdx += sprintf(&outStr[outIdx], " %4.2f ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                   FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
-                  outIdx += sprintf(&outStr[outIdx], " %s ", timeString);
+                  if (strstr(timeString, "1000") == NULL)
+                  {
+                     outIdx += sprintf(&outStr[outIdx], "   %s   ", timeString);
+                  }
+                  else
+                  {
+                     outIdx += sprintf(&outStr[outIdx], "  0.00  ");
+                  }
 #endif
             }
          }
@@ -4188,12 +4363,18 @@ void ListReset(CLI_PARSE_INFO *pInfo, LinkList_t *list)
 
 static void PartyResetAll(CLI_PARSE_INFO *info)
 {
-   /* Reset things each time through */
-   PartyInit(info);
-   ColumnReset(info);
+   Link_t *nil;
 
+   PartyInit(info);
+
+#if 0
+   TimeLineInit(info);
    ListReset(info, listTimeLine);
    ListReset(info, listTimeOrder);
+#endif
+   
+   ColumnReset(info);
+
    numRacesG = 0;
 }
 
