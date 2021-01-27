@@ -26,7 +26,7 @@
  26  Cecelia Taggart  DIRT  01:37    277w  5.0
  27  Rob McKechney  -  01:40    321w  4.5
  28  Doug Cowperthwaite  TeamODZ  01:41    296w  4.6
- 29  Shaun Corbin Nashville  DIRT  01:41    284w  4.4
+ 29  Shaun Corbin  [GRIT][DIRT]  01:41    284w  4.4
  30  Craig LeBlanc  [ ATP ]  01:45    300w  4.3
  31  Alan Brannan  GRIT  01:46    305w  4.3
  32  E N  -  01:48    355w  4.1

@@ -343,6 +343,7 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
    for (i = 0; i < MAX_RACES; i++)
    {
       timeLineInfo->raceOrder[i].pos = -1;
+      timeLineInfo->race[i].raceName[0] = '\0';
       timeLineInfo->race[i].place = -1;
       timeLineInfo->race[i].points = 0;
       timeLineInfo->race[i].time.f = LOWEST_TIME;
@@ -3641,7 +3642,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          if (totalFound != numRacesG)
          {
-//            (pInfo->print_fp)("INTERNAL ERROR: did not find a rider that did all races\n");
+            (pInfo->print_fp)("INTERNAL ERROR: did not find a rider that did all races - totalFound = %d, num = %d\n", totalFound, numRacesG);
             for (i = 0; i < (numRacesG - totalFound); i++)
             {
                outIdx += sprintf(&header[outIdx], "%s", "00-00-00  ");
