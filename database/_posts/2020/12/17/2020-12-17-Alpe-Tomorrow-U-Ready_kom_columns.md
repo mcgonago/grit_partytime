@@ -1,5 +1,5 @@
   1  Darryl Forbes  DIRT  9.543    1032w  13.4
-  2  Shaun Corbin Nashville  DIRT  9.600    748w  11.3
+  2  Shaun Corbin  [GRIT][DIRT]  9.600    748w  11.3
   3  Lance Anderson  [GRIT]  9.777    748w  11.3
   4  Owen McGonagle  GRIT  9.943    748w  11.3
   5  Tak Ina  [JETT][GRIT]  10.022    687w  12.7

@@ -21,6 +21,7 @@
 #define SHOW_TALLY    (2)
 #define SHOW_TEMPOISH (3)
 #define SHOW_TIME     (4)
+#define SHOW_RICHMOND (5)
 
 #define GROUP_A       (1)
 #define GROUP_B       (2)

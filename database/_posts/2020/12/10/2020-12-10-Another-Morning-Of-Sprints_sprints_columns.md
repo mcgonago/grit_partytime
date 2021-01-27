@@ -6,7 +6,7 @@
   6  Owen McGonagle  GRIT  10.291    631w  9.5
   7  Rob Fullerton  GRIT  10.292    918w  11.9
   8  ALESSIO LEO  CICLI STEFANELLI  10.319    888w  10.2
-  9  Shaun Corbin Nashville  DIRT  10.441    730w  11.3
+  9  Shaun Corbin  [GRIT][DIRT]  10.441    730w  11.3
  10  Bart Keizer  BRT  10.466    729w  11.0
  11  Billy Guilford  -  10.487    598w  8.5
  12  Leo Leo Diaz  -  10.504    786w  10.7

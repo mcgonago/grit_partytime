@@ -32,6 +32,7 @@ static volatile int gdbStop = 1;
 #define TIME_ORDER_POINTS     (1)
 #define TIME_ORDER_TEMPOISH   (2)
 #define TIME_ORDER_TIME       (3)
+#define TIME_ORDER_RICHMOND   (4)
 
 #define PARTY_KOM_SPRINTS     (0x00000001)
 #define PARTY_FOLLOWING       (0x00000002)
@@ -324,6 +325,7 @@ TimeLineInfoNew(CLI_PARSE_INFO *pInfo, int type)
 
    timeLineInfo->av = 0;
    timeLineInfo->avOrig = 0;
+   timeLineInfo->totalTime = 0;
 
    timeLineInfo->team[0] = '\0';
 
@@ -570,6 +572,20 @@ TimeOrderInfoInsert(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, LinkLis
                   break;
                }
             }
+            else if (mode == TIME_ORDER_RICHMOND)
+            {
+               orderIdx1 = currInfo->raceOrder[0].pos;
+               orderIdx2 = timeLineInfo->raceOrder[0].pos;
+
+               // if (currInfo->av <= timeLineInfo->av)
+               // if (timeLineInfo->race[orderIdx2].time.f <= currInfo->race[orderIdx1].time.f)
+               if (timeLineInfo->totalTime <= currInfo->totalTime)
+               {
+                  LinkBefore(list, ptr, link);
+                  nameFound = 1;
+                  break;
+               }
+            }
             else if (mode == TIME_ORDER_TIME)
             {
                // orderIdx1 = currInfo->raceOrder[0].pos;
@@ -804,6 +820,12 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       teamFound = 1;
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(tmp, "James Bolze") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "James Bolze");
+      strcpy(timeLineInfo->team, "CVC RACING");
    }
    else if (strstr(tmp, "Eric Andr") != 0)
    {
@@ -1127,6 +1149,11 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    {
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(timeLineInfo->name, "James Bolze") != 0)
+   {
+      strcpy(timeLineInfo->name, "James Bolze");
+      strcpy(timeLineInfo->team, "CVC RACING");
    }
    else if (strstr(timeLineInfo->team, "Eric Andr") != 0)
    {
@@ -1924,51 +1951,16 @@ float GetTime(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id)
    return(timeLineInfo->race[id].time.f);
 }
 
-float FormatTime(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, char *out)
+float FormatTimeCommon(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
 {
    int t;
    char *ptr;
    int min;
    int secs;
-   float pf;
-   
-   if (0)
-//   if (((ptr = strstr(timeLineInfo->race[id].time.str, ":")) != NULL)  || ((ptr = strstr(timeLineInfo->race[id].time.str, ".")) == NULL))
-//   if (1)
-   {
-      if (timeLineInfo->race[id].time.f == LOWEST_TIME)
-      {
-         sprintf(out, "%s", "0:00");
-      }
-      else if (timeLineInfo->race[id].time.f >= 0.0)
-      {
-         min = (int)(timeLineInfo->race[id].time.f / 60.0);
-         secs = (int)timeLineInfo->race[id].time.f - (min * 60);
-         sprintf(out, "%d:%02d", min, secs);
-      }
-      else
-      {
-         pf = -1.0 * timeLineInfo->race[id].time.f;
-         min = (int)(pf / 60.0);
-         secs = (int)pf - (min * 60);
-         sprintf(out, "-%d:%02d", min, secs);
-      }
-   }
-   else
-   {
-      sprintf(out, "%4.2f", timeLineInfo->race[id].time.f);
-   }
-}
+   int tenths;
 
-float FormatTime2(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
-{
-   int t;
-   char *ptr;
-   int min;
-   int secs;
-   
-   if (0)
-//   if (((ptr = strstr(in, ":")) != NULL) || ((ptr = strstr(in, ".")) == NULL))
+//   if (0)
+   if (((ptr = strstr(in, ":")) != NULL) && ((ptr = strstr(in, ".")) == NULL))
 //   if (1)
    {
       if (f >= 0.0)
@@ -1987,8 +1979,96 @@ float FormatTime2(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
    }
    else
    {
+#if 1
       sprintf(out, "%4.2f", f);
+#else
+      if (f >= 60.0)
+      {
+         if (f >= 0.0)
+         {
+//            min = (int)(f / 60.0);
+            secs = (int)f;
+            tenths = (int)(f - (float)(secs));
+            sprintf(out, "%d:%d:%d", min, secs, tenths);
+         }
+         else
+         {
+            f = -1.0 * f;
+            min = (int)(f / 60.0);
+            secs = (int)f - (min * 60);
+            tenths = (int)(f - (float)(min * 60 + secs));
+            sprintf(out, "-%d:%02d:%3d", min, secs, tenths);
+         }
+      }
+      else
+      {
+         secs = (int)f;
+         tenths = f - secs;
+         // sprintf(out, "00:%02d:%3d", secs, tenths);
+         // sprintf(out, "%5.3f", f);
+         sprintf(out, "%d:%d", secs, (int)tenths);
+      }
+#endif
    }
+}
+
+
+float FormatTime(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, char *out)
+{
+   float f = timeLineInfo->race[id].time.f;
+
+   FormatTimeCommon(pInfo, f, out, timeLineInfo->race[id].time.str);
+}
+
+float FormatTime2(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
+{
+   FormatTimeCommon(pInfo, f, out, in);
+}
+
+float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, char *out)
+{
+   int t;
+   char *ptr;
+   int min;
+   int secs;
+   float tenths;
+   float f = timeLineInfo->race[id].time.f;
+
+#if 0
+   sprintf(out, "%4.2f", f);
+#else
+   if (f >= 60.0)
+   {
+      if (f >= 0.0)
+      {
+//            min = (int)(f / 60.0);
+         min = (int)(f / 60.0);
+         secs = (int)f - (min * 60);
+         tenths = f - (float)((min * 60) + secs);
+//         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
+         tenths *= 1000;
+         sprintf(out, "%d:%02d.%03d", min, secs, (int)tenths);
+      }
+      else
+      {
+         f = -1.0 * f;
+         min = (int)(f / 60.0);
+         secs = (int)f - (min * 60);
+         tenths = f - (float)((min * 60) + secs);
+//         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
+         tenths *= 1000;
+         sprintf(out, "-%d:%02d.%03d", min, secs, (int)tenths);
+      }
+   }
+   else
+   {
+      secs = (int)f;
+      tenths = f - secs;
+      // sprintf(out, "00:%02d:%3d", secs, tenths);
+      // sprintf(out, "%5.3f", f);
+      sprintf(out, "%d:%d", secs, (int)tenths);
+   }
+#endif
 }
 
 
@@ -2895,41 +2975,70 @@ float BestOfTime(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int count,
    }
 #endif
 
-   lowestIdx = 0;
-   while (1)
+   if (mode == SHOW_RICHMOND)
    {
-      lowestIdx = 0;
-      currLowestTime = LOWEST_TIME;
-
+      currLowestTime = 0.0;
       for (i = 0; i < numRacesG; i++)
       {
-         for (j = 0; j < numRacesG; j++)
+         currTime = GetTime(pInfo, timeLineInfo, i);
+         currLowestTime += currTime;
+      }
+
+      timeLineInfo->race[i].done = 1;
+      timeLineInfo->race[i].time.f = currLowestTime;
+      sprintf(timeLineInfo->race[i].time.str, "%5.3f", timeLineInfo->race[i].time.f);
+
+      return(timeLineInfo->race[i].time.f);
+   }
+   else
+   {
+
+      lowestIdx = 0;
+      while (1)
+      {
+         lowestIdx = 0;
+         currLowestTime = LOWEST_TIME;
+
+         for (i = 0; i < numRacesG; i++)
          {
-            if ((timeLineInfo->race[j].done == 0) &&
-                (timeLineInfo->race[j].place > 0))
+            for (j = 0; j < numRacesG; j++)
             {
-               if (mode == SHOW_TEMPOISH)
+               if ((timeLineInfo->race[j].done == 0) &&
+                   (timeLineInfo->race[j].place > 0))
                {
-//                  currTime = timeLineInfo->race[j].time.f;
-                  currTime = GetTime(pInfo, timeLineInfo, j);
-                  if (currTime <= currLowestTime)
+                  if (mode == SHOW_TEMPOISH)
                   {
-                     currLowestTime = currTime;
-                     lowestIdx = j;
+//                  currTime = timeLineInfo->race[j].time.f;
+                     currTime = GetTime(pInfo, timeLineInfo, j);
+                     if (currTime <= currLowestTime)
+                     {
+                        currLowestTime = currTime;
+                        lowestIdx = j;
+                     }
+                  }
+                  else if (mode == SHOW_RICHMOND)
+                  {
+//                  currTime = timeLineInfo->race[j].time.f;
+                     currTime = GetTime(pInfo, timeLineInfo, j);
+                     if (currTime <= currLowestTime)
+                     {
+                        currLowestTime = currTime;
+                        lowestIdx = j;
+                     }
                   }
                }
             }
          }
-      }
 
-      if (currLowestTime == LOWEST_TIME)
-      {
-         break;
-      }
+         if (currLowestTime == LOWEST_TIME)
+         {
+            break;
+         }
 
-      timeLineInfo->race[lowestIdx].done = 1;
-      timeLineInfo->raceOrder[orderIdx].pos = lowestIdx;
-      orderIdx += 1;
+         timeLineInfo->race[lowestIdx].done = 1;
+         timeLineInfo->raceOrder[orderIdx].pos = lowestIdx;
+         orderIdx += 1;
+      }
    }
 
    prIdx->lastFound = 0;
@@ -3003,6 +3112,7 @@ float BestOfTime(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int count,
    return (ret);
 }
 
+
 void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 {
    TimeLineInfo_t *timeLineInfo;
@@ -3044,6 +3154,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          currInfo->points = BestOfPoints(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_POINTS, &timeLineInfo->prIdx);
          currInfo->av = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_TEMPOISH, &timeLineInfo->prIdx);
+         currInfo->totalTime = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_RICHMOND, &timeLineInfo->prIdx);
          currInfo->avOrig = currInfo->av;
 
          if (partyControl.ageBonus == 1)
@@ -3099,6 +3210,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          currInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
 
          currInfo->av = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_TEMPOISH, &timeLineInfo->prIdx);
+         currInfo->totalTime = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_RICHMOND, &timeLineInfo->prIdx);
          currInfo->avOrig = currInfo->av;
 
          if ((partyControl.clip == 1) && (partyControl.cat != 0))
@@ -3151,6 +3263,43 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          
          /* Fill in currInfo */
          for (i = 0; i < numRacesG; i++)
+         {
+            currInfo->raceOrder[i].pos = timeLineInfo->raceOrder[i].pos;
+            currInfo->race[i].time = timeLineInfo->race[i].time;
+         }
+
+         currInfo->prIdx = timeLineInfo->prIdx;
+
+         if (partyControl.ageBonus == 1)
+         {
+            if (strstr(timeLineInfo->name, "McGonagle") != 0)
+            {
+               currInfo->points += 5;
+            }
+         }
+
+         currInfo->me = timeLineInfo;
+         currInfo->totalRaces = timeLineInfo->totalRaces;
+
+         TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_TEMPOISH);
+         ptr = ptr->next;
+      }
+   }
+   else if (mode == SHOW_RICHMOND)
+   {
+      ptr = (Link_t *)listTimeLine->head;
+      while (ptr->next != NULL)
+      {
+         timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         currInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
+
+         currInfo->av = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_TEMPOISH, &timeLineInfo->prIdx);
+         currInfo->totalTime = BestOfTime(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_RICHMOND, &timeLineInfo->prIdx);
+         currInfo->avOrig = currInfo->av;
+
+         /* Fill in currInfo */
+         for (i = 0; i < (numRacesG + 1); i++)
          {
             currInfo->raceOrder[i].pos = timeLineInfo->raceOrder[i].pos;
             currInfo->race[i].time = timeLineInfo->race[i].time;
@@ -3312,7 +3461,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
             av = (float)currInfo->points / (float)currInfo->totalRaces;
 
-            outIdx += sprintf(&outStr[outIdx], " %-5d  %-10d   %4.2f", currInfo->totalRaces, currInfo->points, av);
+            outIdx += sprintf(&outStr[outIdx], " %-5d  %-10d   %5.3f", currInfo->totalRaces, currInfo->points, av);
             ColumnStore(pInfo, outStr);
          }
 
@@ -3652,9 +3801,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
             if ((i == 0) && (timeLineInfo->prIdx.lastFound == 0))
             {
-//               outIdx += sprintf(&outStr[outIdx], " %4.2f ", timeLineInfo->race[orderIdx].time.f);
+//               outIdx += sprintf(&outStr[outIdx], " %5.3f ", timeLineInfo->race[orderIdx].time.f);
 #if 0
-               outIdx += sprintf(&outStr[outIdx], " %4.2f ", GetTime(pInfo, timeLineInfo, orderIdx));
+               outIdx += sprintf(&outStr[outIdx], " %5.3f ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
                if (strstr(timeString, "1000") == NULL)
@@ -3671,9 +3820,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
             {
                if (timeLineInfo->prIdx.idx != -1)
                {
-//                  outIdx += sprintf(&outStr[outIdx], " **%4.2f** ", timeLineInfo->race[orderIdx].time.f);
+//                  outIdx += sprintf(&outStr[outIdx], " **%5.3f** ", timeLineInfo->race[orderIdx].time.f);
 #if 0
-                  outIdx += sprintf(&outStr[outIdx], " **%4.2f** ", GetTime(pInfo, timeLineInfo, orderIdx));
+                  outIdx += sprintf(&outStr[outIdx], " **%5.3f** ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                   FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
                   if (strstr(timeString, "1000") == NULL)
@@ -3688,9 +3837,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
                }
                else
                {
-//                  outIdx += sprintf(&outStr[outIdx], " %4.2f ", timeLineInfo->race[orderIdx].time.f);
+//                  outIdx += sprintf(&outStr[outIdx], " %5.3f ", timeLineInfo->race[orderIdx].time.f);
 #if 0
-                  outIdx += sprintf(&outStr[outIdx], " %4.2f ", GetTime(pInfo, timeLineInfo, orderIdx));
+                  outIdx += sprintf(&outStr[outIdx], " %5.3f ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                   FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
                   if (strstr(timeString, "1000") == NULL)
@@ -3706,9 +3855,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
             }
             else
             {
-//               outIdx += sprintf(&outStr[outIdx], " %4.2f ", timeLineInfo->race[orderIdx].time.f);
+//               outIdx += sprintf(&outStr[outIdx], " %5.3f ", timeLineInfo->race[orderIdx].time.f);
 #if 0
-                  outIdx += sprintf(&outStr[outIdx], " %4.2f ", GetTime(pInfo, timeLineInfo, orderIdx));
+                  outIdx += sprintf(&outStr[outIdx], " %5.3f ", GetTime(pInfo, timeLineInfo, orderIdx));
 #else
                   FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
                   if (strstr(timeString, "1000") == NULL)
@@ -3727,11 +3876,11 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          {
             FormatTime2(pInfo, currInfo->avOrig, timeString2, timeString);
 #ifdef CONSOLE_OUTPUT
-//          (pInfo->print_fp)(" %4.2f ", currInfo->avOrig);
+//          (pInfo->print_fp)(" %5.3f ", currInfo->avOrig);
             (pInfo->print_fp)(" %s ", timeString2);
             (pInfo->print_fp)("\n");
 #else
-//          outIdx += sprintf(&outStr[outIdx], " %4.2f  ", currInfo->avOrig);
+//          outIdx += sprintf(&outStr[outIdx], " %5.3f  ", currInfo->avOrig);
             outIdx += sprintf(&outStr[outIdx], " %s ", timeString2);
             ColumnStore(pInfo, outStr);
 #endif
@@ -3755,11 +3904,11 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
             FormatTime2(pInfo, currInfo->avOrig, timeString3, timeString);
             FormatTime2(pInfo, currInfo->av, timeString4, timeString);
 #ifdef CONSOLE_OUTPUT
-//            (pInfo->print_fp)("  %4.2f  %4.2f  %4.2f  ", improvement, currInfo->avOrig, currInfo->av);
+//            (pInfo->print_fp)("  %5.3f  %5.3f  %5.3f  ", improvement, currInfo->avOrig, currInfo->av);
             (pInfo->print_fp)("  %s  %s  %s  ", timeString2, timeString3, timeString4);
             (pInfo->print_fp)("\n");
 #else
-//            outIdx += sprintf(&outStr[outIdx], "  %4.2f  %4.2f  %4.2f  ", improvement, currInfo->avOrig, currInfo->av);
+//            outIdx += sprintf(&outStr[outIdx], "  %5.3f  %5.3f  %5.3f  ", improvement, currInfo->avOrig, currInfo->av);
             outIdx += sprintf(&outStr[outIdx], "  %s  %s  %s  ", timeString2, timeString3, timeString4);
             ColumnStore(pInfo, outStr);
 #endif
@@ -3768,7 +3917,172 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          ptr = ptr->next;
       }
    }
+   else if (mode == SHOW_RICHMOND)
+   {
+#ifndef CONSOLE_OUTPUT
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "#  name   team  ");
 
+      ptr = (Link_t *)listTimeLine->head;
+      while (ptr->next != NULL)
+      {
+         currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         for (i = 0; i < numRacesG; i++)
+         {
+            if (currInfo->race[i].raceName[0] != '\0')
+            {
+               totalFound += 1;
+            }
+         }
+
+         if (totalFound == numRacesG)
+         {
+            /* Save it up - since it will be in order that was loaded */
+            for (i = 0; i < numRacesG; i++)
+            {
+               outIdx += sprintf(&header[outIdx], "%s  ", currInfo->race[i].raceName);
+            }
+            break;
+         }
+
+         ptr = ptr->next;
+      }
+
+      outIdx += sprintf(&header[outIdx], "Total Time  ", partyControl.bestOf);
+      ColumnStore(pInfo, header);
+
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "--  ----   ----  ");
+      for (i = 0; i < numRacesG; i++)
+      {
+         outIdx += sprintf(&header[outIdx], "%s", "-----  ");
+      }
+
+      outIdx += sprintf(&header[outIdx], "%s", "-----  ");
+#endif
+
+      ColumnStore(pInfo, header);
+
+      ptr = (Link_t *)listTimeOrder->head;
+      while (ptr->next != NULL)
+      {
+         outIdx = 0;
+         currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         timeLineInfo = (TimeLineInfo_t *)currInfo->me;
+
+         if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
+         {
+            ptr = ptr->next;
+            continue;
+         }
+
+         if (timeLineInfo->team[0] != '\0')
+         {
+            if (timeLineInfo->prIdx.lastFound == 0)
+            {
+#ifdef CONSOLE_OUTPUT
+               (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, timeLineInfo->team);
+#else
+               outIdx += sprintf(&outStr[outIdx], "%d  %s  %s ", count, timeLineInfo->name, timeLineInfo->team);
+#endif
+            }
+            else
+            {
+               if (timeLineInfo->prIdx.idx != -1)
+               {
+#ifdef CONSOLE_OUTPUT
+                  (pInfo->print_fp)("  %-3d  **%-32s** %-30s ", count, timeLineInfo->name, timeLineInfo->team);
+#else
+                  outIdx += sprintf(&outStr[outIdx], "%d  **%s**  %s ", count, timeLineInfo->name, timeLineInfo->team);
+#endif
+               }
+               else
+               {
+#ifdef CONSOLE_OUTPUT
+                  (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, timeLineInfo->team);
+#else
+                  outIdx += sprintf(&outStr[outIdx], "%d  %s  %s ", count, timeLineInfo->name, timeLineInfo->team);
+#endif
+               }
+            }
+         }
+         else
+         {
+            if (timeLineInfo->prIdx.lastFound == 0)
+            {
+#ifdef CONSOLE_OUTPUT
+               (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
+#else
+               outIdx += sprintf(&outStr[outIdx], "  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
+#endif
+            }
+            else
+            {
+               if (timeLineInfo->prIdx.idx != -1)
+               {
+#ifdef CONSOLE_OUTPUT
+                  (pInfo->print_fp)("  %-3d  **%-32s** %-30s ", count, timeLineInfo->name, " ");
+#else
+                  outIdx += sprintf(&outStr[outIdx], "  %-3d  **%-32s** %-30s ", count, timeLineInfo->name, " ");
+#endif
+               }
+               else
+               {
+#ifdef CONSOLE_OUTPUT
+                  (pInfo->print_fp)("  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
+#else
+                  outIdx += sprintf(&outStr[outIdx], "  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
+#endif
+               }
+            }
+         }
+         count++;
+
+         for (i = 0; i < numRacesG; i++)
+         {
+            orderIdx = i;
+
+            FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
+            if (strstr(timeString, "1000") == NULL)
+            {
+               outIdx += sprintf(&outStr[outIdx], "  %s  ", timeString);
+            }
+            else
+            {
+               outIdx += sprintf(&outStr[outIdx], "  0.00  ");
+            }
+
+         }
+
+         FormatTime3(pInfo, timeLineInfo, i, timeString);
+         if (strstr(timeString, "1000") == NULL)
+         {
+            outIdx += sprintf(&outStr[outIdx], "  %s  ", timeString);
+         }
+         else
+         {
+            outIdx += sprintf(&outStr[outIdx], "  0.00  ");
+         }
+
+#if 0
+         FormatTime2(pInfo, currInfo->avOrig, timeString2, timeString);
+#ifdef CONSOLE_OUTPUT
+//          (pInfo->print_fp)(" %5.3f ", currInfo->avOrig);
+         (pInfo->print_fp)(" %s ", timeString2);
+         (pInfo->print_fp)("\n");
+#else
+//          outIdx += sprintf(&outStr[outIdx], " %5.3f  ", currInfo->avOrig);
+         outIdx += sprintf(&outStr[outIdx], " %s ", timeString2);
+         ColumnStore(pInfo, outStr);
+#endif
+#endif
+         ColumnStore(pInfo, outStr);
+
+         ptr = ptr->next;
+      }
+   }
 
 #ifdef CONSOLE_OUTPUT
    (pInfo->print_fp)("\n\n");
@@ -3792,6 +4106,11 @@ void cmd_party_tally(CLI_PARSE_INFO *pInfo)
 void cmd_party_tempoish(CLI_PARSE_INFO *pInfo)
 {
    cmd_party_show_common(pInfo, SHOW_TEMPOISH);
+}
+
+void cmd_party_richmond(CLI_PARSE_INFO *pInfo)
+{
+   cmd_party_show_common(pInfo, SHOW_RICHMOND);
 }
 
 void cmd_party_time(CLI_PARSE_INFO *pInfo)
@@ -3857,7 +4176,7 @@ void PartySetCat1(CLI_PARSE_INFO *pInfo)
 
    sscanf(pInfo->argv[1], "%f", &f);
 
-   (pInfo->print_fp)("f = %4.2f\n", f);
+   (pInfo->print_fp)("f = %5.3f\n", f);
 
    PartySetCatCommon(pInfo, f, CUTOFF_CAT1);
 }
@@ -3874,7 +4193,7 @@ void PartySetCat2(CLI_PARSE_INFO *pInfo)
 
    sscanf(pInfo->argv[1], "%f", &f);
 
-   (pInfo->print_fp)("f = %4.2f\n", f);
+   (pInfo->print_fp)("f = %5.3f\n", f);
 
    PartySetCatCommon(pInfo, f, CUTOFF_CAT2);
 }
@@ -3891,7 +4210,7 @@ void PartySetCat3(CLI_PARSE_INFO *pInfo)
 
    sscanf(pInfo->argv[1], "%f", &f);
 
-   (pInfo->print_fp)("f = %4.2f\n", f);
+   (pInfo->print_fp)("f = %5.3f\n", f);
 
    PartySetCatCommon(pInfo, f, CUTOFF_CAT3);
 }
@@ -4862,6 +5181,7 @@ static const CLI_PARSE_CMD cmd_party_commands[] =
    { "show",            cmd_party_show,                 "show party status"},
    { "tally",           cmd_party_tally,                "tally up all results"},
    { "tempoish",        cmd_party_tempoish,             "show average time sprint results"},
+   { "richmond",        cmd_party_richmond,             "cummulative time across results"},
    { "time",            cmd_party_time,                 "show time sprint results"},
    { "raw",             cmd_party_raw,                  "party raw"},
    { "set",             cmd_party_set,                  "party set commands"},

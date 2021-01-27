@@ -15,7 +15,7 @@
  15  Hiroki Mitsui  RCC  07:47    258w  4.1
  16  Steve Bekker  DIRT  07:48    285w  3.9
  17  Y Ikegawa  -  07:49    256w  4.0
- 18  Shaun Corbin Nashville  DIRT  07:50    263w  4.1
+ 18  Shaun Corbin  [GRIT][DIRT]  07:50    263w  4.1
  19  Craig LeBlanc  [ ATP ]  07:52    275w  3.9
  20  Max Vesty  CUCC  07:54    292w  4.0
  21  Jeff Bratteson  DIRT  07:54    351w  3.9

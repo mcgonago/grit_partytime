@@ -26,7 +26,7 @@
  26  Daniel Shalkowski  DIRT  07:20    302w  4.4
  27  J B #2  BCC - Bees  07:24    341w  4.3
  28  Jim Griffin  VEGAN  07:26    326w  4.4
- 29  Shaun Corbin Nashville  DIRT  07:27    275w  4.3
+ 29  Shaun Corbin  [GRIT][DIRT]  07:27    275w  4.3
  30  Masahide Fukae  -  07:27    271w  4.3
  31  Tijmen Poleij  -  07:28    321w  4.3
  32  Aaron Quinn  -  07:28    272w  4.7

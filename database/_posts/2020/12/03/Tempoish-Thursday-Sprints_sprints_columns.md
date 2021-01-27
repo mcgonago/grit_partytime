@@ -1,4 +1,4 @@
-  1  Shaun Corbin Nashville  DIRT  9.809    815w  12.7
+  1  Shaun Corbin  [GRIT][DIRT]  9.809    815w  12.7
   2  Darryl Forbes  DIRT  9.843    1018w  13.2
   3  Tak Ina  [JETT][GRIT]  9.868    683w  12.9
   4  Dries Decoster  GFTbe  10.048    1054w  14.6

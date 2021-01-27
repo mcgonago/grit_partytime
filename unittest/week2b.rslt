@@ -103,41 +103,41 @@ partyControl.max = 52, count = 21, fudge = 2.4762
 
 
 
-| #    | name                      | team                  | time      | watts    | wpkg |
-|------+---------------------------+-----------------------+-----------+----------+------|
-| 1    | Darryl Forbes             | DIRT                  | 9.509     | 1029w    | 13.3 |
-| 2    | Yosuke Sakuma             | JETT                  | 9.808     | 828w     | 14.0 |
-| 3    | Steve Peplinski           | GRIT                  | 10.126    | 907w     | 11.8 |
-| 4    | Tak Ina                   | [JETT][GRIT]          | 10.136    | 700w     | 13.2 |
-| 5    | Thomas Fraser             | Royal Navy Cycling    | 10.278    | 803w     | 10.7 |
-| 6    | Owen McGonagle            | GRIT                  | 10.291    | 631w     | 9.5  |
-| 7    | Rob Fullerton             | GRIT                  | 10.292    | 918w     | 11.9 |
-| 8    | ALESSIO LEO               | CICLI STEFANELLI      | 10.319    | 888w     | 10.2 |
-| 9    | Shaun Corbin Nashville    | DIRT                  | 10.441    | 730w     | 11.3 |
-| 10   | Bart Keizer               | BRT                   | 10.466    | 729w     | 11.0 |
-| 11   | Billy Guilford            | -                     | 10.487    | 598w     | 8.5  |
-| 12   | Leo Leo Diaz              | -                     | 10.504    | 786w     | 10.7 |
-| 13   | Derek Sawyer              | [GRIT][Rippers]       | 10.531    | 773w     | 10.3 |
-| 14   | Greg Langman              | DIRT                  | 10.565    | 818w     | 11.6 |
-| 15   | Rafa Dzieko               | ski ZTPL.CC           | 10.630    | 843w     | 11.2 |
-| 16   | Ian Bundy                 | DIRT                  | 10.643    | 905w     | 9.7  |
-| 17   | matsushige hideo          | -                     | 10.752    | 635w     | 9.8  |
-| 18   | Craig... .S Velo          | Sheppey Velo          | 10.765    | 729w     | 8.5  |
-| 19   | Phillip Goulding          | FUSION CC             | 10.810    | 1046w    | 12.7 |
-| 20   | Dan Messina               | NaturalGrocers        | 10.824    | 895w     | 11.4 |
-| 21   | Seiichi Kaneko            | Team Fin's            | 10.993    | 636w     | 10.6 |
-| 22   | Guillaume Lafleur         | leMETIER              | 11.001    | 840w     | 10.8 |
-| 23   | Franco Battiato           | Team Z TAZ            | 11.116    | 588w     | 8.6  |
-| 24   | an qishi                  | -                     | 11.132    | 606w     | 9.8  |
-| 25   | Rasmus Rogvi              | DBR                   | 11.360    | 533w     | 7.6  |
-| 26   | kanyo plant               | Team CRYO-GEN         | 11.416    | 435w     | 6.8  |
-| 27   | Colin Rowlands            | -                     | 11.511    | 562w     | 7.5  |
-| 28   | david gulick              | -                     | 11.610    | 567w     | 6.6  |
-| 29   | Nicolas Daget             | -                     | 11.616    | 388w     | 5.5  |
-| 30   | Ray Diaz                  | -                     | 11.742    | 245w     | 3.0  |
-| 31   | Kelly Toth                | CRCA/NYCC             | 11.845    | 677w     | 8.4  |
-| 32   | Ped Fesh                  | -                     | 12.083    | 339w     | 4.0  |
-| 33   | Lars Rathje               | DBR                   | 13.755    | 502w     | 6.9  |
+| #    | name                 | team                  | time      | watts    | wpkg |
+|------+----------------------+-----------------------+-----------+----------+------|
+| 1    | Darryl Forbes        | DIRT                  | 9.509     | 1029w    | 13.3 |
+| 2    | Yosuke Sakuma        | JETT                  | 9.808     | 828w     | 14.0 |
+| 3    | Steve Peplinski      | GRIT                  | 10.126    | 907w     | 11.8 |
+| 4    | Tak Ina              | [JETT][GRIT]          | 10.136    | 700w     | 13.2 |
+| 5    | Thomas Fraser        | Royal Navy Cycling    | 10.278    | 803w     | 10.7 |
+| 6    | Owen McGonagle       | GRIT                  | 10.291    | 631w     | 9.5  |
+| 7    | Rob Fullerton        | GRIT                  | 10.292    | 918w     | 11.9 |
+| 8    | ALESSIO LEO          | CICLI STEFANELLI      | 10.319    | 888w     | 10.2 |
+| 9    | Shaun Corbin         | [GRIT][DIRT]          | 10.441    | 730w     | 11.3 |
+| 10   | Bart Keizer          | BRT                   | 10.466    | 729w     | 11.0 |
+| 11   | Billy Guilford       | -                     | 10.487    | 598w     | 8.5  |
+| 12   | Leo Leo Diaz         | -                     | 10.504    | 786w     | 10.7 |
+| 13   | Derek Sawyer         | [GRIT][Rippers]       | 10.531    | 773w     | 10.3 |
+| 14   | Greg Langman         | DIRT                  | 10.565    | 818w     | 11.6 |
+| 15   | Rafa Dzieko          | ski ZTPL.CC           | 10.630    | 843w     | 11.2 |
+| 16   | Ian Bundy            | DIRT                  | 10.643    | 905w     | 9.7  |
+| 17   | matsushige hideo     | -                     | 10.752    | 635w     | 9.8  |
+| 18   | Craig... .S Velo     | Sheppey Velo          | 10.765    | 729w     | 8.5  |
+| 19   | Phillip Goulding     | FUSION CC             | 10.810    | 1046w    | 12.7 |
+| 20   | Dan Messina          | NaturalGrocers        | 10.824    | 895w     | 11.4 |
+| 21   | Seiichi Kaneko       | Team Fin's            | 10.993    | 636w     | 10.6 |
+| 22   | Guillaume Lafleur    | leMETIER              | 11.001    | 840w     | 10.8 |
+| 23   | Franco Battiato      | Team Z TAZ            | 11.116    | 588w     | 8.6  |
+| 24   | an qishi             | -                     | 11.132    | 606w     | 9.8  |
+| 25   | Rasmus Rogvi         | DBR                   | 11.360    | 533w     | 7.6  |
+| 26   | kanyo plant          | Team CRYO-GEN         | 11.416    | 435w     | 6.8  |
+| 27   | Colin Rowlands       | -                     | 11.511    | 562w     | 7.5  |
+| 28   | david gulick         | -                     | 11.610    | 567w     | 6.6  |
+| 29   | Nicolas Daget        | -                     | 11.616    | 388w     | 5.5  |
+| 30   | Ray Diaz             | -                     | 11.742    | 245w     | 3.0  |
+| 31   | Kelly Toth           | CRCA/NYCC             | 11.845    | 677w     | 8.4  |
+| 32   | Ped Fesh             | -                     | 12.083    | 339w     | 4.0  |
+| 33   | Lars Rathje          | DBR                   | 13.755    | 502w     | 6.9  |
 partyControl.max = 52, count = 34, fudge = 1.5294
 
 
@@ -171,115 +171,114 @@ partyControl.max = 52, count = 34, fudge = 1.5294
 partyControl.max = 52, count = 25, fudge = 2.0800
 
 
-| #     | name                      | team                  | race1    | race2     | race3     | race4     | plc/pts |
-|-------+---------------------------+-----------------------+----------+-----------+-----------+-----------+---------|
-| 1     | Tak Ina                   | [JETT][GRIT]          | 6/46     | 5/39      | 4/45      | 3/45      | 146     |
-| 2     | Owen McGonagle            | [GRIT]                | 3/49     | 15/14     | 6/42      | 5/41      | 142     |
-| 3     | Rob Fullerton             | [GRIT]                | 10/42    | 0/0       | 7/41      | 1/49      | 137     |
-| 4     | Steve Peplinski           | [GRIT]                | 11/41    | 0/0       | 3/47      | 4/43      | 136     |
-| 5     | Greg Langman              | [HPVC]                | 13/39    | 7/34      | 14/30     | 0/0       | 108     |
-| 6     | Christian Kaldbar         | -                     | 1/51     | 1/49      | 0/0       | 0/0       | 100     |
-| 7     | Derek Sawyer              | [GRIT][Rippers]       | 2/50     | 0/0       | 13/32     | 0/0       | 82      |
-| 8     | John Jeffries             | [AA Bikes][GRIT]      | 27/25    | 0/0       | 0/0       | 8/35      | 60      |
-| 9     | Billy Guilford            | -                     | 36/16    | 0/0       | 11/35     | 0/0       | 51      |
-| 10    | Darryl Forbes             | DIRT                  | 0/0      | 0/0       | 1/50      | 0/0       | 50      |
-| 11    | Steve Tappan              | [GRIT]                | 5/47     | 20/2      | 0/0       | 0/0       | 49      |
-| 12    | Yosuke Sakuma             | JETT                  | 0/0      | 0/0       | 2/48      | 0/0       | 48      |
-| 13    | Dominic Giampaolo         | [KRT]                 | 4/48     | 0/0       | 0/0       | 0/0       | 48      |
-| 14    | Andy Parfitt              | WTRL                  | 0/0      | 0/0       | 0/0       | 2/47      | 47      |
-| 15    | Franz Huber               | Radl-Eck Cycling      | 0/0      | 2/47      | 0/0       | 0/0       | 47      |
-| 16    | TREK ITA                  | -                     | 7/45     | 0/0       | 0/0       | 0/0       | 45      |
-| 17    | Thomas Fraser             | Royal Navy Cycling    | 0/0      | 0/0       | 5/44      | 0/0       | 44      |
-| 18    | Seth G                    | [GRIT]                | 0/0      | 3/44      | 0/0       | 0/0       | 44      |
-| 19    | Oki Banana                | -                     | 8/44     | 0/0       | 0/0       | 0/0       | 44      |
-| 20    | Phillip Goulding          | (Fusion CC)           | 31/21    | 0/0       | 19/22     | 0/0       | 43      |
-| 21    | Matt You                  | -                     | 9/43     | 0/0       | 0/0       | 0/0       | 43      |
-| 22    | K Naga                    | DIRT                  | 0/0      | 4/42      | 0/0       | 0/0       | 42      |
-| 23    | Thijs Calu                | BZR                   | 12/40    | 0/0       | 0/0       | 0/0       | 40      |
-| 24    | Denis Frolov              | UTT                   | 0/0      | 0/0       | 0/0       | 6/39      | 39      |
-| 25    | ALESSIO LEO               | CICLI STEFANELLI      | 0/0      | 0/0       | 8/39      | 0/0       | 39      |
-| 26    | Shaun Corbin Nashville    | DIRT                  | 0/0      | 0/0       | 9/38      | 0/0       | 38      |
-| 27    | Leonardo Diaz             | -                     | 14/38    | 0/0       | 0/0       | 0/0       | 38      |
-| 28    | Eliseo Vargas             | -                     | 0/0      | 0/0       | 0/0       | 7/37      | 37      |
-| 29    | Eric Hegger               | -                     | 0/0      | 6/37      | 0/0       | 0/0       | 37      |
-| 30    | shinji nishizaki          | -                     | 15/37    | 0/0       | 0/0       | 0/0       | 37      |
-| 31    | Bart Keizer               | BRT                   | 0/0      | 0/0       | 10/36     | 0/0       | 36      |
-| 32    | Brian Lohnes              | -                     | 16/36    | 0/0       | 0/0       | 0/0       | 36      |
-| 33    | Davide Comberlato         | -                     | 17/35    | 0/0       | 0/0       | 0/0       | 35      |
-| 34    | Carlos Alfaiate           | -                     | 18/34    | 0/0       | 0/0       | 0/0       | 34      |
-| 35    | Kent Ryan                 | -                     | 0/0      | 0/0       | 0/0       | 9/33      | 33      |
-| 36    | Leo Leo Diaz              | -                     | 0/0      | 0/0       | 12/33     | 0/0       | 33      |
-| 37    | Yukio Bergholdt           | -                     | 19/33    | 0/0       | 0/0       | 0/0       | 33      |
-| 38    | Ped Fesh                  | -                     | 0/0      | 0/0       | 32/3      | 11/29     | 32      |
-| 39    | Adrian Walton             | -                     | 0/0      | 8/32      | 0/0       | 0/0       | 32      |
-| 40    | Andrew Steel              | -                     | 20/32    | 0/0       | 0/0       | 0/0       | 32      |
-| 41    | Iain Darwood              | -                     | 0/0      | 0/0       | 0/0       | 10/31     | 31      |
-| 42    | Chris Hunt                | -                     | 21/31    | 0/0       | 0/0       | 0/0       | 31      |
-| 43    | Nuno Torres               | (Secai/Gaiabike)      | 22/30    | 0/0       | 0/0       | 0/0       | 30      |
-| 44    | Rafa Dzieko               | ski ZTPL.CC           | 0/0      | 0/0       | 15/29     | 0/0       | 29      |
-| 45    | Kent Nikel                | TeamERTCC             | 0/0      | 9/29      | 0/0       | 0/0       | 29      |
-| 46    | Cycling Fanatic           | -                     | 23/29    | 0/0       | 0/0       | 0/0       | 29      |
-| 47    | Daniel Shalkowski         | [DIRT]                | 24/28    | 0/0       | 0/0       | 0/0       | 28      |
-| 48    | John Tang                 | -                     | 0/0      | 0/0       | 0/0       | 12/27     | 27      |
-| 49    | Ian Bundy                 | DIRT                  | 0/0      | 0/0       | 16/27     | 0/0       | 27      |
-| 50    | MHA KOH                   | JETT                  | 0/0      | 10/27     | 0/0       | 0/0       | 27      |
-| 51    | Takashi KAWAMOTO          | (YOU CAN)             | 25/27    | 0/0       | 0/0       | 0/0       | 27      |
-| 52    | matsushige hideo          | -                     | 0/0      | 0/0       | 17/26     | 0/0       | 26      |
-| 53    | Craig LeBlanc             | [ATP]                 | 26/26    | 0/0       | 0/0       | 0/0       | 26      |
-| 54    | Justin Radford            | -                     | 0/0      | 0/0       | 0/0       | 13/24     | 24      |
-| 55    | Craig... .S Velo          | Sheppey Velo          | 0/0      | 0/0       | 18/24     | 0/0       | 24      |
-| 56    | J. Jan                    | -                     | 0/0      | 11/24     | 0/0       | 0/0       | 24      |
-| 57    | Patrick Marques           | (Secai/Gaiabike)      | 28/24    | 0/0       | 0/0       | 0/0       | 24      |
-| 58    | Jim Griffin               | (VZT)                 | 29/23    | 0/0       | 0/0       | 0/0       | 23      |
-| 59    | Ricardo Costa             | -                     | 0/0      | 0/0       | 0/0       | 14/22     | 22      |
-| 60    | Piet Jonkers              | -                     | 0/0      | 12/22     | 0/0       | 0/0       | 22      |
-| 61    | Lance Anderson            | -                     | 30/22    | 0/0       | 0/0       | 0/0       | 22      |
-| 62    | Dan Messina               | NaturalGrocers        | 0/0      | 0/0       | 20/21     | 0/0       | 21      |
-| 63    | Christopher Agostini      | -                     | 0/0      | 0/0       | 0/0       | 15/20     | 20      |
-| 64    | Paul Westergaard          | [Dirt]                | 32/20    | 0/0       | 0/0       | 0/0       | 20      |
-| 65    | david gulick              | -                     | 0/0      | 0/0       | 28/9      | 20/10     | 19      |
-| 66    | Seiichi Kaneko            | Team Fin's            | 0/0      | 0/0       | 21/19     | 0/0       | 19      |
-| 67    | B.Johnson                 | -                     | 0/0      | 13/19     | 0/0       | 0/0       | 19      |
-| 68    | Mark Kennerley            | -                     | 33/19    | 0/0       | 0/0       | 0/0       | 19      |
-| 69    | VV Cucumber               | [LOOKCYCLE CHN]       | 0/0      | 0/0       | 0/0       | 16/18     | 18      |
-| 70    | Guillaume Lafleur         | leMETIER              | 0/0      | 0/0       | 22/18     | 0/0       | 18      |
-| 71    | Doug Cowperthwaite        | [TeamODZ]             | 34/18    | 0/0       | 0/0       | 0/0       | 18      |
-| 72    | Cecelia Taggart           | DIRT                  | 0/0      | 14/17     | 0/0       | 0/0       | 17      |
-| 73    | Joao Ildefonso            | -                     | 35/17    | 0/0       | 0/0       | 0/0       | 17      |
-| 74    | Roy Woodland              | PACK                  | 0/0      | 0/0       | 0/0       | 17/16     | 16      |
-| 75    | Franco Battiato           | Team Z TAZ            | 0/0      | 0/0       | 23/16     | 0/0       | 16      |
-| 76    | an qishi                  | -                     | 0/0      | 0/0       | 24/15     | 0/0       | 15      |
-| 77    | Shaun Corbin              | (DIRTy GRIT)          | 37/15    | 0/0       | 0/0       | 0/0       | 15      |
-| 78    | Alexander Genschmar       | -                     | 0/0      | 0/0       | 0/0       | 18/14     | 14      |
-| 79    | Anthony Heppell           | ( 57)                 | 38/14    | 0/0       | 0/0       | 0/0       | 14      |
-| 80    | Rasmus Rogvi              | DBR                   | 0/0      | 0/0       | 25/13     | 0/0       | 13      |
-| 81    | Philip Morrison           | (BRC Hornets)         | 39/13    | 0/0       | 0/0       | 0/0       | 13      |
-| 82    | Kenny Desnyder            | GCT                   | 0/0      | 0/0       | 0/0       | 19/12     | 12      |
-| 83    | kanyo plant               | Team CRYO-GEN         | 0/0      | 0/0       | 26/12     | 0/0       | 12      |
-| 84    | Rob McKechney             | -                     | 0/0      | 16/12     | 0/0       | 0/0       | 12      |
-| 85    | Alan Brannan              | [GRIT]                | 40/12    | 0/0       | 0/0       | 0/0       | 12      |
-| 86    | David Butcher             | -                     | 41/11    | 0/0       | 0/0       | 0/0       | 11      |
-| 87    | Colin Rowlands            | -                     | 0/0      | 0/0       | 27/10     | 0/0       | 10      |
-| 88    | Des Muir                  | (Cryo-Gen)            | 42/10    | 0/0       | 0/0       | 0/0       | 10      |
-| 89    | Jonathan Lippert          | -                     | 0/0      | 17/9      | 0/0       | 0/0       | 9       |
-| 90    | Jose Suarez               | -                     | 43/9     | 0/0       | 0/0       | 0/0       | 9       |
-| 91    | Francis Balboa            | -                     | 0/0      | 0/0       | 0/0       | 21/8      | 8       |
-| 92    | Karol Nehring             | [TeamPL]              | 44/8     | 0/0       | 0/0       | 0/0       | 8       |
-| 93    | Nicolas Daget             | -                     | 0/0      | 0/0       | 29/7      | 0/0       | 7       |
-| 94    | LeRoy Nahay               | -                     | 0/0      | 18/7      | 0/0       | 0/0       | 7       |
-| 95    | Mark Robinson             | (MCT)                 | 45/7     | 0/0       | 0/0       | 0/0       | 7       |
-| 96    | Linda Jacobsson           | -                     | 0/0      | 0/0       | 0/0       | 22/6      | 6       |
-| 97    | Ray Diaz                  | -                     | 0/0      | 0/0       | 30/6      | 0/0       | 6       |
-| 98    | Brett Mazany              | (Eat DIRT Ocho)       | 46/6     | 0/0       | 0/0       | 0/0       | 6       |
-| 99    | Rob Watkinson             | (ZSUNR)               | 47/5     | 0/0       | 0/0       | 0/0       | 5       |
-| 100   | mattias ahlgren           | -                     | 0/0      | 0/0       | 0/0       | 23/4      | 4       |
-| 101   | Kelly Toth                | CRCA/NYCC             | 0/0      | 0/0       | 31/4      | 0/0       | 4       |
-| 102   | Dexter Hodgeman           | -                     | 0/0      | 19/4      | 0/0       | 0/0       | 4       |
-| 103   | Alex Hatziyannis          | [CRUZBIKE]            | 48/4     | 0/0       | 0/0       | 0/0       | 4       |
-| 104   | Iain Bailey               | -                     | 49/3     | 0/0       | 0/0       | 0/0       | 3       |
-| 105   | Guido Kramer              | Leymen                | 0/0      | 0/0       | 0/0       | 24/2      | 2       |
-| 106   | Danny Verlooy             | -                     | 50/2     | 0/0       | 0/0       | 0/0       | 2       |
-| 107   | Lars Rathje               | DBR                   | 0/0      | 0/0       | 33/1      | 0/0       | 1       |
-| 108   | Ryan Saranchuk            | -                     | 51/1     | 0/0       | 0/0       | 0/0       | 1       |
+| #     | name                    | team                  | race1    | race2     | race3     | race4     | plc/pts |
+|-------+-------------------------+-----------------------+----------+-----------+-----------+-----------+---------|
+| 1     | Tak Ina                 | [JETT][GRIT]          | 6/46     | 5/39      | 4/45      | 3/45      | 146     |
+| 2     | Owen McGonagle          | [GRIT]                | 3/49     | 15/14     | 6/42      | 5/41      | 142     |
+| 3     | Rob Fullerton           | [GRIT]                | 10/42    | 0/0       | 7/41      | 1/49      | 137     |
+| 4     | Steve Peplinski         | [GRIT]                | 11/41    | 0/0       | 3/47      | 4/43      | 136     |
+| 5     | Greg Langman            | [HPVC]                | 13/39    | 7/34      | 14/30     | 0/0       | 108     |
+| 6     | Christian Kaldbar       | -                     | 1/51     | 1/49      | 0/0       | 0/0       | 100     |
+| 7     | Derek Sawyer            | [GRIT][Rippers]       | 2/50     | 0/0       | 13/32     | 0/0       | 82      |
+| 8     | John Jeffries           | [AA Bikes][GRIT]      | 27/25    | 0/0       | 0/0       | 8/35      | 60      |
+| 9     | Shaun Corbin            | (DIRTy GRIT)          | 37/15    | 0/0       | 9/38      | 0/0       | 53      |
+| 10    | Billy Guilford          | -                     | 36/16    | 0/0       | 11/35     | 0/0       | 51      |
+| 11    | Darryl Forbes           | DIRT                  | 0/0      | 0/0       | 1/50      | 0/0       | 50      |
+| 12    | Steve Tappan            | [GRIT]                | 5/47     | 20/2      | 0/0       | 0/0       | 49      |
+| 13    | Yosuke Sakuma           | JETT                  | 0/0      | 0/0       | 2/48      | 0/0       | 48      |
+| 14    | Dominic Giampaolo       | [KRT]                 | 4/48     | 0/0       | 0/0       | 0/0       | 48      |
+| 15    | Andy Parfitt            | WTRL                  | 0/0      | 0/0       | 0/0       | 2/47      | 47      |
+| 16    | Franz Huber             | Radl-Eck Cycling      | 0/0      | 2/47      | 0/0       | 0/0       | 47      |
+| 17    | TREK ITA                | -                     | 7/45     | 0/0       | 0/0       | 0/0       | 45      |
+| 18    | Thomas Fraser           | Royal Navy Cycling    | 0/0      | 0/0       | 5/44      | 0/0       | 44      |
+| 19    | Seth G                  | [GRIT]                | 0/0      | 3/44      | 0/0       | 0/0       | 44      |
+| 20    | Oki Banana              | -                     | 8/44     | 0/0       | 0/0       | 0/0       | 44      |
+| 21    | Phillip Goulding        | (Fusion CC)           | 31/21    | 0/0       | 19/22     | 0/0       | 43      |
+| 22    | Matt You                | -                     | 9/43     | 0/0       | 0/0       | 0/0       | 43      |
+| 23    | K Naga                  | DIRT                  | 0/0      | 4/42      | 0/0       | 0/0       | 42      |
+| 24    | Thijs Calu              | BZR                   | 12/40    | 0/0       | 0/0       | 0/0       | 40      |
+| 25    | Denis Frolov            | UTT                   | 0/0      | 0/0       | 0/0       | 6/39      | 39      |
+| 26    | ALESSIO LEO             | CICLI STEFANELLI      | 0/0      | 0/0       | 8/39      | 0/0       | 39      |
+| 27    | Leonardo Diaz           | -                     | 14/38    | 0/0       | 0/0       | 0/0       | 38      |
+| 28    | Eliseo Vargas           | -                     | 0/0      | 0/0       | 0/0       | 7/37      | 37      |
+| 29    | Eric Hegger             | -                     | 0/0      | 6/37      | 0/0       | 0/0       | 37      |
+| 30    | shinji nishizaki        | -                     | 15/37    | 0/0       | 0/0       | 0/0       | 37      |
+| 31    | Bart Keizer             | BRT                   | 0/0      | 0/0       | 10/36     | 0/0       | 36      |
+| 32    | Brian Lohnes            | -                     | 16/36    | 0/0       | 0/0       | 0/0       | 36      |
+| 33    | Davide Comberlato       | -                     | 17/35    | 0/0       | 0/0       | 0/0       | 35      |
+| 34    | Carlos Alfaiate         | -                     | 18/34    | 0/0       | 0/0       | 0/0       | 34      |
+| 35    | Kent Ryan               | -                     | 0/0      | 0/0       | 0/0       | 9/33      | 33      |
+| 36    | Leo Leo Diaz            | -                     | 0/0      | 0/0       | 12/33     | 0/0       | 33      |
+| 37    | Yukio Bergholdt         | -                     | 19/33    | 0/0       | 0/0       | 0/0       | 33      |
+| 38    | Ped Fesh                | -                     | 0/0      | 0/0       | 32/3      | 11/29     | 32      |
+| 39    | Adrian Walton           | -                     | 0/0      | 8/32      | 0/0       | 0/0       | 32      |
+| 40    | Andrew Steel            | -                     | 20/32    | 0/0       | 0/0       | 0/0       | 32      |
+| 41    | Iain Darwood            | -                     | 0/0      | 0/0       | 0/0       | 10/31     | 31      |
+| 42    | Chris Hunt              | -                     | 21/31    | 0/0       | 0/0       | 0/0       | 31      |
+| 43    | Nuno Torres             | (Secai/Gaiabike)      | 22/30    | 0/0       | 0/0       | 0/0       | 30      |
+| 44    | Rafa Dzieko             | ski ZTPL.CC           | 0/0      | 0/0       | 15/29     | 0/0       | 29      |
+| 45    | Kent Nikel              | TeamERTCC             | 0/0      | 9/29      | 0/0       | 0/0       | 29      |
+| 46    | Cycling Fanatic         | -                     | 23/29    | 0/0       | 0/0       | 0/0       | 29      |
+| 47    | Daniel Shalkowski       | [DIRT]                | 24/28    | 0/0       | 0/0       | 0/0       | 28      |
+| 48    | John Tang               | -                     | 0/0      | 0/0       | 0/0       | 12/27     | 27      |
+| 49    | Ian Bundy               | DIRT                  | 0/0      | 0/0       | 16/27     | 0/0       | 27      |
+| 50    | MHA KOH                 | JETT                  | 0/0      | 10/27     | 0/0       | 0/0       | 27      |
+| 51    | Takashi KAWAMOTO        | (YOU CAN)             | 25/27    | 0/0       | 0/0       | 0/0       | 27      |
+| 52    | matsushige hideo        | -                     | 0/0      | 0/0       | 17/26     | 0/0       | 26      |
+| 53    | Craig LeBlanc           | [ATP]                 | 26/26    | 0/0       | 0/0       | 0/0       | 26      |
+| 54    | Justin Radford          | -                     | 0/0      | 0/0       | 0/0       | 13/24     | 24      |
+| 55    | Craig... .S Velo        | Sheppey Velo          | 0/0      | 0/0       | 18/24     | 0/0       | 24      |
+| 56    | J. Jan                  | -                     | 0/0      | 11/24     | 0/0       | 0/0       | 24      |
+| 57    | Patrick Marques         | (Secai/Gaiabike)      | 28/24    | 0/0       | 0/0       | 0/0       | 24      |
+| 58    | Jim Griffin             | (VZT)                 | 29/23    | 0/0       | 0/0       | 0/0       | 23      |
+| 59    | Ricardo Costa           | -                     | 0/0      | 0/0       | 0/0       | 14/22     | 22      |
+| 60    | Piet Jonkers            | -                     | 0/0      | 12/22     | 0/0       | 0/0       | 22      |
+| 61    | Lance Anderson          | -                     | 30/22    | 0/0       | 0/0       | 0/0       | 22      |
+| 62    | Dan Messina             | NaturalGrocers        | 0/0      | 0/0       | 20/21     | 0/0       | 21      |
+| 63    | Christopher Agostini    | -                     | 0/0      | 0/0       | 0/0       | 15/20     | 20      |
+| 64    | Paul Westergaard        | [Dirt]                | 32/20    | 0/0       | 0/0       | 0/0       | 20      |
+| 65    | david gulick            | -                     | 0/0      | 0/0       | 28/9      | 20/10     | 19      |
+| 66    | Seiichi Kaneko          | Team Fin's            | 0/0      | 0/0       | 21/19     | 0/0       | 19      |
+| 67    | B.Johnson               | -                     | 0/0      | 13/19     | 0/0       | 0/0       | 19      |
+| 68    | Mark Kennerley          | -                     | 33/19    | 0/0       | 0/0       | 0/0       | 19      |
+| 69    | VV Cucumber             | [LOOKCYCLE CHN]       | 0/0      | 0/0       | 0/0       | 16/18     | 18      |
+| 70    | Guillaume Lafleur       | leMETIER              | 0/0      | 0/0       | 22/18     | 0/0       | 18      |
+| 71    | Doug Cowperthwaite      | [TeamODZ]             | 34/18    | 0/0       | 0/0       | 0/0       | 18      |
+| 72    | Cecelia Taggart         | DIRT                  | 0/0      | 14/17     | 0/0       | 0/0       | 17      |
+| 73    | Joao Ildefonso          | -                     | 35/17    | 0/0       | 0/0       | 0/0       | 17      |
+| 74    | Roy Woodland            | PACK                  | 0/0      | 0/0       | 0/0       | 17/16     | 16      |
+| 75    | Franco Battiato         | Team Z TAZ            | 0/0      | 0/0       | 23/16     | 0/0       | 16      |
+| 76    | an qishi                | -                     | 0/0      | 0/0       | 24/15     | 0/0       | 15      |
+| 77    | Alexander Genschmar     | -                     | 0/0      | 0/0       | 0/0       | 18/14     | 14      |
+| 78    | Anthony Heppell         | ( 57)                 | 38/14    | 0/0       | 0/0       | 0/0       | 14      |
+| 79    | Rasmus Rogvi            | DBR                   | 0/0      | 0/0       | 25/13     | 0/0       | 13      |
+| 80    | Philip Morrison         | (BRC Hornets)         | 39/13    | 0/0       | 0/0       | 0/0       | 13      |
+| 81    | Kenny Desnyder          | GCT                   | 0/0      | 0/0       | 0/0       | 19/12     | 12      |
+| 82    | kanyo plant             | Team CRYO-GEN         | 0/0      | 0/0       | 26/12     | 0/0       | 12      |
+| 83    | Rob McKechney           | -                     | 0/0      | 16/12     | 0/0       | 0/0       | 12      |
+| 84    | Alan Brannan            | [GRIT]                | 40/12    | 0/0       | 0/0       | 0/0       | 12      |
+| 85    | David Butcher           | -                     | 41/11    | 0/0       | 0/0       | 0/0       | 11      |
+| 86    | Colin Rowlands          | -                     | 0/0      | 0/0       | 27/10     | 0/0       | 10      |
+| 87    | Des Muir                | (Cryo-Gen)            | 42/10    | 0/0       | 0/0       | 0/0       | 10      |
+| 88    | Jonathan Lippert        | -                     | 0/0      | 17/9      | 0/0       | 0/0       | 9       |
+| 89    | Jose Suarez             | -                     | 43/9     | 0/0       | 0/0       | 0/0       | 9       |
+| 90    | Francis Balboa          | -                     | 0/0      | 0/0       | 0/0       | 21/8      | 8       |
+| 91    | Karol Nehring           | [TeamPL]              | 44/8     | 0/0       | 0/0       | 0/0       | 8       |
+| 92    | Nicolas Daget           | -                     | 0/0      | 0/0       | 29/7      | 0/0       | 7       |
+| 93    | LeRoy Nahay             | -                     | 0/0      | 18/7      | 0/0       | 0/0       | 7       |
+| 94    | Mark Robinson           | (MCT)                 | 45/7     | 0/0       | 0/0       | 0/0       | 7       |
+| 95    | Linda Jacobsson         | -                     | 0/0      | 0/0       | 0/0       | 22/6      | 6       |
+| 96    | Ray Diaz                | -                     | 0/0      | 0/0       | 30/6      | 0/0       | 6       |
+| 97    | Brett Mazany            | (Eat DIRT Ocho)       | 46/6     | 0/0       | 0/0       | 0/0       | 6       |
+| 98    | Rob Watkinson           | (ZSUNR)               | 47/5     | 0/0       | 0/0       | 0/0       | 5       |
+| 99    | mattias ahlgren         | -                     | 0/0      | 0/0       | 0/0       | 23/4      | 4       |
+| 100   | Kelly Toth              | CRCA/NYCC             | 0/0      | 0/0       | 31/4      | 0/0       | 4       |
+| 101   | Dexter Hodgeman         | -                     | 0/0      | 19/4      | 0/0       | 0/0       | 4       |
+| 102   | Alex Hatziyannis        | [CRUZBIKE]            | 48/4     | 0/0       | 0/0       | 0/0       | 4       |
+| 103   | Iain Bailey             | -                     | 49/3     | 0/0       | 0/0       | 0/0       | 3       |
+| 104   | Guido Kramer            | Leymen                | 0/0      | 0/0       | 0/0       | 24/2      | 2       |
+| 105   | Danny Verlooy           | -                     | 50/2     | 0/0       | 0/0       | 0/0       | 2       |
+| 106   | Lars Rathje             | DBR                   | 0/0      | 0/0       | 33/1      | 0/0       | 1       |
+| 107   | Ryan Saranchuk          | -                     | 51/1     | 0/0       | 0/0       | 0/0       | 1       |
 
 

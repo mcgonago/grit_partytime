@@ -24,7 +24,7 @@
  24  MHA KOH  JETT  07:23    276w  4.5
  25  James Braybrook  -  07:28    304w  4.2
  26  Barry Cooper  VCRT  07:31    311w  4.3
- 27  Shaun Corbin Nashville  DIRT  07:31    270w  4.2
+ 27  Shaun Corbin  [GRIT][DIRT]  07:31    270w  4.2
  28  J B #2  BCC - Bees  07:31    333w  4.2
  29  Des Muir  Team CRYO-GEN  07:33    334w  4.1
  30  Cecelia Taggart  DIRT  07:33    237w  4.2

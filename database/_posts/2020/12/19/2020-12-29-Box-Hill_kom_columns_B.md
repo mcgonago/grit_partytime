@@ -6,7 +6,7 @@
   6  Jim Griffin  VEGAN  07:25    314w  4.2
   7  M Vesty  (Chevin) BMCR C    07:25    280w  4.4
   8  Ron Mar  -  07:30    302w  4.2
-  9  Shaun Corbin Nashville  DIRT  07:31    273w  4.2
+  9  Shaun Corbin  [GRIT][DIRT]  07:31    273w  4.2
  10  Philip Morrison  BRC  07:31    328w  4.3
  11  Peder Thomsen  -  07:32    334w  4.1
  12  Sutthikiat Bunpatt  -  07:32    276w  4.2

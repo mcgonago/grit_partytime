@@ -56,6 +56,7 @@ typedef struct TimeLineInfo_s
    int points;
    int totalRaces;
    float av;
+   float totalTime;
    float avOrig;
    PRIdx_t prIdx;
 

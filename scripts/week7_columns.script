@@ -1,0 +1,10 @@
+party set max 28
+party set bestof 2
+party kom database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom.txt database/_posts/2021/01/11/2021-01-12-Cant-get-enough-of-the-Box-kom-B_columns.md race1 0
+party kom database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom.txt database/_posts/2021/01/14/2021-01-14-Tempoish-funday-kom_columns.md race2 1
+party set group GRIT
+party set lockdown on
+party following database/_posts/2021/01/15/Col_Du_Zwift_following.txt database/_posts/2021/01/15/Col_Du_Zwift_following_columns.md race3 2
+#party set clip on
+party show
+quit
