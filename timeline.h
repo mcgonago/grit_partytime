@@ -75,6 +75,9 @@ typedef struct TimeLineInfo_s
    char vid[MAX_STRING_SIZE];
    char test[MAX_STRING_SIZE];
 
+   char wattLine[MAX_STRING_SIZE];
+   char groupLine[MAX_STRING_SIZE];
+
    Value_t time;
    
    int numRaces;

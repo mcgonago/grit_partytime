@@ -1,29 +1,31 @@
 party set max 35
-party set bestof 2
+party set bestof 1
 party set group B
-party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom-B.md libby 0
+#party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom-B.md libby 0
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-combined.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-combined.md libby 0
 party set snap B
 party set lockdown on
-party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-B.md 23rd 1
+party kom database/_posts/2021/01/28/2021-01-28-Thursday-throw-down-kom.txt database/_posts/2021/01/28/2021-01-28-Thursday-throw-down-kom-B.md race2 1
 party set clip on
 party set calendar on
 #party set PR on
 #party tempoish
-#party show
-party richmond
+party show
+#party richmond
 #party time
 party reset list
-#party set bestof 2
+#party set bestof 1
 party set group A
-party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom-A.md libby 0
+#party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom-A.md libby 0
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-combined.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-combined.md libby 0
 party set snap A
 party set lockdown on
-party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom.txt database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-A.md 23rd 1
+party kom database/_posts/2021/01/28/2021-01-28-Thursday-throw-down-kom.txt database/_posts/2021/01/28/2021-01-28-Thursday-throw-down-kom-A.md race2 1
 party set clip on
 party set calendar on
 #party set PR on
 #party tempoish
-#party show
-party richmond
+party show
+#party richmond
 #party time
 quit

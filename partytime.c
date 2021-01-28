@@ -285,6 +285,8 @@ TimeLineRemove(TimeLineInfo_t *timeLineInfo)
    timeLineInfo->taken = 0;
    timeLineInfo->objId = objId;
    timeLineInfo->timeLine[0] = '\0';
+   timeLineInfo->wattLine[0] = '\0';
+   timeLineInfo->groupLine[0] = '\0';
    timeLineInfo->timeStamp = 0;
    timeLineInfo->fraction = 0;
    timeLineInfo->msecs = 0;
@@ -1960,9 +1962,7 @@ float FormatTimeCommon(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
    int secs;
    int tenths;
 
-//   if (0)
    if (((ptr = strstr(in, ":")) != NULL) && ((ptr = strstr(in, ".")) == NULL))
-//   if (1)
    {
       if (f >= 0.0)
       {
@@ -1988,17 +1988,22 @@ float FormatTimeCommon(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
          if (f >= 0.0)
          {
 //            min = (int)(f / 60.0);
-            secs = (int)f;
-            tenths = (int)(f - (float)(secs));
-            sprintf(out, "%d:%d:%d", min, secs, tenths);
+            min = (int)(f / 60.0);
+            secs = (int)f - (min * 60);
+            tenths = f - (float)((min * 60) + secs);
+//         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
+            tenths *= 1000;
+            sprintf(out, "%d:%02d.%03d", min, secs, (int)tenths);
          }
          else
          {
             f = -1.0 * f;
             min = (int)(f / 60.0);
             secs = (int)f - (min * 60);
-            tenths = (int)(f - (float)(min * 60 + secs));
-            sprintf(out, "-%d:%02d:%3d", min, secs, tenths);
+            tenths = f - (float)((min * 60) + secs);
+//         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
+            tenths *= 1000;
+            sprintf(out, "-%d:%02d.%03d", min, secs, (int)tenths);
          }
       }
       else
@@ -2026,7 +2031,7 @@ float FormatTime2(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
    FormatTimeCommon(pInfo, f, out, in);
 }
 
-float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, char *out)
+float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, char *out, int clip)
 {
    int t;
    char *ptr;
@@ -2048,7 +2053,14 @@ float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, c
          tenths = f - (float)((min * 60) + secs);
 //         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
          tenths *= 1000;
-         sprintf(out, "%d:%02d.%03d", min, secs, (int)tenths);
+         if (clip == 0)
+         {
+            sprintf(out, "%d:%02d.%03d", min, secs, (int)tenths);
+         }
+         else
+         {
+            sprintf(out, "%d:%02d", min, secs);
+         }
       }
       else
       {
@@ -2058,7 +2070,14 @@ float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, c
          tenths = f - (float)((min * 60) + secs);
 //         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
          tenths *= 1000;
-         sprintf(out, "-%d:%02d.%03d", min, secs, (int)tenths);
+         if (clip == 0)
+         {
+            sprintf(out, "%d:%02d.%03d", min, secs, (int)tenths);
+         }
+         else
+         {
+            sprintf(out, "%d:%02d", min, secs);
+         }
       }
    }
    else
@@ -2137,6 +2156,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    char header[MAX_STRING_SIZE];
    char fixed[MAX_STRING_SIZE];
    char fixed2[MAX_STRING_SIZE];
+   char groupLine[MAX_STRING_SIZE];
 
    int outIdx = 0;
    char outStr[MAX_STRING_SIZE];
@@ -2222,6 +2242,8 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
              (((timeLine[1] == ' ') && (timeLine[2] == ' ')) || (timeLine[1] == '\n')) &&
              (strstr(timeLine, "Distance") == NULL))
          {
+            sprintf(groupLine, "%s", timeLine);
+
             if (partyControl.groupId == GROUP_ALL)
             {
                groupId = GROUP_ALL;
@@ -2271,6 +2293,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
       {
          // groupId = GROUP_ALL;
          groupId = partyControl.groupId;
+         sprintf(groupLine, "%s", timeLine);
 
          if (strstr(timeLine, "Rank ") != NULL)
          {
@@ -2299,6 +2322,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
       }
       else
       {
+         sprintf(groupLine, "%s", timeLine);
          groupId = GROUP_ALL;
          goIntoLoop = 1;
       }
@@ -2366,6 +2390,7 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                strcpy(timeLineInfo->last, last);
                strcpy(timeLineInfo->first, first);
                strcpy(timeLineInfo->team, teamName2);
+               timeLineInfo->groupId = groupId;
 
                NameInsert(timeLineInfo, name);
 
@@ -2744,6 +2769,8 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                   // AddSpace(tmp2, tmp);
                   RemoveTrailing(tmp2, tmp);
+                  sprintf(timeLineInfo->wattLine, "%s", tmp2);;
+                  strcpy(timeLineInfo->groupLine, groupLine);
                   RemoveWpkg(pInfo, tmp2);
 
 #ifdef CONSOLE_OUTPUT
@@ -2781,6 +2808,8 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                         break;
                      }
                   }
+
+                  sprintf(groupLine, "%s", tmp);
 
                   // Break if we see garbage
                   if ((tmp[0] != 'A') && (tmp[0] != 'B') && (tmp[0] != 'C') && (tmp[0] != 'D'))
@@ -3319,7 +3348,7 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          currInfo->me = timeLineInfo;
          currInfo->totalRaces = timeLineInfo->totalRaces;
 
-         TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_TEMPOISH);
+         TimeOrderInfoInsert(pInfo, currInfo, listTimeOrder, RACE_NO, TIME_ORDER_RICHMOND);
          ptr = ptr->next;
       }
    }
@@ -4057,7 +4086,8 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          }
 
-         FormatTime3(pInfo, timeLineInfo, i, timeString);
+         FormatTime3(pInfo, timeLineInfo, i, timeString, 0);
+//         FormatTime(pInfo, timeLineInfo, i, timeString);
          if (strstr(timeString, "1000") == NULL)
          {
             outIdx += sprintf(&outStr[outIdx], "  %s  ", timeString);
@@ -5174,12 +5204,134 @@ static void PartySelf(CLI_PARSE_INFO *pInfo)
 #endif
 }
 
+char *GroupId(char *out, int groupId, int place)
+{
+   if (groupId == GROUP_A)
+   {
+      sprintf(out, "A   %d", place);
+   }
+   else if (groupId == GROUP_B)
+   {
+      sprintf(out, "B   %d", place);
+   }
+   else
+   {
+      sprintf(out, "Z   %d", place);
+   }
+}
+
+
+static void PartyWriteResults(CLI_PARSE_INFO *pInfo)
+{
+   Link_t *ptr;
+   TimeLineInfo_t *timeLineInfo;
+   TimeLineInfo_t *currInfo;
+   char line[MAX_STRING_SIZE];
+   char timeString[MAX_STRING_SIZE];
+   char outfile[MAX_STRING_SIZE];
+   FILE *fp_out;
+   
+   int count = 1;
+
+   if (pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {filename} \n", pInfo->argv[0]);
+      return;
+   }
+
+   sprintf(outfile, "%s", pInfo->argv[1]);
+
+   fp_out = fopen(outfile, "w");
+
+   if (!fp_out)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
+      return;
+   }
+
+   ptr = (Link_t *)listTimeOrder->head;
+
+   if (ptr->next == NULL)
+   {
+      (pInfo->print_fp)("INFO: Could not write results, results not yet calculated\n");
+      return;
+   }
+
+   /*
+    *
+    * A       7         <===== WE MUST HAVE his category?                  timeLineInfo->group[0]
+    * Gabriel Mathisen  <===== NAME                                        timeLineInfo->name[0]
+    * GRIT              <===== TEAM                                        timeLineInfo->teamName[0]
+    *         
+    * 01:03          <====== TOTAL TIME                                    timeLineInfo->totalTime[0]
+    * 558w 9.0wkg    <====== WE MUST have this? WE BETTER HAVE THIS!!!     timeLineInfo->wattLine[0];
+    *         Power                                                        
+    * A       4       
+    * Daniel Sutherland (BMTR_A2)
+    * TEAM BMTR
+    *         
+    * 01:08
+    * 549w 7.8wkg
+    *         Power
+    *
+    */
+    
+   while (ptr->next != NULL)
+   {
+      currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+      timeLineInfo = (TimeLineInfo_t *)currInfo->me;
+
+//      GroupId(line, timeLineInfo->groupId, count);
+//      fprintf(fp_out, "%s\n", line);
+      fprintf(fp_out, "%s\n", timeLineInfo->groupLine);
+
+      count++;
+
+      fprintf(fp_out, "%s\n", timeLineInfo->name);
+
+      if (timeLineInfo->team[0] == '-')
+      {
+         fprintf(fp_out, "\n");
+      }
+      else
+      {
+         fprintf(fp_out, "%s\n", timeLineInfo->team);
+         fprintf(fp_out, "\n");
+      }
+
+      FormatTime3(pInfo, timeLineInfo, numRacesG, timeString, 1);
+
+      fprintf(fp_out, "%s \n", timeString);
+      fprintf(fp_out, "%s \n", timeLineInfo->wattLine);
+
+      fprintf(fp_out, "        Power\n");
+
+      ptr = ptr->next;
+   }
+
+   fclose(fp_out);
+}
+
+static const CLI_PARSE_CMD party_write_cmd[] =
+{
+   { "results", PartyWriteResults, "write results to a {file}"},
+   { NULL, NULL, NULL }
+};
+
+static void cmd_party_write(CLI_PARSE_INFO *info)
+{
+    cliDefaultHandler( info, party_write_cmd );
+}
+
+
 static const CLI_PARSE_CMD cmd_party_commands[] =
 {
    { "start",           cmd_party_start,                "start party"},
    { "stop",            cmd_party_stop,                 "stop party"},
    { "reset",           cmd_party_reset,                "reset party"},
    { "show",            cmd_party_show,                 "show party status"},
+   { "write",           cmd_party_write,                "write results"},
    { "tally",           cmd_party_tally,                "tally up all results"},
    { "tempoish",        cmd_party_tempoish,             "show average time sprint results"},
    { "richmond",        cmd_party_richmond,             "cummulative time across results"},
