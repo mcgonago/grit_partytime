@@ -48,6 +48,8 @@ static volatile int gdbStop = 1;
 /* +++owen - hardcoding to assuming ONLY (4) races taking part in points series */
 static int maxCount = 0;
 static int numRacesG = 0;
+static int raceIdxG = -1;
+static TimeLineInfo_t *timeLineInfoG = NULL;
 
 LinkList_t *listTimeLine = NULL;
 LinkList_t *listTimeOrder = NULL;
@@ -1379,6 +1381,7 @@ void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
    float fudge = 1.0;
    Link_t *ptr;
    TimeLineInfo_t *timeLineInfo;
+   int newCount = 0;
 
    if (partyControl.max != -1)
    {
@@ -1386,7 +1389,13 @@ void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
       {
          (pInfo->print_fp)("WARNING!!!!! WARNING!!!! you set max = %d, found count = %d\n", partyControl.max, count);
          partyControl.max = count;
+         newCount = count;
       }
+      else
+      {
+         newCount = partyControl.max;
+      }
+
       fudge = (float)partyControl.max/(float)count;
    }
    else
@@ -1404,9 +1413,20 @@ void AddUpPoints(CLI_PARSE_INFO *pInfo, int count, int raceId)
 
       if (timeLineInfo->race[raceId].place != -1)
       {
+#ifdef WEIGHT_TRY1
+         if (partyControl.max != -1)
+         {
+            timeLineInfo->race[raceId].points = (newCount - timeLineInfo->race[raceId].place);
+         }
+         else
+         {
+            timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
+         }
+#else
          timeLineInfo->race[raceId].points = (count - timeLineInfo->race[raceId].place);
          timeLineInfo->race[raceId].points = (int)((float)timeLineInfo->race[raceId].points * fudge);
-
+#endif
+         
          // +++owen - fix hardcode to a must of raceId == 3
          if ((raceId == 2) && (partyControl.doubleUp == 1))
          {
@@ -2585,6 +2605,13 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                         sprintf(place, "%d ", count);
                         count++;
 
+                        if (count > maxCount)
+                        {
+                           raceIdxG = raceId;
+                           timeLineInfoG = timeLineInfo;
+                           maxCount = count;
+                        }
+
                         (pInfo->print_fp)("%s   %s  %s  %s %s %s   %s   %s\n",
                                           place, name, teamName, month, day, year, watts, time);
 
@@ -2633,6 +2660,13 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
                         sprintf(timeLineInfo->team, "%s", teamName);
                         sprintf(place, "%d", count);
                         count++;
+
+                        if (count > maxCount)
+                        {
+                           raceIdxG = raceId;
+                           timeLineInfoG = timeLineInfo;
+                           maxCount = count;
+                        }
 
                         (pInfo->print_fp)("%s   %s  %s  %s %s %s   %s   %s\n",
                                           place, name, teamName, month, day, year, watts, time);
@@ -2705,6 +2739,8 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
                   if (count > maxCount)
                   {
+                     raceIdxG = raceId;
+                     timeLineInfoG = timeLineInfo;
                      maxCount = count;
                   }
 
@@ -4726,6 +4762,8 @@ static void PartyResetAll(CLI_PARSE_INFO *info)
    ColumnReset(info);
 
    numRacesG = 0;
+   raceIdxG = -1;
+   timeLineInfoG = NULL;
 }
 
 static void ListResets(CLI_PARSE_INFO *info)
