@@ -199,7 +199,7 @@ Athlete_t athleteGRIT2[MAX_ATHLETES] = {
 };
 
 
-
+extern void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode, FILE *fp);
 extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
 extern int TeamGrit(char *name);
 extern int RacedToday(char *name, char *teamName);
@@ -5362,6 +5362,136 @@ static void cmd_party_write(CLI_PARSE_INFO *info)
     cliDefaultHandler( info, party_write_cmd );
 }
 
+static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
+{
+   Link_t *ptr;
+   TimeLineInfo_t *timeLineInfo;
+   TimeLineInfo_t *currInfo;
+   char line[MAX_STRING_SIZE];
+   char timeString[MAX_STRING_SIZE];
+   char infile[MAX_STRING_SIZE];
+   char outfile[MAX_STRING_SIZE];
+   FILE *fp_in;
+   FILE *fp_out;
+   int columnId;
+
+   int count = 1;
+
+   ColumnReset(pInfo);
+
+   if (pInfo->argc < 4)
+   {
+      (pInfo->print_fp)("USAGE: %s {in-file} {column-id} {out-file} \n", pInfo->argv[0]);
+      return;
+   }
+
+   sprintf(infile, "%s", pInfo->argv[1]);
+
+   fp_in = fopen(infile, "r");
+
+   if (!fp_in)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", infile);
+      return;
+   }
+
+   columnId = cliCharToUnsignedLong(pInfo->argv[2]);
+
+   sprintf(outfile, "%s", pInfo->argv[3]);
+
+   fp_out = fopen(outfile, "w");
+
+   if (!fp_out)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
+      return;
+   }
+
+   /* Test it with an already formatted file */
+   
+   ColumnizeResults(pInfo, infile, columnId, OUTPUT_MODE_CONVERT, fp_out);
+
+#if 0
+   ptr = (Link_t *)listTimeOrder->head;
+
+   if (ptr->next == NULL)
+   {
+      (pInfo->print_fp)("INFO: Could not write results, results not yet calculated\n");
+      return;
+   }
+
+   /*
+    *
+    * A       7         <===== WE MUST HAVE his category?                  timeLineInfo->group[0]
+    * Gabriel Mathisen  <===== NAME                                        timeLineInfo->name[0]
+    * GRIT              <===== TEAM                                        timeLineInfo->teamName[0]
+    *         
+    * 01:03          <====== TOTAL TIME                                    timeLineInfo->totalTime[0]
+    * 558w 9.0wkg    <====== WE MUST have this? WE BETTER HAVE THIS!!!     timeLineInfo->wattLine[0];
+    *         Power                                                        
+    * A       4       
+    * Daniel Sutherland (BMTR_A2)
+    * TEAM BMTR
+    *         
+    * 01:08
+    * 549w 7.8wkg
+    *         Power
+    *
+    */
+    
+   while (ptr->next != NULL)
+   {
+      currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+      timeLineInfo = (TimeLineInfo_t *)currInfo->me;
+
+//      GroupId(line, timeLineInfo->groupId, count);
+//      fprintf(fp_out, "%s\n", line);
+      fprintf(fp_out, "%s\n", timeLineInfo->groupLine);
+
+      count++;
+
+      fprintf(fp_out, "%s\n", timeLineInfo->name);
+
+      if (timeLineInfo->team[0] == '-')
+      {
+         fprintf(fp_out, "\n");
+      }
+      else
+      {
+         fprintf(fp_out, "%s\n", timeLineInfo->team);
+         fprintf(fp_out, "\n");
+      }
+
+      FormatTime3(pInfo, timeLineInfo, numRacesG, timeString, 1);
+
+      fprintf(fp_out, "%s \n", timeString);
+      fprintf(fp_out, "%s \n", timeLineInfo->wattLine);
+
+      fprintf(fp_out, "        Power\n");
+
+      ptr = ptr->next;
+   }
+
+#endif
+
+   fclose(fp_out);
+   fclose(fp_in);
+
+}
+
+
+static const CLI_PARSE_CMD party_convert_cmd[] =
+{
+   { "inline", PartyConvertInline, "convert {in-file} {column-id} {out-file}"},
+   { NULL, NULL, NULL }
+};
+
+static void cmd_party_convert(CLI_PARSE_INFO *info)
+{
+    cliDefaultHandler( info, party_convert_cmd );
+}
+
 
 static const CLI_PARSE_CMD cmd_party_commands[] =
 {
@@ -5369,6 +5499,7 @@ static const CLI_PARSE_CMD cmd_party_commands[] =
    { "stop",            cmd_party_stop,                 "stop party"},
    { "reset",           cmd_party_reset,                "reset party"},
    { "show",            cmd_party_show,                 "show party status"},
+   { "convert",         cmd_party_convert,              "convert results"},
    { "write",           cmd_party_write,                "write results"},
    { "tally",           cmd_party_tally,                "tally up all results"},
    { "tempoish",        cmd_party_tempoish,             "show average time sprint results"},

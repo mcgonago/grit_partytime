@@ -1,10 +1,8 @@
-party set max 35
-#party set bestof 2
-party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md libby 0
-party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom.txt test.md 23rd 1
-#party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-combined.txt test.md race1 0
-party set calendar on
-party richmond
-party write result database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom-combined.txt
-#party show
+#party convert inline bagel.txt 1 bagel_reverse.txt
+party convert inline bagel_all.txt 1 bagel_reverse.txt
+party convert inline bagel_all.txt 2 bagel_reverse.txt
+party convert inline bagel_all.txt 3 bagel_reverse.txt
+party convert inline bagel_all.txt 4 bagel_reverse.txt
+party convert inline bagel_all.txt 5 bagel_reverse.txt
+party convert inline bagel_all.txt 6 bagel_reverse.txt
 quit

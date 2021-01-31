@@ -23,6 +23,18 @@
 #include "partycontrol.h"
 #include "columnprintf.h"
 
+//#define DEBUG2 (1)
+
+extern void RemoveWpkg(CLI_PARSE_INFO *pInfo, char *str);
+extern void RemoveWpkgNew(CLI_PARSE_INFO *pInfo, char *str);
+
+// +++owen - clean these up - get common between here and partytime.c
+extern void NameInsertLocal(char *out, char *name, char *teamOut);
+extern void TeamNameCleanupLocal(char *nameOut, char *name, char *team, char *teamOut);
+
+#define NameInsert NameInsertLocal
+#define TeamNameCleanup TeamNameCleanupLocal
+
 static volatile int gdbStop = 0;
 
 #ifdef UNIT_TEST
@@ -1060,9 +1072,6 @@ void FixTeamNameNew(CLI_PARSE_INFO *pInfo, char *out, char *in)
 #endif
 }
 
-#ifdef UNIT_TEST
-
-
 char *StringGet2(char *out, FILE *fp)
 {
    char *ret;
@@ -1081,6 +1090,7 @@ char *StringGet2(char *out, FILE *fp)
 
    return(ret);
 }
+
 
 void ColumnizeFollowing(CLI_PARSE_INFO *pInfo, char *fname)
 {
@@ -1185,7 +1195,581 @@ void ColumnizeFollowing(CLI_PARSE_INFO *pInfo, char *fname)
    fclose(fp_in);
 }
 
-void NameInsert(char *out, char *name, char *teamOut)
+void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode, FILE *fp)
+{
+   int i;
+   int outIdx = 0;
+
+   FILE *fp_in;
+   char tmp[MAX_STRING_SIZE];
+   char teamName[MAX_STRING_SIZE];
+   char teamName2[MAX_STRING_SIZE];
+   char fixed[MAX_STRING_SIZE];
+   char fixed2[MAX_STRING_SIZE];
+   char header[MAX_STRING_SIZE];
+
+   char tmp2[MAX_STRING_SIZE];
+   char tmp3[MAX_STRING_SIZE];
+   char raceName[MAX_STRING_SIZE];
+   char tmpName[MAX_STRING_SIZE];
+   char updatedLine[MAX_STRING_SIZE];
+   char timeLine[MAX_STRING_SIZE];
+
+   char tmpTeam[MAX_STRING_SIZE];
+   char teamOut[MAX_STRING_SIZE];
+   char nameOut[MAX_STRING_SIZE];
+   char outStr[MAX_STRING_SIZE];
+
+   int preRead = 0;
+   int count = 0;
+   int trigger = 0;
+   int firstAthlete = 1;
+   int columnIdx = 1;
+   
+   fp_in = fopen(fname, "r");
+
+   if (!fp_in)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", fname);
+      exit(-1);
+   }
+
+   /* Create headers */
+   outIdx = 0;
+   outIdx += sprintf(&header[outIdx], "%s", "#  name  team  time  watts");
+   ColumnStore(pInfo, header);
+
+   sprintf(header, "%s", "--  ----   ----   ----   -----");
+   ColumnStore(pInfo, header);
+
+   while (1)
+   {
+      if (preRead == 0)
+      {
+         if (!StringGet2(tmp, fp_in))
+         {
+            /* Done reading file */
+            break;
+         }
+      }
+
+      preRead = 0;
+      if ((strstr(tmp, "Description") != NULL) || (strstr(tmp, "Powered ") != NULL))
+      {
+         trigger = 0;
+         continue;
+      }
+
+      if (((tmp[0] == 'A') || (tmp[0] == 'B') || (tmp[0] == 'C') || (tmp[0] == 'D')) &&
+          (((tmp[1] == ' ') && (tmp[2] == ' ')) || (tmp[1] == '\n')) &&
+          (strstr(tmp, "Distance") == NULL))
+      {
+         trigger = 1;
+
+         if (mode == OUTPUT_MODE_CONVERT)
+         {
+            fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+            (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+         }
+
+         continue;
+      }
+
+      if ((tmp[0] == '\n') || (tmp[0] == ' ') || (tmp[0] == '\r') || (tmp[0] == '\t'))
+      {
+         continue;
+      }
+
+      outIdx = 0;
+      teamOut[0] = '\0';
+
+      if (trigger == 1)
+      {
+         if (mode == OUTPUT_MODE_CONVERT)
+         {
+            fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+            (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+         }
+
+         strcpy(tmpName, tmp);
+         NameInsert(nameOut, tmpName, teamOut);
+
+#ifdef DEBUG
+         (pInfo->print_fp)(" NAME?: %s\n", tmpName);
+#endif
+
+         // Team or empty
+         if (!StringGet2(tmp, fp_in))
+         {
+            /* Done reading file */
+            break;
+         }
+
+         if (mode == OUTPUT_MODE_CONVERT)
+         {
+            fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+            (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+         }
+
+#ifdef DEBUG
+         (pInfo->print_fp)(" TEAM?: %s\n", tmp);
+#endif
+
+         // If team, skip
+         if ((tmp[0] != '\n') && (tmp[0] != ' ') && (tmp[0] != '\r') && (tmp[0] != '\t'))
+         {
+            /* TEAM can be found in the name (Zwift does that) or on next line */
+            /* TeamNameCleanup(timeLineInfo, tmp); */
+            strcpy(tmpTeam, teamOut);
+            strcpy(tmpName, nameOut);
+            TeamNameCleanup(nameOut, tmpName, tmp, teamOut);
+
+
+            /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+            /* NameDouble(pInfo, timeLineInfo); */
+
+            /* We have team name, thus skip next <empty> line */
+            if (!StringGet2(tmp, fp_in))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            if (mode == OUTPUT_MODE_CONVERT)
+            {
+               fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+            }
+
+         }
+         else
+         {
+            /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
+            /* NameDouble(pInfo, timeLineInfo); */
+         }
+
+#ifdef DEBUG
+         (pInfo->print_fp)("XXXXXX: %d  %s  \n", count, nameOut);
+#endif
+
+         /* TEAM can be found in the name (Zwift does that) or on next line */
+         outIdx += sprintf(&outStr[outIdx], "%d  %s  ", count, nameOut);
+         count++;
+
+         /* TEAM can be found in the name (Zwift does that) or on next line */
+         outIdx += sprintf(&outStr[outIdx], "%s  ", teamOut);
+
+#ifdef DEBUG
+         (pInfo->print_fp)("  TEAM: %s  \n", teamOut);
+#endif
+         /* time? */
+         if (!StringGet2(tmp, fp_in))
+         {
+            /* Done reading file */
+            break;
+         }
+
+#if 1
+         if (columnId == 1)
+         {
+            if (mode == OUTPUT_MODE_CONVERT)
+            {
+               fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+            }
+         }
+#endif
+
+
+
+#ifdef DEBUG
+         (pInfo->print_fp)("  TIME: %s\n", tmp);
+#endif
+
+         columnIdx = 1;
+         if (columnIdx != columnId)
+         {
+            /* If we DO Not see a Letter, continue until we do !!! */
+            // preRead = 1;
+            while (1)
+            {
+               /* Throw away things until we hit correct column */
+            
+               /* 3.8w/kg 274w */
+               /* 405w 5.6wkg */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+#ifdef DEBUG
+               (pInfo->print_fp)(" WATT?: %s\n", tmp);
+#endif
+               /* SPACE */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+#ifdef DEBUG
+               (pInfo->print_fp)("IGNORE: %s\n", tmp);
+#endif
+
+               /* time */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+#ifdef DEBUG
+         (pInfo->print_fp)(" _TIME: %s\n", tmp);
+#endif
+
+               columnIdx += 1;
+               if (columnIdx == columnId)
+               {
+                  if (mode == OUTPUT_MODE_CONVERT)
+                  {
+                     fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+                     (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+                  }
+                  break;
+               }
+            }
+
+         }
+#if 0
+         /* SAVE time */
+         SaveTime(pInfo, timeLineInfo, tmp);
+         TimeLineInfoUpdate(pInfo, timeLineInfo, listTimeLine, raceName);
+         TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
+#endif
+
+#ifdef DEBUG
+         (pInfo->print_fp)("_TIME?: %s\n", tmp);
+#endif
+
+         /* time */
+         AddSpace(tmp2, tmp);
+         outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
+
+         /* 1:04:01 */
+         /* +27.769s */
+         /*             3.8w/kg 274w */
+         /* 283w */
+         /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
+         /* B 		*/
+
+         /* OR */
+
+         /* 46:05 */
+         /* +5.312s */
+         /*    4.0w/kg 217w                            54.0kg  143bpm      167cm        */
+         /* B 		*/
+
+         /* OR */
+
+         /* 1:03:34 */
+         /* 3.8w/kg 274w */
+         /* 283w */
+         /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
+         /* B 		*/
+
+         /* OR */
+
+         /* 16:42   */
+         /* 405w 5.6wkg */
+         /*	        Power      */
+         /* B 		*/
+
+         /* OR */
+
+         /* 16:42   */
+         /* 405w 5.6wkg */
+         /*             */
+         /* 23.183      */
+         /* 236w 3.3wkg */
+         /*	        Power      */
+         /* B 		*/
+
+         /* Take a peek */
+         /* + */
+         if (!StringGet2(tmp, fp_in))
+         {
+            /* Done reading file */
+            break;
+         }
+
+         if (mode == OUTPUT_MODE_CONVERT)
+         {
+            fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+            (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+         }
+
+#ifdef DEBUG
+         (pInfo->print_fp)(" PEEK?: %s\n", tmp);
+#endif
+
+         /* If se see a '+' we know we are good, and can throw away */
+         if (strstr(tmp, "+") != 0)
+         {
+            /* Throw away above, and get the next wpkg and watts*/
+
+            /*             3.8w/kg 274w */
+            if (!StringGet2(tmp, fp_in))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            if (mode == OUTPUT_MODE_CONVERT)
+            {
+               fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+            }
+
+            AddSpace(tmp2, tmp);
+            RemoveWpkgNew(pInfo, tmp2);
+
+            outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
+            ColumnStore(pInfo, outStr);
+
+            /* Peek */
+            /* 283w - or B*/
+            if (!StringGet2(tmp, fp_in))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            if (mode == OUTPUT_MODE_CONVERT)
+            {
+               fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+            }
+
+            /* If we DO Not see a Letter, continue until we do !!! */
+            if ((tmp[0] == 'A') || (tmp[0] == 'B') || (tmp[0] == 'C') || (tmp[0] == 'D'))
+            {
+               preRead = 1;
+               continue;
+            }
+
+            /* Otherwise, throw away next */
+
+            /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
+            if (!StringGet2(tmp, fp_in))
+            {
+               /* Done reading file */
+               break;
+            }
+
+            if (mode == OUTPUT_MODE_CONVERT)
+            {
+               fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+            }
+         }
+         else
+         {
+#ifdef DEBUG
+              (pInfo->print_fp)("SPACE?: %s\n", tmp);
+#endif
+              
+#if 0
+               /* Space ? */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+               (pInfo->print_fp)(" WATTS: %s\n", tmp);
+#endif
+
+            /* 3.8w/kg 274w */
+            /* 405w 5.6wkg */
+
+            AddSpace(tmp2, tmp);
+            RemoveWpkgNew(pInfo, tmp2);
+
+            outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
+            ColumnStore(pInfo, outStr);
+
+            if (strstr(tmp2, "w/kg") != 0)
+            {
+               /* 283w - or 'B' */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+               if (mode == OUTPUT_MODE_CONVERT)
+               {
+                  fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+               }
+
+               /* If we DO Not see a Letter, continue until we do !!! */
+               if ((tmp[0] == 'A') || (tmp[0] == 'B') || (tmp[0] == 'C') || (tmp[0] == 'D'))
+               {
+                  preRead = 1;
+                  continue;
+               }
+
+               /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+               if (mode == OUTPUT_MODE_CONVERT)
+               {
+                  fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+               }
+            }
+            else
+            {
+// +++owen - WARNING!!!
+#if 0
+               /* 405w 5.6wkg */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+#ifdef DEBUG
+               (pInfo->print_fp)(" WATTS: %s\n", tmp);
+#endif
+
+#endif
+
+               /*           Power      */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+
+               if (mode == OUTPUT_MODE_CONVERT)
+               {
+//                  fprintf(fp, "%s\n", tmp);
+                  fprintf(fp, "  Power\n", tmp);
+
+#ifdef DEBUG2
+               (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+               }
+
+
+//               (pInfo->print_fp)(" POWER: %s\n", tmp);
+
+               /* THIS IS WHERE WE COULD HAVE MORE THAN ONE SET OF watts + Power */
+               /* HOW do we account for MULTIPLE watts + Power */
+
+               /* For now, we do a "pre" read */
+               if (!StringGet2(tmp, fp_in))
+               {
+                  /* Done reading file */
+                  break;
+               }
+#if 0
+               if (mode == OUTPUT_MODE_CONVERT)
+               {
+                  fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+                  (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+               }
+#endif
+
+//               (pInfo->print_fp)("JUMPIN: %s\n", tmp);
+
+               /* If we DO Not see a Letter, continue until we do !!! */
+               preRead = 1;
+               while (1)
+               {
+                  if ((tmp[0] != 'A') && (tmp[0] != 'B') && (tmp[0] != 'C') && (tmp[0] != 'D'))
+                  {
+                     /* means we have another combo of watts + Power - throw away !! */
+                     if (!StringGet2(tmp, fp_in))
+                     {
+                        /* Done reading file */
+                        break;
+                     }
+#if 0
+                     if (mode == OUTPUT_MODE_CONVERT)
+                     {
+                        fprintf(fp, "%s\n", tmp);
+#ifdef DEBUG2
+                        (pInfo->print_fp)("FILE: %s\n", tmp);
+#endif
+                     }
+#endif
+
+//                     (pInfo->print_fp)("IGNORE: %s\n", tmp);
+
+                     continue;
+                  }
+                  break;
+               } /* while 1 */
+            } /* ! w/kg */
+         } /* ! + */
+      } /* trigger == 1 */
+   } /* while */
+
+   fclose(fp_in);
+
+   PrintTable(pInfo);
+}
+
+
+void RemoveWpkgNew(CLI_PARSE_INFO *pInfo, char *str)
+{
+   char *p;
+   if ((p = strstr(str, "wkg")) != NULL)
+   {
+      *p = '\0';
+   }
+
+   if ((p = strstr(str, "w  ")) != NULL)
+   {
+      *p = '\0';
+   }
+}
+
+void NameInsertLocal(char *out, char *name, char *teamOut)
 {
    char *ptr;
    char tmp[MAX_STRING_SIZE];
@@ -1534,7 +2118,7 @@ void NameInsert(char *out, char *name, char *teamOut)
    }
 }
 
-void TeamNameCleanup(char *nameOut, char *name, char *team, char *teamOut)
+void TeamNameCleanupLocal(char *nameOut, char *name, char *team, char *teamOut)
 {
    int len;
 
@@ -1769,6 +2353,11 @@ void TeamNameCleanup(char *nameOut, char *name, char *team, char *teamOut)
    }
 }
 
+
+
+#ifdef UNIT_TEST
+
+#if 0
 void RemoveWpkg(CLI_PARSE_INFO *pInfo, char *str)
 {
    char *p;
@@ -1777,344 +2366,8 @@ void RemoveWpkg(CLI_PARSE_INFO *pInfo, char *str)
       *p = '\0';
    }
 }
-
-void RemoveWpkgNew(CLI_PARSE_INFO *pInfo, char *str)
-{
-   char *p;
-   if ((p = strstr(str, "wkg")) != NULL)
-   {
-      *p = '\0';
-   }
-
-   if ((p = strstr(str, "w  ")) != NULL)
-   {
-      *p = '\0';
-   }
-}
-
-void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname)
-{
-   int i;
-   int outIdx = 0;
-
-   FILE *fp_in;
-   char tmp[MAX_STRING_SIZE];
-   char teamName[MAX_STRING_SIZE];
-   char teamName2[MAX_STRING_SIZE];
-   char fixed[MAX_STRING_SIZE];
-   char fixed2[MAX_STRING_SIZE];
-   char header[MAX_STRING_SIZE];
-
-   char tmp2[MAX_STRING_SIZE];
-   char tmp3[MAX_STRING_SIZE];
-   char raceName[MAX_STRING_SIZE];
-   char tmpName[MAX_STRING_SIZE];
-   char updatedLine[MAX_STRING_SIZE];
-   char timeLine[MAX_STRING_SIZE];
-
-   char tmpTeam[MAX_STRING_SIZE];
-   char teamOut[MAX_STRING_SIZE];
-   char nameOut[MAX_STRING_SIZE];
-   char outStr[MAX_STRING_SIZE];
-
-   int preRead = 0;
-   int count = 0;
-   int trigger = 0;
-   int firstAthlete = 1;
-
-   fp_in = fopen(fname, "r");
-
-   if (!fp_in)
-   {
-      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", fname);
-      exit(-1);
-   }
-
-   /* Create headers */
-   outIdx = 0;
-   outIdx += sprintf(&header[outIdx], "%s", "#  name  team  time  watts");
-   ColumnStore(pInfo, header);
-
-   sprintf(header, "%s", "--  ----   ----   ----   -----");
-   ColumnStore(pInfo, header);
-
-   while (1)
-   {
-      if (preRead == 0)
-      {
-         if (!StringGet2(tmp, fp_in))
-         {
-            /* Done reading file */
-            break;
-         }
-      }
-
-      preRead = 0;
-      if ((strstr(tmp, "Description") != NULL) || (strstr(tmp, "Powered ") != NULL))
-      {
-         trigger = 0;
-         continue;
-      }
-
-      if (((tmp[0] == 'A') || (tmp[0] == 'B') || (tmp[0] == 'C') || (tmp[0] == 'D')) &&
-          (((tmp[1] == ' ') && (tmp[2] == ' ')) || (tmp[1] == '\n')) &&
-          (strstr(tmp, "Distance") == NULL))
-      {
-         trigger = 1;
-         continue;
-      }
-
-      if ((tmp[0] == '\n') || (tmp[0] == ' ') || (tmp[0] == '\r') || (tmp[0] == '\t'))
-      {
-         continue;
-      }
-
-      outIdx = 0;
-      teamOut[0] = '\0';
-
-      if (trigger == 1)
-      {
-         if (strstr(tmp, "Maximilian") != 0)
-         {
-            gdbStop = 1;
-         }
-
-         strcpy(tmpName, tmp);
-         NameInsert(nameOut, tmpName, teamOut);
-
-         // Team or empty
-         if (!StringGet2(tmp, fp_in))
-         {
-            /* Done reading file */
-            break;
-         }
-
-         // If team, skip
-         if ((tmp[0] != '\n') && (tmp[0] != ' ') && (tmp[0] != '\r') && (tmp[0] != '\t'))
-         {
-            /* TEAM can be found in the name (Zwift does that) or on next line */
-//                   TeamNameCleanup(timeLineInfo, tmp);
-            strcpy(tmpTeam, teamOut);
-            strcpy(tmpName, nameOut);
-            TeamNameCleanup(nameOut, tmpName, tmp, teamOut);
-
-
-            /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
-//                     NameDouble(pInfo, timeLineInfo);
-
-            /* We have team name, thus skip next <empty> line */
-            if (!StringGet2(tmp, fp_in))
-            {
-               /* Done reading file */
-               break;
-            }
-         }
-         else
-         {
-            /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
-//                     NameDouble(pInfo, timeLineInfo);
-         }
-
-         /* TEAM can be found in the name (Zwift does that) or on next line */
-         outIdx += sprintf(&outStr[outIdx], "%d  %s  ", count, nameOut);
-         count++;
-
-         /* TEAM can be found in the name (Zwift does that) or on next line */
-         outIdx += sprintf(&outStr[outIdx], "%s  ", teamOut);
-
-         /* time */
-         if (!StringGet2(tmp, fp_in))
-         {
-            /* Done reading file */
-            break;
-         }
-
-#if 0
-         /* SAVE time */
-         SaveTime(pInfo, timeLineInfo, tmp);
-         TimeLineInfoUpdate(pInfo, timeLineInfo, listTimeLine, raceName);
-         TimeLineInfoInsert(pInfo, timeLineInfo, listTimeLine, RACE_NO);
 #endif
 
-         /* time */
-         AddSpace(tmp2, tmp);
-         outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
-
-         /* 1:04:01 */
-         /* +27.769s */
-         /*             3.8w/kg 274w */
-         /* 283w */
-         /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
-         /* B 		*/
-
-         /* OR */
-
-         /* 46:05 */
-         /* +5.312s */
-         /*    4.0w/kg 217w                            54.0kg  143bpm      167cm        */
-         /* B 		*/
-
-         /* OR */
-
-         /* 1:03:34 */
-         /* 3.8w/kg 274w */
-         /* 283w */
-         /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
-         /* B 		*/
-
-         /* OR */
-
-         /* 16:42   */
-         /* 405w 5.6wkg */
-         /*	        Power      */
-         /* B 		*/
-
-         /* OR */
-
-         /* 16:42   */
-         /* 405w 5.6wkg */
-         /*             */
-         /* 23.183      */
-         /* 236w 3.3wkg */
-         /*	        Power      */
-         /* B 		*/
-
-         /* Take a peek */
-         /* + */
-         if (!StringGet2(tmp, fp_in))
-         {
-            /* Done reading file */
-            break;
-         }
-
-         /* If se see a '+' we know we are good, and can throw away */
-         if (strstr(tmp, "+") != 0)
-         {
-            /* Throw away above, and get the next wpkg and watts*/
-
-            /*             3.8w/kg 274w */
-            if (!StringGet2(tmp, fp_in))
-            {
-               /* Done reading file */
-               break;
-            }
-
-            AddSpace(tmp2, tmp);
-            RemoveWpkgNew(pInfo, tmp2);
-
-            outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
-            ColumnStore(pInfo, outStr);
-
-            /* Peek */
-            /* 283w - or B*/
-            if (!StringGet2(tmp, fp_in))
-            {
-               /* Done reading file */
-               break;
-            }
-
-            /* If we DO Not see a Letter, continue until we do !!! */
-            if ((tmp[0] == 'A') || (tmp[0] == 'B') || (tmp[0] == 'C') || (tmp[0] == 'D'))
-            {
-               preRead = 1;
-               continue;
-            }
-
-            /* Otherwise, throw away next */
-
-            /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
-            if (!StringGet2(tmp, fp_in))
-            {
-               /* Done reading file */
-               break;
-            }
-         }
-         else
-         {
-            /* 3.8w/kg 274w */
-            /* 405w 5.6wkg */
-
-            AddSpace(tmp2, tmp);
-            RemoveWpkgNew(pInfo, tmp2);
-
-            outIdx += sprintf(&outStr[outIdx], "%s  ", tmp2);
-            ColumnStore(pInfo, outStr);
-
-            if (strstr(tmp2, "w/kg") != 0)
-            {
-               /* 283w - or 'B' */
-               if (!StringGet2(tmp, fp_in))
-               {
-                  /* Done reading file */
-                  break;
-               }
-
-               /* If we DO Not see a Letter, continue until we do !!! */
-               if ((tmp[0] == 'A') || (tmp[0] == 'B') || (tmp[0] == 'C') || (tmp[0] == 'D'))
-               {
-                  preRead = 1;
-                  continue;
-               }
-
-               /*    4.0w/kg 4.4w/kg 4.9w/kg 5.6w/kg 6.8w/kg 72.6kg  169bpm  184bpm  172cm        */
-               if (!StringGet2(tmp, fp_in))
-               {
-                  /* Done reading file */
-                  break;
-               }
-            }
-            else
-            {
-               /* 405w 5.6wkg */
-               if (!StringGet2(tmp, fp_in))
-               {
-                  /* Done reading file */
-                  break;
-               }
-
-               /*           Power      */
-               if (!StringGet2(tmp, fp_in))
-               {
-                  /* Done reading file */
-                  break;
-               }
-
-               /* THIS IS WHERE WE COULD HAVE MORE THAN ONE SET OF watts + Power */
-               /* HOW do we account for MULTIPLE watts + Power */
-
-               /* For now, we do a "pre" read */
-               if (!StringGet2(tmp, fp_in))
-               {
-                  /* Done reading file */
-                  break;
-               }
-
-               /* If we DO Not see a Letter, continue until we do !!! */
-               preRead = 1;
-               while (1)
-               {
-                  if ((tmp[0] != 'A') && (tmp[0] != 'B') && (tmp[0] != 'C') && (tmp[0] != 'D'))
-                  {
-                     /* means we have another combo of watts + Power - throw away !! */
-                     if (!StringGet2(tmp, fp_in))
-                     {
-                        /* Done reading file */
-                        break;
-                     }
-
-                     continue;
-                  }
-                  break;
-               } /* while 1 */
-            } /* ! w/kg */
-         } /* ! + */
-      } /* trigger == 1 */
-   } /* while */
-
-   fclose(fp_in);
-
-   PrintTable(pInfo);
-}
 
 void Columnize(CLI_PARSE_INFO *pInfo, char *fname, int mode)
 {
@@ -2124,7 +2377,7 @@ void Columnize(CLI_PARSE_INFO *pInfo, char *fname, int mode)
    }
    else if (mode == COLUMNIZE_RESULTS)
    {
-      ColumnizeResults(pInfo, fname);
+      ColumnizeResults(pInfo, fname, 1, OUTPUT_MODE_COLUMNS, NULL);
    }
 }
 

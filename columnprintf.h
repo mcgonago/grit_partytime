@@ -1,6 +1,9 @@
 #ifndef __COLUMNPRINTF_H__
 #define __COLUMNPRINTF_H__
 
+#define OUTPUT_MODE_CONVERT (1)
+#define OUTPUT_MODE_COLUMNS (2)
+
 extern void ColumnPrintf(CLI_PARSE_INFO *pInfo, char *str);
 extern void PrintTable(CLI_PARSE_INFO *pInfo);
 extern void ColumnStore(CLI_PARSE_INFO *pInfo, char *str);

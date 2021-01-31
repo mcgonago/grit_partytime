@@ -1,0 +1,1521 @@
+
+
+    Events
+
+    Connect
+
+    Teams
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (67)
+    Unfiltered (67)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+
+Hello ZwiftPower racers,
+
+As part of Zwift HQ's efforts to safeguard our members' data privacy, discussions about ZwiftPower will transition from the ZwiftPower forums to forums.zwift.com
+Why? The migration of ZwiftPower from its original server to Zwift HQ's server environment has important implications for both site stability and for data security.
+
+The discussions, knowledge, and history from the ZwiftPower forum will be preserved and remain accessible here in read-only mode.
+Please follow us to the new: ZwiftPower board, a small team of Zwift HQ staff will be on hand to answer questions and guide you through some of the changes.
+MGCC Bagel
+Today 11:00
+Big Foot Hills 1 Laps 70 km
+All riders visible Late joining No TT bikes
+ZwiftPower category overrides wkg
+Category winners must wear a HRM
+5min and 20min CEVAZ limits apply
+No ZPower winners
+0.0km5.0km10.0km15.0km20.0km25.0km30.0km35.0km40.0km45.0km50.0km55.0km60.0km65.0km70.0km
+0m500m
+100 miles
+Madness
+Titans Grove
+2.6km, 2.2% avg
+Forward Climb
+0.9km, 6% avg
+Volcano Climb
+3.7km, 3% avg
+Gain 120m
+Titans Grove Reverse
+0.9km, 4% avg
+Reverse Climb
+0.9km, 6% avg
+1
+S
+B Distance: 69.9km Elevation Gain: 698m Starts from: Desert Pens Strava route
+Description
+Search:
+	#	Rider	Reverse KOM	Forward KOM	Volcano Climb	Fuego Flats Short	Titans Grove Reverse	Titans Grove Forward	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+B 	1	
+jens fadsagg
+Sudbaden Racing TEAM
+	
+03:50
+384w 4.8wkg
+	
+02:05
+420w 5.3wkg
+	
+06:53
+366w 4.6wkg
+	
+37.140
+518w 6.5wkg
+	
+01:39
+438w 5.5wkg
+	
+04:08
+368w 4.6wkg
+	Power
+B 	2	
+John Franklin6734
+	
+03:51
+412w 5.5wkg
+	
+02:11
+377w 5.0wkg
+	
+06:36
+391w 5.2wkg
+	
+42.720
+228w 3.0wkg
+	
+01:41
+418w 5.6wkg
+	
+03:46
+411w 5.5wkg
+	Power
+B 	3	
+mark pinfield (ECT cork)
+ECT cork
+	
+03:57
+351w 4.7wkg
+	
+02:35
+301w 4.0wkg
+	
+07:00
+330w 4.4wkg
+	
+37.226
+448w 6.0wkg
+	
+01:31
+439w 5.9wkg
+	
+04:29
+293w 3.9wkg
+	Power
+B 	4	
+Gareth Kirkwood
+Team Madigan
+	
+04:04
+315w 4.6wkg
+	
+02:10
+335w 4.9wkg
+	
+06:44
+352w 5.1wkg
+	
+37.891
+428w 6.2wkg
+	
+01:49
+327w 4.7wkg
+	
+03:51
+372w 5.4wkg
+	Power
+B 	5	
+Marcel Guay (MG-O Racing Team)
+MG-O
+	
+04:03
+289w 4.3wkg
+	
+02:33
+263w 3.9wkg
+	
+07:04
+302w 4.5wkg
+	
+38.137
+389w 5.8wkg
+	
+01:48
+315w 4.7wkg
+	
+04:06
+312w 4.6wkg
+	Power
+B 	6	
+G AigreCymru
+HWCC
+	
+03:55
+303w 4.8wkg
+	
+02:12
+313w 5.0wkg
+	
+07:23
+274w 4.3wkg
+	
+38.415
+352w 5.6wkg
+	
+01:51
+297w 4.7wkg
+	
+04:10
+286w 4.5wkg
+	Power
+B 	7	
+Jonathan Lasker
+CRCA/NYCC
+	
+03:52
+291w 4.9wkg
+	
+02:18
+281w 4.7wkg
+	
+07:02
+272w 4.5wkg
+	
+38.229
+332w 5.5wkg
+	
+01:43
+304w 5.1wkg
+	
+04:06
+288w 4.8wkg
+	Power
+B 	8	
+colin elgie
+	
+04:04
+293w 4.4wkg
+	
+02:28
+285w 4.3wkg
+	
+07:16
+292w 4.4wkg
+	
+38.533
+281w 4.2wkg
+	
+01:49
+313w 4.7wkg
+	
+04:15
+294w 4.4wkg
+	Power
+B 	9	
+Pete Younghusband (R3R)
+Race3R
+	
+03:38
+395w 5.8wkg
+	
+02:11
+343w 5.0wkg
+	
+06:35
+355w 5.2wkg
+	
+34.067
+582w 8.6wkg
+	
+01:25
+457w 6.7wkg
+	
+03:48
+383w 5.6wkg
+	Power
+B 	10	
+Anthony Rusch (The Dead Parrots)
+The Dead Parrots
+	
+03:55
+361w 4.8wkg
+	
+02:50
+265w 3.5wkg
+	
+06:45
+354w 4.7wkg
+	
+35.084
+462w 6.2wkg
+	
+01:27
+482w 6.4wkg
+	
+03:49
+387w 5.2wkg
+	Power
+B 	11	
+David Valencia S
+	
+04:11
+250w 4.2wkg
+	
+02:26
+257w 4.4wkg
+	
+07:16
+261w 4.4wkg
+	
+39.634
+345w 5.8wkg
+	
+01:59
+272w 4.6wkg
+	
+04:17
+262w 4.4wkg
+	Power
+B 	12	
+Dan Donovan
+KISS RT
+	
+03:39
+395w 5.2wkg
+	
+02:50
+273w 3.6wkg
+	
+06:25
+389w 5.1wkg
+	
+36.322
+525w 6.9wkg
+	
+01:20
+564w 7.4wkg
+	
+03:40
+439w 5.8wkg
+	Power
+B 	13	
+Stratton Townley [JUUL]
+	
+03:53
+378w 5.0wkg
+	
+02:02
+412w 5.4wkg
+	
+07:01
+348w 4.6wkg
+	
+37.282
+449w 5.9wkg
+	
+01:40
+395w 5.2wkg
+	
+04:00
+369w 4.9wkg
+	Power
+B 	14	
+Chris Harris
+MGCC
+	
+04:04
+375w 4.5wkg
+	
+02:29
+345w 4.1wkg
+	
+07:14
+361w 4.3wkg
+	
+37.533
+455w 5.4wkg
+	
+01:35
+446w 5.3wkg
+	
+03:50
+423w 5.0wkg
+	Power
+B 	15	
+Matt Barkway
+	
+04:09
+304w 4.2wkg
+	
+02:42
+263w 3.7wkg
+	
+07:58
+272w 3.8wkg
+	
+37.917
+289w 4.0wkg
+	
+01:38
+382w 5.3wkg
+	
+04:40
+267w 3.7wkg
+	Power
+B 	16	
+Richard Harrison (DMRC/BCEM)
+	
+04:00
+309w 4.5wkg
+	
+02:25
+300w 4.3wkg
+	
+07:15
+304w 4.4wkg
+	
+38.402
+333w 4.8wkg
+	
+01:44
+347w 5.0wkg
+	
+04:11
+310w 4.5wkg
+	Power
+B 	17	
+Andy Sutton
+	
+03:57
+359w 4.5wkg
+	
+02:39
+291w 3.7wkg
+	
+07:49
+300w 3.8wkg
+	
+38.733
+313w 3.9wkg
+	
+01:59
+323w 4.1wkg
+	
+04:34
+287w 3.6wkg
+	Power
+B 	18	
+Ed Jablonski (LSV/KBS)
+KBS/LSV
+	
+04:10
+266w 4.0wkg
+	
+02:29
+264w 4.0wkg
+	
+07:50
+256w 3.9wkg
+	
+39.401
+256w 3.9wkg
+	
+02:01
+272w 4.1wkg
+	
+04:38
+247w 3.8wkg
+	Power
+B 	19	
+Mark Stanley
+	
+04:11
+281w 4.0wkg
+	
+02:27
+287w 4.1wkg
+	
+07:47
+269w 3.8wkg
+	
+39.743
+256w 3.7wkg
+	
+02:02
+281w 4.0wkg
+	
+04:29
+270w 3.9wkg
+	Power
+B 	20	
+Matt Ray (R3R)
+Race3R
+	
+03:53
+354w 4.9wkg
+	
+02:47
+252w 3.5wkg
+	
+06:42
+357w 5.0wkg
+	
+39.992
+229w 3.2wkg
+	
+01:58
+294w 4.1wkg
+	
+03:51
+364w 5.1wkg
+	Power
+B 	21	
+Martin Reynolds Snr AWCC
+AWCC
+	
+04:08
+295w 4.2wkg
+	
+02:42
+255w 3.6wkg
+	
+07:53
+262w 3.7wkg
+	
+40.941
+214w 3.1wkg
+	
+01:51
+325w 4.6wkg
+	
+04:40
+248w 3.5wkg
+	Power
+B 	22	
+Hans Ulsrud
+	
+03:59
+337w 4.4wkg
+	
+02:31
+306w 4.0wkg
+	
+07:05
+330w 4.3wkg
+	
+41.222
+276w 3.6wkg
+	
+01:36
+414w 5.4wkg
+	
+04:00
+352w 4.6wkg
+	Power
+B 	23	
+Dean Corette
+	
+04:00
+336w 4.3wkg
+	
+02:24
+327w 4.2wkg
+	
+07:56
+298w 3.8wkg
+	
+41.061
+259w 3.3wkg
+	
+01:49
+363w 4.6wkg
+	
+04:35
+288w 3.7wkg
+	Power
+B 	24	
+Calum McVie (Torvelo Racing)
+TORVELO
+	
+04:10
+306w 4.3wkg
+	
+02:30
+292w 4.1wkg
+	
+07:42
+302w 4.2wkg
+	
+40.989
+231w 3.2wkg
+	
+01:30
+445w 6.2wkg
+	
+04:36
+270w 3.8wkg
+	Power
+B 	25	
+Luke Elton [GRIT]
+GRIT
+	
+04:05
+276w 4.3wkg
+	
+02:42
+245w 3.8wkg
+	
+07:19
+276w 4.3wkg
+	
+41.961
+293w 4.5wkg
+	
+01:44
+334w 5.1wkg
+	
+03:56
+329w 5.1wkg
+	Power
+B 	26	
+Jonathan Mol
+Team Italy
+	
+04:17
+249w 3.9wkg
+	
+02:34
+256w 4.0wkg
+	
+07:50
+248w 3.9wkg
+	
+38.756
+251w 3.9wkg
+	
+02:04
+253w 4.0wkg
+	
+04:26
+258w 4.0wkg
+	Power
+B 	27	
+Arturo Petrucci (BrxHellZR)
+	
+04:19
+238w 3.7wkg
+	
+02:34
+247w 3.9wkg
+	
+07:42
+255w 4.0wkg
+	
+42.515
+220w 3.4wkg
+	
+01:44
+320w 5.0wkg
+	
+04:37
+240w 3.8wkg
+	Power
+B 	28	
+Kenny Scott
+	
+04:19
+270w 4.0wkg
+	
+02:28
+283w 4.2wkg
+	
+07:26
+283w 4.2wkg
+	
+42.731
+248w 3.7wkg
+	
+02:00
+283w 4.2wkg
+	
+04:12
+305w 4.5wkg
+	Power
+B 	29	
+Steve Bekker
+DIRT
+	
+04:17
+280w 3.9wkg
+	
+02:37
+279w 3.8wkg
+	
+07:54
+271w 3.7wkg
+	
+42.681
+226w 3.1wkg
+	
+01:49
+332w 4.6wkg
+	
+04:34
+267w 3.7wkg
+	Power
+B 	30	
+tolo fiol
+	
+04:19
+256w 3.8wkg
+	
+02:26
+273w 4.0wkg
+	
+07:50
+263w 3.9wkg
+	
+42.041
+229w 3.4wkg
+	
+02:01
+277w 4.1wkg
+	
+04:21
+270w 4.0wkg
+	Power
+B 	31	
+Greg Stewart Ⓥ
+	
+04:19
+276w 3.8wkg
+	
+02:46
+269w 3.7wkg
+	
+08:05
+277w 3.8wkg
+	
+42.789
+199w 2.7wkg
+	
+02:03
+293w 4.0wkg
+	
+04:28
+291w 4.0wkg
+	Power
+B 	32	
+Reid McGregor
+MGCC
+	
+04:16
+332w 4.3wkg
+	
+02:52
+275w 3.6wkg
+	
+08:03
+286w 3.7wkg
+	
+37.560
+469w 6.1wkg
+	
+02:00
+319w 4.1wkg
+	
+04:37
+283w 3.7wkg
+	Power
+B 	33	
+ALTAN SIRIN
+	
+04:25
+250w 3.8wkg
+	
+02:18
+293w 4.4wkg
+	
+07:48
+259w 3.9wkg
+	
+38.675
+341w 5.2wkg
+	
+02:07
+248w 3.8wkg
+	
+04:33
+251w 3.8wkg
+	Power
+B 	34	
+Alex Woodard
+	
+04:26
+247w 3.8wkg
+	
+02:38
+257w 3.9wkg
+	
+07:55
+259w 3.9wkg
+	
+39.214
+308w 4.7wkg
+	
+02:01
+273w 4.2wkg
+	
+04:41
+247w 3.8wkg
+	Power
+B 	35	
+Rob Campbell
+BSCC
+	
+04:10
+259w 4.0wkg
+	
+02:52
+224w 3.5wkg
+	
+07:16
+282w 4.4wkg
+	
+40.464
+315w 4.9wkg
+	
+01:54
+300w 4.7wkg
+	
+03:57
+328w 5.1wkg
+	Power
+B 	36	
+Brendan Macdonald
+MGCC
+	
+04:22
+259w 3.6wkg
+	
+02:49
+245w 3.5wkg
+	
+08:09
+258w 3.6wkg
+	
+41.024
+213w 3.0wkg
+	
+02:01
+282w 4.0wkg
+	
+04:17
+293w 4.1wkg
+	Power
+B 	37	
+Sebastian Mockenhaupt
+ZRG
+	
+04:25
+281w 3.6wkg
+	
+02:43
+285w 3.6wkg
+	
+08:10
+280w 3.6wkg
+	
+42.040
+214w 2.7wkg
+	
+02:06
+293w 3.7wkg
+	
+04:41
+280w 3.6wkg
+	Power
+B 	38	
+Gabriel Mathisen (Vegan Vipers)
+GRIT
+	
+04:28
+220w 3.5wkg
+	
+02:44
+229w 3.7wkg
+	
+06:15
+357w 5.8wkg
+	
+42.613
+174w 2.8wkg
+	
+01:34
+366w 5.9wkg
+	
+03:39
+396w 6.4wkg
+	Power
+B 	39	
+marc c
+	
+04:19
+241w 3.7wkg
+	
+02:51
+234w 3.6wkg
+	
+07:51
+250w 3.8wkg
+	
+41.643
+216w 3.3wkg
+	
+01:59
+268w 4.1wkg
+	
+04:37
+241w 3.7wkg
+	Power
+B 	40	
+Guillaume Lafleur
+leMétier.cc
+	
+04:09
+322w 4.1wkg
+	
+02:11
+377w 4.8wkg
+	
+06:51
+365w 4.7wkg
+	
+42.091
+232w 3.0wkg
+	
+01:37
+428w 5.5wkg
+	
+03:47
+416w 5.3wkg
+	Power
+B 	41	
+Alan Purves (GTCA)
+GTC
+	
+04:08
+289w 4.3wkg
+	
+02:48
+255w 3.8wkg
+	
+06:44
+324w 4.8wkg
+	
+43.435
+170w 2.5wkg
+	
+01:22
+470w 6.9wkg
+	
+03:51
+353w 5.2wkg
+	Power
+B 	42	
+Allen Lopez
+	
+04:25
+305w 3.6wkg
+	
+02:50
+339w 4.0wkg
+	
+08:18
+303w 3.6wkg
+	
+43.524
+218w 2.6wkg
+	
+02:10
+336w 4.0wkg
+	
+04:43
+297w 3.5wkg
+	Power
+B 	43	
+Chris Shaw (DIRT)
+	
+04:22
+309w 4.2wkg
+	
+02:51
+264w 3.6wkg
+	
+07:05
+330w 4.5wkg
+	
+43.243
+308w 4.2wkg
+	
+01:59
+294w 4.0wkg
+	
+04:24
+293w 4.0wkg
+	Power
+B 	44	
+Joe Woodman UoLCC/ARCC
+albaRosa CC
+	
+04:00
+310w 5.0wkg
+	
+02:46
+229w 3.7wkg
+	
+06:43
+300w 4.8wkg
+	
+41.762
+203w 3.3wkg
+	
+01:20
+481w 7.7wkg
+	
+03:42
+357w 5.7wkg
+	Power
+B 	45	
+Keith Moore
+	
+03:36
+432w 5.7wkg
+	
+02:51
+277w 3.7wkg
+	
+06:21
+394w 5.2wkg
+	
+44.317
+200w 2.6wkg
+	
+01:19
+599w 7.9wkg
+	
+03:37
+453w 6.0wkg
+	Power
+B 	46	
+Dan Mitchell
+MDV | IG
+	
+04:18
+271w 3.8wkg
+	
+02:29
+288w 4.0wkg
+	
+08:00
+263w 3.7wkg
+	
+41.363
+362w 5.0wkg
+	
+02:01
+288w 4.0wkg
+	
+04:40
+252w 3.5wkg
+	Power
+B 	47	
+Andrew Buczkowski
+SWOZR
+	
+04:26
+261w 3.6wkg
+	
+02:51
+272w 3.7wkg
+	
+08:20
+260w 3.6wkg
+	
+41.045
+263w 3.6wkg
+	
+02:10
+266w 3.6wkg
+	
+04:44
+255w 3.5wkg
+	Power
+B 	48	
+Andy Dryburgh
+	
+03:37
+414w 6.5wkg
+	
+02:44
+233w 3.6wkg
+	
+06:13
+380w 5.9wkg
+	
+41.576
+228w 3.6wkg
+	
+01:15
+587w 9.2wkg
+	
+03:34
+410w 6.4wkg
+	Power
+B 	49	
+Jon Duran
+FZR
+	
+04:24
+250w 3.7wkg
+	
+02:52
+237w 3.5wkg
+	
+08:06
+255w 3.8wkg
+	
+41.644
+226w 3.3wkg
+	
+01:51
+297w 4.4wkg
+	
+04:24
+280w 4.1wkg
+	Power
+B 	50	
+Torsten Wambold
+GCA
+	
+04:26
+247w 3.6wkg
+	
+02:45
+252w 3.7wkg
+	
+08:14
+247w 3.6wkg
+	
+41.753
+221w 3.3wkg
+	
+02:05
+261w 3.8wkg
+	
+04:44
+241w 3.5wkg
+	Power
+B 	51	
+Henri Guay (RELENTLESS ANARCHY)
+RELENTLESS
+	
+04:22
+285w 3.7wkg
+	
+02:49
+270w 3.5wkg
+	
+08:14
+268w 3.5wkg
+	
+42.885
+204w 2.7wkg
+	
+01:34
+432w 5.7wkg
+	
+04:37
+274w 3.6wkg
+	Power
+B 	52	
+Steve Roffe (JBEV)
+JBEV
+	
+04:50
+269w 3.6wkg
+	
+02:52
+271w 3.7wkg
+	
+08:18
+267w 3.6wkg
+	
+42.595
+210w 2.8wkg
+	
+02:00
+298w 4.0wkg
+	
+04:36
+287w 3.9wkg
+	Power
+B 	53	
+John Donovan
+	
+03:41
+394w 5.5wkg
+	
+02:11
+349w 4.8wkg
+	
+06:50
+352w 4.9wkg
+	
+42.904
+208w 2.9wkg
+	
+01:24
+493w 6.8wkg
+	
+04:02
+339w 4.7wkg
+	Power
+B 	54	
+Gary Walker
+BRC
+	
+04:38
+269w 4.0wkg
+	
+02:50
+238w 3.6wkg
+	
+06:17
+363w 5.4wkg
+	
+43.421
+166w 2.5wkg
+	
+01:20
+491w 7.3wkg
+	
+03:51
+330w 4.9wkg
+	Power
+B 	55	
+Adam Green
+	
+05:03
+239w 3.1wkg
+	
+02:52
+276w 3.5wkg
+	
+08:06
+282w 3.6wkg
+	
+42.112
+206w 2.6wkg
+	
+02:04
+293w 3.8wkg
+	
+04:45
+272w 3.5wkg
+	Power
+B 	56	
+Paul Heffernan
+S2M
+	
+05:03
+245w 3.1wkg
+	
+02:50
+281w 3.5wkg
+	
+08:19
+276w 3.4wkg
+	
+40.945
+430w 5.4wkg
+	
+02:10
+277w 3.4wkg
+	
+04:42
+274w 3.4wkg
+	Power
+B 	57	
+Richard Bussell
+	
+03:53
+449w 5.9wkg
+	
+02:48
+280w 3.7wkg
+	
+06:26
+430w 5.7wkg
+	
+43.393
+221w 2.9wkg
+	
+02:00
+343w 4.5wkg
+	
+04:45
+265w 3.5wkg
+	Power
+B 	58	
+Simon Bull (BSCC)
+BSRT
+	
+05:03
+236w 3.2wkg
+	
+02:29
+292w 4.0wkg
+	
+08:09
+269w 3.7wkg
+	
+44.415
+187w 2.5wkg
+	
+01:54
+360w 4.9wkg
+	
+03:55
+352w 4.8wkg
+	Power
+B 	59	
+mike dillow
+	
+04:25
+276w 4.5wkg
+	
+02:51
+253w 4.1wkg
+	
+07:47
+258w 4.2wkg
+	
+38.921
+291w 4.7wkg
+	
+03:17
+146w 2.4wkg
+	
+04:40
+249w 4.0wkg
+	Power
+B 	60	
+Hairy Clyde
+MVCC
+	
+04:43
+253w 3.2wkg
+	
+02:49
+271w 3.4wkg
+	
+08:19
+279w 3.5wkg
+	
+40.318
+281w 3.5wkg
+	
+02:18
+270w 3.4wkg
+	
+04:21
+314w 3.9wkg
+	Power
+B 	61	
+Robert Kaluza
+	
+05:00
+273w 3.5wkg
+	
+02:51
+274w 3.5wkg
+	
+08:20
+286w 3.6wkg
+	
+43.320
+203w 2.6wkg
+	
+01:20
+587w 7.4wkg
+	
+03:43
+440w 5.6wkg
+	Power
+B 	62	
+Sebastian Linz
+	
+05:32
+203w 2.7wkg
+	
+02:43
+268w 3.6wkg
+	
+08:09
+268w 3.6wkg
+	
+44.195
+194w 2.6wkg
+	
+02:19
+247w 3.3wkg
+	
+04:40
+267w 3.6wkg
+	Power
+B 	63	
+Manu Sanchez
+PGR
+	
+04:40
+246w 3.7wkg
+
+02:50
+281w 3.5wkg
+		
+08:39
+251w 3.7wkg
+	
+39.756
+429w 6.4wkg
+	
+02:05
+276w 4.1wkg
+	
+04:25
+267w 4.0wkg
+	Power
+B 	64	
+Luis Almeida [MPViana]
+MPViana
+	
+05:03
+255w 3.5wkg
+	
+03:07
+234w 3.2wkg
+	
+09:09
+247w 3.4wkg
+	
+43.418
+195w 2.7wkg
+	
+02:13
+295w 4.0wkg
+	
+04:43
+261w 3.6wkg
+	Power
+B 	65	
+Jim Beattie
+	
+04:35
+300w 4.2wkg
+	
+02:06
+384w 5.4wkg
+	
+07:36
+328w 4.6wkg
+	
+46.650
+262w 3.7wkg
+	
+01:54
+358w 5.0wkg
+	
+04:53
+298w 4.2wkg
+	Power
+B 	66	
+Tonnie Meijer5074
+	
+05:31
+277w 2.9wkg
+	
+03:03
+313w 3.2wkg
+	
+09:21
+308w 3.2wkg
+	
+42.728
+264w 2.7wkg
+	
+02:32
+311w 3.2wkg
+	
+04:44
+339w 3.5wkg
+	Power
+B 	67	
+Tania Cedeño
+[ZZ]
+	
+04:52
+277w 3.6wkg
+	
+03:21
+227w 2.9wkg
+	
+10:02
+229w 2.9wkg
+	
+43.030
+301w 3.9wkg
+	
+02:18
+293w 3.8wkg
+	
+04:44
+263w 3.4wkg
+	Power
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    *
+    The team
+    Delete all board cookies
+
+    All times are UTC
+
