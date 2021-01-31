@@ -1,440 +1,418 @@
-B  1  
-jens fadsagg  
-Sudbaden Racing TEAM  
-  
-06:53  
-366w 4.6wkg  
-  Power
-B  2  
-John Franklin6734  
-  
-06:36  
-391w 5.2wkg  
-  Power
-B  3  
-mark pinfield (ECT cork)  
-ECT cork  
-  
-07:00  
-330w 4.4wkg  
-  Power
-B  4  
-Gareth Kirkwood  
-Team Madigan  
-  
-06:44  
-352w 5.1wkg  
-  Power
-B  5  
-Marcel Guay (MG-O Racing Team)  
-MG-O  
-  
-07:04  
-302w 4.5wkg  
-  Power
-B  6  
-G AigreCymru  
-HWCC  
-  
-07:23  
-274w 4.3wkg  
-  Power
-B  7  
-Jonathan Lasker  
-CRCA/NYCC  
-  
-07:02  
-272w 4.5wkg  
-  Power
-B  8  
-colin elgie  
-  
-07:16  
-292w 4.4wkg  
-  Power
-B  9  
-Pete Younghusband (R3R)  
-Race3R  
-  
-06:35  
-355w 5.2wkg  
-  Power
-B  10  
-Anthony Rusch (The Dead Parrots)  
-The Dead Parrots  
-  
-06:45  
-354w 4.7wkg  
-  Power
-B  11  
-David Valencia S  
-  
-07:16  
-261w 4.4wkg  
-  Power
-B  12  
-Dan Donovan  
-KISS RT  
-  
-06:25  
-389w 5.1wkg  
-  Power
-B  13  
-Stratton Townley [JUUL]  
-  
-07:01  
-348w 4.6wkg  
-  Power
-B  14  
-Chris Harris  
-MGCC  
-  
-07:14  
-361w 4.3wkg  
-  Power
-B  15  
-Matt Barkway  
-  
-07:58  
-272w 3.8wkg  
-  Power
-B  16  
-Richard Harrison (DMRC/BCEM)  
-  
-07:15  
-304w 4.4wkg  
-  Power
-B  17  
-Andy Sutton  
-  
-07:49  
-300w 3.8wkg  
-  Power
-B  18  
-Ed Jablonski (LSV/KBS)  
-KBS/LSV  
-  
-07:50  
-256w 3.9wkg  
-  Power
-B  19  
-Mark Stanley  
-  
-07:47  
-269w 3.8wkg  
-  Power
-B  20  
-Matt Ray (R3R)  
-Race3R  
-  
-06:42  
-357w 5.0wkg  
-  Power
-B  21  
-Martin Reynolds Snr AWCC  
-AWCC  
-  
-07:53  
-262w 3.7wkg  
-  Power
-B  22  
-Hans Ulsrud  
-  
-07:05  
-330w 4.3wkg  
-  Power
-B  23  
-Dean Corette  
-  
-07:56  
-298w 3.8wkg  
-  Power
-B  24  
-Calum McVie (Torvelo Racing)  
-TORVELO  
-  
-07:42  
-302w 4.2wkg  
-  Power
-B  25  
-Luke Elton [GRIT]  
-GRIT  
-  
-07:19  
-276w 4.3wkg  
-  Power
-B  26  
-Jonathan Mol  
-Team Italy  
-  
-07:50  
-248w 3.9wkg  
-  Power
-B  27  
-Arturo Petrucci (BrxHellZR)  
-  
-07:42  
-255w 4.0wkg  
-  Power
-B  28  
-Kenny Scott  
-  
-07:26  
-283w 4.2wkg  
-  Power
-B  29  
-Steve Bekker  
-DIRT  
-  
-07:54  
-271w 3.7wkg  
-  Power
-B  30  
-tolo fiol  
-  
-07:50  
-263w 3.9wkg  
-  Power
-B  31  
-Greg Stewart Ⓥ  
-  
-08:05  
-277w 3.8wkg  
-  Power
-B  32  
-Reid McGregor  
-MGCC  
-  
-08:03  
-286w 3.7wkg  
-  Power
-B  33  
-ALTAN SIRIN  
-  
-07:48  
-259w 3.9wkg  
-  Power
-B  34  
-Alex Woodard  
-  
-07:55  
-259w 3.9wkg  
-  Power
-B  35  
-Rob Campbell  
-BSCC  
-  
-07:16  
-282w 4.4wkg  
-  Power
-B  36  
-Brendan Macdonald  
-MGCC  
-  
-08:09  
-258w 3.6wkg  
-  Power
-B  37  
-Sebastian Mockenhaupt  
-ZRG  
-  
-08:10  
-280w 3.6wkg  
-  Power
-B  38  
-Gabriel Mathisen (Vegan Vipers)  
-GRIT  
-  
-06:15  
-357w 5.8wkg  
-  Power
-B  39  
-marc c  
-  
-07:51  
-250w 3.8wkg  
-  Power
-B  40  
-Guillaume Lafleur  
-leMétier.cc  
-  
-06:51  
-365w 4.7wkg  
-  Power
-B  41  
-Alan Purves (GTCA)  
-GTC  
-  
-06:44  
-324w 4.8wkg  
-  Power
-B  42  
-Allen Lopez  
-  
-08:18  
-303w 3.6wkg  
-  Power
-B  43  
-Chris Shaw (DIRT)  
-  
-07:05  
-330w 4.5wkg  
-  Power
-B  44  
-Joe Woodman UoLCC/ARCC  
-albaRosa CC  
-  
-06:43  
-300w 4.8wkg  
-  Power
-B  45  
-Keith Moore  
-  
-06:21  
-394w 5.2wkg  
-  Power
-B  46  
-Dan Mitchell  
-MDV | IG  
-  
-08:00  
-263w 3.7wkg  
-  Power
-B  47  
-Andrew Buczkowski  
-SWOZR  
-  
-08:20  
-260w 3.6wkg  
-  Power
-B  48  
-Andy Dryburgh  
-  
-06:13  
-380w 5.9wkg  
-  Power
-B  49  
-Jon Duran  
-FZR  
-  
-08:06  
-255w 3.8wkg  
-  Power
-B  50  
-Torsten Wambold  
-GCA  
-  
-08:14  
-247w 3.6wkg  
-  Power
-B  51  
-Henri Guay (RELENTLESS ANARCHY)  
-RELENTLESS  
-  
-08:14  
-268w 3.5wkg  
-  Power
-B  52  
-Steve Roffe (JBEV)  
-JBEV  
-  
-08:18  
-267w 3.6wkg  
-  Power
-B  53  
-John Donovan  
-  
-06:50  
-352w 4.9wkg  
-  Power
-B  54  
-Gary Walker  
+B  48   
+Andy Dryburgh
+
+6:13 
+380w  5.9wkg     
+        Power
+B  38   
+Gabriel Mathisen
+[VEGAN][GRIT]
+
+6:15 
+357w  5.8wkg     
+        Power
+B  54   
+Gary Walker
 BRC  
-  
-06:17  
-363w 5.4wkg  
-  Power
-B  55  
-Adam Green  
-  
-08:06  
-282w 3.6wkg  
-  Power
-B  56  
-Paul Heffernan  
-S2M  
-  
-08:19  
-276w 3.4wkg  
-  Power
-B  57  
-Richard Bussell  
-  
-06:26  
-430w 5.7wkg  
-  Power
-B  58  
-Simon Bull (BSCC)  
+
+6:17 
+363w  5.4wkg     
+        Power
+B  45   
+Keith Moore
+
+6:21 
+394w  5.2wkg     
+        Power
+B  12   
+Dan Donovan
+KISS RT  
+
+6:25 
+389w  5.1wkg     
+        Power
+B  57   
+Richard Bussell
+
+6:26 
+430w  5.7wkg     
+        Power
+B  9   
+Pete Younghusband
+Race3R  
+
+6:35 
+355w  5.2wkg     
+        Power
+B  2   
+John Franklin
+
+6:36 
+391w  5.2wkg     
+        Power
+B  20   
+Matt Ray
+Race3R  
+
+6:42 
+357w  5.0wkg     
+        Power
+B  44   
+Joe Woodman UoLCC/ARCC
+albaRosa CC  
+
+6:43 
+300w  4.8wkg     
+        Power
+B  41   
+Alan Purves
+GTC  
+
+6:44 
+324w  4.8wkg     
+        Power
+B  4   
+Gareth Kirkwood
+Team Madigan  
+
+6:44 
+352w  5.1wkg     
+        Power
+B  10   
+Anthony Rusch
+The Dead Parrots  
+
+6:45 
+354w  4.7wkg     
+        Power
+B  53   
+John Donovan
+
+6:50 
+352w  4.9wkg     
+        Power
+B  40   
+Guillaume Lafleur
+leMETIER
+
+6:51 
+365w  4.7wkg     
+        Power
+B  1    
+jens fadsagg
+Sudbaden Racing TEAM  
+
+6:53 
+366w  4.6wkg     
+        Power
+B  3   
+mark pinfield
+ECT cork  
+
+7:00 
+330w  4.4wkg     
+        Power
+B  13   
+Stratton Townley
+[JUUL]    
+
+7:01 
+348w  4.6wkg     
+        Power
+B  7   
+Jonathan Lasker
+CRCA/NYCC  
+
+7:02 
+272w  4.5wkg     
+        Power
+B  5   
+Marcel Guay
+MG-O  
+
+7:04 
+302w  4.5wkg     
+        Power
+B  43   
+Chris Shaw
+(DIRT)    
+
+7:05 
+330w  4.5wkg     
+        Power
+B  22   
+Hans Ulsrud
+
+7:05 
+330w  4.3wkg     
+        Power
+B  14   
+Chris Harris
+MGCC  
+
+7:14 
+361w  4.3wkg     
+        Power
+B  16   
+Richard Harrison
+(DMRC/BCEM)    
+
+7:15 
+304w  4.4wkg     
+        Power
+B  35   
+Rob Campbell
+BSCC  
+
+7:16 
+282w  4.4wkg     
+        Power
+B  11   
+David Valencia S
+
+7:16 
+261w  4.4wkg     
+        Power
+B  8   
+colin elgie
+
+7:16 
+292w  4.4wkg     
+        Power
+B  25   
+Luke Elton
+GRIT  
+
+7:19 
+276w  4.3wkg     
+        Power
+B  6   
+G AigreCymru
+HWCC  
+
+7:23 
+274w  4.3wkg     
+        Power
+B  28   
+Kenny Scott
+
+7:26 
+283w  4.2wkg     
+        Power
+B  27   
+Arturo Petrucci
+(BrxHellZR)    
+
+7:42 
+255w  4.0wkg     
+        Power
+B  24   
+Calum McVie
+TORVELO  
+
+7:42 
+302w  4.2wkg     
+        Power
+B  59   
+mike dillow
+
+7:47 
+258w  4.2wkg     
+        Power
+B  19   
+Mark Stanley
+
+7:47 
+269w  3.8wkg     
+        Power
+B  33   
+ALTAN SIRIN
+
+7:48 
+259w  3.9wkg     
+        Power
+B  17   
+Andy Sutton
+
+7:49 
+300w  3.8wkg     
+        Power
+B  30   
+tolo fiol
+
+7:50 
+263w  3.9wkg     
+        Power
+B  26   
+Jonathan Mol
+Team Italy  
+
+7:50 
+248w  3.9wkg     
+        Power
+B  18   
+Ed Jablonski
+KBS/LSV  
+
+7:50 
+256w  3.9wkg     
+        Power
+B  39   
+marc c
+
+7:51 
+250w  3.8wkg     
+        Power
+B  21   
+Martin Reynolds Snr AWCC
+AWCC  
+
+7:53 
+262w  3.7wkg     
+        Power
+B  29   
+Steve Bekker
+DIRT  
+
+7:54 
+271w  3.7wkg     
+        Power
+B  34   
+Alex Woodard
+
+7:55 
+259w  3.9wkg     
+        Power
+B  23   
+Dean Corette
+
+7:56 
+298w  3.8wkg     
+        Power
+B  15   
+Matt Barkway
+
+7:58 
+272w  3.8wkg     
+        Power
+B  46   
+Dan Mitchell
+MDV | IG  
+
+8:00 
+263w  3.7wkg     
+        Power
+B  32   
+Reid McGregor
+MGCC  
+
+8:03 
+286w  3.7wkg     
+        Power
+B  31   
+Greg Stewart ___
+
+8:05 
+277w  3.8wkg     
+        Power
+B  55   
+Adam Green
+
+8:06 
+282w  3.6wkg     
+        Power
+B  49   
+Jon Duran
+FZR  
+
+8:06 
+255w  3.8wkg     
+        Power
+B  62   
+Sebastian Linz
+
+8:09 
+268w  3.6wkg     
+        Power
+B  58   
+Simon Bull
 BSRT  
-  
-08:09  
-269w 3.7wkg  
-  Power
-B  59  
-mike dillow  
-  
-07:47  
-258w 4.2wkg  
-  Power
-B  60  
-Hairy Clyde  
+
+8:09 
+269w  3.7wkg     
+        Power
+B  36   
+Brendan Macdonald
+MGCC  
+
+8:09 
+258w  3.6wkg     
+        Power
+B  37   
+Sebastian Mockenhaupt
+ZRG  
+
+8:10 
+280w  3.6wkg     
+        Power
+B  51   
+Henri Guay
+RELENTLESS  
+
+8:14 
+268w  3.5wkg     
+        Power
+B  50   
+Torsten Wambold
+GCA  
+
+8:14 
+247w  3.6wkg     
+        Power
+B  52   
+Steve Roffe
+JBEV  
+
+8:18 
+267w  3.6wkg     
+        Power
+B  42   
+Allen Lopez
+
+8:18 
+303w  3.6wkg     
+        Power
+B  60   
+Hairy Clyde
 MVCC  
-  
-08:19  
-279w 3.5wkg  
-  Power
-B  61  
-Robert Kaluza  
-  
-08:20  
-286w 3.6wkg  
-  Power
-B  62  
-Sebastian Linz  
-  
-08:09  
-268w 3.6wkg  
-  Power
-B  63  
-Manu Sanchez  
+
+8:19 
+279w  3.5wkg     
+        Power
+B  56   
+Paul Heffernan
+S2M  
+
+8:19 
+276w  3.4wkg     
+        Power
+B  61   
+Robert Kaluza
+
+8:20 
+286w  3.6wkg     
+        Power
+B  47   
+Andrew Buczkowski
+SWOZR  
+
+8:20 
+260w  3.6wkg     
+        Power
+B  63   
+Manu Sanchez
 PGR  
-  
-08:39  
-251w 3.7wkg  
-  Power
-B  64  
-Luis Almeida [MPViana]  
-MPViana  
-  
-09:09  
-247w 3.4wkg  
-  Power
-B  65  
-Jim Beattie  
-  
-07:36  
-328w 4.6wkg  
-  Power
-B  66  
-Tonnie Meijer5074  
-  
-09:21  
-308w 3.2wkg  
-  Power
-B  67  
-Tania Cedeño  
-[ZZ]  
-  
-10:02  
-229w 2.9wkg  
-  Power
+
+8:39 
+251w  3.7wkg     
+        Power

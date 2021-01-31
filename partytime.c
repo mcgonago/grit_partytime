@@ -215,7 +215,7 @@ void PartyAddAthleteAll(CLI_PARSE_INFO *info, char *name);
 
 static void PartyForceShow(CLI_PARSE_INFO *info);
 static void PartyForceB(CLI_PARSE_INFO *info);
-
+static void PartyWriteResults_common(CLI_PARSE_INFO *pInfo, char *outfile);
 
 int FormattedProper(char *buff)
 {
@@ -2111,8 +2111,7 @@ float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, c
 #endif
 }
 
-
-void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
+void cmd_party_common_inline(CLI_PARSE_INFO *pInfo, int partyMode, char *infile, char *outfile, char *raceName, int raceId)
 {
    int ret;
    char buff[180];
@@ -2124,7 +2123,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    int count = 1;
    int firstAthlete = 1;
    int includeVAM = 0;
-   int raceId = -1;
    int nlMode = NL_REMOVE;
    int goIntoLoop = 0;
    int partyAlreadyOneTime = 0;
@@ -2132,13 +2130,10 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 
    FILE *fp_in;
    FILE *fp_out;
-   char infile[MAX_STRING_SIZE];
-   char outfile[MAX_STRING_SIZE];
 
    char tmp[MAX_STRING_SIZE];
    char tmp2[MAX_STRING_SIZE];
    char tmp3[MAX_STRING_SIZE];
-   char raceName[MAX_STRING_SIZE];
    char tmpName[MAX_STRING_SIZE];
    char updatedLine[MAX_STRING_SIZE];
 
@@ -2182,32 +2177,6 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
    char outStr[MAX_STRING_SIZE];
 
    ColumnReset(pInfo);
-
-   // fp_in = fopen("zwiftpower.txt", "r");
-   sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
-   sprintf(outfile, "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_partytime.txt");
-   sprintf(raceName, "%s", "hooha");
-
-   if ( pInfo->argc > 1)
-   {
-      sprintf(infile, "%s", pInfo->argv[1]);
-   }
-
-   if ( pInfo->argc > 2)
-   {
-      sprintf(outfile, "%s", pInfo->argv[2]);
-   }
-
-   if ( pInfo->argc > 3)
-   {
-      sprintf(raceName, "%s", pInfo->argv[3]);
-   }
-
-   if ( pInfo->argc > 4)
-   {
-      //sprintf(raceId, "%d", pInfo->argv[4]);
-      sscanf(pInfo->argv[4], "%d", &raceId);
-   }
 
    fp_in = fopen(infile, "r");
 
@@ -2899,6 +2868,43 @@ void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
 //   (pInfo->print_fp)("%s", outStr);
    (pInfo->print_fp)("\n\n");
 #endif
+
+}
+
+void cmd_party_common(CLI_PARSE_INFO *pInfo, int partyMode)
+{
+   char infile[MAX_STRING_SIZE];
+   char outfile[MAX_STRING_SIZE];
+   char raceName[MAX_STRING_SIZE];
+
+   int raceId = -1;
+
+   sprintf(infile,  "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_zwift.txt");
+   sprintf(outfile, "%s", "/home/omcgonag/Work/partytime/database/_posts/2020/12/04/Jungle-Circuit-On-A-MTB_results_partytime.txt");
+   sprintf(raceName, "%s", "hooha");
+
+   if ( pInfo->argc > 1)
+   {
+      sprintf(infile, "%s", pInfo->argv[1]);
+   }
+
+   if ( pInfo->argc > 2)
+   {
+      sprintf(outfile, "%s", pInfo->argv[2]);
+   }
+
+   if ( pInfo->argc > 3)
+   {
+      sprintf(raceName, "%s", pInfo->argv[3]);
+   }
+
+   if ( pInfo->argc > 4)
+   {
+      sscanf(pInfo->argv[4], "%d", &raceId);
+   }
+
+   cmd_party_common_inline(pInfo, partyMode, infile, outfile, raceName, raceId);
+
 }
 
 
@@ -5259,25 +5265,16 @@ char *GroupId(char *out, int groupId, int place)
 }
 
 
-static void PartyWriteResults(CLI_PARSE_INFO *pInfo)
+static void PartyWriteResults_common(CLI_PARSE_INFO *pInfo, char *outfile)
 {
    Link_t *ptr;
    TimeLineInfo_t *timeLineInfo;
    TimeLineInfo_t *currInfo;
    char line[MAX_STRING_SIZE];
    char timeString[MAX_STRING_SIZE];
-   char outfile[MAX_STRING_SIZE];
    FILE *fp_out;
    
    int count = 1;
-
-   if (pInfo->argc < 2)
-   {
-      (pInfo->print_fp)("USAGE: %s {filename} \n", pInfo->argv[0]);
-      return;
-   }
-
-   sprintf(outfile, "%s", pInfo->argv[1]);
 
    fp_out = fopen(outfile, "w");
 
@@ -5351,6 +5348,23 @@ static void PartyWriteResults(CLI_PARSE_INFO *pInfo)
    fclose(fp_out);
 }
 
+static void PartyWriteResults(CLI_PARSE_INFO *pInfo)
+{
+   char outfile[MAX_STRING_SIZE];
+   
+   int count = 1;
+
+   if (pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {filename} \n", pInfo->argv[0]);
+      return;
+   }
+
+   sprintf(outfile, "%s", pInfo->argv[1]);
+
+   PartyWriteResults_common(pInfo, outfile);
+}
+
 static const CLI_PARSE_CMD party_write_cmd[] =
 {
    { "results", PartyWriteResults, "write results to a {file}"},
@@ -5373,10 +5387,16 @@ static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
    char outfile[MAX_STRING_SIZE];
    FILE *fp_in;
    FILE *fp_out;
+   FILE *fp_tmp;
    int columnId;
 
+   int raceId = 0;
    int count = 1;
 
+   PartyInit(pInfo);
+   ListReset(pInfo, listTimeLine);
+   ListReset(pInfo, listTimeOrder);
+   numRacesG = 0;
    ColumnReset(pInfo);
 
    if (pInfo->argc < 4)
@@ -5399,6 +5419,7 @@ static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
 
    sprintf(outfile, "%s", pInfo->argv[3]);
 
+#if 0
    fp_out = fopen(outfile, "w");
 
    if (!fp_out)
@@ -5406,10 +5427,34 @@ static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
       (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
       return;
    }
+#endif
+   
+   fp_tmp = fopen("tmp.txt", "w");
+
+   if (!fp_tmp)
+   {
+      (pInfo->print_fp)("INTERNAL ERROR: Could not open tmp.txt\n");
+      return;
+   }
+
 
    /* Test it with an already formatted file */
    
-   ColumnizeResults(pInfo, infile, columnId, OUTPUT_MODE_CONVERT, fp_out);
+//   ColumnizeResults(pInfo, infile, columnId, OUTPUT_MODE_CONVERT, fp_out);
+
+   ColumnizeResults(pInfo, infile, columnId, OUTPUT_MODE_CONVERT, fp_tmp);
+
+   /* Now, convert tmp.txt into an ORDERED list of results !!! */
+
+   /* Do normal processing/ordering of "kom" results */
+   // cmd_party_kom_and_sprints(pInfo);
+
+   cmd_party_common_inline(pInfo, PARTY_KOM_SPRINTS, "tmp.txt", "tmp.md", "race1", raceId);
+
+   cmd_party_show_common(pInfo, SHOW_TIME);
+
+   /* Now, write that out */
+   PartyWriteResults_common(pInfo, outfile);
 
 #if 0
    ptr = (Link_t *)listTimeOrder->head;
@@ -5475,8 +5520,8 @@ static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
 
 #endif
 
-   fclose(fp_out);
    fclose(fp_in);
+   fclose(fp_tmp);
 
 }
 
