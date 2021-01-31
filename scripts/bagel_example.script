@@ -1,0 +1,17 @@
+party set max 35
+#party set bestof 2
+#party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md kom_r 0
+#party kom database/_posts/2021/01/05/2021-01-05-Another-trip-up-the-Box-kom.txt test.md kom_f 1
+#party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-23rd-kom.txt test.md 23rd 2
+#party kom database/_posts/2020/12/15/2020-12-15-Smack-Down-On-The-Volcano_kom.txt test.md volcano 3
+#party kom database/_posts/2020/11/10/2020-11-10-Richmond_kom.txt test.md titan_r 4
+#party kom database/_posts/2021/01/08/2021-01-08-EPIC-KOM-was-epic-kom.txt test.md titan_f 5
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md kom_r 0
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md kom_f 1
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md 23rd 2
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md volcano 3
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md titan_r 4
+party kom database/_posts/2021/01/26/2021-01-26-Richmond-Libby-23rd-fun-in-the-sun-libby-kom.txt test.md titan_f 5
+party set calendar on
+party richmond
+quit

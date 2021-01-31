@@ -1,5 +1,7 @@
 #!/bin/bash
 set -x
+./partytime -s scripts/bagel_create.script > bagel_create.rslt; diff bagel_create.rslt ./unittest/bagel_create.rslt
+./partytime -s scripts/bagel_report.script > bagel_report.rslt; diff bagel_report.rslt ./unittest/bagel_report.rslt
 ./scripts/column_kom_sprints.sh > column_kom_sprints.rslt; diff column_kom_sprints.rslt ./unittest/column_kom_sprints.rslt
 ./scripts/column_following.sh > column_following.rslt; diff column_following.rslt ./unittest/column_following.rslt
 ./scripts/column_results.sh > column_results.rslt; diff column_results.rslt ./unittest/column_results.rslt
