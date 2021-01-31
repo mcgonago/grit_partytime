@@ -12,6 +12,12 @@ Sudbaden Racing TEAM
 2:05 
 420w  5.3wkg     
         Power
+B  65   
+Jim Beattie
+
+2:06 
+384w  5.4wkg     
+        Power
 B  4   
 Gareth Kirkwood
 Team Madigan  
@@ -117,7 +123,7 @@ BSRT
         Power
 B  46   
 Dan Mitchell
-MDV | IG  
+MDV, IG
 
 2:29 
 288w  4.0wkg     
@@ -415,4 +421,24 @@ MGCC
 
 2:52 
 275w  3.6wkg     
+        Power
+B  66   
+Tonnie Meijer
+
+3:03 
+313w  3.2wkg     
+        Power
+B  64   
+Luis Almeida
+MPViana  
+
+3:07 
+234w  3.2wkg     
+        Power
+B  67   
+Tania Cede__o
+[ZZ]  
+
+3:21 
+227w  2.9wkg     
         Power

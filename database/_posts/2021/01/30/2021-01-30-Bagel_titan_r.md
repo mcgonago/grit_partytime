@@ -42,7 +42,7 @@
  42  Steve Roffe  JBEV    2:00      298w    4.0
  43  Reid McGregor  MGCC    2:00      319w    4.1
  44  Kenny Scott  -  2:00      283w    4.2
- 45  Dan Mitchell  MDV | IG    2:01      288w    4.0
+ 45  Dan Mitchell  MDV, IG  2:01      288w    4.0
  46  Brendan Macdonald  MGCC    2:01      282w    4.0
  47  Alex Woodard  -  2:01      273w    4.2
  48  tolo fiol  -  2:01      277w    4.1

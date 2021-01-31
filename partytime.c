@@ -199,7 +199,7 @@ Athlete_t athleteGRIT2[MAX_ATHLETES] = {
 };
 
 
-extern void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode, FILE *fp);
+extern void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode, char *infile);
 extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
 extern int TeamGrit(char *name);
 extern int RacedToday(char *name, char *teamName);
@@ -826,6 +826,12 @@ void NameInsert(TimeLineInfo_t *timeLineInfo, char *name)
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
    }
+   else if (strstr(tmp, "Dan Mitchell") != 0)
+   {
+      teamFound = 1;
+      strcpy(timeLineInfo->name, "Dan Mitchell");
+      strcpy(timeLineInfo->team, "MDV, IG");
+   }
    else if (strstr(tmp, "James Bolze") != 0)
    {
       teamFound = 1;
@@ -1154,6 +1160,11 @@ void TeamNameCleanup(TimeLineInfo_t *timeLineInfo, char *team)
    {
       strcpy(timeLineInfo->name, "John Jeffries");
       strcpy(timeLineInfo->team, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(timeLineInfo->name, "Dan Mitchell") != 0)
+   {
+      strcpy(timeLineInfo->name, "Dan Mitchell");
+      strcpy(timeLineInfo->team, "MDV, IG");
    }
    else if (strstr(timeLineInfo->name, "James Bolze") != 0)
    {
@@ -5385,7 +5396,7 @@ static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
    char timeString[MAX_STRING_SIZE];
    char infile[MAX_STRING_SIZE];
    char outfile[MAX_STRING_SIZE];
-   FILE *fp_in;
+   char tmpfile[MAX_STRING_SIZE];
    FILE *fp_out;
    FILE *fp_tmp;
    int columnId;
@@ -5393,11 +5404,13 @@ static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
    int raceId = 0;
    int count = 1;
 
+#if 1
    PartyInit(pInfo);
    ListReset(pInfo, listTimeLine);
    ListReset(pInfo, listTimeOrder);
    numRacesG = 0;
    ColumnReset(pInfo);
+#endif
 
    if (pInfo->argc < 4)
    {
@@ -5407,121 +5420,28 @@ static void PartyConvertInline(CLI_PARSE_INFO *pInfo)
 
    sprintf(infile, "%s", pInfo->argv[1]);
 
-   fp_in = fopen(infile, "r");
-
-   if (!fp_in)
-   {
-      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", infile);
-      return;
-   }
-
    columnId = cliCharToUnsignedLong(pInfo->argv[2]);
 
    sprintf(outfile, "%s", pInfo->argv[3]);
-
-#if 0
-   fp_out = fopen(outfile, "w");
-
-   if (!fp_out)
-   {
-      (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
-      return;
-   }
-#endif
-   
-   fp_tmp = fopen("tmp.txt", "w");
-
-   if (!fp_tmp)
-   {
-      (pInfo->print_fp)("INTERNAL ERROR: Could not open tmp.txt\n");
-      return;
-   }
-
 
    /* Test it with an already formatted file */
    
 //   ColumnizeResults(pInfo, infile, columnId, OUTPUT_MODE_CONVERT, fp_out);
 
-   ColumnizeResults(pInfo, infile, columnId, OUTPUT_MODE_CONVERT, fp_tmp);
+   sprintf(tmpfile, "tmp.txt");
+   ColumnizeResults(pInfo, infile, columnId, OUTPUT_MODE_CONVERT, tmpfile);
 
    /* Now, convert tmp.txt into an ORDERED list of results !!! */
 
    /* Do normal processing/ordering of "kom" results */
-   // cmd_party_kom_and_sprints(pInfo);
 
    cmd_party_common_inline(pInfo, PARTY_KOM_SPRINTS, "tmp.txt", "tmp.md", "race1", raceId);
+   // cmd_party_common_inline(pInfo, PARTY_KOM_SPRINTS, tmpfile, tmpmd, race1, raceId);
 
    cmd_party_show_common(pInfo, SHOW_TIME);
 
    /* Now, write that out */
    PartyWriteResults_common(pInfo, outfile);
-
-#if 0
-   ptr = (Link_t *)listTimeOrder->head;
-
-   if (ptr->next == NULL)
-   {
-      (pInfo->print_fp)("INFO: Could not write results, results not yet calculated\n");
-      return;
-   }
-
-   /*
-    *
-    * A       7         <===== WE MUST HAVE his category?                  timeLineInfo->group[0]
-    * Gabriel Mathisen  <===== NAME                                        timeLineInfo->name[0]
-    * GRIT              <===== TEAM                                        timeLineInfo->teamName[0]
-    *         
-    * 01:03          <====== TOTAL TIME                                    timeLineInfo->totalTime[0]
-    * 558w 9.0wkg    <====== WE MUST have this? WE BETTER HAVE THIS!!!     timeLineInfo->wattLine[0];
-    *         Power                                                        
-    * A       4       
-    * Daniel Sutherland (BMTR_A2)
-    * TEAM BMTR
-    *         
-    * 01:08
-    * 549w 7.8wkg
-    *         Power
-    *
-    */
-    
-   while (ptr->next != NULL)
-   {
-      currInfo = (TimeLineInfo_t *)ptr->currentObject;
-
-      timeLineInfo = (TimeLineInfo_t *)currInfo->me;
-
-//      GroupId(line, timeLineInfo->groupId, count);
-//      fprintf(fp_out, "%s\n", line);
-      fprintf(fp_out, "%s\n", timeLineInfo->groupLine);
-
-      count++;
-
-      fprintf(fp_out, "%s\n", timeLineInfo->name);
-
-      if (timeLineInfo->team[0] == '-')
-      {
-         fprintf(fp_out, "\n");
-      }
-      else
-      {
-         fprintf(fp_out, "%s\n", timeLineInfo->team);
-         fprintf(fp_out, "\n");
-      }
-
-      FormatTime3(pInfo, timeLineInfo, numRacesG, timeString, 1);
-
-      fprintf(fp_out, "%s \n", timeString);
-      fprintf(fp_out, "%s \n", timeLineInfo->wattLine);
-
-      fprintf(fp_out, "        Power\n");
-
-      ptr = ptr->next;
-   }
-
-#endif
-
-   fclose(fp_in);
-   fclose(fp_tmp);
 
 }
 

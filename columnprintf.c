@@ -1192,15 +1192,19 @@ void ColumnizeFollowing(CLI_PARSE_INFO *pInfo, char *fname)
 
    PrintTable(pInfo);
 
+   fflush(fp_in);
+   fsync(fileno(fp_in));
+
    fclose(fp_in);
 }
 
-void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode, FILE *fp)
+void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode, char *outfile)
 {
    int i;
    int outIdx = 0;
 
    FILE *fp_in;
+   FILE *fp_out;
    char tmp[MAX_STRING_SIZE];
    char teamName[MAX_STRING_SIZE];
    char teamName2[MAX_STRING_SIZE];
@@ -1225,7 +1229,18 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
    int trigger = 0;
    int firstAthlete = 1;
    int columnIdx = 1;
-   
+
+   if (mode == OUTPUT_MODE_CONVERT)
+   {
+      fp_out = fopen(outfile, "w");
+
+      if (!fp_out)
+      {
+         (pInfo->print_fp)("INTERNAL ERROR: Could not open %s\n", outfile);
+         return;
+      }
+   }
+
    fp_in = fopen(fname, "r");
 
    if (!fp_in)
@@ -1268,7 +1283,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
          if (mode == OUTPUT_MODE_CONVERT)
          {
-            fprintf(fp, "%s\n", tmp);
+            fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
             (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1289,7 +1304,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
       {
          if (mode == OUTPUT_MODE_CONVERT)
          {
-            fprintf(fp, "%s\n", tmp);
+            fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
             (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1311,7 +1326,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
          if (mode == OUTPUT_MODE_CONVERT)
          {
-            fprintf(fp, "%s\n", tmp);
+            fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
             (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1343,7 +1358,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
             if (mode == OUTPUT_MODE_CONVERT)
             {
-               fprintf(fp, "%s\n", tmp);
+               fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1382,7 +1397,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
          {
             if (mode == OUTPUT_MODE_CONVERT)
             {
-               fprintf(fp, "%s\n", tmp);
+               fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1443,7 +1458,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
                {
                   if (mode == OUTPUT_MODE_CONVERT)
                   {
-                     fprintf(fp, "%s\n", tmp);
+                     fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                      (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1517,7 +1532,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
          if (mode == OUTPUT_MODE_CONVERT)
          {
-            fprintf(fp, "%s\n", tmp);
+            fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
             (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1541,7 +1556,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
             if (mode == OUTPUT_MODE_CONVERT)
             {
-               fprintf(fp, "%s\n", tmp);
+               fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1563,7 +1578,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
             if (mode == OUTPUT_MODE_CONVERT)
             {
-               fprintf(fp, "%s\n", tmp);
+               fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1587,7 +1602,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
             if (mode == OUTPUT_MODE_CONVERT)
             {
-               fprintf(fp, "%s\n", tmp);
+               fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1630,7 +1645,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
                if (mode == OUTPUT_MODE_CONVERT)
                {
-                  fprintf(fp, "%s\n", tmp);
+                  fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1652,7 +1667,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
                if (mode == OUTPUT_MODE_CONVERT)
                {
-                  fprintf(fp, "%s\n", tmp);
+                  fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1684,8 +1699,8 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 
                if (mode == OUTPUT_MODE_CONVERT)
                {
-//                  fprintf(fp, "%s\n", tmp);
-                  fprintf(fp, "  Power\n", tmp);
+//                  fprintf(fp_out, "%s\n", tmp);
+                  fprintf(fp_out, "  Power\n", tmp);
 
 #ifdef DEBUG2
                (pInfo->print_fp)("FILE: %s\n", tmp);
@@ -1707,7 +1722,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 #if 0
                if (mode == OUTPUT_MODE_CONVERT)
                {
-                  fprintf(fp, "%s\n", tmp);
+                  fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                   (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1731,7 +1746,7 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
 #if 0
                      if (mode == OUTPUT_MODE_CONVERT)
                      {
-                        fprintf(fp, "%s\n", tmp);
+                        fprintf(fp_out, "%s\n", tmp);
 #ifdef DEBUG2
                         (pInfo->print_fp)("FILE: %s\n", tmp);
 #endif
@@ -1749,6 +1764,13 @@ void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode
       } /* trigger == 1 */
    } /* while */
 
+   if (mode == OUTPUT_MODE_CONVERT)
+   {
+      fflush(fp_out);
+      fsync(fileno(fp_out));
+      fclose(fp_out);
+   }
+   
    fclose(fp_in);
 
    PrintTable(pInfo);
@@ -1887,6 +1909,12 @@ void NameInsertLocal(char *out, char *name, char *teamOut)
       teamFound = 1;
       strcpy(out, "John Jeffries");
       strcpy(teamOut, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(tmp, "Dan Mitchell") != 0)
+   {
+      teamFound = 1;
+      strcpy(out, "Dan Mitchell");
+      strcpy(teamOut, "MDV, IG");
    }
    else if (strstr(tmp, "Guido Kramer Leymen") != 0)
    {
@@ -2151,6 +2179,11 @@ void TeamNameCleanupLocal(char *nameOut, char *name, char *team, char *teamOut)
    {
       strcpy(nameOut, "John Jeffries");
       strcpy(teamOut, "[AA Bikes][GRIT]");
+   }
+   else if (strstr(name, "Dan Mitchell") != 0)
+   {
+      strcpy(nameOut, "Dan Mitchell");
+      strcpy(teamOut, "MDV, IG");
    }
    else if (strstr(name, "Guido Kramer Leymen") != 0)
    {

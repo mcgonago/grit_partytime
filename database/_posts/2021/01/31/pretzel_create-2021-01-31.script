@@ -1,0 +1,5 @@
+party convert inline database/_posts/2021/01/31/2021-01-31-Pretzel.txt 1 database/_posts/2021/01/31/2021-01-31-Pretzel_kom_rev.txt
+party convert inline database/_posts/2021/01/31/2021-01-31-Pretzel.txt 2 database/_posts/2021/01/31/2021-01-31-Pretzel_kom_for.txt
+party convert inline database/_posts/2021/01/31/2021-01-31-Pretzel.txt 5 database/_posts/2021/01/31/2021-01-31-Pretzel_epic_for.txt
+party convert inline database/_posts/2021/01/31/2021-01-31-Pretzel.txt 6 database/_posts/2021/01/31/2021-01-31-Pretzel_epic_rev.txt
+quit                                                                                                         

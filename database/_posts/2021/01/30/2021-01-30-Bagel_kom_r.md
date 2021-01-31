@@ -34,7 +34,7 @@
  34  Reid McGregor  MGCC    4:16      332w    4.3
  35  Steve Bekker  DIRT    4:17      280w    3.9
  36  Jonathan Mol  Team Italy    4:17      249w    3.9
- 37  Dan Mitchell  MDV | IG    4:18      271w    3.8
+ 37  Dan Mitchell  MDV, IG  4:18      271w    3.8
  38  marc c  -  4:19      241w    3.7
  39  Greg Stewart  ___    4:19      276w    3.8
  40  tolo fiol  -  4:19      256w    3.8

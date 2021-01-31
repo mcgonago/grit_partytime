@@ -43,7 +43,7 @@
  43  Alex Woodard  -  7:55      259w    3.9
  44  Dean Corette  -  7:56      298w    3.8
  45  Matt Barkway  -  7:58      272w    3.8
- 46  Dan Mitchell  MDV | IG    8:00      263w    3.7
+ 46  Dan Mitchell  MDV, IG  8:00      263w    3.7
  47  Reid McGregor  MGCC    8:03      286w    3.7
  48  Greg Stewart  ___    8:05      277w    3.8
  49  Adam Green  -  8:06      282w    3.6

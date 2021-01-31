@@ -50,7 +50,7 @@
  50  Ed Jablonski  KBS/LSV    4:38      247w    3.8
  51  Sebastian Linz  -  4:40      267w    3.6
  52  mike dillow  -  4:40      249w    4.0
- 53  Dan Mitchell  MDV | IG    4:40      252w    3.5
+ 53  Dan Mitchell  MDV, IG  4:40      252w    3.5
  54  Martin Reynolds Snr AWCC  AWCC    4:40      248w    3.5
  55  Matt Barkway  -  4:40      267w    3.7
  56  Sebastian Mockenhaupt  ZRG    4:41      280w    3.6

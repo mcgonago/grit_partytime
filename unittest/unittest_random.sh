@@ -1,7 +1,9 @@
 #!/bin/bash
 set -x
-./partytime -s scripts/bagel_create.script > bagel_create.rslt; diff bagel_create.rslt ./unittest/bagel_create.rslt
-./partytime -s scripts/bagel_report.script > bagel_report.rslt; diff bagel_report.rslt ./unittest/bagel_report.rslt
+./partytime -s ./database/_posts/2021/01/31/pretzel_create-2021-01-31.script > pretzel_create-2021-01-31.rslt; diff pretzel_create-2021-01-31.rslt ./unittest/pretzel_create-2021-01-31.rslt
+./partytime -s ./database/_posts/2021/01/31/pretzel_report-2021-01-31.script > pretzel_report-2021-01-31.rslt; diff pretzel_report-2021-01-31.rslt ./unittest/pretzel_report-2021-01-31.rslt
+./partytime -s ./database/_posts/2021/01/30/bagel_create-2021-01-30.script > bagel_create-2021-01-30.rslt; diff bagel_create-2021-01-30.rslt ./unittest/bagel_create-2021-01-30.rslt
+./partytime -s ./database/_posts/2021/01/30/bagel_report-2021-01-30.script > bagel_report-2021-01-30.rslt; diff bagel_report-2021-01-30.rslt ./unittest/bagel_report-2021-01-30.rslt
 ./scripts/column_kom_sprints.sh > column_kom_sprints.rslt; diff column_kom_sprints.rslt ./unittest/column_kom_sprints.rslt
 ./scripts/column_following.sh > column_following.rslt; diff column_following.rslt ./unittest/column_following.rslt
 ./scripts/column_results.sh > column_results.rslt; diff column_results.rslt ./unittest/column_results.rslt

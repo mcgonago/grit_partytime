@@ -1,8 +1,10 @@
 #party convert inline bagel.txt 1 bagel_reverse.txt
-party convert inline bagel_all.txt 1 bagel_reverse.txt
+#party convert inline bagel_all.txt 1 bagel_reverse.txt
 party convert inline bagel_all.txt 2 bagel_reverse.txt
-party convert inline bagel_all.txt 3 bagel_reverse.txt
-party convert inline bagel_all.txt 4 bagel_reverse.txt
-party convert inline bagel_all.txt 5 bagel_reverse.txt
-party convert inline bagel_all.txt 6 bagel_reverse.txt
+#party convert inline bagel_all.txt 3 bagel_reverse.txt
+#party convert inline bagel_all.txt 4 bagel_reverse.txt
+#party convert inline bagel_all.txt 5 bagel_reverse.txt
+#party convert inline bagel_all.txt 6 bagel_reverse.txt
+#party convert inline database/_posts/2021/01/31/2021-01-31-Pretzel.txt 2 database/_posts/2021/01/30/2021-01-30-Pretzel_kom_for.txt
+#party convert inline pretzel.txt 1 pretzel_kom_for.txt
 quit
