@@ -1,0 +1,8 @@
+#party set max 68
+#party set bestof 2
+party kom database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-libby.txt database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-libby.txt libby 0
+party kom database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd.txt database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd.txt 23rd 1
+party set calendar on
+#party richmond
+party show
+quit

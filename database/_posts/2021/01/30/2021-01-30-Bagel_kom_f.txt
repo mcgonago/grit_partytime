@@ -2,443 +2,443 @@ B  13
 Stratton Townley
 [JUUL]    
 
-2:02 
+2:02.000 
 412w  5.4wkg     
         Power
 B  1    
 jens fadsagg
 Sudbaden Racing TEAM  
 
-2:05 
+2:05.000 
 420w  5.3wkg     
         Power
 B  65   
 Jim Beattie
 
-2:06 
+2:06.000 
 384w  5.4wkg     
         Power
 B  4   
 Gareth Kirkwood
 Team Madigan  
 
-2:10 
+2:10.000 
 335w  4.9wkg     
         Power
 B  53   
 John Donovan
 
-2:11 
+2:11.000 
 349w  4.8wkg     
         Power
 B  40   
 Guillaume Lafleur
 leMETIER
 
-2:11 
+2:11.000 
 377w  4.8wkg     
         Power
 B  9   
 Pete Younghusband
 Race3R  
 
-2:11 
+2:11.000 
 343w  5.0wkg     
         Power
 B  2   
 John Franklin
 
-2:11 
+2:11.000 
 377w  5.0wkg     
         Power
 B  6   
 G AigreCymru
 HWCC  
 
-2:12 
+2:12.000 
 313w  5.0wkg     
         Power
 B  33   
 ALTAN SIRIN
 
-2:18 
+2:18.000 
 293w  4.4wkg     
         Power
 B  7   
 Jonathan Lasker
 CRCA/NYCC  
 
-2:18 
+2:18.000 
 281w  4.7wkg     
         Power
 B  23   
 Dean Corette
 
-2:24 
+2:24.000 
 327w  4.2wkg     
         Power
 B  16   
 Richard Harrison
 (DMRC/BCEM)    
 
-2:25 
+2:25.000 
 300w  4.3wkg     
         Power
 B  30   
 tolo fiol
 
-2:26 
+2:26.000 
 273w  4.0wkg     
         Power
 B  11   
 David Valencia S
 
-2:26 
+2:26.000 
 257w  4.4wkg     
         Power
 B  19   
 Mark Stanley
 
-2:27 
+2:27.000 
 287w  4.1wkg     
         Power
 B  28   
 Kenny Scott
 
-2:28 
+2:28.000 
 283w  4.2wkg     
         Power
 B  8   
 colin elgie
 
-2:28 
+2:28.000 
 285w  4.3wkg     
         Power
 B  58   
 Simon Bull
 BSRT  
 
-2:29 
+2:29.000 
 292w  4.0wkg     
         Power
 B  46   
 Dan Mitchell
 MDV, IG
 
-2:29 
+2:29.000 
 288w  4.0wkg     
         Power
 B  18   
 Ed Jablonski
 KBS/LSV  
 
-2:29 
+2:29.000 
 264w  4.0wkg     
         Power
 B  14   
 Chris Harris
 MGCC  
 
-2:29 
+2:29.000 
 345w  4.1wkg     
         Power
 B  24   
 Calum McVie
 TORVELO  
 
-2:30 
+2:30.000 
 292w  4.1wkg     
         Power
 B  22   
 Hans Ulsrud
 
-2:31 
+2:31.000 
 306w  4.0wkg     
         Power
 B  5   
 Marcel Guay
 MG-O  
 
-2:33 
+2:33.000 
 263w  3.9wkg     
         Power
 B  27   
 Arturo Petrucci
 (BrxHellZR)    
 
-2:34 
+2:34.000 
 247w  3.9wkg     
         Power
 B  26   
 Jonathan Mol
 Team Italy  
 
-2:34 
+2:34.000 
 256w  4.0wkg     
         Power
 B  3   
 mark pinfield
 ECT cork  
 
-2:35 
+2:35.000 
 301w  4.0wkg     
         Power
 B  29   
 Steve Bekker
 DIRT  
 
-2:37 
+2:37.000 
 279w  3.8wkg     
         Power
 B  34   
 Alex Woodard
 
-2:38 
+2:38.000 
 257w  3.9wkg     
         Power
 B  17   
 Andy Sutton
 
-2:39 
+2:39.000 
 291w  3.7wkg     
         Power
 B  25   
 Luke Elton
 GRIT  
 
-2:42 
+2:42.000 
 245w  3.8wkg     
         Power
 B  21   
 Martin Reynolds Snr AWCC
 AWCC  
 
-2:42 
+2:42.000 
 255w  3.6wkg     
         Power
 B  15   
 Matt Barkway
 
-2:42 
+2:42.000 
 263w  3.7wkg     
         Power
 B  62   
 Sebastian Linz
 
-2:43 
+2:43.000 
 268w  3.6wkg     
         Power
 B  37   
 Sebastian Mockenhaupt
 ZRG  
 
-2:43 
+2:43.000 
 285w  3.6wkg     
         Power
 B  48   
 Andy Dryburgh
 
-2:44 
+2:44.000 
 233w  3.6wkg     
         Power
 B  38   
 Gabriel Mathisen
 [VEGAN][GRIT]
 
-2:44 
+2:44.000 
 229w  3.7wkg     
         Power
 B  50   
 Torsten Wambold
 GCA  
 
-2:45 
+2:45.000 
 252w  3.7wkg     
         Power
 B  44   
 Joe Woodman UoLCC/ARCC
 albaRosa CC  
 
-2:46 
+2:46.000 
 229w  3.7wkg     
         Power
 B  31   
 Greg Stewart ___
 
-2:46 
+2:46.000 
 269w  3.7wkg     
         Power
 B  20   
 Matt Ray
 Race3R  
 
-2:47 
+2:47.000 
 252w  3.5wkg     
         Power
 B  57   
 Richard Bussell
 
-2:48 
+2:48.000 
 280w  3.7wkg     
         Power
 B  41   
 Alan Purves
 GTC  
 
-2:48 
+2:48.000 
 255w  3.8wkg     
         Power
 B  60   
 Hairy Clyde
 MVCC  
 
-2:49 
+2:49.000 
 271w  3.4wkg     
         Power
 B  51   
 Henri Guay
 RELENTLESS  
 
-2:49 
+2:49.000 
 270w  3.5wkg     
         Power
 B  36   
 Brendan Macdonald
 MGCC  
 
-2:49 
+2:49.000 
 245w  3.5wkg     
         Power
 B  63   
 Manu Sanchez
 PGR  
 
-2:50 
+2:50.000 
 281w  3.5wkg     
         Power
 B  56   
 Paul Heffernan
 S2M  
 
-2:50 
+2:50.000 
 281w  3.5wkg     
         Power
 B  54   
 Gary Walker
 BRC  
 
-2:50 
+2:50.000 
 238w  3.6wkg     
         Power
 B  42   
 Allen Lopez
 
-2:50 
+2:50.000 
 339w  4.0wkg     
         Power
 B  12   
 Dan Donovan
 KISS RT  
 
-2:50 
+2:50.000 
 273w  3.6wkg     
         Power
 B  10   
 Anthony Rusch
 The Dead Parrots  
 
-2:50 
+2:50.000 
 265w  3.5wkg     
         Power
 B  61   
 Robert Kaluza
 
-2:51 
+2:51.000 
 274w  3.5wkg     
         Power
 B  59   
 mike dillow
 
-2:51 
+2:51.000 
 253w  4.1wkg     
         Power
 B  47   
 Andrew Buczkowski
 SWOZR  
 
-2:51 
+2:51.000 
 272w  3.7wkg     
         Power
 B  45   
 Keith Moore
 
-2:51 
+2:51.000 
 277w  3.7wkg     
         Power
 B  43   
 Chris Shaw
 (DIRT)    
 
-2:51 
+2:51.000 
 264w  3.6wkg     
         Power
 B  39   
 marc c
 
-2:51 
+2:51.000 
 234w  3.6wkg     
         Power
 B  55   
 Adam Green
 
-2:52 
+2:52.000 
 276w  3.5wkg     
         Power
 B  52   
 Steve Roffe
 JBEV  
 
-2:52 
+2:52.000 
 271w  3.7wkg     
         Power
 B  49   
 Jon Duran
 FZR  
 
-2:52 
+2:52.000 
 237w  3.5wkg     
         Power
 B  35   
 Rob Campbell
 BSCC  
 
-2:52 
+2:52.000 
 224w  3.5wkg     
         Power
 B  32   
 Reid McGregor
 MGCC  
 
-2:52 
+2:52.000 
 275w  3.6wkg     
         Power
 B  66   
 Tonnie Meijer
 
-3:03 
+3:03.000 
 313w  3.2wkg     
         Power
 B  64   
 Luis Almeida
 MPViana  
 
-3:07 
+3:07.000 
 234w  3.2wkg     
         Power
 B  67   
 Tania Cede__o
 [ZZ]  
 
-3:21 
+3:21.000 
 227w  2.9wkg     
         Power

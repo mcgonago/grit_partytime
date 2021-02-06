@@ -1,0 +1,11 @@
+party set max 68
+party set bestof 2
+party kom database/_posts/2021/01/30/2021-01-30-Bagel_titan_f.txt foo.md titan_f 0
+party kom database/_posts/2021/01/30/2021-01-30-Bagel_kom_f.txt foo.md kom_f 1    
+party kom database/_posts/2021/01/30/2021-01-30-Bagel_volcano.txt foo.md volcano 2
+party kom database/_posts/2021/01/30/2021-01-30-Bagel_titan_r.txt foo.md titan_r 3
+party kom database/_posts/2021/01/30/2021-01-30-Bagel_kom_r.txt foo.md kom_r 4
+party set calendar on
+#party richmond
+party show
+quit

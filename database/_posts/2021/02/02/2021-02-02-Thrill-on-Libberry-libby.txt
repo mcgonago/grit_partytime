@@ -1,0 +1,196 @@
+A  6   
+Rob Fullerton
+GRIT  
+
+1:11.000 
+521w  6.9wkg     
+        Power
+A  2   
+Steve Tappan
+[GRIT]
+
+1:11.000 
+515w  7.6wkg     
+        Power
+A  3   
+Derek Sawyer
+[GRIT][Rippers]
+
+1:12.000 
+538w  7.2wkg     
+        Power
+B  20   
+Shaun Corbin
+[GRIT][DIRT]
+
+1:13.000 
+447w  6.9wkg     
+        Power
+A  11   
+Owen McGonagle
+GRIT  
+
+1:13.000 
+468w  6.9wkg     
+        Power
+A  4   
+Tak Ina
+[JETT][GRIT]
+
+1:13.000 
+369w  7.0wkg     
+        Power
+A  7   
+Greg Langman
+DIRT
+
+1:14.000 
+472w  6.7wkg     
+        Power
+A  10   
+Luke Elton
+GRIT  
+
+1:15.000 
+420w  6.5wkg     
+        Power
+A  1    
+R Fukamura/NICO OZ
+NICO OZ  
+
+1:15.000 
+391w  6.9wkg     
+        Power
+B  16   
+M Shinall
+TTE  
+
+1:17.000 
+460w  6.6wkg     
+        Power
+A  5   
+Kazuki Takamura
+
+1:17.000 
+424w  6.5wkg     
+        Power
+A  9   
+jong han
+
+1:21.000 
+453w  5.9wkg     
+        Power
+B  14   
+Dax Nelson
+!DUX! TPA-FLA HERD
+
+1:27.000 
+447w  5.5wkg     
+        Power
+B  13   
+yasuhiro takeuchi
+JETT  
+
+1:28.000 
+314w  5.6wkg     
+        Power
+B  26   
+J B
+Herd Of Kookaburras  
+
+1:29.000 
+437w  5.5wkg     
+        Power
+B  18   
+Alan Brannan
+GRIT  
+
+1:34.000 
+354w  5.0wkg     
+        Power
+B  15   
+Daniel Florez
+Team Type 1  
+
+1:34.000 
+322w  5.0wkg     
+        Power
+A  8   
+James Bolze
+CVC RACING
+
+1:35.000 
+328w  5.0wkg     
+        Power
+B  19   
+Steven Allington
+
+1:37.000 
+406w  4.6wkg     
+        Power
+B  17   
+c. Jopling
+(Stage1)    
+
+1:37.000 
+396w  4.6wkg     
+        Power
+B  21   
+Steve Bekker
+DIRT  
+
+1:39.000 
+336w  4.6wkg     
+        Power
+B  23   
+Doug Cowperthwaite
+TeamODZ  
+
+1:40.000 
+308w  4.7wkg     
+        Power
+B  22   
+Kaz Oni
+
+1:41.000 
+267w  4.6wkg     
+        Power
+B  25   
+Jeff Bratteson
+DIRT  
+
+1:43.000 
+399w  4.4wkg     
+        Power
+B  24   
+Lars Torup
+
+1:43.000 
+317w  4.4wkg     
+        Power
+B  27   
+Ichigo Tamagoya___Euroad___
+
+1:50.000 
+242w  4.1wkg     
+        Power
+B  28   
+Anne Whittingham
+Valhalla  
+
+2:01.000 
+241w  4.0wkg     
+        Power
+B  29   
+. Supermankenna
+Cycling Ireland  
+
+2:32.000 
+211w  3.0wkg     
+        Power
+A  12   
+Craig Jenkins
+
+2:48.000 
+208w  2.8wkg     
+        Power

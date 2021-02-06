@@ -1992,10 +1992,15 @@ float FormatTimeCommon(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
    int min;
    int secs;
    int tenths;
-
+   float tenthsf;
+   
    if (((ptr = strstr(in, ":")) != NULL) && ((ptr = strstr(in, ".")) == NULL))
    {
-      if (f >= 0.0)
+      if (f >= LOWEST_TIME)
+      {
+         sprintf(out, "0:00");
+      }
+      else if (f >= 0.0)
       {
          min = (int)(f / 60.0);
          secs = (int)f - (min * 60);
@@ -2011,12 +2016,16 @@ float FormatTimeCommon(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
    }
    else
    {
-#if 1
-      sprintf(out, "%4.2f", f);
+#if 0
+      sprintf(out, "%5.3f", f);
 #else
       if (f >= 60.0)
       {
-         if (f >= 0.0)
+         if (f >= LOWEST_TIME)
+         {
+            sprintf(out, "0:00");
+         }
+         else if (f >= 0.0)
          {
 //            min = (int)(f / 60.0);
             min = (int)(f / 60.0);
@@ -2040,10 +2049,13 @@ float FormatTimeCommon(CLI_PARSE_INFO *pInfo, float f, char *out, char *in)
       else
       {
          secs = (int)f;
-         tenths = f - secs;
+         tenthsf = f - (float)secs;
+         tenthsf *= 1000;
+         tenths = (int)tenthsf;
+
          // sprintf(out, "00:%02d:%3d", secs, tenths);
          // sprintf(out, "%5.3f", f);
-         sprintf(out, "%d:%d", secs, (int)tenths);
+         sprintf(out, "%d.%03d", secs, (int)tenths);
       }
 #endif
    }
@@ -2068,25 +2080,31 @@ float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, c
    char *ptr;
    int min;
    int secs;
-   float tenths;
+   int tenths;
+   float tenthsf;
    float f = timeLineInfo->race[id].time.f;
 
 #if 0
-   sprintf(out, "%4.2f", f);
+   sprintf(out, "%5.3f", f);
 #else
    if (f >= 60.0)
    {
-      if (f >= 0.0)
+      if (f >= LOWEST_TIME)
+      {
+         sprintf(out, "0:00");
+      }
+      else if (f >= 0.0)
       {
 //            min = (int)(f / 60.0);
          min = (int)(f / 60.0);
          secs = (int)f - (min * 60);
-         tenths = f - (float)((min * 60) + secs);
+         tenthsf = f - (float)((min * 60) + secs);
 //         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
-         tenths *= 1000;
+         tenthsf *= 1000;
+         tenths = (int)tenthsf;
          if (clip == 0)
          {
-            sprintf(out, "%d:%02d.%03d", min, secs, (int)tenths);
+            sprintf(out, "%d:%02d.%03d", min, secs, tenths);
          }
          else
          {
@@ -2098,12 +2116,13 @@ float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, c
          f = -1.0 * f;
          min = (int)(f / 60.0);
          secs = (int)f - (min * 60);
-         tenths = f - (float)((min * 60) + secs);
+         tenthsf = f - (float)((min * 60) + secs);
 //         (pInfo->print_fp)("tenths = %f, (%f - ((%d * 60) + %d)\n", tenths, f, min, secs );
-         tenths *= 1000;
+         tenthsf *= 1000;
+         tenths = (int)tenthsf;
          if (clip == 0)
          {
-            sprintf(out, "%d:%02d.%03d", min, secs, (int)tenths);
+            sprintf(out, "%d:%02d.%03d", min, secs, tenthsf);
          }
          else
          {
@@ -2113,11 +2132,24 @@ float FormatTime3(CLI_PARSE_INFO *pInfo, TimeLineInfo_t *timeLineInfo, int id, c
    }
    else
    {
-      secs = (int)f;
-      tenths = f - secs;
+#if 0
+      if ((f == LOWEST_TIME) || (f == 0.0))
+      {
+         secs = 0;
+         tenths = 0;
+      }
+      else
+#endif
+      {
+         secs = (int)f;
+         tenthsf = f - (float)secs;
+         tenthsf *= 1000;
+         tenths = (int)tenthsf;
+      }
+
       // sprintf(out, "00:%02d:%3d", secs, tenths);
       // sprintf(out, "%5.3f", f);
-      sprintf(out, "%d:%d", secs, (int)tenths);
+      sprintf(out, "%d.%03d", secs, (int)tenths);
    }
 #endif
 }
@@ -3408,6 +3440,70 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
    if (mode == SHOW_POINTS)
    {
+// +++owen - spend a little bit to debug - so that course names show up across columns!!!
+#if 0 /* ndef CONSOLE_OUTPUT */
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "#  name   team  ");
+
+      ptr = (Link_t *)listTimeLine->head;
+      while (ptr->next != NULL)
+      {
+         currInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         for (i = 0; i < numRacesG; i++)
+         {
+            if (currInfo->race[i].raceName[0] != '\0')
+            {
+               totalFound += 1;
+            }
+         }
+
+         if (totalFound == numRacesG)
+         {
+            /* Save it up - since it will be in order that was loaded */
+            for (i = 0; i < numRacesG; i++)
+            {
+               outIdx += sprintf(&header[outIdx], "%s  ", currInfo->race[i].raceName);
+            }
+            break;
+         }
+
+         ptr = ptr->next;
+      }
+
+      outIdx += sprintf(&header[outIdx], "best-of-%d  ", partyControl.bestOf);
+      ColumnStore(pInfo, header);
+
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "--  ----   ----  ");
+      for (i = 0; i < numRacesG; i++)
+      {
+         outIdx += sprintf(&header[outIdx], "%s", "-----  ");
+      }
+
+      outIdx += sprintf(&header[outIdx], "%s", "-----  ");
+
+#if 0
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "#  name   team   race1  ");
+      for (i = 1; i < numRacesG; i++)
+      {
+         outIdx += sprintf(&header[outIdx], "race%d  ", (i+1));
+      }
+      outIdx += sprintf(&header[outIdx], "%s", "plc/pts  ");
+      ColumnStore(pInfo, header);
+
+      outIdx = 0;
+      outIdx += sprintf(&header[outIdx], "%s", "-  ----   ----   -----  ");
+      for (i = 1; i <= numRacesG; i++)
+      {
+         outIdx += sprintf(&header[outIdx], "%s", "------  ");
+      }
+#endif
+      ColumnStore(pInfo, header);
+#endif
+
+
 #ifndef CONSOLE_OUTPUT
       outIdx = 0;
       outIdx += sprintf(&header[outIdx], "%s", "#  name   team   race1  ");
@@ -3826,7 +3922,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("  %-3d  **%-32s** %-30s ", count, timeLineInfo->name, timeLineInfo->team);
 #else
-                  outIdx += sprintf(&outStr[outIdx], "%d  **%s**  %s ", count, timeLineInfo->name, timeLineInfo->team);
+// +++owen - fix later?
+//                  outIdx += sprintf(&outStr[outIdx], "%d  **%s**  %s ", count, timeLineInfo->name, timeLineInfo->team);
+                  outIdx += sprintf(&outStr[outIdx], "%d  %s  %s ", count, timeLineInfo->name, timeLineInfo->team);
 #endif
                }
                else
@@ -3856,7 +3954,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 #ifdef CONSOLE_OUTPUT
                   (pInfo->print_fp)("  %-3d  **%-32s** %-30s ", count, timeLineInfo->name, " ");
 #else
-                  outIdx += sprintf(&outStr[outIdx], "  %-3d  **%-32s** %-30s ", count, timeLineInfo->name, " ");
+// +++owen - fix later?
+//                  outIdx += sprintf(&outStr[outIdx], "  %-3d  **%-32s** %-30s ", count, timeLineInfo->name, " ");
+                  outIdx += sprintf(&outStr[outIdx], "  %-3d %-32s %-30s ", count, timeLineInfo->name, " ");
 #endif
                }
                else
@@ -3910,7 +4010,9 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
                   FormatTime(pInfo, timeLineInfo, orderIdx, timeString);
                   if (strstr(timeString, "1000") == NULL)
                   {
-                     outIdx += sprintf(&outStr[outIdx], " **%s** ", timeString);
+// +++owen - fix later?
+//                     outIdx += sprintf(&outStr[outIdx], " **%s** ", timeString);
+                     outIdx += sprintf(&outStr[outIdx], " %s ", timeString);
                   }
                   else
                   {
@@ -5346,7 +5448,7 @@ static void PartyWriteResults_common(CLI_PARSE_INFO *pInfo, char *outfile)
          fprintf(fp_out, "\n");
       }
 
-      FormatTime3(pInfo, timeLineInfo, numRacesG, timeString, 1);
+      FormatTime3(pInfo, timeLineInfo, numRacesG, timeString, 0);
 
       fprintf(fp_out, "%s \n", timeString);
       fprintf(fp_out, "%s \n", timeLineInfo->wattLine);

@@ -2,352 +2,352 @@ B  6
 Peter Schindler
 UNC  
 
-4:09 
+4:09.000 
 322w  4.2wkg     
         Power
 B  2   
 Michael BikeBauer
 NBB  
 
-4:09 
+4:09.000 
 325w  4.5wkg     
         Power
 B  8   
 Andrey Andin
 MGCC  
 
-4:11 
+4:11.000 
 267w  4.0wkg     
         Power
 B  5   
 Ladislav Hojo
 
-4:11 
+4:11.000 
 287w  4.1wkg     
         Power
 B  4   
 Ralf B
 NBB  
 
-4:11 
+4:11.000 
 266w  4.0wkg     
         Power
 B  3   
 HenHoev
 NBB  
 
-4:11 
+4:11.000 
 294w  4.2wkg     
         Power
 B  1    
 Staale Gjelsten
 
-4:11 
+4:11.000 
 306w  4.1wkg     
         Power
 B  14   
 Jose Tajes
 Team GLZ  
 
-4:12 
+4:12.000 
 270w  3.9wkg     
         Power
 B  7   
 Andy Self
 NewburyVelo  
 
-4:12 
+4:12.000 
 243w  4.1wkg     
         Power
 B  13   
 Hiromichi Kazuki
 
-4:17 
+4:17.000 
 235w  3.9wkg     
         Power
 B  9   
 Chris Lamb
 UNC  
 
-4:17 
+4:17.000 
 326w  4.5wkg     
         Power
 B  15   
 mmmm... marmite
 
-4:18 
+4:18.000 
 242w  3.8wkg     
         Power
 B  21   
 * Cycling Fanatic *
 
-4:19 
+4:19.000 
 277w  3.7wkg     
         Power
 B  20   
 Scott Hansen
 
-4:19 
+4:19.000 
 294w  3.7wkg     
         Power
 B  16   
 Bernie Burns
 
-4:19 
+4:19.000 
 258w  3.8wkg     
         Power
 B  18   
 Chris Staubach
 Apcs  
 
-4:29 
+4:29.000 
 249w  3.7wkg     
         Power
 B  12   
 Michael Hunziker
 MGCC  
 
-4:29 
+4:29.000 
 247w  3.7wkg     
         Power
 B  10   
 Taku M
 
-4:29 
+4:29.000 
 227w  4.0wkg     
         Power
 B  17   
 Tom Hunt
 TTT  
 
-4:30 
+4:30.000 
 272w  4.0wkg     
         Power
 B  26   
 Jesper Thomsen
 
-4:31 
+4:31.000 
 275w  3.6wkg     
         Power
 B  11   
 nathan chown
 
-4:33 
+4:33.000 
 278w  3.8wkg     
         Power
 B  19   
 Anton Vazquez
 
-4:34 
+4:34.000 
 273w  3.9wkg     
         Power
 B  23   
 Rene Konig
 Radsport Konig  
 
-4:35 
+4:35.000 
 275w  4.0wkg     
         Power
 B  28   
 Daniel Forchhammer
 Romerike  
 
-4:37 
+4:37.000 
 256w  3.4wkg     
         Power
 B  40   
 Stian Eide
 
-4:40 
+4:40.000 
 253w  3.2wkg     
         Power
 B  32   
 Andy Holmes
 MDCC  
 
-4:40 
+4:40.000 
 254w  3.2wkg     
         Power
 B  29   
 Ryan Lyons MGCC
 MGCC  
 
-4:40 
+4:40.000 
 241w  3.2wkg     
         Power
 B  34   
 Mark Gair
 
-4:41 
+4:41.000 
 251w  3.3wkg     
         Power
 B  33   
 Alex Hatziyannis
 CRUZBIKE  
 
-4:41 
+4:41.000 
 224w  3.4wkg     
         Power
 B  30   
 Alexandre Branco
 TugaZ  
 
-4:41 
+4:41.000 
 233w  3.2wkg     
         Power
 B  27   
 James Eaton
 UNC  
 
-4:41 
+4:41.000 
 219w  3.2wkg     
         Power
 B  22   
 Jimmy Olsen
 Ruby-Cycling.dk  
 
-4:42 
+4:42.000 
 256w  3.3wkg     
         Power
 B  37   
 Chris Richmond SCC/RCC
 PARLAY  
 
-4:45 
+4:45.000 
 271w  3.7wkg     
         Power
 B  24   
 Tim Cummins
 
-4:54 
+4:54.000 
 255w  3.5wkg     
         Power
 B  36   
 Jazz Ist
 
-4:56 
+4:56.000 
 224w  3.6wkg     
         Power
 B  31   
 Alvaro Pauli
 
-4:56 
+4:56.000 
 259w  3.3wkg     
         Power
 B  49   
 manuel santos
 CCL  
 
-4:59 
+4:59.000 
 202w  3.3wkg     
         Power
 B  46   
 Rafal Siewierkiewicz
 DZR  
 
-4:59 
+4:59.000 
 238w  3.1wkg     
         Power
 B  43   
 Olivier Defreyne
 Sportsolid  
 
-4:59 
+4:59.000 
 223w  3.1wkg     
         Power
 B  45   
 Miguel Angel
 PETA-Z  
 
-5:08 
+5:08.000 
 243w  3.3wkg     
         Power
 B  44   
 Teresa M__ller-Ott
 ZRG  
 
-5:08 
+5:08.000 
 190w  3.3wkg     
         Power
 B  41   
 Amalie Bengtsson
 POAUTO - CeramicSpeed  
 
-5:09 
+5:09.000 
 196w  3.2wkg     
         Power
 B  38   
 Chris Metcalfe
 None  
 
-5:13 
+5:13.000 
 226w  3.1wkg     
         Power
 B  39   
 Ryan Kestle
 CDRC  
 
-5:14 
+5:14.000 
 213w  3.0wkg     
         Power
 B  42   
 Mark Onimpex Bioracer RT
 Bioracer UK  
 
-5:15 
+5:15.000 
 256w  3.2wkg     
         Power
 B  35   
 Lewis Wake
 TKC  
 
-5:24 
+5:24.000 
 262w  3.1wkg     
         Power
 B  50   
 Anton Wiersma
 
-5:46 
+5:46.000 
 202w  2.7wkg     
         Power
 B  48   
 Steffan Ford
 Freedom zwifters  
 
-5:47 
+5:47.000 
 188w  2.7wkg     
         Power
 B  54   
 Tim Kemp
 CNCCC  
 
-5:50 
+5:50.000 
 191w  2.5wkg     
         Power
 B  53   
 Ed Lowe
 CNCCC  
 
-5:50 
+5:50.000 
 213w  2.6wkg     
         Power
 B  51   
 Jose NAVARRO
 TOAC  
 
-5:51 
+5:51.000 
 214w  2.6wkg     
         Power
 B  55   
 Kasper Niebling
 DZR  
 
-5:53 
+5:53.000 
 198w  2.7wkg     
         Power
 B  52   
 Mads Appelby
 
-5:56 
+5:56.000 
 182w  2.7wkg     
         Power

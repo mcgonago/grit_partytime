@@ -1,0 +1,10 @@
+party set max 68
+party set bestof 2
+party kom database/_posts/2021/01/31/2021-01-31-Pretzel_epic_for.txt database/_posts/2021/01/31/2021-01-31-Pretzel_epic_for.md epic_for 2
+party kom database/_posts/2021/01/31/2021-01-31-Pretzel_kom_rev.txt database/_posts/2021/01/31/2021-01-31-Pretzel_kom_rev.md kom_rev 0
+party kom database/_posts/2021/01/31/2021-01-31-Pretzel_kom_for.txt database/_posts/2021/01/31/2021-01-31-Pretzel_kom_for.md kom_for 1
+party kom database/_posts/2021/01/31/2021-01-31-Pretzel_epic_rev.txt database/_posts/2021/01/31/2021-01-31-Pretzel_epic_rev.md epic_rev 3
+party set calendar on
+#party richmond
+party show
+quit

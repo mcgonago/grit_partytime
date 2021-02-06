@@ -1,0 +1,196 @@
+A  6   
+Rob Fullerton
+GRIT  
+
+26.065 
+719w  9.5wkg     
+        Power
+B  14   
+Dax Nelson
+!DUX! TPA-FLA HERD
+
+26.082 
+707w  8.7wkg     
+        Power
+A  4   
+Tak Ina
+[JETT][GRIT]
+
+26.556 
+528w  10.0wkg     
+        Power
+A  3   
+Derek Sawyer
+[GRIT][Rippers]
+
+26.934 
+672w  9.0wkg     
+        Power
+B  20   
+Shaun Corbin
+[GRIT][DIRT]
+
+27.358 
+623w  9.6wkg     
+        Power
+A  7   
+Greg Langman
+DIRT
+
+28.163 
+616w  8.7wkg     
+        Power
+A  11   
+Owen McGonagle
+GRIT  
+
+28.877 
+654w  9.6wkg     
+        Power
+A  2   
+Steve Tappan
+[GRIT]
+
+30.462 
+515w  7.6wkg     
+        Power
+A  1    
+R Fukamura/NICO OZ
+NICO OZ  
+
+30.631 
+438w  7.7wkg     
+        Power
+B  18   
+Alan Brannan
+GRIT  
+
+33.285 
+467w  6.6wkg     
+        Power
+A  5   
+Kazuki Takamura
+
+33.417 
+482w  7.4wkg     
+        Power
+B  15   
+Daniel Florez
+Team Type 1  
+
+33.458 
+417w  6.4wkg     
+        Power
+B  13   
+yasuhiro takeuchi
+JETT  
+
+33.814 
+385w  6.9wkg     
+        Power
+B  26   
+J B
+Herd Of Kookaburras  
+
+34.005 
+588w  7.4wkg     
+        Power
+B  17   
+c. Jopling
+(Stage1)    
+
+34.609 
+564w  6.6wkg     
+        Power
+A  10   
+Luke Elton
+GRIT  
+
+35.122 
+372w  5.8wkg     
+        Power
+B  19   
+Steven Allington
+
+35.297 
+522w  6.0wkg     
+        Power
+B  25   
+Jeff Bratteson
+DIRT  
+
+36.194 
+521w  5.8wkg     
+        Power
+B  23   
+Doug Cowperthwaite
+TeamODZ  
+
+36.598 
+401w  6.2wkg     
+        Power
+A  8   
+James Bolze
+CVC RACING
+
+38.582 
+355w  5.4wkg     
+        Power
+A  9   
+jong han
+
+39.830 
+439w  5.7wkg     
+        Power
+B  16   
+M Shinall
+TTE  
+
+40.557 
+389w  5.6wkg     
+        Power
+B  21   
+Steve Bekker
+DIRT  
+
+43.294 
+370w  5.1wkg     
+        Power
+B  29   
+. Supermankenna
+Cycling Ireland  
+
+43.933 
+402w  5.7wkg     
+        Power
+B  22   
+Kaz Oni
+
+44.487 
+310w  5.3wkg     
+        Power
+B  24   
+Lars Torup
+
+47.387 
+332w  4.6wkg     
+        Power
+B  27   
+Ichigo Tamagoya___Euroad___
+
+51.201 
+227w  3.8wkg     
+        Power
+B  28   
+Anne Whittingham
+Valhalla  
+
+58.405 
+238w  4.0wkg     
+        Power
+A  12   
+Craig Jenkins
+
+1:22.000 
+205w  2.7wkg     
+        Power

@@ -1,0 +1,11 @@
+# party kom database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-libby.txt database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-libby.md libby 0
+# party kom database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd.txt database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd.md 23rd 1
+# party set max 35                                                           
+#party set bestof 2                                                          
+party kom database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-libby.txt test.md libby 0
+party kom database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd.txt test.md 23rd 1                                                    
+party set calendar on                                                      
+party richmond                                                             
+party write result database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd-kom-combined.txt
+#party show                                                                                      
+quit

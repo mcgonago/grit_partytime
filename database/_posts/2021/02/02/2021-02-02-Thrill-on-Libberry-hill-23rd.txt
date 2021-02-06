@@ -1,0 +1,622 @@
+
+
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (29)
+    Unfiltered (29)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+Hello ZwiftPower racers,
+
+As part of Zwift HQ's efforts to safeguard our members' data privacy, discussions about ZwiftPower will transition from the ZwiftPower forums to forums.zwift.com
+Why? The migration of ZwiftPower from its original server to Zwift HQ's server environment has important implications for both site stability and for data security.
+
+The discussions, knowledge, and history from the ZwiftPower forum will be preserved and remain accessible here in read-only mode.
+Please follow us to the new: ZwiftPower board, a small team of Zwift HQ staff will be on hand to answer questions and guide you through some of the changes.
+All American Bikes Ride presented by GRIT
+Today 05:50
+Richmond UCI Worlds 2 Laps 32 km
+All riders visible Late joining No TT bikes
+5min and 20min CEVAZ limits apply
+No ZPower winners
+23.5km144m
+0.0km2.0km4.0km6.0km8.0km10.0km12.0km14.0km16.0km18.0km20.0km22.0km24.0km26.0km28.0km30.0km32.0km
+250m
+100 miles
+Madness
+Libby Hill
+600m, 6% avg
+23rd Street
+260m, 10% avg
+Libby Hill
+600m, 6% avg
+23rd Street
+260m, 10% avg
+1
+2
+S
+S
+A B Distance: 32.7km Elevation Gain: 315m Strava route
+Next Update in 12 minutes
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Main Sprint	Second Sprint	UCI Lap	Libby Hill	23rd Street	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+A 	1	
+R Fukamura/NICO OZ 3710
+NICO OZ
+	
+18.659
+205w 3.6wkg
+	
+23.764
+192w 3.4wkg
+	
+22:55
+221w 3.9wkg
+	
+01:15
+391w 6.9wkg
+	
+30.631
+438w 7.7wkg
+	Power
+A 	2	
+Steve Tappan
+GRIT
+	
+15.946
+524w 7.7wkg
+	
+20.719
+471w 6.9wkg
+	
+22:51
+262w 3.9wkg
+	
+01:11
+515w 7.6wkg
+	
+30.463
+515w 7.6wkg
+	Power
+A 	3	
+Derek Sawyer
+Rippers
+	
+18.925
+258w 3.4wkg
+	
+23.886
+242w 3.2wkg
+	
+22:55
+265w 3.5wkg
+	
+01:12
+538w 7.2wkg
+	
+26.934
+672w 9.0wkg
+	Power
+A 	4	
+tak ina[JETT]
+JETT
+	
+19.044
+162w 3.1wkg
+	
+24.102
+170w 3.2wkg
+	
+23:44
+200w 3.8wkg
+	
+01:13
+369w 7.0wkg
+	
+26.557
+528w 10.0wkg
+	Power
+A 	5	
+Kazuki Takamura
+	
+18.992
+237w 3.6wkg
+	
+23.133
+270w 4.2wkg
+	
+22:59
+280w 4.3wkg
+	
+01:17
+424w 6.5wkg
+	
+33.418
+482w 7.4wkg
+	Power
+A 	6	
+Rob Fullerton
+GRIT
+	
+18.999
+212w 2.8wkg
+	
+23.733
+216w 2.8wkg
+	
+22:55
+254w 3.3wkg
+	
+01:11
+521w 6.9wkg
+	
+26.066
+719w 9.5wkg
+	Power
+A 	7	
+Greg Langman
+DIRT
+	
+19.197
+210w 3.0wkg
+	
+23.930
+219w 3.1wkg
+	
+22:56
+264w 3.7wkg
+	
+01:14
+472w 6.7wkg
+	
+28.163
+616w 8.7wkg
+	Power
+A 	8	
+James Bolze  CVC RACING
+	
+18.066
+287w 4.4wkg
+	
+23.569
+330w 5.0wkg
+	
+23:20
+287w 4.4wkg
+	
+01:35
+328w 5.0wkg
+	
+38.582
+355w 5.4wkg
+	Power
+A 	9	
+jong han
+	
+19.802
+250w 3.2wkg
+	
+23.524
+259w 3.4wkg
+	
+23:31
+287w 3.7wkg
+	
+01:21
+453w 5.9wkg
+	
+39.830
+439w 5.7wkg
+	Power
+A 	10	
+Luke Elton [GRIT]
+GRIT
+	
+19.108
+191w 3.0wkg
+	
+23.887
+201w 3.1wkg
+	
+23:23
+233w 3.6wkg
+	
+01:15
+420w 6.5wkg
+	
+35.122
+372w 5.8wkg
+	Power
+A 	11	
+Owen McGonagle [GRIT]
+GRIT
+	
+19.210
+208w 3.1wkg
+	
+22.927
+218w 3.2wkg
+	
+25:01
+215w 3.2wkg
+	
+01:13
+468w 6.9wkg
+	
+28.877
+654w 9.6wkg
+	Power
+A 	12	
+Craig Jenkins
+	
+23.626
+177w 2.4wkg
+	
+25.337
+182w 2.4wkg
+	
+32:42
+183w 2.4wkg
+	
+02:48
+208w 2.8wkg
+	
+01:22
+205w 2.7wkg
+	Power
+B 	13	
+yasuhiro takeuchi  [JETT]
+JETT
+	
+18.918
+173w 3.1wkg
+	
+23.320
+184w 3.3wkg
+	
+23:38
+198w 3.5wkg
+	
+01:28
+314w 5.6wkg
+	
+33.815
+385w 6.9wkg
+	Power
+B 	14	
+Dax Nelson    ¡DUX! TPA-FLA HERD
+HERD
+	
+18.492
+251w 3.1wkg
+	
+23.702
+222w 2.7wkg
+	
+23:39
+261w 3.2wkg
+	
+01:27
+447w 5.5wkg
+	
+26.082
+707w 8.7wkg
+	Power
+B 	15	
+Daniel Florez (TT1F)
+Team Type 1
+	
+19.245
+186w 2.9wkg
+	
+23.377
+207w 3.2wkg
+	
+23:45
+207w 3.2wkg
+	
+01:34
+322w 5.0wkg
+	
+33.459
+417w 6.4wkg
+	Power
+B 	16	
+M Shinall
+TTE
+	
+19.163
+210w 3.0wkg
+	
+23.948
+212w 3.1wkg
+	
+23:40
+243w 3.5wkg
+	
+01:17
+460w 6.6wkg
+	
+40.558
+389w 5.6wkg
+	Power
+B 	17	
+c. Jopling (Stage1)
+	
+19.276
+321w 3.8wkg
+	
+23.769
+237w 2.8wkg
+	
+23:56
+284w 3.3wkg
+	
+01:37
+396w 4.6wkg
+	
+34.609
+564w 6.6wkg
+	Power
+B 	18	
+Alan Brannan
+GRIT
+	
+18.166
+310w 4.4wkg
+	
+23.993
+228w 3.2wkg
+	
+23:55
+242w 3.4wkg
+	
+01:34
+354w 5.0wkg
+	
+33.286
+467w 6.6wkg
+	Power
+B 	19	
+Steven Allington
+	
+19.236
+244w 2.8wkg
+	
+23.354
+258w 2.9wkg
+	
+23:55
+281w 3.2wkg
+	
+01:37
+406w 4.6wkg
+	
+35.297
+522w 6.0wkg
+	Power
+B 	20	
+Shaun Corbin (GRIT)(DIRT)
+DIRT
+	
+19.585
+172w 2.7wkg
+	
+23.790
+194w 3.0wkg
+	
+23:55
+213w 3.3wkg
+	
+01:13
+447w 6.9wkg
+	
+27.359
+623w 9.6wkg
+	Power
+B 	21	
+Steve Bekker
+DIRT
+	
+18.585
+231w 3.2wkg
+	
+24.092
+189w 2.6wkg
+	
+24:09
+231w 3.2wkg
+	
+01:39
+336w 4.6wkg
+	
+43.295
+370w 5.1wkg
+	Power
+B 	22	
+Kaz Oni
+	
+18.525
+178w 3.1wkg
+	
+23.312
+196w 3.4wkg
+	
+24:16
+206w 3.6wkg
+	
+01:41
+267w 4.6wkg
+	
+44.488
+310w 5.3wkg
+	Power
+B 	23	
+Doug Cowperthwaite
+TeamODZ
+	
+17.733
+226w 3.5wkg
+	
+23.623
+198w 3.0wkg
+	
+24:18
+223w 3.4wkg
+	
+01:40
+308w 4.7wkg
+	
+36.599
+401w 6.2wkg
+	Power
+B 	24	
+Lars Torup
+	
+19.170
+203w 2.8wkg
+	
+23.882
+234w 3.3wkg
+	
+24:20
+240w 3.3wkg
+	
+01:43
+317w 4.4wkg
+	
+47.387
+332w 4.6wkg
+	Power
+B 	25	
+Jeff Bratteson [DIRT]
+DIRT
+	
+18.400
+255w 2.8wkg
+	
+23.343
+279w 3.1wkg
+	
+24:20
+283w 3.2wkg
+	
+01:43
+399w 4.4wkg
+	
+36.194
+521w 5.8wkg
+	Power
+B 	26	
+J B
+Herd Of Kookaburras
+	
+19.285
+216w 2.7wkg
+	
+23.826
+222w 2.8wkg
+	
+24:14
+248w 3.1wkg
+	
+01:29
+437w 5.5wkg
+	
+34.005
+588w 7.4wkg
+	Power
+B 	27	
+Ichigo Tamagoya（Euroad）
+	
+19.123
+187w 3.2wkg
+	
+24.586
+180w 3.1wkg
+	
+28:04
+202w 3.4wkg
+	
+01:50
+242w 4.1wkg
+	
+51.201
+227w 3.8wkg
+	Power
+B 	28	
+Anne Whittingham
+Valhalla
+	
+18.968
+195w 3.3wkg
+	
+24.469
+177w 3.0wkg
+	
+25:39
+192w 3.2wkg
+	
+02:01
+241w 4.0wkg
+	
+58.406
+238w 4.0wkg
+	Power
+B 	29	
+. Supermankenna
+Cycling Ireland
+	
+22.184
+209w 3.0wkg
+	
+27.665
+219w 3.1wkg
+	
+29:08
+208w 3.0wkg
+	
+02:32
+211w 3.0wkg
+	
+43.934
+402w 5.7wkg
+	Power
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    *
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+
