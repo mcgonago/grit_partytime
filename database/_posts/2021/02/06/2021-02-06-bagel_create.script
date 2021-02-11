@@ -1,0 +1,3 @@
+party convert inline database/_posts/2021/02/06/2021-02-06-Bagel.txt 5 database/_posts/2021/02/06/2021-02-06-Bagel_titan_r.txt
+party convert inline database/_posts/2021/02/06/2021-02-06-Bagel.txt 6 database/_posts/2021/02/06/2021-02-06-Bagel_titan_f.txt
+quit

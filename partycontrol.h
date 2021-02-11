@@ -48,6 +48,7 @@ typedef struct PartyControl_s
    float cat1;
    float cat2;
    float cat3;
+   int nickName;
 } PartyControl_t;
 
 extern PartyControl_t partyControl;

@@ -1,0 +1,18 @@
+party set max 30
+party set bestof 1
+party set nickname on
+#party set group B
+party kom database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd-kom-combined.txt database/_posts/2021/02/02/2021-02-02-Thrill-on-Libberry-23rd-kom-combined.md libby 0
+#party set snap B
+#party set lockdown on
+party kom database/_posts/2021/02/04/2021-02-04-Sprints.txt database/_posts/2021/02/04/2021-02-04-Sprints.md sprints 1
+party kom database/_posts/2021/02/05/2021-02-05-Guess-whos-back-kom.txt database/_posts/2021/02/05/2021-02-05-Guess-whos-back-kom.md epic 2
+#party set clip on
+party set calendar on
+#party set PR on
+#party tempoish
+party show
+#party richmond
+#party time
+quit
+#party reset list

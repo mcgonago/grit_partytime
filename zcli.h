@@ -51,6 +51,7 @@ typedef struct Arguments_s {
     int local;
     int top;
     int topRefresh;
+    int nickName;
     int idleRefresh;
     int idleCut;
     int topFlow;

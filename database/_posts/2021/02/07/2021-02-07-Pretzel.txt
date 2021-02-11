@@ -1,0 +1,840 @@
+
+
+    Events
+
+    Profile
+
+    Friends
+
+    Team
+
+    Leagues
+
+    Series
+
+    Segments
+
+    Rankings
+
+    Forum
+
+    Results (35)
+    Unfiltered (36)
+    Sprints & KOMs
+    Primes
+    Power Curve
+    LIVE
+    Comments
+    Settings
+
+Hello ZwiftPower racers,
+
+As part of Zwift HQ's efforts to safeguard our members' data privacy, discussions about ZwiftPower will transition from the ZwiftPower forums to forums.zwift.com
+Why? The migration of ZwiftPower from its original server to Zwift HQ's server environment has important implications for both site stability and for data security.
+
+The discussions, knowledge, and history from the ZwiftPower forum will be preserved and remain accessible here in read-only mode.
+Please follow us to the new: ZwiftPower board, a small team of Zwift HQ staff will be on hand to answer questions and guide you through some of the changes.
+MGCC Pretzel
+Today 06:30
+Watopia Pretzel 1 Laps 72 km
+All riders visible Late joining No TT bikes
+ZwiftPower category overrides wkg
+Category winners must wear a HRM
+5min and 20min CEVAZ limits apply
+No ZPower winners
+0.0km5.0km10.0km15.0km20.0km25.0km30.0km35.0km40.0km45.0km50.0km55.0km60.0km65.0km70.0km
+0m1000m
+100 miles
+Madness
+Epic Climb
+9.5km, 3.9% avg
+Gain 414m
+The Tower   
+13.7% avg
+Reverse Climb
+2.5km, 8% kick
+Forward Climb
+0.9km, 6% avg
+Epic Climb Reverse
+10% segments
+K
+K
+K
+K
+1
+B Distance: 72.4km Elevation Gain: 1349m Starts from: Watopia Pier Strava route
+Next Update is pending
+Results in queue are processed every 5 minutes.
+Description
+Search:
+	#	Rider	Reverse KOM	Forward KOM	Reverse Sprint	Forward Sprint	Forward Epic	Reverse Epic	Fuego Flats Short	Titans Grove Forward	Aqueduc KOM	Petit KOM	VenTop	Marina Sprint Rev	Pave Sprint Rev	Ballon Sprint	Aqueduc KOM Rev	Pave Sprint	Marina Sprint	Ballon Sprint Rev	Type
+B 	1	
+Cosmic Carbon
+	
+03:58
+316w 4.9wkg
+	
+02:02
+349w 5.5wkg
+	
+14.586
+223w 3.5wkg
+	
+30.274
+247w 3.9wkg
+	
+19:02
+325w 5.1wkg
+	
+16:23
+324w 5.1wkg
+			Power
+B 	2	
+HenHoev [NBB]
+NBB
+	
+03:58
+323w 4.6wkg
+	
+02:00
+381w 5.4wkg
+	
+14.529
+227w 3.2wkg
+	
+30.265
+254w 3.6wkg
+	
+18:51
+350w 5.0wkg
+	
+16:03
+356w 5.1wkg
+			Power
+B 	3	
+Gary Walker
+BRC
+	
+03:59
+317w 4.7wkg
+	
+02:00
+368w 5.5wkg
+	
+12.852
+254w 3.8wkg
+	
+30.274
+236w 3.5wkg
+	
+20:36
+304w 4.5wkg
+	
+16:23
+329w 4.9wkg
+			Power
+B 	4	
+Christian Kaldbar
+GRIT
+	
+03:58
+306w 4.3wkg
+	
+01:59
+417w 5.8wkg
+	
+13.389
+194w 2.7wkg
+	
+30.438
+198w 2.8wkg
+	
+20:37
+321w 4.5wkg
+	
+15:36
+382w 5.3wkg
+			Power
+B 	5	
+Steve Tappan
+GRIT
+	
+03:57
+325w 4.8wkg
+	
+01:59
+394w 5.8wkg
+	
+12.581
+506w 7.4wkg
+	
+26.161
+534w 7.9wkg
+	
+18:58
+335w 4.9wkg
+	
+16:49
+327w 4.8wkg
+			Power
+B 	6	
+PJ Kings (DIRT Diggler)
+KISS RT
+	
+03:59
+339w 4.2wkg
+	
+02:01
+414w 5.2wkg
+	
+13.494
+271w 3.4wkg
+	
+28.378
+313w 3.9wkg
+	
+20:35
+345w 4.3wkg
+	
+16:46
+370w 4.6wkg
+			Power
+B 	7	
+Ralf B [NBB]🔰🐶
+NBB
+	
+03:59
+304w 4.6wkg
+	
+02:01
+355w 5.4wkg
+	
+14.044
+210w 3.2wkg
+	
+28.555
+284w 4.3wkg
+	
+19:37
+333w 5.1wkg
+	
+16:47
+311w 4.7wkg
+			Power
+B 	8	
+Monkey D Luffy
+	
+03:59
+293w 4.3wkg
+	
+02:02
+362w 5.3wkg
+	
+14.400
+245w 3.6wkg
+	
+30.266
+298w 4.4wkg
+	
+19:01
+325w 4.8wkg
+	
+17:16
+308w 4.5wkg
+			Power
+B 	9	
+Andrey Andin
+MGCC
+	
+03:58
+281w 4.2wkg
+	
+02:02
+358w 5.4wkg
+	
+13.957
+242w 3.6wkg
+	
+32.023
+244w 3.7wkg
+	
+20:37
+294w 4.4wkg
+	
+18:26
+285w 4.3wkg
+			Power
+B 	10	
+Michael Hunziker 9526
+MGCC
+	
+04:37
+248w 3.7wkg
+	
+02:28
+284w 4.2wkg
+	
+14.866
+180w 2.7wkg
+	
+30.182
+230w 3.4wkg
+	
+20:37
+294w 4.4wkg
+	
+19:37
+265w 3.9wkg
+			Power
+B 	11	
+Baris Aytan
+CRCA/Foundation
+	
+04:22
+285w 3.8wkg
+	
+02:13
+357w 4.7wkg
+	
+13.381
+221w 2.9wkg
+	
+30.240
+242w 3.2wkg
+	
+22:24
+301w 4.0wkg
+	
+19:30
+305w 4.0wkg
+			Power
+B 	12	
+Michael Garner
+	
+04:37
+278w 3.5wkg
+	
+02:28
+327w 4.1wkg
+	
+14.873
+280w 3.5wkg
+	
+30.027
+302w 3.8wkg
+	
+20:50
+338w 4.2wkg
+	
+19:38
+316w 4.0wkg
+			Power
+B 	13	
+Alec Thomas
+	
+04:22
+258w 3.7wkg
+	
+01:56
+400w 5.7wkg
+	
+13.756
+211w 3.0wkg
+	
+30.033
+231w 3.3wkg
+	
+22:26
+282w 4.0wkg
+	
+19:37
+277w 4.0wkg
+			Power
+B 	14	
+mmmm... marmite
+	
+04:22
+237w 3.8wkg
+	
+02:21
+280w 4.4wkg
+	
+13.612
+223w 3.5wkg
+	
+29.976
+207w 3.3wkg
+	
+22:26
+261w 4.1wkg
+	
+19:37
+253w 4.0wkg
+			Power
+B 	15	
+Sal Ranieri
+	
+04:37
+263w 3.8wkg
+	
+02:27
+295w 4.3wkg
+	
+14.662
+224w 3.2wkg
+	
+36.944
+184w 2.7wkg
+	
+20:38
+316w 4.6wkg
+	
+19:37
+279w 4.0wkg
+			Power
+B 	16	
+Iker RS
+	
+04:22
+299w 4.2wkg
+	
+02:21
+322w 4.5wkg
+	
+14.319
+325w 4.5wkg
+	
+32.474
+283w 3.9wkg
+	
+21:35
+316w 4.4wkg
+	
+20:58
+274w 3.8wkg
+			Power
+B 	17	
+Sebastian Walczyński1452
+ZTPL.CC
+	
+05:01
+248w 3.4wkg
+	
+02:40
+281w 3.8wkg
+	
+14.766
+253w 3.5wkg
+	
+32.082
+229w 3.1wkg
+	
+22:27
+293w 4.0wkg
+	
+21:08
+270w 3.7wkg
+			Power
+B 	18	
+Patrick (SW Koeln)
+	
+04:47
+268w 3.7wkg
+	
+02:39
+275w 3.8wkg
+	
+14.949
+230w 3.2wkg
+	
+32.272
+233w 3.2wkg
+	
+24:02
+268w 3.7wkg
+	
+21:00
+270w 3.8wkg
+			Power
+B 	19	
+Dawid Zakrzewski
+ZTPL.CC eRacing
+	
+04:45
+232w 3.2wkg
+	
+02:47
+267w 3.7wkg
+	
+14.193
+172w 2.4wkg
+	
+30.517
+196w 2.7wkg
+	
+24:23
+258w 3.5wkg
+	
+21:43
+254w 3.5wkg
+			Power
+B 	20	
+Jimmy Olsen
+Ruby-Cycling.dk
+	
+04:45
+257w 3.3wkg
+	
+02:49
+281w 3.6wkg
+	
+14.228
+215w 2.8wkg
+	
+30.448
+237w 3.0wkg
+	
+24:11
+282w 3.6wkg
+	
+21:43
+272w 3.5wkg
+			Power
+B 	21	
+W. Szwarc.72D
+ZTPL.CC
+	
+04:48
+213w 3.2wkg
+	
+02:39
+264w 3.9wkg
+	
+14.900
+175w 2.6wkg
+	
+29.889
+227w 3.4wkg
+	
+23:21
+258w 3.9wkg
+	
+21:56
+238w 3.6wkg
+			Power
+B 	22	
+Ryan Lyons MGCC
+MGCC
+	
+04:44
+245w 3.2wkg
+	
+02:48
+270w 3.6wkg
+	
+13.728
+250w 3.3wkg
+	
+30.110
+295w 3.9wkg
+	
+24:13
+264w 3.5wkg
+	
+21:43
+265w 3.5wkg
+			Power
+B 	23	
+Steen Ole Rasmussen (FUCC)
+FUCC
+	
+04:47
+275w 3.3wkg
+	
+02:42
+302w 3.7wkg
+	
+14.726
+262w 3.2wkg
+	
+30.411
+271w 3.3wkg
+	
+23:04
+318w 3.9wkg
+	
+22:04
+281w 3.4wkg
+			Power
+B 	24	
+Michael Jahn www.carbonesel.de
+	
+04:45
+266w 3.4wkg
+	
+02:32
+318w 4.1wkg
+	
+14.733
+421w 5.4wkg
+	
+29.956
+306w 3.9wkg
+	
+24:23
+285w 3.7wkg
+	
+21:19
+280w 3.6wkg
+			Power
+B 	25	
+sarah lewthwaite (Team WRFC)
+	
+04:45
+214w 3.8wkg
+	
+02:47
+210w 3.8wkg
+	
+14.512
+192w 3.4wkg
+	
+30.671
+187w 3.3wkg
+	
+24:06
+221w 3.9wkg
+	
+21:42
+208w 3.7wkg
+			Power
+B 	26	
+Jamie Baker
+None
+	
+04:44
+299w 3.3wkg
+	
+02:48
+317w 3.5wkg
+	
+14.042
+317w 3.5wkg
+	
+34.585
+256w 2.8wkg
+	
+24:14
+295w 3.2wkg
+	
+22:42
+299w 3.3wkg
+			Power
+B 	27	
+Rob Visser
+TBR Racing
+	
+04:45
+237w 3.1wkg
+	
+02:48
+269w 3.5wkg
+	
+14.104
+185w 2.4wkg
+	
+35.944
+183w 2.4wkg
+	
+24:11
+269w 3.5wkg
+	
+24:50
+231w 3.0wkg
+			Power
+B 	28	
+Ryan Ness
+MGCC
+	
+05:05
+254w 3.2wkg
+	
+02:42
+302w 3.8wkg
+	
+16.381
+194w 2.5wkg
+	
+32.976
+267w 3.4wkg
+	
+25:09
+283w 3.6wkg
+	
+24:25
+251w 3.2wkg
+			Power
+B 	29	
+Ike Janssen1496
+	
+05:36
+215w 3.1wkg
+	
+03:07
+230w 3.3wkg
+	
+16.800
+214w 3.1wkg
+	
+30.872
+274w 3.9wkg
+	
+25:29
+258w 3.7wkg
+	
+25:01
+222w 3.2wkg
+			Power
+B 	30	
+Ronnie Abell
+	
+05:11
+240w 2.9wkg
+	
+03:07
+259w 3.2wkg
+	
+14.047
+221w 2.7wkg
+	
+34.251
+249w 3.0wkg
+	
+27:03
+255w 3.1wkg
+	
+25:31
+239w 2.9wkg
+			Power
+B 	31	
+Owen McGonagle [GRIT]
+GRIT
+	
+05:06
+217w 3.2wkg
+	
+02:20
+312w 4.6wkg
+	
+16.318
+186w 2.7wkg
+	
+46.210
+121w 1.8wkg
+	
+24:26
+249w 3.7wkg
+	
+25:32
+204w 3.0wkg
+			Power
+B 	32	
+Robert Pejic
+	
+06:10
+177w 2.5wkg
+	
+04:00
+174w 2.5wkg
+	
+18.338
+191w 2.7wkg
+	
+38.702
+159w 2.2wkg
+	
+30:19
+192w 2.7wkg
+	
+26:24
+201w 2.8wkg
+			Power
+B 	33	
+John Rodriguez
+	
+05:52
+189w 2.6wkg
+	
+03:28
+206w 2.9wkg
+	
+17.407
+175w 2.4wkg
+	
+31.487
+287w 4.0wkg
+	
+31:28
+188w 2.6wkg
+	
+29:56
+176w 2.5wkg
+			Power
+B 	34	
+Schmidt Torge NRW
+GCA
+	
+06:28
+140w 2.4wkg
+	
+03:28
+172w 3.0wkg
+	
+19.472
+113w 1.9wkg
+	
+36.691
+175w 3.0wkg
+	
+32:14
+164w 2.8wkg
+	
+31:30
+144w 2.5wkg
+			Power
+B 	35	
+Ole Jablonski
+	
+06:25
+143w 2.6wkg
+	
+03:31
+169w 3.0wkg
+	
+20.579
+98w 1.8wkg
+	
+38.977
+130w 2.3wkg
+	
+32:11
+157w 2.8wkg
+	
+31:10
+142w 2.5wkg
+			Power
+
+    Previous
+    1
+    Next
+
+
+Powered by phpBB® Forum Software © phpBB Limited
+
+    *
+    The team
+    Members
+    Delete all board cookies
+
+    All times are UTC-05:00
+

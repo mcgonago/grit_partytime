@@ -1,0 +1,318 @@
+B  18   
+Tom Hill
+
+1:19.000 
+612w  7.8wkg     
+        Power
+B  8   
+HenHoev
+NBB  
+
+1:19.000 
+550w  7.9wkg     
+        Power
+B  3   
+Gabriel Mathisen
+[VEGAN][GRIT]
+
+1:19.000 
+490w  7.9wkg     
+        Power
+B  2   
+Rob Fullerton
+GRIT  
+
+1:21.000 
+598w  7.9wkg     
+        Power
+B  34   
+Joe Woodman
+UoLCC/ARCC  
+
+1:23.000 
+471w  7.6wkg     
+        Power
+B  29   
+Peter Flick
+
+1:27.000 
+535w  6.7wkg     
+        Power
+B  1    
+Steve Tappan
+[GRIT]
+
+1:27.000 
+448w  6.6wkg     
+        Power
+B  33   
+Alan Purves
+GTC  
+
+1:28.000 
+426w  6.3wkg     
+        Power
+B  5   
+Greg Langman
+DIRT
+
+1:32.000 
+408w  5.8wkg     
+        Power
+B  31   
+Andrew George
+
+1:33.000 
+417w  6.1wkg     
+        Power
+B  9   
+Robert van Zijp
+
+1:36.000 
+442w  5.3wkg     
+        Power
+B  4   
+Daniel Florez
+Team Type 1  
+
+1:37.000 
+356w  5.5wkg     
+        Power
+B  37   
+Owen McGonagle
+GRIT  
+
+1:39.000 
+366w  5.4wkg     
+        Power
+B  16   
+S.CooNa
+
+1:42.000 
+352w  5.9wkg     
+        Power
+B  32   
+Arturo Petrucci
+BrxHellZR  
+
+1:46.000 
+307w  4.8wkg     
+        Power
+B  20   
+Chris Shaw
+(DIRT)    
+
+1:46.000 
+364w  4.9wkg     
+        Power
+B  22   
+xiao gang Xin
+[ZCRC]    
+
+1:48.000 
+319w  5.1wkg     
+        Power
+B  6   
+andrew peace zhr C
+
+1:49.000 
+301w  4.7wkg     
+        Power
+B  21   
+Paul Saunders
+EBR  
+
+1:51.000 
+353w  4.5wkg     
+        Power
+B  10   
+Stephan Konertz
+SBW  
+
+1:52.000 
+307w  5.0wkg     
+        Power
+B  14   
+Emanuele Zenoni
+Team Italy  
+
+1:54.000 
+298w  4.7wkg     
+        Power
+B  13   
+Cross Fella
+
+1:55.000 
+307w  4.2wkg     
+        Power
+B  38   
+Matthieu Br__nner | VCV
+TEAM GOLDEN SHOP  
+
+1:56.000 
+356w  4.7wkg     
+        Power
+B  15   
+Jim Beattie
+
+1:56.000 
+308w  4.3wkg     
+        Power
+B  36   
+Rub__n Ruiz
+ZESP  
+
+1:57.000 
+338w  4.8wkg     
+        Power
+B  30   
+Jon Duran
+FZR  
+
+1:58.000 
+279w  4.1wkg     
+        Power
+B  24   
+Frank Lunemann
+CISM GER TRI  
+
+1:58.000 
+309w  4.2wkg     
+        Power
+B  17   
+Chewie Chewbacca
+
+1:58.000 
+300w  4.2wkg     
+        Power
+B  39   
+Jimbo Gilbert
+
+1:59.000 
+325w  4.5wkg     
+        Power
+B  28   
+Anders Christensen
+
+1:59.000 
+252w  4.2wkg     
+        Power
+B  23   
+Greg Stewart
+
+1:59.000 
+297w  4.0wkg     
+        Power
+B  11   
+Sebastian Linz
+
+2:00.000 
+303w  4.1wkg     
+        Power
+B  7   
+Will Carlyon
+IDCA  
+
+2:00.000 
+268w  4.0wkg     
+        Power
+B  12   
+Mark Leine
+ZRG  
+
+2:05.000 
+310w  4.1wkg     
+        Power
+B  19   
+Matt Ray
+Race3R  
+
+2:08.000 
+265w  3.7wkg     
+        Power
+B  40   
+Tiago Nunes
+Tretas BT  
+
+2:09.000 
+285w  3.9wkg     
+        Power
+B  27   
+kenny henning
+SaddleDrunk RT  
+
+2:09.000 
+275w  3.7wkg     
+        Power
+B  25   
+Glen Alizadeh
+
+2:09.000 
+246w  3.6wkg     
+        Power
+B  43   
+Graeme Muir
+
+2:10.000 
+318w  3.8wkg     
+        Power
+B  26   
+Andrew Buczkowski
+SWOZR  
+
+2:12.000 
+260w  3.6wkg     
+        Power
+B  35   
+Micha__ Tomaszewski
+
+2:13.000 
+288w  3.4wkg     
+        Power
+B  46   
+Jason Varley
+RHINO  
+
+2:14.000 
+259w  3.5wkg     
+        Power
+B  42   
+Martin vd Walt
+NuPower  
+
+2:14.000 
+300w  3.4wkg     
+        Power
+B  41   
+__STAR__
+
+2:14.000 
+214w  3.7wkg     
+        Power
+B  45   
+Stephanie Wendel
+KIRCHMAIR e-Cycling  
+
+2:24.000 
+190w  3.5wkg     
+        Power
+B  44   
+Pavel Koval
+BCC  
+
+2:24.000 
+242w  3.3wkg     
+        Power
+B  47   
+Delboy Trotter
+
+2:36.000 
+236w  2.9wkg     
+        Power
+B  48   
+Joost Hartog ____
+TRAPPIST  
+
+2:54.000 
+179w  2.9wkg     
+        Power

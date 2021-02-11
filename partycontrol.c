@@ -55,6 +55,7 @@ void PartyInit(CLI_PARSE_INFO *pInfo)
    partyControl.cat1 = 0.0;
    partyControl.cat2 = 0.0;
    partyControl.cat3 = 0.0;
+   partyControl.nickName = 0;
 
    ColumnReset(pInfo);
 }

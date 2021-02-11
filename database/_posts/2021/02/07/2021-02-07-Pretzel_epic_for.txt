@@ -1,0 +1,232 @@
+B  2   
+HenHoev
+NBB  
+
+18:51.000 
+350w  5.0wkg     
+        Power
+B  5   
+Steve Tappan
+[GRIT]
+
+18:58.000 
+335w  4.9wkg     
+        Power
+B  8   
+Monkey D Luffy
+
+19:01.000 
+325w  4.8wkg     
+        Power
+B  1    
+Cosmic Carbon
+
+19:02.000 
+325w  5.1wkg     
+        Power
+B  7   
+Ralf B
+NBB  
+
+19:37.000 
+333w  5.1wkg     
+        Power
+B  6   
+PJ Kings
+KISS RT  
+
+20:35.000 
+345w  4.3wkg     
+        Power
+B  3   
+Gary Walker
+BRC  
+
+20:36.000 
+304w  4.5wkg     
+        Power
+B  10   
+Michael Hunziker
+MGCC  
+
+20:37.000 
+294w  4.4wkg     
+        Power
+B  9   
+Andrey Andin
+MGCC  
+
+20:37.000 
+294w  4.4wkg     
+        Power
+B  4   
+Christian Kaldbar
+GRIT  
+
+20:37.000 
+321w  4.5wkg     
+        Power
+B  15   
+Sal Ranieri
+
+20:38.000 
+316w  4.6wkg     
+        Power
+B  12   
+Michael Garner
+
+20:50.000 
+338w  4.2wkg     
+        Power
+B  16   
+Iker RS
+
+21:35.000 
+316w  4.4wkg     
+        Power
+B  11   
+Baris Aytan
+CRCA/Foundation  
+
+22:24.000 
+301w  4.0wkg     
+        Power
+B  14   
+mmmm... marmite
+
+22:26.000 
+261w  4.1wkg     
+        Power
+B  13   
+Alec Thomas
+
+22:26.000 
+282w  4.0wkg     
+        Power
+B  17   
+Sebastian Walczyński
+ZTPL.CC  
+
+22:27.000 
+293w  4.0wkg     
+        Power
+B  23   
+Steen Ole Rasmussen
+FUCC  
+
+23:04.000 
+318w  3.9wkg     
+        Power
+B  21   
+W. Szwarc.
+ZTPL.CC  
+
+23:21.000 
+258w  3.9wkg     
+        Power
+B  18   
+Patrick
+(SW Koeln)    
+
+24:02.000 
+268w  3.7wkg     
+        Power
+B  25   
+sarah lewthwaite
+(Team WRFC)    
+
+24:06.000 
+221w  3.9wkg     
+        Power
+B  27   
+Rob Visser
+TBR Racing  
+
+24:11.000 
+269w  3.5wkg     
+        Power
+B  20   
+Jimmy Olsen
+Ruby-Cycling.dk  
+
+24:11.000 
+282w  3.6wkg     
+        Power
+B  22   
+Ryan Lyons MGCC
+MGCC  
+
+24:13.000 
+264w  3.5wkg     
+        Power
+B  26   
+Jamie Baker
+None  
+
+24:14.000 
+295w  3.2wkg     
+        Power
+B  24   
+Michael Jahn www.carbonesel.de
+
+24:23.000 
+285w  3.7wkg     
+        Power
+B  19   
+Dawid Zakrzewski
+ZTPL.CC eRacing  
+
+24:23.000 
+258w  3.5wkg     
+        Power
+B  31   
+Owen McGonagle
+GRIT  
+
+24:26.000 
+249w  3.7wkg     
+        Power
+B  28   
+Ryan Ness
+MGCC  
+
+25:09.000 
+283w  3.6wkg     
+        Power
+B  29   
+Ike Janssen
+
+25:29.000 
+258w  3.7wkg     
+        Power
+B  30   
+Ronnie Abell
+
+27:03.000 
+255w  3.1wkg     
+        Power
+B  32   
+Robert Pejic
+
+30:19.000 
+192w  2.7wkg     
+        Power
+B  33   
+John Rodriguez
+
+31:28.000 
+188w  2.6wkg     
+        Power
+B  35   
+Ole Jablonski
+
+32:11.000 
+157w  2.8wkg     
+        Power
+B  34   
+Schmidt Torge NRW
+GCA  
+
+32:14.000 
+164w  2.8wkg     
+        Power

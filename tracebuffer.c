@@ -208,6 +208,7 @@ static void convert(char *buff, TimeSpec_t *time1, TimeSpec_t *time2);
 extern uint32_t dumpGetSp(void);
 extern void SysTaskIdSelfToName(char *taskString);
 extern void cmd_party( CLI_PARSE_INFO *info);
+extern void PartyInit(CLI_PARSE_INFO *pInfo);
 
 // +++owen
 static int intLockLocal (void);
@@ -3836,6 +3837,7 @@ main(int argc, char *argv[])
     arguments.idleCut = 0;
     arguments.topFlow = 0;
     arguments.topRefresh = 1;
+    arguments.nickName = 0;
     arguments.ip_primary[0] = '\0';
     arguments.ip_secondary[0] = '\0';
 
@@ -3845,6 +3847,8 @@ main(int argc, char *argv[])
 
         static struct option long_options[] = 
             {
+                {"nickname",          no_argument,          0, 'n'},
+#if 0
                 {"DDR",               no_argument,          0, 'D'},
                 {"PDR",               no_argument,          0, 'P'},
                 {"Local",             no_argument,          0, 'L'},
@@ -3860,6 +3864,7 @@ main(int argc, char *argv[])
                 {"monitor",           no_argument,          0, 'm'},
                 {"media",             no_argument,          0, 'e'},
                 {"unittest",          no_argument,          0, 'U'},
+#endif
                 {"debug",             required_argument,    0, 'd'},
                 {"help",              no_argument,          0, '?'},
                 {"help",              no_argument,          0, 'h'},
@@ -3870,7 +3875,7 @@ main(int argc, char *argv[])
         // put semi-colon after it int the following list. a semi-colon after indicates required_argument, OVERIDING
         // the forced (supposed) setting above...
         
-        c = getopt_long_only(argc, argv, "DPLT:R:CFs:r:I:S:umeUd:h?",
+        c = getopt_long_only(argc, argv, "DPLT:R:CFs:r:I:S:numeUd:h?",
                              long_options, &option_index);
         
         if (c == -1)
@@ -3920,6 +3925,10 @@ main(int argc, char *argv[])
 
         case 'm':
             arguments.port = CLI_SERVER_PORT_MONITOR;
+            break;
+
+        case 'n':
+           arguments.nickName = 1;
             break;
 
         case 'e':
@@ -3990,6 +3999,15 @@ main(int argc, char *argv[])
             printf("%s ", argv[optind++]);
         
         printf("\n");
+    }
+
+    // So that we do not reset nickname etc... 
+    PartyInit(&pInfo);
+
+    if (arguments.nickName == 1)
+    {
+       sprintf(newCommandLine, "party set nickName on");
+       cliEntry(newCommandLine, &printf);
     }
 
     if (arguments.captureScript[0] != '\0')

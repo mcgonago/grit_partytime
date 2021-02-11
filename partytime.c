@@ -198,6 +198,32 @@ Athlete_t athleteGRIT2[MAX_ATHLETES] = {
    {0, "ATHLETE_END"},
 };
 
+typedef struct NickNameLibrary_s
+{
+    uint32_t enabled;
+    char name[MAX_NAME];
+    char nickName[MAX_NAME];
+} NickNameLibrary_t;
+
+NickNameLibrary_t nickNameLibrary[] = {
+    {1,"Steve Tappan",       "30% better than Bjarne"},
+    {1,"Shaun Corbin",       "scorbi"},
+//    {1,"Owen McGonagle",     "freddythecat"},
+    {1,"Owen McGonagle",     "Thomas Shelby"},
+    {1,"Steve Peplinski",    "McFartonator"},
+    {1,"John Jeffries",      "the turtle"},
+    {1,"Luke Elton",         "lukeekton93"},
+    {1,"Rob Fullerton",      "mOb1u5"},
+    {1,"Gabriel Mathisen",   "Squanchy"},
+    {1,"Rob McKechney",      "The Badger"},
+    {1,"Greg Langman",       "CLAIM_1"},
+    {1,"Christian Kaldbar",  "Norseman"},
+    {1,"Ryan Ness",          "CLAIM_1"},
+    {1,"Ike Janssen",        "CLAIM_2"},
+    {1,"Ronnie Abell",       "CLAIM_3"},
+    {0, "ATHLETE_END", "-"},
+};
+
 
 extern void ColumnizeResults(CLI_PARSE_INFO *pInfo, char *fname, int columnId, int mode, char *infile);
 extern void PartyTimeFilterCmd( CLI_PARSE_INFO *pInfo);
@@ -1457,7 +1483,32 @@ int AthleteSkip(CLI_PARSE_INFO *pInfo, LinkList_t *list, TimeLineInfo_t *timeLin
    int i, j;
    Link_t *ptr;
 
-   if (partyControl.groupId == GROUP_A)
+   if (partyControl.nickName == 1)
+   {
+      /* NO - for A check - if we ALSO do NOT see in B - we throw in A pool !!! */
+      for (j = 0; j < MAX_ATHLETES; j++)
+      {
+         if (strstr(nickNameLibrary[j].name, "ATHLETE_END") != 0)
+         {
+            break;
+         }
+
+         if (strcmp(nickNameLibrary[j].name, timeLineInfo->name) == 0)
+         {
+            /* Swap with nickName - all good */
+            strcpy(timeLineInfo->name, nickNameLibrary[j].nickName);
+            return 0;
+         }
+      }
+
+      if (j == MAX_ATHLETES)
+      {
+         (pInfo->print_fp)("INTERNAL ERROR: Could not ignore - too many athletes!!!\n");
+      }
+
+      return 1;
+   }
+   else if (partyControl.groupId == GROUP_A)
    {
       for (i = 0; i < MAX_ATHLETES; i++)
       {
@@ -2426,6 +2477,7 @@ void cmd_party_common_inline(CLI_PARSE_INFO *pInfo, int partyMode, char *infile,
 
                NameInsert(timeLineInfo, name);
 
+//               if ((partyControl.lockDown == 1) || (partyControl.nickName == 1))
                if (partyControl.lockDown == 1)
                {
 //                     (pInfo->print_fp)("%s\n", name);
@@ -2439,6 +2491,7 @@ void cmd_party_common_inline(CLI_PARSE_INFO *pInfo, int partyMode, char *infile,
                   gdbStop = 1;
                }
 
+//               if ((partyControl.lockDown == 1) || (partyControl.nickName == 1))
                if (partyControl.lockDown == 1)
                {
                   if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
@@ -2593,6 +2646,7 @@ void cmd_party_common_inline(CLI_PARSE_INFO *pInfo, int partyMode, char *infile,
                      strcpy(timeLineInfo->first, first);
                      NameInsert(timeLineInfo, name);
 
+//                   if ((partyControl.lockDown == 1) || (partyControl.nickName == 1))
                      if (partyControl.lockDown == 1)
                      {
                         if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
@@ -2648,6 +2702,7 @@ void cmd_party_common_inline(CLI_PARSE_INFO *pInfo, int partyMode, char *infile,
                      strcpy(timeLineInfo->first, first);
                      NameInsert(timeLineInfo, name);
 
+//                   if ((partyControl.lockDown == 1) || (partyControl.nickName == 1))
                      if (partyControl.lockDown == 1)
                      {
                         if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
@@ -2705,6 +2760,7 @@ void cmd_party_common_inline(CLI_PARSE_INFO *pInfo, int partyMode, char *infile,
                      /* TEAM can be found in the name (Zwift does that) or on next line */
                      TeamNameCleanup(timeLineInfo, tmp);
 
+//                   if ((partyControl.lockDown == 1) || (partyControl.nickName == 1))
                      if (partyControl.lockDown == 1)
                      {
                         if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
@@ -2730,6 +2786,7 @@ void cmd_party_common_inline(CLI_PARSE_INFO *pInfo, int partyMode, char *infile,
                      /* CATCH if/when we have DUPLICATE names (i.e., P B) with different teams */
                      NameDouble(pInfo, timeLineInfo);
 
+//                   if ((partyControl.lockDown == 1) || (partyControl.nickName == 1))
                      if (partyControl.lockDown == 1)
                      {
                         if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, groupId))
@@ -3265,6 +3322,15 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
       {
          timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
 
+         if (partyControl.nickName == 1)
+         {
+            if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, 0))
+            {
+               ptr = ptr->next;
+               continue;
+            }
+         }
+
          currInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
 
          currInfo->points = BestOfPoints(pInfo, timeLineInfo, partyControl.bestOf, &timeLineInfo->totalRaces, SHOW_POINTS, &timeLineInfo->prIdx);
@@ -3321,6 +3387,15 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
       while (ptr->next != NULL)
       {
          timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         if (partyControl.nickName == 1)
+         {
+            if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, 0))
+            {
+               ptr = ptr->next;
+               continue;
+            }
+         }
 
          currInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
 
@@ -3406,6 +3481,15 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
       while (ptr->next != NULL)
       {
          timeLineInfo = (TimeLineInfo_t *)ptr->currentObject;
+
+         if (partyControl.nickName == 1)
+         {
+            if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, 0))
+            {
+               ptr = ptr->next;
+               continue;
+            }
+         }
 
          currInfo = TimeLineInfoNew(pInfo, TYPE_USBC);
 
@@ -3529,6 +3613,17 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
          outIdx = 0;
          currInfo = (TimeLineInfo_t *)ptr->currentObject;
 
+#if 0
+         if (partyControl.nickName == 1)
+         {
+            if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, 0))
+            {
+               ptr = ptr->next;
+               continue;
+            }
+         }
+#endif
+         
          timeLineInfo = (TimeLineInfo_t *)currInfo->me;
 
          if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
@@ -3669,6 +3764,17 @@ void cmd_party_show_common(CLI_PARSE_INFO *pInfo, int mode)
 
          timeLineInfo = (TimeLineInfo_t *)currInfo->me;
 
+#if 0
+         if (partyControl.nickName == 1)
+         {
+            if (AthleteSkip(pInfo, listTimeLine, timeLineInfo, 0))
+            {
+               ptr = ptr->next;
+               continue;
+            }
+         }
+#endif
+         
          if ((partyControl.bestOf > 1) && (partyControl.clip == 1) && (timeLineInfo->numRaces < partyControl.bestOf))
          {
             ptr = ptr->next;
@@ -4671,6 +4777,29 @@ void PartySetClip(CLI_PARSE_INFO *pInfo)
     }
 }
 
+void PartySetNickName(CLI_PARSE_INFO *pInfo)
+{
+   if ( pInfo->argc < 2)
+   {
+      (pInfo->print_fp)("USAGE: %s {on|off}}\n", pInfo->argv[0]);
+      return;
+   }
+
+    if (strcmp(pInfo->argv[1], "on") == 0)
+    {
+        partyControl.nickName = 1;
+    }
+    else if (strcmp(pInfo->argv[1], "off") == 0)
+    {
+        partyControl.nickName = 0;
+    }
+    else
+    {
+        (pInfo->print_fp)("USAGE: %s {on|off}\n", pInfo->argv[0]);
+        return;
+    }
+}
+
 void PartySetSnapA(CLI_PARSE_INFO *pInfo)
 {
    int i;
@@ -4808,6 +4937,7 @@ static const CLI_PARSE_CMD party_set_cmd[] =
     { "lockdown",  PartySetLockdown,  "on|off"},
     { "clip",      PartySetClip,      "on|off"},
     { "snap",      PartySetSnap,      "snap athletes"},
+    { "nickname",  PartySetNickName,  "on|off"},
     { NULL, NULL, NULL }
 };
 
@@ -5590,7 +5720,7 @@ void cmd_party( CLI_PARSE_INFO *info)
 {
    if (firstTime == 1)
    {
-      PartyInit(info);
+//      PartyInit(info);
       TimeLineInit(info);
 
       ListReset(info, listTimeLine);

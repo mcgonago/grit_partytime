@@ -1,0 +1,6 @@
+#party set max 35
+party kom database/_posts/2021/02/06/2021-02-06-Bagel_titan_f.txt database/_posts/2021/02/06/2021-02-06-Bagel_titan_f.md titan_f 0
+party kom database/_posts/2021/02/06/2021-02-06-Bagel_titan_r.txt database/_posts/2021/02/06/2021-02-06-Bagel_titan_r.md titan_r 1
+party set calendar on
+party richmond
+quit
